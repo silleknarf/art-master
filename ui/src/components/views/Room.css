@@ -1,11 +1,11 @@
-.home {
+.room {
   text-align: center;
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-.home .container {
+.room .container {
   position: relative;
   height: 100%;
   width: 100%;
@@ -17,42 +17,4 @@
   background: -ms-linear-gradient(top, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
   background: linear-gradient(to bottom, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=0 );
-}
-
-.home .input-block {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.home .username-label {
-  color: white;
-  font-size: 2em;
-  text-transform: uppercase; 
-  text-shadow: -1px 0 rgb(77, 77, 77), 0 1px rgb(77, 77, 77), 1px 0 rgb(77, 77, 77), 0 -1px rgb(77, 77, 77);
-  margin: 10px 0;
-}
-
-.home .form-group {
-  width: 50%;
-  margin: 20px auto;
-}
-
-.home .button {
-  margin: 10px 25px;
-  width: 200px;
-  padding: 15px 20px;
-  text-transform: uppercase;
-  color: white;
-  background-image: none;
-  border: none;
-}
-
-.home .create-room-button {
-  background-color: rgb(28, 153, 90);
-}
-
-.home .join-room-button {
-  background-color: rgb(64, 85, 202); 
 }

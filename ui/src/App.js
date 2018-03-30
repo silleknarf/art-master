@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import Home from './components/views/Home';
+import Room from './components/views/Room';
 import './App.css';
 
 class App extends Component {
@@ -22,9 +23,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Switch>
-            <Route path="/" component={Home} />
-          </Switch>
+          <Route path="/home" component={Home} />
+          <Route path="/room/:roomId" component={Room} />
         </Switch>
       </BrowserRouter>
     );
