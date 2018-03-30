@@ -28,6 +28,24 @@ class Rating(Base):
     RoundImage = relationship(u'RoundImage')
 
 
+class Room(Base):
+    __tablename__ = 'Room'
+
+    RoomId = Column(Integer, primary_key=True)
+    RoomCode = Column(String(4))
+
+
+class RoomUser(Base):
+    __tablename__ = 'RoomUser'
+
+    RoomUserId = Column(Integer, primary_key=True)
+    RoomId = Column(ForeignKey(u'Room.RoomId'), nullable=False, index=True)
+    UserId = Column(ForeignKey(u'User.UserId'), nullable=False, index=True)
+
+    Room = relationship(u'Room')
+    User = relationship(u'User')
+
+
 class Round(Base):
     __tablename__ = 'Round'
 
