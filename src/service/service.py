@@ -52,13 +52,14 @@ def get_drawings(round_id):
     return locations
 
 # provides the round info including who won
-@app.route("round/<int:round>", methods=["GET"]):
+@app.route("round/<int:round>", methods=["GET"])
 def get_round_info():
     sesh = Database().get_session()
-    round_ratings = sesh.query(Rating)
+    round_ratings = (sesh
+        .query(Rating) 
         .join(Rating.RoundImage)
         .filter(Round.RoundId==round_id)
-        .all()
+        .all())
 
     results = {}
     for rr in round_ratings:
@@ -74,9 +75,9 @@ def get_round_info():
             winner_image_id = image_id
             winner_rating = rating
 
-    winning_image_location = round_ratings
+    winning_image_location = (round_ratings
         .filter(lambda rr: rr.RoundImage.ImageId == winner_image_id)[0]
-        .Location
+        .Location)
 
     round_info = { 
         "round_id": round_id,
@@ -87,7 +88,7 @@ def get_round_info():
 
 # provide the rating
 @app.route("drawing/<int:image_id>/", methods=["POST"])
-def provide_ratiing(round_id, image_id)
+def provide_ratiing(round_id, image_id):
     rating = request.args.get("rating")
     user_id = request.args.get("raterUserId")
     round_entity = Rating(Rating=rating, RaterUserId=raterUserId, ImageId=image_id)
