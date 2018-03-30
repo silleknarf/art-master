@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
+import { Grid, Col, Row, Button } from 'react-bootstrap'; 
 import './Home.css';
 
 class Home extends Component {
+
+  onClickCreateRoom(e) {
+    e.preventDefault();
+    console.log('create room');
+    //TODO: create room request
+
+  }
+
+  onClickJoinRoom(e) {
+    e.preventDefault();
+    console.log('join room');
+    // TODO: logic to pick username and 
+  }
+
   render() {
     return (
       <div className="home">
-        <header className="home-header">
-          <img src={logo} className="home-logo" alt="logo" />
-          <h1 className="home-title">React Template</h1>
-        </header>
-        <p className="home-intro">
-          To get started, edit <code>src/Home.js</code> and save to reload.
-        </p>
+        <Grid>
+          <Row className="input-row">
+            <Col smOffset={3} sm={6}>
+              <Button
+                className="create-room-button button"
+                onClick={(e) => this.onClickCreateRoom(e)}
+              >
+                Create Room
+              </Button>
+              <Button
+                className="join-room-button button"
+                onClick={e => this.onClickJoinRoom(e)}
+              >
+                Join Room
+              </Button>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
