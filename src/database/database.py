@@ -23,7 +23,7 @@ class Database():
 
 def main():
     art_master_session = Database().get_session()
-    first_symbol = art_master_session.query(Symbol).first()
+    first_symbol = art_master_session.query(User).first()
     print Database.row_to_list(first_symbol)
 
 if __name__ == "__main__":

@@ -11,6 +11,10 @@ CREATE TABLE Image
     Location VARCHAR(255) NOT NULL
 )
 
+ALTER TABLE Image
+ADD FOREIGN KEY UserId
+REFERENCES User(UserId)
+
 CREATE TABLE Round
 (
     RoundId INT AUTO_INCREMENT NOT NULL PRIMARY KEY
@@ -23,9 +27,28 @@ CREATE TABLE RoundImage
     ImageId INT NOT NULL
 )
 
+ALTER TABLE RoundImage
+ADD FOREIGN KEY (RoundId)
+REFERENCES Round(RoundId)
+
+ALTER TABLE RoundImage
+ADD FOREIGN KEY (ImageId)
+REFERENCES Image(ImageId)
+
 CREATE TABLE Rating 
 (
     RatingId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    RoundId INT NOT NULL,
-    RoundImageId INT NOT NULL
+    RaterUserId INT NOT NULL,
+    RoundImageId INT NOT NULL,
+    Rating INT NOT NULL
 )
+
+ALTER TABLE Rating
+ADD FOREIGN KEY (RaterUserId)
+REFERENCES User(UserId)
+
+ALTER TABLE Rating
+ADD FOREIGN KEY (RoundImageId)
+REFERENCES RoundImage(RoundImageId)
+
+
