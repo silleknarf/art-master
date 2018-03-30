@@ -5,10 +5,13 @@ from database.database import Database
 from database.data_model import User, Round, Image, RoundImage, Rating, Room, RoomUser
 from flask import Flask, request, jsonify
 from random import randint
+from flask_cors import CORS
+from datetime import datetime
 
 data_dir = "/Users/silleknarf/Code/art-master/data"
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/")
@@ -32,17 +35,41 @@ def create_user(username):
     return jsonify({})
 
 # Create a new round and then returns the round info
-@app.route("/round", methods=["POST"])
-def create_round():
+@app.route("/room/<room_id>/round", methods=["GET", "POST"])
+def create_round(room_id):
     sesh = Database().get_session()
-    round = Round()
-    sesh.add(round)
-    sesh.commit()
-    return jsonify({ "roundId": round.RoundId })
+    round = None
+    if request.method == "GET":
+        current_round_id = (sesh
+            .query(Room)
+            .filter(Room.RoomId==room_id)
+            .first()
+            .CurrentRoundId)
+        round = (sesh
+            .query()
+            .filter(Round.RoundId==current_round_id)
+            .order_by(Room.StartTime)
+            .first())
+    else:
+        room = (sesh
+            .query(Room)
+            .filter(Room.RoomId==room_id)
+            .first())
+        start_time = datetime.utcnow()
+        round = Round(RoomId=room_id, StartTime=start_time)
+        sesh.add(round)
+        sesh.flush() 
+        room.CurrentRoundId = round.RoundId
+        sesh.commit()
+    return jsonify({ 
+        "roundId": round.RoundId,
+        "startTime": round.StartTime
+    })
 
 #provide the image in the body
-@app.route("/round/<int:round_id>/user/<int:user_id>/drawing", methods=["POST"])
-def add_drawing(round_id, user_id):
+@app.route("/round/<int:round_id>/image", methods=["POST"])
+def add_drawing(round_id):
+    user_id = request.args.get("userId")
     drawing_file = request.files("drawing")
     drawing_file_name = round_id + "/" + user_id + ".png"
     f.save(data_dir + "/" + drawing_file_name);
@@ -58,18 +85,20 @@ def add_drawing(round_id, user_id):
     })
 
 # returns two images to rate
-@app.route("/round/<int:round_id>/drawings", methods=["GET"])
+@app.route("/round/<int:round_id>/images", methods=["GET"])
 def get_drawings(round_id):
     sesh = Database().get_session()
     round_images = (sesh
         .query(RoundImage)
         .filter(RoundImage.RoundId==round_id)
         .all())
-    locations = [ri.Image.Location for ri in round_images]
-    return jsonify(locations)
+    locations = [(rt.RoundId, ri.Image.Location) for ri in round_images]
+    if locations == 2:
+        return jsonify(locations)
+    return jsonify({})
 
 # provides the round info including who won
-@app.route("/round/<int:round_id>", methods=["GET"])
+@app.route("/round/<int:round_id>/ratings", methods=["GET"])
 def get_round_info(round_id):
     sesh = Database().get_session()
     round_ratings = (sesh
@@ -104,7 +133,7 @@ def get_round_info(round_id):
     return jsonify(round_info)
 
 # provide the rating
-@app.route("/drawing/<int:image_id>/", methods=["POST"])
+@app.route("/round/<int:round_id>/image/<int:image_id>/rating", methods=["POST"])
 def provide_rating(round_id, image_id):
     rating = request.args.get("rating")
     user_id = request.args.get("raterUserId")
@@ -134,7 +163,8 @@ def get_or_create_room():
 
     return jsonify({
         "roomId": room.RoomId,
-        "roomcode": room.RoomCode
+        "roomCode": room.RoomCode,
+        "currentRoundId": room.CurrentRoundId
     })
 
 @app.route("/room/<int:room_id>/user/<int:user_id>", methods=["POST"])
