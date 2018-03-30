@@ -519,16 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "TODO.md",
-			"settings":
-			{
-				"buffer_size": 1212,
-				"encoding": "UTF-8",
-				"line_ending": "Unix",
-				"name": "TODO"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -605,14 +595,8 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/silleknarf/Code/stick-survival"
-	],
 	"file_history":
 	[
-		"/Users/silleknarf/Dropbox/Documents/CV/CV.tex",
-		"/Users/silleknarf/Dropbox/Documents/CV/cv.sublime-project",
 		"/Users/silleknarf/Dropbox/Code/Bitcoin/NewModel/data_model.py",
 		"/Users/silleknarf/Dropbox/Code/Bitcoin/NewModel/generate_data_model.sh",
 		"/Users/silleknarf/Dropbox/Code/Bitcoin/NewModel/model.py",
@@ -738,7 +722,9 @@
 		"/Users/silleknarf/Code/notebook-numbers/tutorial_entity.js",
 		"/Users/silleknarf/Code/notebook-numbers/tutorial_view_component.js",
 		"/Users/silleknarf/Code/notebook-numbers/tutorial_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/game/view/title_view_component.js"
+		"/Users/silleknarf/Code/notebook-numbers/game/view/title_view_component.js",
+		"/Users/silleknarf/Code/notebook-numbers/game/view/cells_view_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/title_view_component.js"
 	],
 	"find":
 	{
@@ -773,55 +759,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "TODO.md",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1212,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								384,
-								384
-							]
-						],
-						"settings":
-						{
-							"auto_name": "TODO",
-							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
-							"vintage":
-							{
-								"_vintageous_glue_until_normal_mode": false,
-								"_vintageous_non_interactive": false,
-								"_vintageous_processing_notation": false,
-								"action": null,
-								"action_count": "",
-								"mode": "mode_normal",
-								"motion": null,
-								"motion_count": "",
-								"must_capture_register_name": false,
-								"normal_insert_count": "1",
-								"partial_sequence": "",
-								"register": "\"",
-								"sequence": "",
-								"xpos": 3
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1385,10 +1324,6 @@
 	"selected_group": 0,
 	"settings":
 	{
-		"_vintageous_reset_during_init": true,
-		"vintage":
-		{
-		}
 	},
 	"show_minimap": true,
 	"show_open_files": false,

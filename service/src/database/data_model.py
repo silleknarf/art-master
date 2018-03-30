@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, DateTime, ForeignKey, Index, Integer, String
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -33,13 +33,17 @@ class Room(Base):
 
     RoomId = Column(Integer, primary_key=True)
     RoomCode = Column(String(4))
+    CurrentRoundId = Column(Integer)
 
 
 class RoomUser(Base):
     __tablename__ = 'RoomUser'
+    __table_args__ = (
+        Index('RoomId', 'RoomId', 'UserId', unique=True),
+    )
 
     RoomUserId = Column(Integer, primary_key=True)
-    RoomId = Column(ForeignKey(u'Room.RoomId'), nullable=False, index=True)
+    RoomId = Column(ForeignKey(u'Room.RoomId'), nullable=False)
     UserId = Column(ForeignKey(u'User.UserId'), nullable=False, index=True)
 
     Room = relationship(u'Room')
@@ -50,6 +54,8 @@ class Round(Base):
     __tablename__ = 'Round'
 
     RoundId = Column(Integer, primary_key=True)
+    StartTime = Column(DateTime, nullable=False)
+    RoomId = Column(Integer, nullable=False)
 
 
 class RoundImage(Base):
