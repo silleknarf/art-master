@@ -1,5 +1,5 @@
 export default {
-    apiurl: 'http://192.168.0.90:5000',
+    apiurl: 'http://localhost:5000',
     gameStates: {
         PENDING_START: 'pending',
     },

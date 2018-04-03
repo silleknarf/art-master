@@ -59,4 +59,4 @@ Build:
 
 Run:
 
-    npm run
+    npm start
