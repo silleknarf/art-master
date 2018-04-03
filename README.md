@@ -3,6 +3,11 @@ README
 
 Art Master is a game where players are pitted against each other to rapidly create art for the other players to critique! 
 
+TODO
+====
+
+[Trello TODO Board](https://trello.com/b/xC2SMsIk/art-master)
+
 CONTRIBUTING
 ============
 
