@@ -11,4 +11,4 @@ node_modules/
 /*.egg-info
 
 # Never commit the user_config.py file as it contains credentials
-user_config.py
+service/src/user_config.py
