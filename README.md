@@ -17,14 +17,19 @@ Get the code:
 Install the dependencies:
 
 - python
-- flask
 - MySQL
-- SQLAlchemy
+- SQLAlchemy `pip install sqlalchemy`  
+- flask `pip install Flask`
 - sqlacodegen
+
+Populate the user_config.py below with your MySQL credentials:
+
+    art-master/src/user_config.py
 
 Set up the `art-master` database using the script at:
 
-    art-master/src/database/database_schema.sql
+    cd art-master/src/database
+    ./create_database.py --dev
 
 Run:
     

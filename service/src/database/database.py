@@ -3,10 +3,17 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from data_model import *
+from user_config import UserDevelopmentConfig
+
+config = UserDevelopmentConfig
+
 
 class Database():
-
-    _connection_string = "mysql://root:glad0sglad0s@localhost/art-master"
+    _connection_string = ('mysql://%s:%s@%s/%s' % 
+        (config.DATABASE_USERNAME, 
+        config.DATABASE_PASSWORD,
+        config.DATABASE_SERVER,
+        config.DATABASE_NAME))
 
     def get_session(self):
         engine = create_engine(
