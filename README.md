@@ -22,16 +22,20 @@ Install the dependencies:
 - flask `pip install Flask`
 - sqlacodegen
 
-Populate the user_config.py below with your MySQL credentials:
+Turn off tracking of the user_config.py file:
 
-    art-master/src/user_config.py
+    git update-index --assume-unchanged art-master/service/src/user_config.py
+
+Populate the file below with your MySQL credentials:
+
+    art-master/service/src/user_config.py
 
 Set up the `art-master` database using the script at:
 
     cd art-master/src/database
     ./create_database.py --dev
 
-Run:
+Run the service:
     
     cd art-master/service/src
     ./app.py
