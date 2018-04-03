@@ -9,3 +9,6 @@ node_modules/
 
 # Python egg metadata, regenerated from source files by setuptools.
 /*.egg-info
+
+# Never commit the user_config.py file as it contains credentials
+user_config.py
