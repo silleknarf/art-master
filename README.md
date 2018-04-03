@@ -25,7 +25,7 @@ Install the dependencies:
 - MySQL
 - SQLAlchemy `pip install sqlalchemy`  
 - flask `pip install Flask`
-- sqlacodegen
+- sqlacodegen `pip install sqlacodegen`
 
 Turn off tracking of the user_config.py file:
 
