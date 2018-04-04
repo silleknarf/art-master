@@ -35,6 +35,7 @@ class Room(Base):
     RoomCode = Column(String(4))
     CurrentRoundId = Column(Integer)
 
+
 class RoomUser(Base):
     __tablename__ = 'RoomUser'
     __table_args__ = (
@@ -53,18 +54,13 @@ class Round(Base):
     __tablename__ = 'Round'
 
     RoundId = Column(Integer, primary_key=True)
-    RoomId = Column(ForeignKey(u'Room.RoomId'), nullable=False)
-    StageStateId = Column(Integer, nullable=True)
-    StageStateStartTime = Column(DateTime, nullable=False)
-    StageStateEndTime = Column(DateTime, nullable=False)
-    
+    RoomId = Column(ForeignKey(u'Room.RoomId'), nullable=False, index=True)
+    StageStateId = Column(Integer)
+    StageStateStartTime = Column(DateTime)
+    StageStateEndTime = Column(DateTime)
+
     Room = relationship(u'Room')
-    
-class StageState(Base):
-    __tablename__ = 'StageState'
-    
-    StageStateId = Column(Integer, primary_key=True, autoincrement=False)
-    StageStateName = Column(String(20), nullable=False)
+
 
 class RoundImage(Base):
     __tablename__ = 'RoundImage'
@@ -75,6 +71,13 @@ class RoundImage(Base):
 
     Image = relationship(u'Image')
     Round = relationship(u'Round')
+
+
+class StageState(Base):
+    __tablename__ = 'StageState'
+
+    StageStateId = Column(Integer, primary_key=True)
+    StageStateName = Column(String(20), nullable=False)
 
 
 class User(Base):

@@ -21,10 +21,14 @@ def poll_or_create_room():
             room = (sesh.query(Room)
                 .filter(Room.RoomId==room_id)
                 .first())
-        elif roomCode is not None:
+        elif room_code is not None:
             room = (sesh.query(Room)
                 .filter(Room.RoomCode==room_code)
                 .first())
+        elif room_id is None and room_code is None:
+            return "Please set the room id or code"
+        else:
+            return "Room code or room id doesn't exist"
     else:
         roomCode = get_room_code()
         room = Room(RoomCode=roomCode)
