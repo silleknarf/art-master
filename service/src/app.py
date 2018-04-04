@@ -8,6 +8,7 @@ from flask_cors import CORS
 from services.user_service import user_service
 from services.room_service import room_service
 from services.round_service import round_service
+from services.image_service import image_service
 
 data_dir = "/Users/silleknarf/Code/art-master/data"
 
@@ -17,6 +18,7 @@ CORS(app)
 app.register_blueprint(user_service)
 app.register_blueprint(room_service)
 app.register_blueprint(round_service)
+app.register_blueprint(image_service)
 
 @app.route("/")
 def home():
