@@ -9,6 +9,7 @@ from services.user_service import user_service
 from services.room_service import room_service
 from services.round_service import round_service
 from services.image_service import image_service
+from services.rating_service import rating_service
 
 data_dir = "/Users/silleknarf/Code/art-master/data"
 
@@ -19,6 +20,7 @@ app.register_blueprint(user_service)
 app.register_blueprint(room_service)
 app.register_blueprint(round_service)
 app.register_blueprint(image_service)
+app.register_blueprint(rating_service)
 
 @app.route("/")
 def home():
@@ -26,4 +28,3 @@ def home():
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5000, debug=True)
-
