@@ -2,7 +2,7 @@
 
 from flask import Blueprint, jsonify, request
 from database.database import Database
-from database.data_model import Room, Round, RoomUser
+from database.data_model import Room, Round, RoomUser, User
 from random import randint
 from datetime import datetime
 
@@ -51,6 +51,18 @@ def add_user_to_room(room_id, user_id):
     sesh.add(room_user)
     sesh.commit()
     return jsonify({})
+
+@room_service.route("/room/<int:room_id>/users", methods=["GET"])
+def get_users_in_room(room_id):
+    sesh = Database().get_session()
+    room_user_entities = (sesh
+        .query(User)
+        .join(RoomUser)
+        .filter(RoomUser.RoomId==room_id)
+        .all())
+    room_users = [{"userId": u.UserId, "username": u.Username }
+                  for u in room_user_entities]
+    return jsonify(room_users)
 
 def get_room_code():
     first_chr = 65
