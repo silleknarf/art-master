@@ -17,7 +17,7 @@ class Home extends Component {
     e.preventDefault();
     try {
       const { userId, username } = await this.createUser();
-      const roomRes = await fetch(`${config.apiurl}/room?userId={userId}`, {
+      const roomRes = await fetch(`${config.apiurl}/room?userId=${userId}`, {
         method: 'POST',
       });
       const { roomId, roomCode } = await roomRes.json();

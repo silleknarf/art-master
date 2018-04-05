@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/home" component={Home} />
+          <Route path="/" component={Home} />
           <Route path="/room/:roomId" component={Room} />
         </Switch>
       </BrowserRouter>
