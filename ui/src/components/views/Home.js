@@ -17,19 +17,17 @@ class Home extends Component {
     e.preventDefault();
     try {
       const { userId, username } = await this.createUser();
-      const roomRes = await fetch(`${config.apiurl}/room`, {
+      const roomRes = await fetch(`${config.apiurl}/room?userId={userId}`, {
         method: 'POST',
       });
       const { roomId, roomCode } = await roomRes.json();
-      const res = await fetch(`${config.apiurl}/room/${roomId}/user/${userId}`, {
-        method: 'POST',
-      });
-      if (res.status === 200) {
+      
+      if (roomRes.status === 200) {
         this.props.history.push(`/room/${roomCode}`);
       }
     } catch(err) {
       this.setState({
-        usernameFeedback: 'Unable to create username', 
+        usernameFeedback: 'Unable to create room', 
       })
     }
   }

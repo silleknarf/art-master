@@ -30,10 +30,12 @@ def poll_or_create_room():
         else:
             return "Room code or room id doesn't exist"
     else:
+        owner_user_id = request.args.get("userId")
         roomCode = get_room_code()
-        room = Room(RoomCode=roomCode)
+        room = Room(RoomCode=roomCode, OwnerUserId=owner_user_id)
         sesh.add(room)
         sesh.commit()
+        add_user_to_room(room.RoomId, owner_user_id)
 
     return jsonify({
         "roomId": room.RoomId,
