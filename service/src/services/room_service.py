@@ -15,7 +15,7 @@ def poll_or_create_room():
 
     if request.method == "GET":
         room_code = request.args.get("roomCode")
-        room_id = request.args.get("roomId")
+        room_id = int(request.args.get("roomId"))
         room = None
         if room_id is not None:
             room = (sesh.query(Room)

@@ -12,13 +12,13 @@ round_service = Blueprint('round_service', __name__)
 def poll_or_create_round():
     sesh = Database().get_session()
     if request.method == "POST":
-        room_id = request.args.get("roomId")
-        user_id = request.args.get("userId")
+        room_id = int(request.args.get("roomId"))
+        user_id = int(request.args.get("userId"))
         if room_id is None or user_id is None:
             return "Please set the roomId and userId"
         room = (sesh
 	        .query(Room)
-	        .filter(Room.RoomId==round_entity.RoomId)
+	        .filter(Room.RoomId==room_id)
 	        .first())
         if room.OwnerUserId != user_id:
 	        return "Only the room owner can start rounds"

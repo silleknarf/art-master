@@ -1,10 +1,9 @@
 #!/usr/bin/python
 
 import sys
-from database.database import Database
-from database.data_model import Round, Image, RoundImage, Rating, Room, RoomUser
 from flask import Flask
 from flask_cors import CORS
+
 from services.user_service import user_service
 from services.room_service import room_service
 from services.round_service import round_service
