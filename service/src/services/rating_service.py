@@ -7,8 +7,9 @@ from database.data_model import Round, Image, RoundImage, Rating
 rating_service = Blueprint('rating_service', __name__)
         
 # provides the round info including who won
-@rating_service.route("/rating/round/<int:round_id>/ratings", methods=["GET"])
-def get_ratings(round_id):
+@rating_service.route("/ratings", methods=["GET"])
+def get_ratings():
+    round_id = request.args.get("roundId")
     sesh = Database().get_session()
     round_ratings = (sesh
         .query(Rating) 
@@ -42,11 +43,16 @@ def get_ratings(round_id):
     return jsonify(round_info)
 
 # provide the rating
-@rating_service.route("/rating/round/<int:round_id>/image/<int:image_id>/rating", methods=["POST"])
-def set_rating(round_id, image_id):
+@rating_service.route("/rating", methods=["POST"])
+def set_rating():
+    round_id = request.args.get("roundId")
+    image_id = request.args.get("imageId")
     rating = request.args.get("rating")
     user_id = request.args.get("raterUserId")
-    rating_entity = Rating(Rating=rating, RaterUserId=raterUserId, ImageId=image_id)
+    rating_entity = Rating(
+        Rating=rating, 
+        RaterUserId=raterUserId, 
+        ImageId=image_id)
     sesh = Database().get_session()
     sesh.add(rating_entity)
     sesh.commit()
