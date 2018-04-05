@@ -13,8 +13,15 @@ def poll_or_create_round():
     sesh = Database().get_session()
     if request.method == "POST":
         room_id = request.args.get("roomId")
-        if room_id is None:
-            return "Please set the roomId"
+        user_id = request.args.get("userId")
+        if room_id is None or user_id is None:
+            return "Please set the roomId and userId"
+        room = (sesh
+	        .query(Room)
+	        .filter(Room.RoomId==round_entity.RoomId)
+	        .first())
+        if room.OwnerUserId != user_id:
+	        return "Only the room owner can start rounds"
         round_entity = Round(RoomId=room_id)
         sesh.add(round_entity)
         sesh.flush() 

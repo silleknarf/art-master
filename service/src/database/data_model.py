@@ -33,7 +33,10 @@ class Room(Base):
 
     RoomId = Column(Integer, primary_key=True)
     RoomCode = Column(String(4))
+    OwnerUserId = Column(ForeignKey(u'User.UserId'), nullable=False, index=True)
     CurrentRoundId = Column(Integer)
+    
+    User = relationship(u'User')
 
 
 class RoomUser(Base):
