@@ -27,8 +27,8 @@ class Rating(Base):
     ImageId = Column(ForeignKey(u'Image.ImageId'), nullable=False, index=True)
     Rating = Column(Integer, nullable=False)
 
-    User = relationship(u'User')
     Image = relationship(u'Image')
+    User = relationship(u'User')
 
 
 class Room(Base):
@@ -38,7 +38,7 @@ class Room(Base):
     RoomCode = Column(String(4))
     OwnerUserId = Column(ForeignKey(u'User.UserId'), nullable=False, index=True)
     CurrentRoundId = Column(Integer)
-    
+
     User = relationship(u'User')
 
 
@@ -67,6 +67,7 @@ class Round(Base):
 
     Room = relationship(u'Room')
 
+
 class StageState(Base):
     __tablename__ = 'StageState'
 
@@ -79,3 +80,15 @@ class User(Base):
 
     UserId = Column(Integer, primary_key=True)
     Username = Column(String(40), nullable=False)
+
+
+class Word(Base):
+    __tablename__ = 'Word'
+
+    WordId = Column(Integer, primary_key=True)
+    RoomId = Column(ForeignKey(u'Room.RoomId'), nullable=False, index=True)
+    UserId = Column(ForeignKey(u'User.UserId'), nullable=False, index=True)
+    Word = Column(String(50), nullable=False)
+
+    Room = relationship(u'Room')
+    User = relationship(u'User')
