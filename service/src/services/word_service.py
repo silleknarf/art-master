@@ -13,6 +13,12 @@ def add_or_remove_word():
         room_id = int(request.args.get("roomId"))
         user_id = int(request.args.get("userId"))
         word = request.args.get("word")
+        existing_word = (sesh
+            .query(Word)
+            .filter(Word.Word==word)
+            .first())
+        if existing_word is not None:
+            return "Can't re-add existing word"
         word_entity = Word(RoomId=room_id, UserId=user_id, Word=word)
         sesh.add(word_entity)
     elif request.method == "DELETE":
