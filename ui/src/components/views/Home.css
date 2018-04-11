@@ -26,7 +26,7 @@
   transform: translateY(-50%);
 }
 
-.home .username-label {
+.home .label {
   color: white;
   font-size: 2em;
   text-transform: uppercase; 

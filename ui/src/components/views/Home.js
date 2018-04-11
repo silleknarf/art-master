@@ -39,8 +39,26 @@ class Home extends Component {
 
   onClickJoinRoom(e) {
     e.preventDefault();
-    console.log('join room');
+    
     // TODO: logic to pick username and 
+    const { userId, username } = await this.createUser();
+    console.log(´User: ${username} is attempting to join room: ${this.state.roomCode}`);
+    
+    try {
+      const { roomId } = await fetch(`${config.apiurl}/room?${this.state.roomCode}`);
+      const res = await fetch(`$config.apiurl/room/${roomId}/user/${userId})
+      if (res.status === 200) {
+        console.log(´Added user: ${username} to room: ${this.state.roomCode}`);
+        this.props.history.push(`/room/${this.state.roomCode}`);
+      } else {
+        throw new Error('room join failed');
+      }
+    } catch(err) {
+      console.log(err.message);
+      this.setState({
+        usernameFeedback: 'Join the room failed',
+      })
+    }
   }
 
   async createUser() {
@@ -72,7 +90,7 @@ class Home extends Component {
             <Row className="input-row">
               <Col smOffset={3} sm={6}>
                 <FormGroup validationState={!this.state.usernameFeedback ? null : 'error'}>
-                  <ControlLabel className="username-label">Username</ControlLabel>
+                  <ControlLabel className="label">Username</ControlLabel>
                   <FormControl
                     className="username-input"
                     type="input"
@@ -80,6 +98,19 @@ class Home extends Component {
                     value={this.state.username}
                   />
                   {this.state.usernameFeedback  && <HelpBlock>{this.state.usernameFeedback}</HelpBlock>}
+                </FormGroup>
+              </Col>
+            </Row>
+             <Row className="input-row">
+              <Col smOffset={3} sm={6}>
+                <FormGroup>
+                  <ControlLabel className="label">Room Code</ControlLabel>
+                  <FormControl
+                    className="username-input"
+                    type="input"
+                    onChange={e => this.setState({ roomCode: e.target.value })}
+                    value={this.state.roomCode}
+                  />
                 </FormGroup>
               </Col>
             </Row>
