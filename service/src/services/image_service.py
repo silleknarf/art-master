@@ -2,7 +2,7 @@
 
 from flask import Blueprint, jsonify, request
 
-from database.database import Database
+from database.database import session
 from database.data_model import Image
 
 image_service = Blueprint('image_service', __name__)
@@ -16,13 +16,12 @@ def add_drawing():
 
     drawing_file_name = round_id + "/" + user_id + ".png"
     f.save(data_dir + "/" + drawing_file_name);
-    sesh = Database().get_session()
     drawing = Image(
         UserId=user_id, 
         Location=drawing_file_name, 
         RoundId=round_id)
-    sesh.add(drawing)
-    sesh.commit()
+    session.add(drawing)
+    session.commit()
     return ({ 
         "imageId": drawing.ImageId,
         "roundId": drawing.RoundId,
@@ -34,8 +33,7 @@ def add_drawing():
 def get_drawings():
     round_id = int(request.args.get("roundId"))
 
-    sesh = Database().get_session()
-    round_images = (sesh
+    round_images = (session
         .query(Image)
         .filter(Image.RoundId==round_id)
         .all())

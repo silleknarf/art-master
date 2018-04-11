@@ -1,0 +1,273 @@
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 293-035-901
+INFO:file:Checking for existing user: test4000
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`Username` = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.base.Engine:(u'test4000', 1)
+INFO:file:Creating new user: test4000
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `User` (`Username`) VALUES (%s)
+INFO:sqlalchemy.engine.base.Engine:(u'test4000',)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`UserId` = %s
+INFO:sqlalchemy.engine.base.Engine:(108L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:09] "POST /user/test4000 HTTP/1.1" 200 -
+INFO:file:Creating room: SDOU for 108
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Room` (`RoomCode`, `OwnerUserId`, `CurrentRoundId`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:('SDOU', 108, None)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(109L,)
+INFO:file:Adding user: 108 to room: 109
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `RoomUser` (`RoomId`, `UserId`) VALUES (%s, %s)
+INFO:sqlalchemy.engine.base.Engine:(109L, 108)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(109L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:09] "POST /room?userId=108 HTTP/1.1" 200 -
+INFO:file:Checking for existing user: test4001
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`Username` = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.base.Engine:(u'test4001', 1)
+INFO:file:Creating new user: test4001
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `User` (`Username`) VALUES (%s)
+INFO:sqlalchemy.engine.base.Engine:(u'test4001',)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`UserId` = %s
+INFO:sqlalchemy.engine.base.Engine:(109L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:20] "POST /user/test4001 HTTP/1.1" 200 -
+INFO:file:Creating room: GHDR for 109
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Room` (`RoomCode`, `OwnerUserId`, `CurrentRoundId`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:('GHDR', 109, None)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(110L,)
+INFO:file:Adding user: 109 to room: 110
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `RoomUser` (`RoomId`, `UserId`) VALUES (%s, %s)
+INFO:sqlalchemy.engine.base.Engine:(110L, 109)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(110L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:20] "POST /room?userId=109 HTTP/1.1" 200 -
+INFO:file:Checking for existing user: test4002
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`Username` = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.base.Engine:(u'test4002', 1)
+INFO:file:Creating new user: test4002
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `User` (`Username`) VALUES (%s)
+INFO:sqlalchemy.engine.base.Engine:(u'test4002',)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`UserId` = %s
+INFO:sqlalchemy.engine.base.Engine:(110L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:29] "POST /user/test4002 HTTP/1.1" 200 -
+INFO:file:Creating room: KGVN for 110
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Room` (`RoomCode`, `OwnerUserId`, `CurrentRoundId`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:('KGVN', 110, None)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(111L,)
+INFO:file:Adding user: 110 to room: 111
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `RoomUser` (`RoomId`, `UserId`) VALUES (%s, %s)
+INFO:sqlalchemy.engine.base.Engine:(111L, 110)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(111L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:30] "POST /room?userId=110 HTTP/1.1" 200 -
+INFO:file:Checking for existing user: test4003
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`Username` = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.base.Engine:(u'test4003', 1)
+INFO:file:Creating new user: test4003
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `User` (`Username`) VALUES (%s)
+INFO:sqlalchemy.engine.base.Engine:(u'test4003',)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`UserId` = %s
+INFO:sqlalchemy.engine.base.Engine:(111L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:39] "POST /user/test4003 HTTP/1.1" 200 -
+INFO:file:Creating room: CVRL for 111
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Room` (`RoomCode`, `OwnerUserId`, `CurrentRoundId`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:('CVRL', 111, None)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(112L,)
+INFO:file:Adding user: 111 to room: 112
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `RoomUser` (`RoomId`, `UserId`) VALUES (%s, %s)
+INFO:sqlalchemy.engine.base.Engine:(112L, 111)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(112L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:39] "POST /room?userId=111 HTTP/1.1" 200 -
+INFO:file:Checking for existing user: test4004
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`Username` = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.base.Engine:(u'test4004', 1)
+INFO:file:Creating new user: test4004
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `User` (`Username`) VALUES (%s)
+INFO:sqlalchemy.engine.base.Engine:(u'test4004',)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`UserId` = %s
+INFO:sqlalchemy.engine.base.Engine:(112L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:46] "POST /user/test4004 HTTP/1.1" 200 -
+INFO:file:Creating room: SHBA for 112
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Room` (`RoomCode`, `OwnerUserId`, `CurrentRoundId`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:('SHBA', 112, None)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(113L,)
+INFO:file:Adding user: 112 to room: 113
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `RoomUser` (`RoomId`, `UserId`) VALUES (%s, %s)
+INFO:sqlalchemy.engine.base.Engine:(113L, 112)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(113L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:46] "POST /room?userId=112 HTTP/1.1" 200 -
+INFO:file:Checking for existing user: test4005
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`Username` = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.base.Engine:(u'test4005', 1)
+INFO:file:Creating new user: test4005
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `User` (`Username`) VALUES (%s)
+INFO:sqlalchemy.engine.base.Engine:(u'test4005',)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`UserId` = %s
+INFO:sqlalchemy.engine.base.Engine:(113L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:58] "POST /user/test4005 HTTP/1.1" 200 -
+INFO:file:Creating room: EYBF for 113
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Room` (`RoomCode`, `OwnerUserId`, `CurrentRoundId`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:('EYBF', 113, None)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(114L,)
+INFO:file:Adding user: 113 to room: 114
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `RoomUser` (`RoomId`, `UserId`) VALUES (%s, %s)
+INFO:sqlalchemy.engine.base.Engine:(114L, 113)
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Room`.`RoomId` AS `Room_RoomId`, `Room`.`RoomCode` AS `Room_RoomCode`, `Room`.`OwnerUserId` AS `Room_OwnerUserId`, `Room`.`CurrentRoundId` AS `Room_CurrentRoundId` 
+FROM `Room` 
+WHERE `Room`.`RoomId` = %s
+INFO:sqlalchemy.engine.base.Engine:(114L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:14:58] "POST /room?userId=113 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/user_service.py', reloading
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 293-035-901
+INFO:file:Checking for existing user: test106
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `User`.`UserId` AS `User_UserId`, `User`.`Username` AS `User_Username` 
+FROM `User` 
+WHERE `User`.`Username` = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.base.Engine:(u'test106', 1)
+ERROR:file:User: test106 already exists
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2018 01:15:52] "POST /user/test106 HTTP/1.1" 400 -

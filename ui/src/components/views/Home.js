@@ -17,18 +17,23 @@ class Home extends Component {
     e.preventDefault();
     try {
       const { userId, username } = await this.createUser();
+      console.log(`Creating room for user: ${userId}`);
       const roomRes = await fetch(`${config.apiurl}/room?userId=${userId}`, {
         method: 'POST',
       });
-      const { roomId, roomCode } = await roomRes.json();
       
       if (roomRes.status === 200) {
+        const { roomId, roomCode } = await roomRes.json();
+        console.log(`Created room: ${roomCode}`);
         this.props.history.push(`/room/${roomCode}`);
+      } else {
+        throw new Error("room creation failed")
       }
     } catch(err) {
+      console.log(err);
       this.setState({
         usernameFeedback: 'Unable to create room', 
-      })
+      });
     }
   }
 
@@ -40,11 +45,13 @@ class Home extends Component {
 
   async createUser() {
     try {
+      console.log(`Creating user: ${this.state.username}`);
       const res = await fetch(`${config.apiurl}/user/${this.state.username}`, {
         method: 'POST',
       });
       if (res.status === 200) {
         const { userId, username } = await res.json();
+        console.log(`Created user: ${username}`)
         return { userId, username };
       } else {
         throw new Error('username creation failed');

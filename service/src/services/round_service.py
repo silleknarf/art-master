@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from flask import Blueprint, jsonify, request
-from database.database import Database
+from database.database import session
 from database.data_model import Round, Room
 from datetime import datetime, timedelta
 
@@ -10,31 +10,30 @@ round_service = Blueprint('round_service', __name__)
 # Create a new round and then returns the round info
 @round_service.route("/round", methods=["GET", "POST"])
 def poll_or_create_round():
-    sesh = Database().get_session()
     if request.method == "POST":
         room_id = int(request.args.get("roomId"))
         user_id = int(request.args.get("userId"))
         if room_id is None or user_id is None:
             return "Please set the roomId and userId"
-        room = (sesh
-	        .query(Room)
-	        .filter(Room.RoomId==room_id)
-	        .first())
+        room = (session
+            .query(Room)
+            .filter(Room.RoomId==room_id)
+            .first())
         if room.OwnerUserId != user_id:
-	        return "Only the room owner can start rounds"
+            return "Only the room owner can start rounds"
         round_entity = Round(RoomId=room_id)
-        sesh.add(round_entity)
-        sesh.flush() 
-        update_stage(sesh, round_entity)
-        sesh.commit()
+        session.add(round_entity)
+        session.flush() 
+        update_stage(session, round_entity)
+        session.commit()
     else:
         round_id = request.args.get("roundId")
-        round_entity = (sesh.query(Round)
+        round_entity = (session.query(Round)
            .filter(Round.RoundId==round_id)
            .first())
         if round_entity is None:
             return "No round for given roundId"
-        maybe_update_stage(sesh, round_entity)
+        maybe_update_stage(session, round_entity)
     
     return to_round_dto(round_entity)
     
@@ -52,18 +51,18 @@ def get_time_remaining(round_entity):
        time_remaining = (round_entity.StageStateEndTime - datetime.utcnow()).total_seconds()
     return time_remaining
 
-def maybe_update_stage(sesh, round_entity):
+def maybe_update_stage(session, round_entity):
     time_remaining = get_time_remaining(round_entity)
     if time_remaining <= 0:
-        update_stage(sesh, round_entity)
+        update_stage(session, round_entity)
 
 # stages = ["Drawing", "Critiquing", "Reviewing", "Done"]       
-def update_stage(sesh, round_entity):
+def update_stage(session, round_entity):
     duration = 0
     if round_entity.StageStateId == None:
         round_entity.StageStateId = 0      
         duration = 30
-        update_room(sesh, round_entity)
+        update_room(session, round_entity)
     elif round_entity.StageStateId == 0:
         round_entity.StageStateId += 1
         duration = 10
@@ -77,10 +76,10 @@ def update_stage(sesh, round_entity):
     end_time = start_time + timedelta(seconds=duration)
     round_entity.StageStateStartTime = start_time
     round_entity.StageStateEndTime = end_time
-    sesh.commit()
+    session.commit()
     
-def update_room(sesh, round_entity):
-    room = (sesh
+def update_room(session, round_entity):
+    room = (session
         .query(Room)
         .filter(Room.RoomId==round_entity.RoomId)
         .first())

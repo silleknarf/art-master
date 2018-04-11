@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from flask import Blueprint, jsonify, request
-from database.database import Database
+from database.database import session
 from database.data_model import Round, Image, Rating
 
 rating_service = Blueprint('rating_service', __name__)
@@ -10,8 +10,7 @@ rating_service = Blueprint('rating_service', __name__)
 @rating_service.route("/ratings", methods=["GET"])
 def get_ratings():
     round_id = int(request.args.get("roundId"))
-    sesh = Database().get_session()
-    round_ratings = (sesh
+    round_ratings = (session
         .query(Rating, Image) 
         .join(Image)
         .join(Round)
@@ -54,9 +53,8 @@ def set_rating():
         Rating=rating, 
         RaterUserId=user_id, 
         ImageId=image_id)
-    sesh = Database().get_session()
-    sesh.add(rating_entity)
-    sesh.commit()
+    session.add(rating_entity)
+    session.commit()
     return jsonify({
         "ratingId": rating_entity.RatingId
     })
