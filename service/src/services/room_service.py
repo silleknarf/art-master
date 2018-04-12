@@ -18,11 +18,11 @@ def poll_or_create_room():
 
     if request.method == "GET":
         room_code = request.args.get("roomCode")
-        room_id = int(request.args.get("roomId"))
+        room_id = request.args.get("roomId")
         room = None
         if room_id is not None:
             room = (session.query(Room)
-                .filter(Room.RoomId==room_id)
+                .filter(Room.RoomId==int(room_id))
                 .first())
         elif room_code is not None:
             room = (session.query(Room)

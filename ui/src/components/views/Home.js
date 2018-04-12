@@ -8,6 +8,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      roomCode: '',
       username: '',
       usernameFeedback: '',
     }
@@ -23,7 +24,7 @@ class Home extends Component {
       });
       
       if (roomRes.status === 200) {
-        const { roomId, roomCode } = await roomRes.json();
+        const { roomId, roomCode } = roomRes.json();
         console.log(`Created room: ${roomCode}`);
         this.props.history.push(`/room/${roomCode}`);
       } else {
@@ -37,26 +38,27 @@ class Home extends Component {
     }
   }
 
-  onClickJoinRoom(e) {
+  async onClickJoinRoom(e) {
     e.preventDefault();
     
     // TODO: logic to pick username and 
     const { userId, username } = await this.createUser();
-    console.log(´User: ${username} is attempting to join room: ${this.state.roomCode}`);
+    console.log(`User: ${username} is attempting to join room: ${this.state.roomCode}`);
     
     try {
-      const { roomId } = await fetch(`${config.apiurl}/room?${this.state.roomCode}`);
-      const res = await fetch(`$config.apiurl/room/${roomId}/user/${userId})
+      const roomRes = await fetch(`${config.apiurl}/room?roomCode=${this.state.roomCode}`, { method: 'GET' });
+      const { roomId } = await roomRes.json();
+      const res = await fetch(`${config.apiurl}/room/${roomId}/user/${userId}`, {method: 'POST'});
       if (res.status === 200) {
-        console.log(´Added user: ${username} to room: ${this.state.roomCode}`);
+        console.log(`Added user: ${username} to room: ${this.state.roomCode}`);
         this.props.history.push(`/room/${this.state.roomCode}`);
       } else {
-        throw new Error('room join failed');
+        throw new Error('Joining the room failed');
       }
     } catch(err) {
       console.log(err.message);
       this.setState({
-        usernameFeedback: 'Join the room failed',
+        usernameFeedback: 'Joining the room failed',
       })
     }
   }
@@ -106,7 +108,7 @@ class Home extends Component {
                 <FormGroup>
                   <ControlLabel className="label">Room Code</ControlLabel>
                   <FormControl
-                    className="username-input"
+                    className="room-code-input"
                     type="input"
                     onChange={e => this.setState({ roomCode: e.target.value })}
                     value={this.state.roomCode}
