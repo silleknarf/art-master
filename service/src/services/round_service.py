@@ -62,25 +62,27 @@ def update_stage(session, round_entity):
     if round_entity.StageStateId == None:
         round_entity.StageStateId = 0      
         duration = 30
-        update_room(session, round_entity)
+        update_room(session, round_entity.RoomId, round_entity.RoundId)
     elif round_entity.StageStateId == 0:
         round_entity.StageStateId += 1
         duration = 10
     elif round_entity.StageStateId == 1:
         round_entity.StageStateId += 1
         duration = 20
-    else:
-        round_entity.StageStateId += 1
-        
+    elif round_entity.StageStateId == 2:
+        duration = 0
+        update_room(session, round_entity.RoomId, None)
+
     start_time = datetime.utcnow()
     end_time = start_time + timedelta(seconds=duration)
     round_entity.StageStateStartTime = start_time
     round_entity.StageStateEndTime = end_time
+
     session.commit()
     
-def update_room(session, round_entity):
+def update_room(session, room_id, round_id):
     room = (session
         .query(Room)
-        .filter(Room.RoomId==round_entity.RoomId)
+        .filter(Room.RoomId==room_id)
         .first())
-    room.CurrentRoundId = round_entity.RoundId
+    room.CurrentRoundId = round_id
