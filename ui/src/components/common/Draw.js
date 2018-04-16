@@ -9,18 +9,28 @@ class Draw extends Component {
     super(props);
     const { userId, roundIdd } = props;
     this.state = {
-      userId: userId,
-      roundId: roundId
+      userId: 1,
+      roundId: 1
     }
+  }
+
+  componentDidMount() {
+    var ctx = this.canvas.getContext("2d");
+    ctx.rect(20,20,150,100);
+    ctx.stroke();
   }
   
   async onClickUploadDrawing(e) {
     const drawingDataUrl = this.canvas.toDataURL();
     const drawingRes = await fetch(`${config.apiurl}/image?userId=${this.state.userId}&roundId=${this.state.roundId}`, {
         method: 'POST',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({"drawingBase64": drawingDataUrl})
       });
-    if (res.status === 200) {
+    if (drawingRes.status === 200) {
       console.log("Uploaded drawing")
     }
   }

@@ -1180,3 +1180,440 @@ INFO:sqlalchemy.engine.base.Engine:INSERT INTO `RoomUser` (`RoomId`, `UserId`) V
 INFO:sqlalchemy.engine.base.Engine:(2, 15)
 INFO:sqlalchemy.engine.base.Engine:COMMIT
 INFO:werkzeug:127.0.0.1 - - [12/Apr/2018 01:13:22] "POST /room/2/user/15 HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://localhost:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:39:39] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:40:11] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug: * Running on http://localhost:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:40:57] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:41:19] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:44:51] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:44:51] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:46:12] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:46:12] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:46:29] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:46:29] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:47:22] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:47:22] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:47:34] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:47:34] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:49:54] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:49:54] "POST /image?userId=1&roundId=1 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Running on http://localhost:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:50:35] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:50:35] "POST /image?userId=1&roundId=1 HTTP/1.1" 500 -
+INFO:werkzeug: * Running on http://localhost:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:51:25] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:51:25] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:56:29] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(1L,)
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:56:29] "POST /image?userId=1&roundId=1 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:56:32] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(2L,)
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:56:32] "POST /image?userId=1&roundId=1 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:57:12] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(3L,)
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:57:12] "POST /image?userId=1&roundId=1 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Running on http://localhost:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:59:18] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(4L,)
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 21:59:19] "POST /image?userId=1&roundId=1 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:01:09] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(5L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:01:09] "POST /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:01:28] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:01:28] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug: * Running on http://localhost:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:01:53] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:01:53] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:02:15] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:02:15] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:02:49] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:02:49] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:02:59] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(6L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:02:59] "POST /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:03:38] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(7L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:03:38] "POST /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:03:56] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:03:56] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:03:57] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:03:57] "POST /image?userId=1&roundId=1 HTTP/1.1" 400 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:05:10] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:file:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAYAAABkW7XSAAAEYklEQVR4Xu3UAQkAAAwCwdm/9HI83BLIOdw5AgQIRAQWySkmAQIEzmB5AgIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlACBB1YxAJfjJb2jAAAAAElFTkSuQmCC
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(8L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:05:10] "POST /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:06:57] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:file:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAYAAABkW7XSAAAEYklEQVR4Xu3UAQkAAAwCwdm/9HI83BLIOdw5AgQIRAQWySkmAQIEzmB5AgIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlACBB1YxAJfjJb2jAAAAAElFTkSuQmCC
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:06:57] "POST /image?userId=1&roundId=1 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:07:34] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:file:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAYAAABkW7XSAAAEYklEQVR4Xu3UAQkAAAwCwdm/9HI83BLIOdw5AgQIRAQWySkmAQIEzmB5AgIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlACBB1YxAJfjJb2jAAAAAElFTkSuQmCC
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:07:34] "POST /image?userId=1&roundId=1 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:08:18] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:file:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAYAAABkW7XSAAAEYklEQVR4Xu3UAQkAAAwCwdm/9HI83BLIOdw5AgQIRAQWySkmAQIEzmB5AgIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlACBB1YxAJfjJb2jAAAAAElFTkSuQmCC
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:08:18] "POST /image?userId=1&roundId=1 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Running on http://localhost:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:12:42] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:file:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAYAAABkW7XSAAAEYklEQVR4Xu3UAQkAAAwCwdm/9HI83BLIOdw5AgQIRAQWySkmAQIEzmB5AgIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlAABg+UHCBDICBisTFWCEiBgsPwAAQIZAYOVqUpQAgQMlh8gQCAjYLAyVQlKgIDB8gMECGQEDFamKkEJEDBYfoAAgYyAwcpUJSgBAgbLDxAgkBEwWJmqBCVAwGD5AQIEMgIGK1OVoAQIGCw/QIBARsBgZaoSlACBB1YxAJfjJb2jAAAAAElFTkSuQmCC
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(9L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:12:42] "POST /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:16:31] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:file:data:image/png;base64,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
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(10L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:16:31] "POST /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:17:57] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:file:data:image/png;base64,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
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1/1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(11L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:17:57] "POST /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:23:51] "OPTIONS /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:file:Adding drawing for user: 1 for round: 1
+INFO:sqlalchemy.engine.base.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin'
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1
+INFO:sqlalchemy.engine.base.Engine:()
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:INSERT INTO `Image` (`UserId`, `RoundId`, `Location`) VALUES (%s, %s, %s)
+INFO:sqlalchemy.engine.base.Engine:(1, 1, '1.png')
+INFO:sqlalchemy.engine.base.Engine:COMMIT
+INFO:sqlalchemy.engine.base.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.base.Engine:SELECT `Image`.`ImageId` AS `Image_ImageId`, `Image`.`UserId` AS `Image_UserId`, `Image`.`RoundId` AS `Image_RoundId`, `Image`.`Location` AS `Image_Location` 
+FROM `Image` 
+WHERE `Image`.`ImageId` = %s
+INFO:sqlalchemy.engine.base.Engine:(12L,)
+INFO:sqlalchemy.engine.base.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [16/Apr/2018 22:23:51] "POST /image?userId=1&roundId=1 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
+INFO:werkzeug: * Detected change in '/Users/silleknarf/Code/art-master/service/src/services/image_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-590-673
