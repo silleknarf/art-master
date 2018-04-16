@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button, FormControl, FormGroup, HelpBlock, ControlLabel } from 'react-bootstrap'; 
-import config from '../../constant/config';
+import Config from '../../constant/Config';
 import './Lobby.css';
 
 class Lobby extends Component {
@@ -19,7 +19,7 @@ class Lobby extends Component {
     try {
       const { userId, username } = await this.createUser();
       console.log(`Creating room for user: ${userId}`);
-      const roomRes = await fetch(`${config.apiurl}/room?userId=${userId}`, {
+      const roomRes = await fetch(`${Config.apiurl}/room?userId=${userId}`, {
         method: 'POST',
       });
       
@@ -46,9 +46,9 @@ class Lobby extends Component {
     console.log(`User: ${username} is attempting to join room: ${this.state.roomCode}`);
     
     try {
-      const roomRes = await fetch(`${config.apiurl}/room?roomCode=${this.state.roomCode}`, { method: 'GET' });
+      const roomRes = await fetch(`${Config.apiurl}/room?roomCode=${this.state.roomCode}`, { method: 'GET' });
       const { roomId } = await roomRes.json();
-      const res = await fetch(`${config.apiurl}/room/${roomId}/user/${userId}`, {method: 'POST'});
+      const res = await fetch(`${Config.apiurl}/room/${roomId}/user/${userId}`, {method: 'POST'});
       if (res.status === 200) {
         console.log(`Added user: ${username} to room: ${this.state.roomCode}`);
         this.props.history.push(`/room/${this.state.roomCode}`);
@@ -66,7 +66,7 @@ class Lobby extends Component {
   async createUser() {
     try {
       console.log(`Creating user: ${this.state.username}`);
-      const res = await fetch(`${config.apiurl}/user/${this.state.username}`, {
+      const res = await fetch(`${Config.apiurl}/user/${this.state.username}`, {
         method: 'POST',
       });
       if (res.status === 200) {

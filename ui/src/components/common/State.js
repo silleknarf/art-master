@@ -1,9 +1,14 @@
 
 import React, { Component } from 'react';
-import config from '../../constant/config';
+import { connect } from "react-redux";
 import { Grid, Col, Row } from 'react-bootstrap'; 
+import Config from '../../constant/Config';
+import store from "../../redux/Store";
+import { updateRoomState, updateRoundState } from "../../redux/Actions";
 
-class State extends Component {
+window.store = store;
+
+class ConnectedState extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,23 +21,23 @@ class State extends Component {
   }
 
   roomTick = async () => {
-    const roomStateRes = await fetch(`${config.apiurl}/room?roomId=${this.state.room.roomId}`);
+    const roomStateRes = await fetch(`${Config.apiurl}/room?roomId=${this.state.room.roomId}`);
     if (roomStateRes.status === 200) {
         const roomState = await roomStateRes.json();
-        this.setState({ room: { ...roomState }});
+        store.dispatch(updateRoomState(roomState));
     }
   }
 
   roundTick = async () => {
     if (this.state.room.currentRoundId === null) {
-      this.setState({ round: null });
+      store.dispatch(updateRoundState(null));
       return;
     }
 
-    const roundStateRes = await fetch(`${config.apiurl}/round?roundId=${this.state.room.currentRoundId}`)
+    const roundStateRes = await fetch(`${Config.apiurl}/round?roundId=${this.state.room.currentRoundId}`)
     if (roundStateRes.status === 200) {
         const roundState = await roundStateRes.json();
-        this.setState({ round: { ...roundState }});
+        store.dispatch(updateRoundState(roundState));
     }
   }
 
@@ -44,6 +49,11 @@ class State extends Component {
   componentWillUnmount = () => {
     clearInterval(this.roomInterval);
     clearInterval(this.roundInterval);
+  }
+
+  componentWillReceiveProps = (newProps) => {
+    // Map the props to the state
+    this.setState({room: newProps.room, round: newProps.round })
   }
 
   render = () => {
@@ -59,5 +69,12 @@ class State extends Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProperties) => {
+  // Set the props using the store
+  return { room: state.room, round: state.round };
+}
+
+const State = connect(mapStateToProps)(ConnectedState);
 
 export default State;

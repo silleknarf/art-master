@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
+import { Provider } from 'react-redux'
 import Lobby from './components/views/Lobby';
 import Room from './components/views/Room';
 import './App.css';
+import store from "./redux/Store";
+
+window.store = store;
 
 class App extends Component {
   constructor(props) {
@@ -21,12 +25,14 @@ class App extends Component {
       );
     }
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Lobby} />
-          <Route path="/room" component={Room} />
-        </Switch>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={Lobby} />
+            <Route path="/room" component={Room} />
+          </Switch>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

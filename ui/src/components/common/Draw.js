@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button } from 'react-bootstrap'; 
-import config from '../../constant/config';
+import Config from '../../constant/Config';
 import './Draw.css';
 
 class Draw extends Component {
@@ -22,7 +22,7 @@ class Draw extends Component {
   
   async onClickUploadDrawing(e) {
     const drawingDataUrl = this.canvas.toDataURL();
-    const drawingRes = await fetch(`${config.apiurl}/image?userId=${this.state.userId}&roundId=${this.state.roundId}`, {
+    const drawingRes = await fetch(`${Config.apiurl}/image?userId=${this.state.userId}&roundId=${this.state.roundId}`, {
         method: 'POST',
         headers: {
           "Accept": "application/json",
