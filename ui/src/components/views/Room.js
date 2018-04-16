@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button } from 'react-bootstrap'; 
 import Draw from '../common/Draw';
+import State from '../common/State';
 import config from '../../constant/config';
 import './Room.css';
 
@@ -17,6 +18,7 @@ class Room extends Component {
     return (
       <div className="room">
         <Grid>
+          <State />
           <Draw />
         </Grid>
       </div>

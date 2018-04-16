@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button, FormControl, FormGroup, HelpBlock, ControlLabel } from 'react-bootstrap'; 
 import config from '../../constant/config';
-import './Home.css';
+import './Lobby.css';
 
-class Home extends Component {
+class Lobby extends Component {
 
   constructor(props) {
     super(props);
@@ -86,7 +86,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="home">
+      <div className="lobby">
         <Grid>
           <div className="input-block">
             <Row className="input-row">
@@ -139,4 +139,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Lobby;

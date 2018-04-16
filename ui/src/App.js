@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
-import Home from './components/views/Home';
+import Lobby from './components/views/Lobby';
 import Room from './components/views/Room';
 import './App.css';
 
@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Lobby} />
           <Route path="/room" component={Room} />
         </Switch>
       </BrowserRouter>
