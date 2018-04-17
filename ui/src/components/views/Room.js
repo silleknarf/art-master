@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import Draw from '../common/Draw';
 import State from '../common/State';
 import RoundInfo from '../common/RoundInfo';
+import Critic from '../common/Critic';
 import Config from '../../constant/Config';
-import { DRAWING } from '../../constant/StageStateIds';
+import { DRAWING, CRITIQUING } from '../../constant/StageStateIds';
 import './Room.css';
 
 class ConnectedRoom extends Component {
@@ -54,6 +55,7 @@ class ConnectedRoom extends Component {
           </Row>
           { this.state.room.currentRoundId && (<RoundInfo />)}
           { this.state.round.stageStateId === DRAWING && (<Draw />)}
+          { this.state.round.stageStateId === CRITIQUING && (<Critic />)}
         </Grid>
       </div>
     );
