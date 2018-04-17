@@ -29,12 +29,20 @@ class ConnectedRoom extends Component {
     }
   }
 
+  componentWillMount = () => {
+    this.prepareComponentState(this.props);
+  }
+
   componentWillReceiveProps = (newProps) => {
+    this.prepareComponentState(newProps);
+  }
+
+  prepareComponentState = (props) => {
     // Map the props to the state
     this.setState({
-      room: { ...newProps.room }, 
-      user: { ...newProps.user }, 
-      round: { ...newProps.round }
+      room: { ...props.room }, 
+      user: { ...props.user }, 
+      round: { ...props.round }
     });
   }
 
@@ -64,11 +72,7 @@ class ConnectedRoom extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { 
-    room: state.room, 
-    user: state.user, 
-    round: state.round 
-  };
+  return { room: state.room, user: state.user, round: state.round };
 }
 
 const Room = connect(mapStateToProps)(ConnectedRoom);

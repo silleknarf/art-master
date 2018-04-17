@@ -3,6 +3,7 @@ import { Grid, Col, Row, Button } from 'react-bootstrap';
 import { connect } from "react-redux";
 import Config from '../../constant/Config';
 import './Draw.css';
+const LC = require('literallycanvas');
 
 class ConnectedDraw extends Component {
 
@@ -15,19 +16,13 @@ class ConnectedDraw extends Component {
     }
   }
 
-  componentDidMount() {
-    var ctx = this.canvas.getContext("2d");
-    ctx.rect(20,20,150,100);
-    ctx.stroke();
-  }
-
   componentWillReceiveProps = (newProps) => {
     // Map the props to the state
     this.setState({user: newProps.user, round: newProps.round })
   }
   
   async onClickUploadDrawing(e) {
-    const drawingDataUrl = this.canvas.toDataURL();
+    const drawingDataUrl = this.literallycanvas.lc.getImage().toDataURL();
     const drawingRes = await fetch(
       `${Config.apiurl}/image?userId=${this.state.user.userId}&roundId=${this.state.round.roundId}`, 
       {
@@ -49,8 +44,10 @@ class ConnectedDraw extends Component {
       <div className="draw">
         <Row>
           <Col>
-            <canvas id="draw-canvas" ref={(c) => this.canvas = c}>
-            </canvas>
+            <LC.LiterallyCanvasReactComponent 
+              imageURLPrefix="/img"
+              id="draw-canvas" 
+              ref={(c) => this.literallycanvas = c} />
           </Col>
         </Row>
         <Row className="button-row">

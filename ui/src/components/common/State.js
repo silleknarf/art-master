@@ -46,14 +46,22 @@ class ConnectedState extends Component {
     this.roundInterval = setInterval(this.roundTick, 1000);
   }
 
+  componentWillMount = () => {
+    this.prepareComponentState(this.props);
+  }
+
+  componentWillReceiveProps = (newProps) => {
+    this.prepareComponentState(newProps);
+  }
+
   componentWillUnmount = () => {
     clearInterval(this.roomInterval);
     clearInterval(this.roundInterval);
   }
 
-  componentWillReceiveProps = (newProps) => {
+  prepareComponentState = (props) => {
     // Map the props to the state
-    this.setState({room: newProps.room, round: newProps.round })
+    this.setState({room: props.room, round: props.round })
   }
 
   render = () => {
