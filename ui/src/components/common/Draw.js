@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button } from 'react-bootstrap'; 
+import { connect } from "react-redux";
 import Config from '../../constant/Config';
 import './Draw.css';
 
-class Draw extends Component {
+class ConnectedDraw extends Component {
 
   constructor(props) {
     super(props);
     const { userId, roundIdd } = props;
     this.state = {
-      userId: 1,
-      roundId: 1
+      user: null,
+      round: null
     }
   }
 
@@ -19,10 +20,17 @@ class Draw extends Component {
     ctx.rect(20,20,150,100);
     ctx.stroke();
   }
+
+  componentWillReceiveProps = (newProps) => {
+    // Map the props to the state
+    this.setState({user: newProps.user, round: newProps.round })
+  }
   
   async onClickUploadDrawing(e) {
     const drawingDataUrl = this.canvas.toDataURL();
-    const drawingRes = await fetch(`${Config.apiurl}/image?userId=${this.state.userId}&roundId=${this.state.roundId}`, {
+    const drawingRes = await fetch(
+      `${Config.apiurl}/image?userId=${this.state.user.userId}&roundId=${this.state.round.roundId}`, 
+      {
         method: 'POST',
         headers: {
           "Accept": "application/json",
@@ -30,6 +38,7 @@ class Draw extends Component {
         },
         body: JSON.stringify({"drawingBase64": drawingDataUrl})
       });
+
     if (drawingRes.status === 200) {
       console.log("Uploaded drawing")
     }
@@ -58,5 +67,12 @@ class Draw extends Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProperties) => {
+  // Set the props using the store
+  return { user: state.user, round: state.round };
+}
+
+const Draw = connect(mapStateToProps)(ConnectedDraw);
 
 export default Draw;

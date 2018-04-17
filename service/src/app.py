@@ -40,8 +40,26 @@ def handle_invalid_usage(error):
 def shutdown_session(exception=None):
     session.remove()
 
+format_str = "%(asctime)s %(levelname)s %(message)s"
+formatter = logging.Formatter(format_str)
+
+def setup_logger(name, log_file, level=logging.INFO):
+    """Function setup as many loggers as you want"""
+
+    handler = logging.FileHandler(log_file)        
+    handler.setFormatter(formatter)
+
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    logger.addHandler(handler)
+
+    return logger
+
 if __name__ == "__main__":
-    logging.basicConfig(filename='art-master.log',level=logging.INFO)
-    logfile = logging.getLogger('file')
-    app.logger.addHandler(logfile)
+    # Create a specific logger for the service
+    logging.basicConfig(filename="art-master.service.log",level=logging.INFO, format=format_str)
+
+    # Create a logger
+    setup_logger("file", "art-master.log")
+
     app.run(host="localhost", port=5000, debug=True, threaded=True)

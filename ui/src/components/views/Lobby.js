@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button, FormControl, FormGroup, HelpBlock, ControlLabel } from 'react-bootstrap'; 
 import Config from '../../constant/Config';
+import store from '../../redux/Store';
+import { updateRoomState, updateRoundState, updateUserState } from "../../redux/Actions";
 import './Lobby.css';
 
 class Lobby extends Component {
@@ -24,9 +26,11 @@ class Lobby extends Component {
       });
       
       if (roomRes.status === 200) {
-        const { roomId, roomCode } = roomRes.json();
-        console.log(`Created room: ${roomCode}`);
-        this.props.history.push(`/room/${roomCode}`);
+        const room = await roomRes.json();
+        console.log(`Created room: ${room.roomCode}`);
+        this.props.history.push(`/room/${room.roomCode}`);
+        localStorage.setItem("roomId", room.roomId);
+        store.dispatch(updateRoomState(room));
       } else {
         throw new Error("room creation failed")
       }
@@ -47,9 +51,11 @@ class Lobby extends Component {
     
     try {
       const roomRes = await fetch(`${Config.apiurl}/room?roomCode=${this.state.roomCode}`, { method: 'GET' });
-      const { roomId } = await roomRes.json();
-      const res = await fetch(`${Config.apiurl}/room/${roomId}/user/${userId}`, {method: 'POST'});
+      const room = await roomRes.json();
+      const res = await fetch(`${Config.apiurl}/room/${room.roomId}/user/${userId}`, {method: 'POST'});
       if (res.status === 200) {
+        localStorage.setItem("roomId", room.roomId);
+        store.dispatch(updateRoomState(room));
         console.log(`Added user: ${username} to room: ${this.state.roomCode}`);
         this.props.history.push(`/room/${this.state.roomCode}`);
       } else {
@@ -70,9 +76,11 @@ class Lobby extends Component {
         method: 'POST',
       });
       if (res.status === 200) {
-        const { userId, username } = await res.json();
-        console.log(`Created user: ${username}`)
-        return { userId, username };
+        var user = await res.json();
+        console.log(`Created user: ${user.username}`);
+        localStorage.setItem("userId", user.userId);
+        store.dispatch(updateUserState(user));
+        return user;
       } else {
         throw new Error('username creation failed');
       }

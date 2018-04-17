@@ -1,11 +1,13 @@
 #!/usr/bin/python
 
+import logging
 from flask import Blueprint, jsonify, request
 from database.database import session
 from database.data_model import Round, Room
 from datetime import datetime, timedelta
 
 round_service = Blueprint('round_service', __name__)
+logfile = logging.getLogger("file")
 
 # Create a new round and then returns the round info
 @round_service.route("/round", methods=["GET", "POST"])
@@ -13,6 +15,9 @@ def poll_or_create_round():
     if request.method == "POST":
         room_id = int(request.args.get("roomId"))
         user_id = int(request.args.get("userId"))
+        logfile.info(
+            "Creating room: %s for user: %s" %
+            (room_id, user_id))
         if room_id is None or user_id is None:
             return "Please set the roomId and userId"
         room = (session
@@ -77,6 +82,8 @@ def update_stage(session, round_entity):
     end_time = start_time + timedelta(seconds=duration)
     round_entity.StageStateStartTime = start_time
     round_entity.StageStateEndTime = end_time
+    logfile.info("Setting round: %s to be in state: %s" %
+        (round_entity.RoundId, round_entity.StageStateId))
 
     session.commit()
     

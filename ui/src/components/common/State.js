@@ -13,7 +13,7 @@ class ConnectedState extends Component {
     super(props);
     this.state = {
       room: {
-        roomId: 2,
+        roomId: null,
         currentRoundId: null
       },
       round: null
@@ -29,7 +29,7 @@ class ConnectedState extends Component {
   }
 
   roundTick = async () => {
-    if (this.state.room.currentRoundId === null) {
+    if (!this.state.room.currentRoundId) {
       store.dispatch(updateRoundState(null));
       return;
     }
