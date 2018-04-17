@@ -3,7 +3,9 @@ import { Grid, Col, Row, Button } from 'react-bootstrap';
 import { connect } from "react-redux";
 import Draw from '../common/Draw';
 import State from '../common/State';
+import RoundInfo from '../common/RoundInfo';
 import Config from '../../constant/Config';
+import { DRAWING } from '../../constant/StageStateIds';
 import './Room.css';
 
 class ConnectedRoom extends Component {
@@ -12,6 +14,8 @@ class ConnectedRoom extends Component {
     super(props);
     this.state = {
       gameState: Config.gameStates.PENDING_START,
+      room: { currentRoundId: null },
+      round: { stageStateId: null }
     }
   }
 
@@ -26,7 +30,11 @@ class ConnectedRoom extends Component {
 
   componentWillReceiveProps = (newProps) => {
     // Map the props to the state
-    this.setState({room: newProps.room, user: newProps.user })
+    this.setState({
+      room: { ...newProps.room }, 
+      user: { ...newProps.user }, 
+      round: { ...newProps.round }
+    });
   }
 
   render() {
@@ -44,7 +52,8 @@ class ConnectedRoom extends Component {
               </Button>
             </Col>
           </Row>
-          <Draw />
+          { this.state.room.currentRoundId && (<RoundInfo />)}
+          { this.state.round.stageStateId === DRAWING && (<Draw />)}
         </Grid>
       </div>
     );
@@ -53,7 +62,11 @@ class ConnectedRoom extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { room: state.room, user: state.user };
+  return { 
+    room: state.room, 
+    user: state.user, 
+    round: state.round 
+  };
 }
 
 const Room = connect(mapStateToProps)(ConnectedRoom);
