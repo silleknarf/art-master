@@ -36,10 +36,16 @@ def get_ratings():
     image = [image for image in images 
              if image.ImageId == winner_image_id][0]
 
+    winning_user = (session
+        .query(User)
+        .filter(User.UserId==image.UserId)
+        .first())
+        
     round_info = { 
-        "round_id": round_id,
-        "winner_id": image.UserId,
-        "winning_image_location": image.Location
+        "roundId": round_id,
+        "winnerId": winning_user.UserId,
+        "winnerUsername": winning_user.Username,
+        "winningImageLocation": image.Location
     }
     return jsonify(round_info)
 

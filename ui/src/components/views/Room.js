@@ -5,8 +5,9 @@ import Draw from '../common/Draw';
 import State from '../common/State';
 import RoundInfo from '../common/RoundInfo';
 import Critic from '../common/Critic';
+import Review from '../common/Review';
 import Config from '../../constant/Config';
-import { DRAWING, CRITIQUING } from '../../constant/StageStateIds';
+import { DRAWING, CRITIQUING, REVIEWING } from '../../constant/StageStateIds';
 import './Room.css';
 
 class ConnectedRoom extends Component {
@@ -64,6 +65,7 @@ class ConnectedRoom extends Component {
           { this.state.room.currentRoundId && (<RoundInfo />)}
           { this.state.round.stageStateId === DRAWING && (<Draw />)}
           { this.state.round.stageStateId === CRITIQUING && (<Critic />)}
+          { this.state.round.stageStateId === REVIEWING && (<Review />)}
         </Grid>
       </div>
     );
