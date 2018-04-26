@@ -57,7 +57,7 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 if __name__ == "__main__":
     # Create a specific logger for the service
-    logging.basicConfig(filename="art-master.service.log",level=logging.INFO, format=format_str)
+    logging.basicConfig(filename="art-master.service.log",level=logging.ERROR, format=format_str)
 
     # Create a logger
     setup_logger("file", "art-master.log")

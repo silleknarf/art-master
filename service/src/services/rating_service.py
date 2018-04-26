@@ -2,7 +2,7 @@
 
 from flask import Blueprint, jsonify, request
 from database.database import session
-from database.data_model import Round, Image, Rating
+from database.data_model import Round, Image, Rating, User
 
 rating_service = Blueprint('rating_service', __name__)
         

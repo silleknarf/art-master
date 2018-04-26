@@ -21,17 +21,20 @@ class Review extends Component {
     
     render = () => {
         return (
+            <div>
             { this.state.winningImage && 
-                <div>
+                (<div>
                     <Row>
-                        <img src={ "/data/" + this.state.winningImage.location}
+                        <img src={ "/data/" + this.state.winningImage.winningImageLocation }></img>
                     </Row>
                     <Row>
                         <div>{ this.state.winningImage.winnerUsername }</div>
                     </Row>
-                </div>
+                </div>)
             }
+            </div>
         );
     }
 }
 
+export default Review;

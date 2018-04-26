@@ -65,7 +65,7 @@ class ConnectedRoom extends Component {
           { this.state.room.currentRoundId && (<RoundInfo />)}
           { this.state.round.stageStateId === DRAWING && (<Draw />)}
           { this.state.round.stageStateId === CRITIQUING && (<Critic />)}
-          { this.state.round.stageStateId === REVIEWING && (<Review />)}
+          { this.state.round.stageStateId === REVIEWING && (<Review roundId={ this.state.round.roundId } />)}
         </Grid>
       </div>
     );

@@ -1,1 +1,1692 @@
-{}
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pr",
+				"prepareComponentState"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"onClic",
+				"onClickRateImage"
+			],
+			[
+				"ro",
+				"round"
+			],
+			[
+				"round",
+				"roundId"
+			],
+			[
+				"Image",
+				"ImageId"
+			],
+			[
+				"St",
+				"StageStateIds"
+			],
+			[
+				"time",
+				"timeRemaining"
+			],
+			[
+				"roun",
+				"roundStateDescription"
+			],
+			[
+				"log",
+				"logfile"
+			],
+			[
+				"r",
+				"round_entity"
+			],
+			[
+				"for",
+				"format_str"
+			],
+			[
+				"fo",
+				"formatter"
+			],
+			[
+				"set",
+				"setup_logger"
+			],
+			[
+				"ser",
+				"service_logfile"
+			],
+			[
+				"creat",
+				"create_log_handler"
+			],
+			[
+				"add",
+				"addHandler"
+			],
+			[
+				"fil",
+				"filename"
+			],
+			[
+				"UPDA",
+				"UPDATE_USER_STATE"
+			],
+			[
+				"update",
+				"updateRoomState"
+			],
+			[
+				"di",
+				"dispatch"
+			],
+			[
+				"use",
+				"userId"
+			],
+			[
+				"onc",
+				"onClickStartRound"
+			],
+			[
+				"up",
+				"updateRoundState"
+			],
+			[
+				"room",
+				"roomState"
+			],
+			[
+				"UPDATE_RO",
+				"UPDATE_ROUND_STATE"
+			],
+			[
+				"roo",
+				"room_id"
+			],
+			[
+				"rou",
+				"roundInterval"
+			],
+			[
+				"d",
+				"div"
+			],
+			[
+				"dra",
+				"drawing_folder"
+			],
+			[
+				"daw",
+				"drawing_folder"
+			],
+			[
+				"da",
+				"drawing_data"
+			],
+			[
+				"dr",
+				"drawing_file_path"
+			],
+			[
+				"drw",
+				"drawing_folder"
+			],
+			[
+				"draw",
+				"drawing_file_location"
+			],
+			[
+				"dar",
+				"drawing_base64"
+			],
+			[
+				"logi",
+				"logfile"
+			],
+			[
+				"rom",
+				"roomRes"
+			],
+			[
+				"con",
+				"const"
+			],
+			[
+				"Form",
+				"FormControl"
+			],
+			[
+				"in",
+				"info_text"
+			],
+			[
+				"er",
+				"error_text"
+			],
+			[
+				"l",
+				"logfile"
+			],
+			[
+				"sc",
+				"scoped_session"
+			],
+			[
+				"ge",
+				"get_session"
+			],
+			[
+				"create",
+				"_create_session"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"wor",
+				"word_entity"
+			],
+			[
+				"word_",
+				"word_entity"
+			],
+			[
+				"re",
+				"register_blueprint"
+			],
+			[
+				"user",
+				"user_id"
+			],
+			[
+				"win",
+				"winner_image_id"
+			],
+			[
+				"Im",
+				"ImageId"
+			],
+			[
+				"im",
+				"image"
+			],
+			[
+				"iamge",
+				"image_id"
+			],
+			[
+				"StageS",
+				"StageStateEndTime"
+			],
+			[
+				"Sr",
+				"StageStateStartTime"
+			],
+			[
+				"Round",
+				"RoundId"
+			],
+			[
+				"P",
+				"PrivateProductionConfig"
+			],
+			[
+				"Da",
+				"DATABASE_NAME"
+			],
+			[
+				"D",
+				"DATABASE_NAME"
+			],
+			[
+				"DA",
+				"DATABASE_USERNAME"
+			],
+			[
+				"DATA",
+				"DATABASE_USERNAME"
+			],
+			[
+				"conne",
+				"connection_string"
+			],
+			[
+				"Dat",
+				"DATABASE"
+			],
+			[
+				"to",
+				"to_delete"
+			],
+			[
+				"per",
+				"period_length"
+			],
+			[
+				"tota",
+				"total_price_delta"
+			],
+			[
+				"pe",
+				"period_length"
+			],
+			[
+				"v",
+				"vwap"
+			],
+			[
+				"qua",
+				"quantise_trades"
+			],
+			[
+				"m",
+				"minute"
+			],
+			[
+				"period_",
+				"period_lengths"
+			],
+			[
+				"period",
+				"period_length"
+			],
+			[
+				"Peri",
+				"period_length"
+			],
+			[
+				"vwa",
+				"vwap_by_period"
+			],
+			[
+				"trad",
+				"trades"
+			],
+			[
+				"perio",
+				"period_length"
+			],
+			[
+				"_",
+				"_save_quantised_market_data"
+			],
+			[
+				"q",
+				"qmd"
+			],
+			[
+				"ne",
+				"next_valid_price"
+			],
+			[
+				"nex",
+				"next_valid_time"
+			],
+			[
+				"_get",
+				"_get_linearly_interpolated_price"
+			],
+			[
+				"pre",
+				"previous_valid_time"
+			],
+			[
+				"ti",
+				"time_iterator"
+			],
+			[
+				"vi",
+				"vwap_by_period"
+			],
+			[
+				"trades",
+				"trades_by_period"
+			],
+			[
+				"firs",
+				"first_time_quantised"
+			],
+			[
+				"bi",
+				"bitcoin_session"
+			],
+			[
+				"qn",
+				"quantised_market_data"
+			],
+			[
+				"qu",
+				"quantised_market_data"
+			],
+			[
+				"_g",
+				"_get_quantised_market_data"
+			],
+			[
+				"_ge",
+				"_get_trade_by_period"
+			],
+			[
+				"qun",
+				"quantise_period"
+			],
+			[
+				"pri",
+				"price"
+			],
+			[
+				"get",
+				"get_quantised_time"
+			],
+			[
+				"la",
+				"last_time"
+			],
+			[
+				"pag",
+				"page_size"
+			],
+			[
+				"def",
+				"defaultdict"
+			],
+			[
+				"bit",
+				"bitcoin_chart"
+			],
+			[
+				"bitcoin",
+				"bitcoin_charts"
+			],
+			[
+				"pp",
+				"pprint"
+			],
+			[
+				"Sym",
+				"SymbolId"
+			],
+			[
+				"sess",
+				"sessionmaker"
+			],
+			[
+				"se",
+				"session"
+			],
+			[
+				"dec",
+				"declarative_base"
+			],
+			[
+				"style",
+				"stylesheet"
+			],
+			[
+				"timer",
+				"timeInSecondsRemaining"
+			],
+			[
+				"timeIns",
+				"timeInSecondsRemaining"
+			],
+			[
+				"tim",
+				"timeInSecondsRemaining"
+			],
+			[
+				"TI",
+				"TIMER_EXPIRED"
+			],
+			[
+				"eve",
+				"event"
+			],
+			[
+				"tie",
+				"timeInSecondsRemaining"
+			],
+			[
+				"e",
+				"eventManager"
+			],
+			[
+				"t",
+				"tick"
+			],
+			[
+				"men",
+				"menuItems"
+			],
+			[
+				"undo",
+				"undosRemaining"
+			],
+			[
+				"und",
+				"undosRemaining"
+			],
+			[
+				"res",
+				"resetEvent"
+			],
+			[
+				"sta",
+				"states"
+			],
+			[
+				"c",
+				"cursor"
+			],
+			[
+				"remove",
+				"removeOldEntities"
+			],
+			[
+				"cel",
+				"cellsCount"
+			],
+			[
+				"ce",
+				"cellsRemoved"
+			],
+			[
+				"cell",
+				"cellsCount"
+			],
+			[
+				"cells",
+				"cellsCount"
+			],
+			[
+				"las",
+				"lastMovePeek"
+			],
+			[
+				"CLEA",
+				"CLEAR_LINE"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "ui/src/components/common/Draw.js",
+			"settings":
+			{
+				"buffer_size": 1972,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ui/src/components/views/Room.js",
+			"settings":
+			{
+				"buffer_size": 2298,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ui/src/components/common/State.js",
+			"settings":
+			{
+				"buffer_size": 2285,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "TODO.md",
+			"settings":
+			{
+				"buffer_size": 94,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ui/public/index.html",
+			"settings":
+			{
+				"buffer_size": 1665,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "service/src/user_config.py",
+			"settings":
+			{
+				"buffer_size": 429,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "ins",
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			],
+			[
+				"omn",
+				"OmniSharpSublime: Show Info Panel"
+			],
+			[
+				"build",
+				"OmniSharpSublime: Build"
+			],
+			[
+				"fix",
+				"OmniSharpSublime: Fix Usings"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"omni",
+				"OmniSharpSublime: Build"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"add ",
+				"Package Control: Add Repository"
+			],
+			[
+				"pace",
+				"Package Control: Add Channel"
+			],
+			[
+				"",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 492.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/silleknarf/Code/art-master",
+		"/Users/silleknarf/Code/art-master/service",
+		"/Users/silleknarf/Code/art-master/service/src",
+		"/Users/silleknarf/Code/art-master/service/src/services",
+		"/Users/silleknarf/Code/art-master/ui",
+		"/Users/silleknarf/Code/art-master/ui/public",
+		"/Users/silleknarf/Code/art-master/ui/src",
+		"/Users/silleknarf/Code/art-master/ui/src/components",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views"
+	],
+	"file_history":
+	[
+		"/Users/silleknarf/Code/art-master/ui/package.json",
+		"/Users/silleknarf/Code/art-master/ui/package-lock.json",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/Draw.js",
+		"/Users/silleknarf/Code/art-master/service/src/app.py",
+		"/Users/silleknarf/Code/art-master/ui/src/App.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/State.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/literallycanvas/literallycanvas.sublime-project",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/Critic.js",
+		"/Users/silleknarf/Code/art-master/service/src/services/room_service.py",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/Draw.css",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/Lobby.js",
+		"/Users/silleknarf/Code/art-master/service/src/art-master.log",
+		"/Users/silleknarf/Code/art-master/service/src/services/round_service.py",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/Room.js",
+		"/Users/silleknarf/Code/art-master/service/src/services/image_service.py",
+		"/Users/silleknarf/Code/art-master/.gitignore",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoundInfo.js",
+		"/Users/silleknarf/Code/art-master/ui/src/constant/StageStateIds.js",
+		"/Users/silleknarf/Code/art-master/service/src/art-master.service.log",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/literallycanvas.min.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/fsevents/node_modules/json-stringify-safe/test/stringify_test.js",
+		"/Users/silleknarf/Code/art-master/ui/src/redux/ActionTypes.js",
+		"/Users/silleknarf/Code/art-master/ui/src/redux/Actions.js",
+		"/Users/silleknarf/Code/art-master/ui/src/redux/RootReducer.js",
+		"/Users/silleknarf/Code/art-master/ui/src/redux/Store.js",
+		"/Users/silleknarf/Code/art-master/ui/src/constant/Config.js",
+		"/Users/silleknarf/Code/art-master/ui/src/index.js",
+		"/Users/silleknarf/Code/art-master/ui/src/store/Index.js",
+		"/Users/silleknarf/Code/art-master/ui/src/actions/Index.js",
+		"/Users/silleknarf/Code/art-master/ui/src/constant/ActionTypes.js",
+		"/Users/silleknarf/Code/art-master/ui/src/reducers/Index.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/Lobby.css",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoomState.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoundState.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/RoundState.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/Home.js",
+		"/Users/silleknarf/Code/art-master/service/src/database/database.py",
+		"/Users/silleknarf/Code/art-master/service/src/services/user_service.py",
+		"/Users/silleknarf/Code/art-master/service/src/services/exceptions.py",
+		"/Users/silleknarf/Code/art-master/service/src/error.log",
+		"/Users/silleknarf/Code/art-master/service/src/services/rating_service.py",
+		"/Users/silleknarf/Code/art-master/service/src/services/word_service.py",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/sw-precache-webpack-plugin/node_modules/uglify-js/tools/domprops.json",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/.bin/html-minifier",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/ajv/dist/regenerator.min.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/babel-core/lib/transformation/file/index.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/browserify-aes/ghash.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/caniuse-db/data.json",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/caniuse-db/features-json/cryptography.json",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/caniuse-db/fulldata-json/data-1.0.json",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/caniuse-db/fulldata-json/data-2.0.json",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/cross-spawn/lib/parse.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/escodegen/escodegen.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/escope/lib/index.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/escope/lib/scope.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/eslint/lib/rules/object-shorthand.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/har-validator/node_modules/ajv/dist/regenerator.min.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/html-minifier/cli.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/html-minifier/README.md",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/html-minifier/sample-cli-config-file.conf",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/html-minifier/node_modules/uglify-js/tools/domprops.json",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/html-minifier/src/htmlminifier.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/html-webpack-plugin/node_modules/.bin/html-minifier",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/jsdom/Changelog.md",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/lodash/_baseShuffle.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/lodash/lodash.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/lodash/shuffle.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/locale/uz-latn.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/min/locales.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/min/locales.min.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/min/moment-with-locales.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/min/moment-with-locales.min.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/src/locale/uz-latn.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/react-scripts/config/webpack.config.prod.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/react-scripts/node_modules/eslint/lib/rules/object-shorthand.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/react-scripts/node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/svgo/CHANGELOG.md",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/svgo/lib/svgo/js2svg.js",
+		"/Users/silleknarf/Code/art-master/ui/node_modules/uglify-js/tools/domprops.json",
+		"/Users/silleknarf/Code/art-master/service/src/database/data_model.py",
+		"/Users/silleknarf/Code/art-master/service/src/database/generate_data_model.sh",
+		"/Users/silleknarf/Code/art-master/service/src/user_config.py",
+		"/Users/silleknarf/Code/art-master/ui/src/constant/config.js",
+		"/Users/silleknarf/Code/art-master/README.md",
+		"/Users/silleknarf/Code/art-master/service/src/database/create_database.py",
+		"/Users/silleknarf/Code/art-master/service/src/public_config.py",
+		"/Users/silleknarf/Code/art-master/service/src/services/__init__.py",
+		"/Users/silleknarf/Code/art-master/service/src/__init__.py",
+		"/Users/silleknarf/Code/art-master/service/src/app/user_service.py",
+		"/Users/silleknarf/Dropbox/Code/Bitcoin/NewModel/data_model.py",
+		"/Users/silleknarf/Dropbox/Code/Bitcoin/NewModel/generate_data_model.sh",
+		"/Users/silleknarf/Dropbox/Code/Bitcoin/NewModel/model.py",
+		"/Users/silleknarf/Code/notebook-numbers/src/fonts/fonts.css",
+		"/Users/silleknarf/Code/notebook-numbers/build/js/bundle-552ac3c424.js",
+		"/Users/silleknarf/Code/notebook-numbers/build/js/bundle-2aafc847a3.js",
+		"/Users/silleknarf/Code/notebook-numbers/bin/run.sh",
+		"/Users/silleknarf/Code/notebook-numbers/build/js/bundle-f8c5a00ae7.js",
+		"/Users/silleknarf/Code/notebook-numbers/build/js/bundle-de2f7735b6.js",
+		"/Users/silleknarf/Code/notebook-numbers/test/tests.html",
+		"/Users/silleknarf/Code/notebook-numbers/.circleci/config.yml",
+		"/Users/silleknarf/Code/notebook-numbers/docs/TODO.txt",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/grid_util.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/render_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/timer_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/notebook_numbers.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/entities/background_entity.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/preload_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/level_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/mode_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/entities/classic_entity.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/logic_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/cursor_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/view_components/menu_view_component.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/score_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/view_components/score_view_component.js",
+		"/Users/silleknarf/Code/notebook-numbers/circleci/config.yml",
+		"/Users/silleknarf/Code/notebook-numbers/.gitlab-ci.yml",
+		"/Users/silleknarf/Code/notebook-numbers/src/systems/undo_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/view_systems/cursor_view_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/view_components/cursor_view_component.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/ecs/components.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/view_systems/grid_view_system.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/css/notebook_numbers.css",
+		"/Users/silleknarf/Code/notebook-numbers/index.html",
+		"/Users/silleknarf/Code/notebook-numbers/src/view_components/endpaper_view_component.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/view_components/background_view_component.js",
+		"/Users/silleknarf/Code/notebook-numbers/src/view_components/grid_background_view_component.js"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "ui/src/components/common/Draw.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1972,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								240,
+								240
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 35
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "ui/src/components/views/Room.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2298,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1035,
+								1035
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 130.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "ui/src/components/common/State.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2285,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1771,
+								1771
+							]
+						],
+						"settings":
+						{
+							"highlight_line": false,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 57
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 379.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "TODO.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 94,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								93,
+								93
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 82
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "ui/public/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1665,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								611,
+								611
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 70
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "service/src/user_config.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 429,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								262,
+								262
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 36
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "art-master.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"round_",
+				"service/src/services/round_service.py"
+			],
+			[
+				"tod",
+				"docs/TODO.txt"
+			],
+			[
+				"timer",
+				"src/systems/timer_system.js"
+			],
+			[
+				"logic",
+				"src/systems/logic_system.js"
+			],
+			[
+				"pr",
+				"src/systems/preload_system.js"
+			],
+			[
+				"fo",
+				"src/fonts/fonts.css"
+			],
+			[
+				"pre",
+				"src/systems/preload_system.js"
+			],
+			[
+				"fonts",
+				"src/fonts/fonts.css"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"",
+				"src/fonts/fonts.css"
+			],
+			[
+				"gul",
+				"gulpfile.js"
+			],
+			[
+				"css",
+				"src/fonts/fonts.css"
+			],
+			[
+				"run",
+				"bin/run.sh"
+			],
+			[
+				"gu",
+				"gulpfile.js"
+			],
+			[
+				"re",
+				"README.md"
+			],
+			[
+				"test",
+				"test/tests.html"
+			],
+			[
+				"prel",
+				"src/systems/preload_system.js"
+			],
+			[
+				"confi",
+				"src/config.js"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"to",
+				"docs/TODO.txt"
+			],
+			[
+				"back",
+				"src/entities/background_entity.js"
+			],
+			[
+				"no",
+				"src/notebook_numbers.js"
+			],
+			[
+				"leve",
+				"src/systems/level_system.js"
+			],
+			[
+				"cur",
+				"src/systems/cursor_system.js"
+			],
+			[
+				"log",
+				"src/systems/logic_system.js"
+			],
+			[
+				"grid",
+				"src/systems/grid_util.js"
+			],
+			[
+				"todo",
+				"docs/TODO.txt"
+			],
+			[
+				"clas",
+				"src/entities/classic_entity.js"
+			],
+			[
+				"time",
+				"src/systems/timer_system.js"
+			],
+			[
+				"lelv",
+				"src/systems/level_system.js"
+			],
+			[
+				"t",
+				"docs/TODO.txt"
+			],
+			[
+				"le",
+				"src/systems/level_system.js"
+			],
+			[
+				"ti",
+				"src/systems/timer_system.js"
+			],
+			[
+				"score",
+				"src/view_components/score_view_component.js"
+			],
+			[
+				"lo",
+				"src/systems/logic_system.js"
+			],
+			[
+				"cl",
+				"src/entities/classic_entity.js"
+			],
+			[
+				"lev",
+				"src/systems/level_system.js"
+			],
+			[
+				"tim",
+				"src/systems/timer_system.js"
+			],
+			[
+				"sc",
+				"src/systems/score_system.js"
+			],
+			[
+				"men",
+				"src/view_components/menu_view_component.js"
+			],
+			[
+				"class",
+				"src/entities/classic_entity.js"
+			],
+			[
+				"mod",
+				"src/systems/mode_system.js"
+			],
+			[
+				"note",
+				"src/notebook_numbers.js"
+			],
+			[
+				"rende",
+				"src/systems/render_system.js"
+			],
+			[
+				"level",
+				"src/systems/level_system.js"
+			],
+			[
+				"menu_",
+				"src/view_components/menu_view_component.js"
+			],
+			[
+				"gri",
+				"src/systems/grid_util.js"
+			],
+			[
+				"und",
+				"src/systems/undo_system.js"
+			],
+			[
+				"cu",
+				"src/view_systems/cursor_view_system.js"
+			],
+			[
+				"mode",
+				"src/systems/mode_system.js"
+			],
+			[
+				"un",
+				"src/systems/undo_system.js"
+			],
+			[
+				"com",
+				"src/ecs/components.js"
+			],
+			[
+				"logi",
+				"src/systems/logic_system.js"
+			],
+			[
+				"menu",
+				"src/view_components/menu_view_component.js"
+			],
+			[
+				"not",
+				"src/notebook_numbers.js"
+			],
+			[
+				"cover",
+				"src/view_components/cover_view_component.js"
+			],
+			[
+				"bac",
+				"src/view_components/background_view_component.js"
+			],
+			[
+				"bak",
+				"src/entities/background_entity.js"
+			],
+			[
+				"end",
+				"src/view_components/endpaper_view_component.js"
+			],
+			[
+				"ba",
+				"src/entities/background_entity.js"
+			],
+			[
+				"en",
+				"src/view_components/endpaper_view_component.js"
+			],
+			[
+				"e",
+				"src/view_components/endpaper_view_component.js"
+			],
+			[
+				"prelo",
+				"src/systems/preload_system.js"
+			],
+			[
+				"banderp",
+				"src/view_components/banderole_view_component.js"
+			],
+			[
+				"gir",
+				"src/view_components/grid_background_view_component.js"
+			],
+			[
+				"me",
+				"src/view_components/menu_view_component.js"
+			],
+			[
+				"score_view",
+				"src/view_components/score_view_component.js"
+			],
+			[
+				"soc",
+				"src/systems/score_system.js"
+			],
+			[
+				"config",
+				"src/config.js"
+			],
+			[
+				"lead",
+				"src/systems/leaderboard_system.js"
+			],
+			[
+				"l",
+				"lib/lodash.min.js"
+			],
+			[
+				"tut",
+				"src/systems/tutorial_system.js"
+			],
+			[
+				"sco",
+				"src/systems/score_system.js"
+			],
+			[
+				"tuto",
+				"src/systems/tutorial_system.js"
+			],
+			[
+				"levle",
+				"src/systems/level_system.js"
+			],
+			[
+				"rea",
+				"README.md"
+			],
+			[
+				"solver",
+				"src/solver/solver.js"
+			],
+			[
+				"sol",
+				"src/solver/solver.html"
+			],
+			[
+				"read",
+				"README.md"
+			],
+			[
+				"levl",
+				"src/systems/level_system.js"
+			],
+			[
+				"menuvi",
+				"src/view_components/menu_view_component.js"
+			],
+			[
+				"cle",
+				"src/entities/classic_entity.js"
+			],
+			[
+				"grid_",
+				"src/systems/grid_util.js"
+			],
+			[
+				"in",
+				"index.html"
+			],
+			[
+				"test_",
+				"test/test_cell_util.js"
+			],
+			[
+				"cel",
+				"src/systems/cell_util.js"
+			],
+			[
+				"comp",
+				"src/ecs/components.js"
+			],
+			[
+				"ecs",
+				"src/ecs/ecs.js"
+			],
+			[
+				"tests",
+				"~/Code/notebook-numbers/src/tests/tests.html"
+			],
+			[
+				"est",
+				"src/tests/test.js"
+			],
+			[
+				"cell",
+				"src/view_components/cell_view_component.js"
+			],
+			[
+				"grid_vie",
+				"src/view_systems/grid_view_system.js"
+			],
+			[
+				"eve",
+				"src/event_manager.js"
+			],
+			[
+				"curs",
+				"src/view_components/cursor_view_component.js"
+			],
+			[
+				"cla",
+				"src/entities/classic_entity.js"
+			],
+			[
+				"m",
+				"src/systems/mode_system.js"
+			],
+			[
+				"scor",
+				"src/systems/score_system.js"
+			],
+			[
+				"too",
+				"docs/TODO.txt"
+			],
+			[
+				"sor",
+				"src/systems/score_system.js"
+			],
+			[
+				"scoll",
+				"src/ecs/scroll_system.js"
+			],
+			[
+				"con",
+				"src/ecs/components.js"
+			],
+			[
+				"c",
+				"src/config.js"
+			],
+			[
+				"ec",
+				"src/ecs/ecs.js"
+			],
+			[
+				"giz",
+				"src/ecs/gizmo_system.js"
+			],
+			[
+				"ind",
+				"index.html"
+			],
+			[
+				"co",
+				"src/config.js"
+			],
+			[
+				"ren",
+				"src/ecs/render_system.js"
+			],
+			[
+				"rend",
+				"src/ecs/render_system.js"
+			],
+			[
+				"bounds",
+				"src/ecs/bounds_system.js"
+			],
+			[
+				"scro",
+				"src/ecs/scroll_system.js"
+			],
+			[
+				"scr",
+				"src/ecs/scroll_system.js"
+			],
+			[
+				"conf",
+				"src/config.js"
+			],
+			[
+				"bin",
+				"src/view_components/bindings_view_component.js"
+			],
+			[
+				"binds",
+				"game/view/bindings_view_component.js"
+			],
+			[
+				"cov",
+				"game/view/cover_view_component.js"
+			],
+			[
+				"scroll",
+				"game/ecs/scroll_system.js"
+			],
+			[
+				"grid_view",
+				"game/view/grid_view_system.js"
+			],
+			[
+				"gi",
+				"game/ecs/gizmo_system.js"
+			],
+			[
+				"bound",
+				"game/ecs/bounds_system.js"
+			],
+			[
+				"enti",
+				"game/ecs/entity.js"
+			],
+			[
+				"per",
+				"game/ecs/preload.js"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"noute",
+				"game/notebook_numbers.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"_vintageous_last_buffer_search": "store",
+		"_vintageous_last_buffer_search_command": "vi_slash",
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": " ",
+		"_vintageous_reset_during_init": true,
+		"vintage":
+		{
+			"_cmdline_cd": "/Users/silleknarf/Code/art-master/service/src"
+		}
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 207.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
