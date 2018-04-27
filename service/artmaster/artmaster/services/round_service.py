@@ -2,8 +2,8 @@
 
 import logging
 from flask import Blueprint, jsonify, request
-from database.database import session
-from database.data_model import Round, Room
+from artmaster.database.database import session
+from artmaster.database.data_model import Round, Room
 from datetime import datetime, timedelta
 
 round_service = Blueprint('round_service', __name__)

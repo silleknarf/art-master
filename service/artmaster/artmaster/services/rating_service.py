@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 from flask import Blueprint, jsonify, request
-from database.database import session
-from database.data_model import Round, Image, Rating
+from artmaster.database.database import session
+from artmaster.database.data_model import Round, Image, Rating
 from exceptions import InvalidUsage
 
 rating_service = Blueprint('rating_service', __name__)

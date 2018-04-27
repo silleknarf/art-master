@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 from flask import Blueprint, jsonify, request
-from database.database import session
-from database.data_model import Word
+from artmaster.database.database import session
+from artmaster.database.data_model import Word
 
 word_service = Blueprint('word_service', __name__)
             

@@ -4,8 +4,8 @@ import base64
 import logging
 import os
 from flask import Blueprint, jsonify, request
-from database.database import session
-from database.data_model import Image
+from artmaster.database.database import session
+from artmaster.database.data_model import Image
 
 logfile = logging.getLogger('file')
 image_service = Blueprint('image_service', __name__)

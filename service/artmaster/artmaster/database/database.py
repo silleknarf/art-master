@@ -3,7 +3,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from data_model import *
-from user_config import UserDevelopmentConfig
+from artmaster.user_config import UserDevelopmentConfig
 from contextlib import contextmanager
 import logging
 

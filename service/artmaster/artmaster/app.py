@@ -4,14 +4,14 @@ import sys
 from flask import Flask, jsonify
 from flask_cors import CORS
 
-from services.user_service import user_service
-from services.room_service import room_service
-from services.round_service import round_service
-from services.image_service import image_service
-from services.rating_service import rating_service
-from services.word_service import word_service
-from services.exceptions import InvalidUsage
-from database.database import session
+from artmaster.services.user_service import user_service
+from artmaster.services.room_service import room_service
+from artmaster.services.round_service import round_service
+from artmaster.services.image_service import image_service
+from artmaster.services.rating_service import rating_service
+from artmaster.services.word_service import word_service
+from artmaster.services.exceptions import InvalidUsage
+from artmaster.database.database import session
 import logging
 
 data_dir = "/Users/silleknarf/Code/art-master/data"

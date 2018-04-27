@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
 from flask import Blueprint, jsonify, abort
-from database.database import session
-from database.data_model import User
-from exceptions import InvalidUsage
+from artmaster.database.database import session
+from artmaster.database.data_model import User
+from artmaster.services.exceptions import InvalidUsage
 import logging 
 
 logfile = logging.getLogger('file')
