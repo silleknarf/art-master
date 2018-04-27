@@ -15,6 +15,7 @@ from database.database import session
 import logging
 
 data_dir = "/Users/silleknarf/Code/art-master/data"
+logfile = logging.getLogger("file")
 
 app = Flask(__name__)
 CORS(app)
@@ -44,22 +45,20 @@ format_str = "%(asctime)s %(levelname)s %(message)s"
 formatter = logging.Formatter(format_str)
 
 def setup_logger(name, log_file, level=logging.INFO):
-    """Function setup as many loggers as you want"""
-
     handler = logging.FileHandler(log_file)        
     handler.setFormatter(formatter)
+    handler.setLevel(level)
 
     logger = logging.getLogger(name)
-    logger.setLevel(level)
     logger.addHandler(handler)
 
-    return logger
-
-if __name__ == "__main__":
+@app.before_first_request
+def initialise():
     # Create a specific logger for the service
     logging.basicConfig(filename="art-master.service.log",level=logging.ERROR, format=format_str)
 
-    # Create a logger
     setup_logger("file", "art-master.log")
+    setup_logger("sqlalchemy.engine", "art-master.sql.log")
 
+if __name__ == "__main__":
     app.run(host="localhost", port=5000, debug=True, threaded=True)

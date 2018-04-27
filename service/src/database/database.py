@@ -5,6 +5,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from data_model import *
 from user_config import UserDevelopmentConfig
 from contextlib import contextmanager
+import logging
 
 config = UserDevelopmentConfig
 
@@ -14,10 +15,12 @@ connection_string = ('mysql://%s:%s@%s/%s' %
     config.DATABASE_SERVER,
     config.DATABASE_NAME))
 
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+
 engine = create_engine(
     connection_string,
     encoding="utf8", 
-    echo=True)
+    echo=False)
 
 session = scoped_session(sessionmaker(
     autocommit=False,

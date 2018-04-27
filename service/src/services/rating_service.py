@@ -59,8 +59,8 @@ def set_rating():
     round_id = (session
         .query(Image)
         .filter(Image.ImageId==image_id)
-        .first())
-        .RoundId
+        .first()
+        .RoundId)
     is_existing_rating = (session
         .query(Rating)
         .join(Image)
