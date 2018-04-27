@@ -15,7 +15,10 @@ connection_string = ('mysql://%s:%s@%s/%s' %
     config.DATABASE_SERVER,
     config.DATABASE_NAME))
 
-logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+logger = logging.getLogger('sqlalchemy.engine')
+handler = logging.FileHandler("art-master.sql.log")        
+handler.setLevel(logging.INFO)
+logger.addHandler(handler)
 
 engine = create_engine(
     connection_string,
