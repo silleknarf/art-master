@@ -49,7 +49,7 @@ def set_rating():
     user_id = int(request.args.get("raterUserId"))
     has_existing_rating = rating_repository.has_existing_rating(image_id, user_id)
         
-    if is_existing_rating:
+    if has_existing_rating:
         error_text = "Cannot rate more than one image per round"
         raise InvalidUsage(error_text)
     rating_entity = rating_repository.create_rating(image_id, rating, user_id)
