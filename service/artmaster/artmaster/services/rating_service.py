@@ -1,8 +1,7 @@
 #!/usr/bin/python
 
 from flask import Blueprint, jsonify, request
-from artmaster.database.database import session
-from artmaster.database.data_model import Round, Image, Rating
+from artmaster.repositories import rating_repository, user_repository
 from exceptions import InvalidUsage
 
 rating_service = Blueprint('rating_service', __name__)
@@ -11,12 +10,7 @@ rating_service = Blueprint('rating_service', __name__)
 @rating_service.route("/ratings", methods=["GET"])
 def get_ratings():
     round_id = int(request.args.get("roundId"))
-    round_ratings = (session
-        .query(Rating, Image) 
-        .join(Image)
-        .join(Round)
-        .filter(Round.RoundId==round_id)
-        .all())
+    round_ratings = rating_repository.get_ratings(round_id)
 
     ratings = [rr[0] for rr in round_ratings]
     images = [rr[1] for rr in round_ratings]
@@ -37,10 +31,7 @@ def get_ratings():
     image = [image for image in images 
              if image.ImageId == winner_image_id][0]
 
-    winning_user = (session
-        .query(User)
-        .filter(User.UserId==image.UserId)
-        .first())
+    winning_user = user_repository.get_user(image.UserId)
         
     round_info = { 
         "roundId": round_id,
@@ -56,26 +47,12 @@ def set_rating():
     image_id = int(request.args.get("imageId"))
     rating = int(request.args.get("rating"))
     user_id = int(request.args.get("raterUserId"))
-    round_id = (session
-        .query(Image)
-        .filter(Image.ImageId==image_id)
-        .first()
-        .RoundId)
-    is_existing_rating = (session
-        .query(Rating)
-        .join(Image)
-        .filter(Image.RoundId==round_id)
-        .any())
+    has_existing_rating = rating_repository.has_existing_rating(image_id, user_id)
         
     if is_existing_rating:
         error_text = "Cannot rate more than one image per round"
         raise InvalidUsage(error_text)
-    rating_entity = Rating(
-        Rating=rating, 
-        RaterUserId=user_id, 
-        ImageId=image_id)
-    session.add(rating_entity)
-    session.commit()
+    rating_entity = rating_repository.create_rating(image_id, rating, user_id)
     return jsonify({
         "ratingId": rating_entity.RatingId
     })

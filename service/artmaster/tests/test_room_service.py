@@ -2,50 +2,57 @@
 
 import unittest
 import mock
-import sqlite3
+import json
 import sys
 sys.path.append("../artmaster")
 from artmaster.services import room_service
 from artmaster import app
-from artmaster.database.data_model import *
-from sqlalchemy import create_engine, event
-from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy.pool import StaticPool
-from sqlalchemy.engine import Engine
-
-# Turn on foreign key constraints
-@event.listens_for(Engine, "connect")
-def set_sqlite_pragma(dbapi_connection, connection_record):
-    if type(dbapi_connection) is sqlite3.Connection:  # play well with other DB backends
-       cursor = dbapi_connection.cursor()
-       cursor.execute("PRAGMA foreign_keys=ON")
-       cursor.close()
+from test_utils import *
 
 class TestRoomService(unittest.TestCase):
+    room = { 
+        "RoomId": 1 ,
+        "RoomCode": "ABCD", 
+        "OwnerUserId": 1,
+        "CurrentRoundId": 1
+    }
 
     def setUp(self):
         app.app.testing = True
-        self.engine = create_engine('sqlite://',
-                    connect_args={'check_same_thread':False},
-                    poolclass=StaticPool)
-        self.session = sessionmaker(bind=self.engine)()
-        Base.metadata.create_all(self.engine)
+        self.app = app.app.test_client()
 
-    def tearDown(self):
-        Base.metadata.drop_all(self.engine)
-    
-    @mock.patch('artmaster.services.room_service.jsonify')
-    def test_add_user_to_room(self, jsonify):
-        room_service.session = self.session
-        room_service.session.add(User(UserId=1, Username="Test"))
-        room_service.session.add(Room(RoomId=1, OwnerUserId=1))
-        room_service.session.commit()
-        room_id = 1
-        user_id = 1
-        room_service.add_user_to_room(room_id, user_id) 
-        room_user_entity = self.session.query(RoomUser).first()
-        self.assertEqual(room_user_entity.RoomId, 1)
-        self.assertEqual(room_user_entity.UserId, 1)
+    @mock.patch('artmaster.services.room_service.room_user_repository')
+    def test_add_user_to_room(self, room_user_repository):
+        self.app.post("/room/1/user/1")
+        room_user_repository.add_user_to_room.assert_called()
+
+    @mock.patch('artmaster.services.room_service.room_user_repository')
+    def test_get_users_in_room(self, room_user_repository):
+        self.app.get("/room/1/users")
+        room_user_repository.get_users_in_room.assert_called()
+
+    @mock.patch('artmaster.services.room_service.room_user_repository')
+    @mock.patch('artmaster.services.room_service.room_repository')
+    def test_create_room(self, room_repository, room_user_repository):
+        room_repository.create_room.return_value = Struct(**self.room)
+        room_created = self.app.post("/room?userId=1").data
+        expected_room = dict_to_lower(self.room)
+        actual_room = json.loads(room_created)
+        self.assertTrue(cmp(actual_room, expected_room))
+        room_user_repository.add_user_to_room.assert_called()
+
+    @mock.patch('artmaster.services.room_service.room_repository')
+    def test_poll_room_by_room_code(self, room_repository):
+        room_repository.get_room.return_value = Struct(**self.room)
+        self.app.get("/room?roomCode=ABCD")
+        room_repository.get_room.assert_called_with(None, "ABCD")
+
+    @mock.patch('artmaster.services.room_service.room_repository')
+    def test_poll_room_by_room_id(self, room_repository):
+        room_repository.get_room.return_value = Struct(**self.room)
+        self.app.get("/room?roomId=1")
+        room_repository.get_room.assert_called_with(1, None)
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestRoomService)
