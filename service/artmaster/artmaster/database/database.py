@@ -17,13 +17,15 @@ connection_string = ('mysql://%s:%s@%s/%s' %
 
 logger = logging.getLogger('sqlalchemy.engine')
 handler = logging.FileHandler("art-master.sql.log")        
+logger.handlers = []
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
-logger = logging.getLogger('sqlalchemy.pool')
-handler = logging.FileHandler("art-master.sql.log")        
-logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
+#logger = logging.getLogger('sqlalchemy.pool')
+#handler = logging.FileHandler("art-master.sql.log")        
+#logger.handlers = []
+#logger.addHandler(handler)
+#logger.setLevel(logging.DEBUG)
 
 engine = create_engine(
     connection_string,

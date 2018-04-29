@@ -8,7 +8,8 @@ class ConnectedCritic extends Component {
         super(props);
         this.state = {
             images: [],
-            round: {}
+            round: {},
+            voteSubmitted: false
         };
     }
 
@@ -29,6 +30,7 @@ class ConnectedCritic extends Component {
             {
                 method: "POST" 
             })
+        this.state.voteSubmitted = true;
         if (ratingRes.status === 200) {
             console.log(`Image: ${imageId} rated by ${this.stage.user.userId}`);
         }
@@ -44,25 +46,33 @@ class ConnectedCritic extends Component {
     }
 
     render = () => {
-        return (
-            <Row>
-                {this.state.images.map((image) => {
-                    return (
-                        <div key={ image.imageId }>
-                            <Row>
-                                <img src={ "/data/" + image.location } />
-                            </Row>
-                            <Row>
-                                <Button 
-                                    className="button" 
-                                    onClick={e => this.onClickRateImage(image.imageId)}> 
-                                    Vote
-                                </Button>
-                            </Row>
-                        </div>);
-                })}
-            </Row>
-        );
+        if (!this.state.voteSubmitted) {
+            return (
+                <Row>
+                    {this.state.images.map((image) => {
+                        return (
+                            <div key={ image.imageId }>
+                                <Row>
+                                    <img src={ "/data/" + image.location } />
+                                </Row>
+                                <Row>
+                                    <Button 
+                                        className="button" 
+                                        onClick={e => this.onClickRateImage(image.imageId)}> 
+                                        Vote
+                                    </Button>
+                                </Row>
+                            </div>);
+                    })}
+                </Row>
+            );
+        } else { 
+            return (
+                <Row>
+                    <div>Vote Submitted!</div>
+                </Row>
+            );
+        }
     }
 }
 

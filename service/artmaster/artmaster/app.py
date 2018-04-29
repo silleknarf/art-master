@@ -54,11 +54,8 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 @app.before_first_request
 def initialise():
-    # Create a specific logger for the service
-    logging.basicConfig(filename="art-master.service.log",level=logging.INFO, format=format_str)
-
+    setup_logger("werkzeug", "art-master.service.log")
     setup_logger("file", "art-master.log")
-    setup_logger("sqlalchemy.engine", "art-master.sql.log")
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5000, debug=True, threaded=True)
