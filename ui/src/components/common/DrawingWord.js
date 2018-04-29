@@ -13,7 +13,7 @@ class DrawingWord extends Component {
   }
 
   componentWillReceiveProps = async (newProps) => {
-    if (!newProps.wordId)
+    if (!newProps.wordId || this.props.wordId === newProps.wordId)
       return;
     var wordRes = await fetch(`${Config.apiurl}/word?wordId=${newProps.wordId}`);
     if (wordRes.status === 200) {
