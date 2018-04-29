@@ -10,4 +10,4 @@ class TestApp(unittest.TestCase):
     
     def test_home(self):
         expected_string = "Welcome to the art-master api"
-        self.assertNotEqual(self.app.get("/").data, expected_string)
+        self.assertEqual(self.app.get("/").data, expected_string)
