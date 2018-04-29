@@ -2,7 +2,7 @@
 
 import logging
 from flask import Blueprint, jsonify, request
-from artmaster.repositories import round_repository
+from repositories import round_repository
 from datetime import datetime, timedelta
 
 round_service = Blueprint('round_service', __name__)

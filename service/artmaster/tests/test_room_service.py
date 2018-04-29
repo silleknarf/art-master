@@ -5,8 +5,8 @@ import mock
 import json
 import sys
 sys.path.append("../artmaster")
-from artmaster.services import room_service
-from artmaster import app
+from services import room_service
+import app
 from test_utils import *
 
 class TestRoomService(unittest.TestCase):

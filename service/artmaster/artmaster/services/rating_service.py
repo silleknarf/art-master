@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
+import repositories.rating_repository
+import repositories.user_repository
 from flask import Blueprint, jsonify, request
-from artmaster.repositories import rating_repository, user_repository
 from exceptions import InvalidUsage
 
 rating_service = Blueprint('rating_service', __name__)

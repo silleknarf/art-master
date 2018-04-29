@@ -1,5 +1,5 @@
-from artmaster.database.database import session
-from artmaster.database.data_model import Room, Round
+from database.database import session
+from database.data_model import Room, Round
 import logging
 
 logfile = logging.getLogger('file')
@@ -36,8 +36,9 @@ def get_round(round_id):
 
     if round_entity is None:
         return "No round for given roundId"
+    return round_entity
 
-def update_round(round_id, stage_state_id, state_time, end_time):
+def update_round(round_id, stage_state_id, start_time, end_time):
     logfile.info("Setting round: %s to be in state: %s" %
         (round_id, stage_state_id))
 

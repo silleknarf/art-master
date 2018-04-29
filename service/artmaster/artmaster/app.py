@@ -3,15 +3,9 @@
 import sys
 from flask import Flask, jsonify
 from flask_cors import CORS
+import database.database
+from flask_sqlalchemy_session import flask_scoped_session
 
-from artmaster.services.user_service import user_service
-from artmaster.services.room_service import room_service
-from artmaster.services.round_service import round_service
-from artmaster.services.image_service import image_service
-from artmaster.services.rating_service import rating_service
-from artmaster.services.word_service import word_service
-from artmaster.services.exceptions import InvalidUsage
-from artmaster.database.database import session
 import logging
 
 data_dir = "/Users/silleknarf/Code/art-master/data"
@@ -19,6 +13,15 @@ logfile = logging.getLogger("file")
 
 app = Flask(__name__)
 CORS(app)
+database.database.session = flask_scoped_session(database.database.session_maker, app)
+
+from services.user_service import user_service
+from services.room_service import room_service
+from services.round_service import round_service
+from services.image_service import image_service
+from services.rating_service import rating_service
+from services.word_service import word_service
+from services.exceptions import InvalidUsage
 
 app.register_blueprint(user_service)
 app.register_blueprint(room_service)
@@ -38,8 +41,8 @@ def handle_invalid_usage(error):
     return response
 
 @app.teardown_appcontext
-def shutdown_session(exception=None):
-    session.remove()
+def shutdown_session(response):
+    database.database.session.remove()
 
 format_str = "%(asctime)s %(levelname)s %(message)s"
 formatter = logging.Formatter(format_str)

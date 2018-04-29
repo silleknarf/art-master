@@ -3,7 +3,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from data_model import *
-from artmaster.user_config import UserDevelopmentConfig
+from user_config import UserDevelopmentConfig
 from contextlib import contextmanager
 import logging
 
@@ -20,13 +20,20 @@ handler = logging.FileHandler("art-master.sql.log")
 handler.setLevel(logging.INFO)
 logger.addHandler(handler)
 
+logger = logging.getLogger('sqlalchemy.pool')
+handler = logging.FileHandler("art-master.sql.log")        
+handler.setLevel(logging.DEBUG)
+logger.addHandler(handler)
+
 engine = create_engine(
     connection_string,
     encoding="utf8", 
     echo=False)
 
-session = scoped_session(sessionmaker(
+print "test"
+
+session_maker = sessionmaker(
     autocommit=False,
     autoflush=False,
-    bind=engine))
+    bind=engine)
 

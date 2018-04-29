@@ -1,7 +1,7 @@
-from artmaster.database.database import session
-from artmaster.database.data_model import Round, Image, Rating
+from database.database import session
+from database.data_model import Round, Image, Rating
 
-def get_round_ratings(round_id):
+def get_ratings(round_id):
     round_ratings = (session
         .query(Rating, Image) 
         .join(Image)
@@ -15,11 +15,11 @@ def has_existing_rating(image_id, user_id):
         .filter(Image.ImageId==image_id)
         .first()
         .RoundId)
-    any_existing_rating = (session
+    any_existing_rating = len(session
         .query(Rating)
         .join(Image)
-        .filter(Image.RaterUserId==user_id)
-        .any())
+        .filter(Rating.RaterUserId==user_id)
+        .all()) > 0
     return any_existing_rating
 
 def create_rating(image_id, rating, user_id):

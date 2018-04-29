@@ -1,5 +1,5 @@
-from artmaster.database.database import session
-from artmaster.database.data_model import Room
+from database.database import session
+from database.data_model import Room
 import logging
 logfile = logging.getLogger('file')
 

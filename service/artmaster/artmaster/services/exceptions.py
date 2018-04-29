@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from flask import jsonify
+from database.database import session
 import logging 
 
 logfile = logging.getLogger('file')

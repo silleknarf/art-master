@@ -1,5 +1,5 @@
-from artmaster.database.database import session
-from artmaster.database.data_model import User
+from database.database import session
+from database.data_model import User
 
 def get_user(user_id):
     user_entity = (session
