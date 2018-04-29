@@ -26,6 +26,7 @@ jobs:
           name: run tests
           command: |
             cd service/artmaster
+            source ./env/bin/activate 
             python -m unittest discover
 
       - store_artifacts:
