@@ -56,10 +56,10 @@ formatter = logging.Formatter(format_str)
 def setup_logger(name, log_file, level=logging.INFO):
     handler = logging.FileHandler(log_file)        
     handler.setFormatter(formatter)
-    handler.setLevel(level)
 
     logger = logging.getLogger(name)
     logger.addHandler(handler)
+    logger.setLevel(level)
 
 @app.before_first_request
 def initialise():

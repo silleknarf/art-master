@@ -13,15 +13,17 @@ class TestRoundService(unittest.TestCase):
         "RoomId": 1,
         "StageStateId": None,
         "StageStateStartTime": None,
-        "StageStateEndTime": None
+        "StageStateEndTime": None,
+        "DrawingWordId": 1
     }
 
     def setUp(self):
         app.app.testing = True
         self.app = app.app.test_client()
 
+    @mock.patch("services.round_service.word_repository")
     @mock.patch("services.round_service.round_repository")
-    def test_create_round(self, round_repository):
+    def test_create_round(self, round_repository, word_repository):
         round_repository.create_round.return_value = Struct(**self.round)
         self.app.post("/round?roomId=1&userId=1")
         round_repository.create_round.assert_called_once()

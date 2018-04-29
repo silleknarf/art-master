@@ -3,6 +3,7 @@
 from flask import Blueprint, jsonify, request
 from database.database import session
 from database.data_model import Word
+from exceptions import InvalidUsage
 
 word_service = Blueprint('word_service', __name__)
             
@@ -14,10 +15,11 @@ def add_or_remove_word():
         word = request.args.get("word")
         existing_word = (session
             .query(Word)
+            .filter(Word.RoomId==room_id)
             .filter(Word.Word==word)
             .first())
         if existing_word is not None:
-            return "Can't re-add existing word"
+            raise InvalidUsage("Can't re-add existing word")
         word_entity = Word(RoomId=room_id, UserId=user_id, Word=word)
         session.add(word_entity)
     elif request.method == "DELETE":
@@ -44,4 +46,15 @@ def get_words():
     } for w in word_entities]
     return jsonify(words)
 
-
+@word_service.route("/word", methods=["GET"])
+def get_word():
+    word_id = int(request.args.get("wordId"))
+    w = (session.query(Word)
+        .filter(Word.WordId==word_id)
+        .first())
+    word = { 
+        "wordId": w.WordId, 
+        "userId": w.UserId,
+        "word": w.Word
+    } 
+    return jsonify(word)

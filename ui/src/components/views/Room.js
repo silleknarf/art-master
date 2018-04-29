@@ -6,6 +6,8 @@ import State from '../common/State';
 import RoundInfo from '../common/RoundInfo';
 import Critic from '../common/Critic';
 import Review from '../common/Review';
+import Words from '../common/Words';
+import DrawingWord from '../common/DrawingWord';
 import Config from '../../constant/Config';
 import { DRAWING, CRITIQUING, REVIEWING } from '../../constant/StageStateIds';
 import './Room.css';
@@ -62,7 +64,13 @@ class ConnectedRoom extends Component {
               </Button>
             </Col>
           </Row>
-          { this.state.room.currentRoundId && (<RoundInfo />)}
+          { !this.state.room.currentRoundId && (<Words />)}
+          { this.state.room.currentRoundId && (
+            <div>
+              <RoundInfo />
+              <DrawingWord wordId={this.state.round.drawingWordId} />
+            </div>
+          )}
           { this.state.round.stageStateId === DRAWING && (<Draw />)}
           { this.state.round.stageStateId === CRITIQUING && (<Critic />)}
           { this.state.round.stageStateId === REVIEWING && (<Review roundId={ this.state.round.roundId } />)}

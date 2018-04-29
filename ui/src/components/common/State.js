@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Grid, Col, Row } from 'react-bootstrap'; 
 import Config from '../../constant/Config';
 import store from "../../redux/Store";
-import { updateRoomState, updateRoundState } from "../../redux/Actions";
+import { updateRoomState, updateRoundState, updateWordsState } from "../../redux/Actions";
 
 window.store = store;
 
@@ -16,7 +16,8 @@ class ConnectedState extends Component {
         roomId: null,
         currentRoundId: null
       },
-      round: null
+      round: null,
+      words: []
     };
   }
 
@@ -41,9 +42,22 @@ class ConnectedState extends Component {
     }
   }
 
+  wordsTick = async () => {
+    if (this.state.room.currentRoundId) {
+      return;
+    }
+
+    const wordsStateRes = await fetch(`${Config.apiurl}/words?roomId=${this.state.room.roomId}`)
+    if (wordsStateRes.status === 200) {
+        const wordsState = await wordsStateRes.json();
+        store.dispatch(updateWordsState(wordsState));
+    }
+  }
+
   componentDidMount = () => {
     this.roomInterval = setInterval(this.roomTick, 1000);
     this.roundInterval = setInterval(this.roundTick, 1000);
+    this.wordsInterval = setInterval(this.wordsTick, 1000);
   }
 
   componentWillMount = () => {
@@ -57,11 +71,12 @@ class ConnectedState extends Component {
   componentWillUnmount = () => {
     clearInterval(this.roomInterval);
     clearInterval(this.roundInterval);
+    clearInterval(this.wordsInterval);
   }
 
   prepareComponentState = (props) => {
     // Map the props to the state
-    this.setState({room: props.room, round: props.round })
+    this.setState({room: props.room, round: props.round, words: props.words })
   }
 
   render = () => {
@@ -73,6 +88,9 @@ class ConnectedState extends Component {
         <Row>
           <div>RoundState: { JSON.stringify(this.state.round) } </div>
         </Row>
+        <Row>
+          <div>WordsState: { JSON.stringify(this.state.words) } </div>
+        </Row>
       </div>
     );
   }
@@ -80,7 +98,7 @@ class ConnectedState extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { room: state.room, round: state.round };
+  return { room: state.room, round: state.round, words: state.words };
 }
 
 const State = connect(mapStateToProps)(ConnectedState);
