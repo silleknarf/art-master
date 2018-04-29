@@ -6,8 +6,8 @@ import logging
 
 logfile = logging.getLogger('file')
 
-class InvalidUsage(Exception):
-    status_code = 400
+class BaseExceptionHandler(Exception):
+    status_code = 500
 
     def __init__(self, message, status_code=None, payload=None):
         Exception.__init__(self)
@@ -21,3 +21,9 @@ class InvalidUsage(Exception):
         rv = dict(self.payload or ())
         rv['message'] = self.message
         return rv
+
+class InvalidUsage(BaseExceptionHandler):
+    status_code = 400
+
+    def __init__(self, message, status_code=None, payload=None):
+        BaseExceptionHandler.__init__(self, message, status_code, payload)

@@ -48,7 +48,7 @@ def update_stage(round_entity):
     stage_state_id = round_entity.StageStateId
     if stage_state_id == None:
         stage_state_id = 0      
-        duration = 30
+        duration = 10
         round_repository.update_room_round(round_entity.RoomId, round_entity.RoundId)
     elif stage_state_id == 0:
         stage_state_id += 1

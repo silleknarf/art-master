@@ -6,12 +6,15 @@ from flask import Blueprint, jsonify, request
 from exceptions import InvalidUsage
 
 rating_service = Blueprint('rating_service', __name__)
-        
+
 # provides the round info including who won
 @rating_service.route("/ratings", methods=["GET"])
 def get_ratings():
     round_id = int(request.args.get("roundId"))
     round_ratings = rating_repository.get_ratings(round_id)
+
+    if len(round_ratings) == 0:
+        return jsonify([])
 
     ratings = [rr[0] for rr in round_ratings]
     images = [rr[1] for rr in round_ratings]
@@ -23,24 +26,33 @@ def get_ratings():
                 results[rr.ImageId] += 1
             else:
                 results[rr.ImageId] = 1
-    winner_image_id = None
-    winner_rating = 0
-    for image_id, rating in results.iteritems():
-        if rating >= winner_rating:
-            winner_image_id = image_id
-            winner_rating = rating
-    image = [image for image in images 
-             if image.ImageId == winner_image_id][0]
 
-    winning_user = user_repository.get_user(image.UserId)
-        
-    round_info = { 
-        "roundId": round_id,
-        "winnerId": winning_user.UserId,
-        "winnerUsername": winning_user.Username,
-        "winningImageLocation": image.Location
-    }
-    return jsonify(round_info)
+    winning_image_ids = []
+    winning_rating = 0
+    for image_id, rating in results.iteritems():
+        if rating == winning_rating:
+            winning_image_ids.append(image_id)
+        elif rating >= winning_rating:
+            winning_image_ids = [image_id]
+            winning_rating = rating
+
+    winning_images = []
+    for winning_image_id in winning_image_ids:
+        winning_image = [i for i in images if i.ImageId == winning_image_id][0]
+        winning_images.append(winning_image)
+
+    results = []
+    for winning_image in winning_images:
+        winning_user = user_repository.get_user(winning_image.UserId)
+        result = { 
+            "roundId": round_id,
+            "winnerId": winning_user.UserId,
+            "winnerUsername": winning_user.Username,
+            "winningImageLocation": winning_image.Location,
+        }
+        results.append(result)
+
+    return jsonify(results)
 
 # provide the rating
 @rating_service.route("/rating", methods=["POST"])

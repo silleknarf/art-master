@@ -5,6 +5,7 @@ import logging
 from flask import Flask, jsonify
 from flask_cors import CORS
 from database.database import session
+from werkzeug.exceptions import HTTPException
 
 data_dir = "/Users/silleknarf/Code/art-master/data"
 logfile = logging.getLogger("file")
@@ -36,6 +37,14 @@ def handle_invalid_usage(error):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code
     return response
+
+@app.errorhandler(Exception)
+def handle_error(e):
+    code = 500
+    if isinstance(e, HTTPException):
+        code = e.code
+    return jsonify(error=str(e)), code
+
 
 @app.teardown_appcontext
 def shutdown_session(response):
