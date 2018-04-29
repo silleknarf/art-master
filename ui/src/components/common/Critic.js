@@ -25,14 +25,14 @@ class ConnectedCritic extends Component {
     }
 
     onClickRateImage = async (imageId) => {
-        var ratingRes = fetch(
+        var ratingRes = await fetch(
             `${Config.apiurl}/rating?raterUserId=${this.state.user.userId}&imageId=${imageId}&rating=1`,
             {
                 method: "POST" 
             })
-        this.state.voteSubmitted = true;
         if (ratingRes.status === 200) {
-            console.log(`Image: ${imageId} rated by ${this.stage.user.userId}`);
+            console.log(`Image: ${imageId} rated by ${this.state.user.userId}`);
+            this.state.voteSubmitted = true;
         }
     }
 
