@@ -23,34 +23,36 @@ Get the code:
 
 Install the dependencies:
 
-- python
-- MySQL
-- SQLAlchemy `pip install sqlalchemy`  
-- flask `pip install Flask`
-- sqlacodegen `pip install sqlacodegen`
-
+    cd services/artmaster
+    pip install -r requirements.txt
+    
 Turn off tracking of the user_config.py file:
 
     git update-index --assume-unchanged art-master/service/src/user_config.py
 
 Populate the file below with your MySQL credentials:
 
-    art-master/service/src/user_config.py
+    art-master/service/artmaster/artmaster/user_config.py
 
 Set up the `art-master` database using the script at:
 
-    cd art-master/src/database
+    cd art-master/service/artmaster/artmaster/database
     ./create_database.py --dev
 
 Run the service:
     
-    cd art-master/service/src
+    cd art-master/service/artmaster/artmaster
     ./app.py
 
 To update the data model:
 
     cd art-master/service/src/database/
     ./generate_data_model.sh
+
+To run the tests
+
+    cd art-master/service/artmaster
+    python -m unittest discover
 
 ## Frontend
 
