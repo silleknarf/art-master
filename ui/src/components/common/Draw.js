@@ -12,7 +12,8 @@ class ConnectedDraw extends Component {
     const { userId, roundIdd } = props;
     this.state = {
       user: null,
-      round: null
+      round: null,
+      drawingSubmitted: false
     }
   }
 
@@ -36,32 +37,39 @@ class ConnectedDraw extends Component {
 
     if (drawingRes.status === 200) {
       console.log("Uploaded drawing")
+      this.state.drawingSubmitted = true;
     }
   }
 
   render() {
-    return (
-      <div className="draw">
-        <Row>
-          <Col>
-            <LC.LiterallyCanvasReactComponent 
-              imageURLPrefix="/img"
-              id="draw-canvas" 
-              ref={(c) => this.literallycanvas = c} />
-          </Col>
-        </Row>
-        <Row className="button-row">
-          <Col smOffset={3} sm={6}>
-            <Button
-              className="upload-room-button button"
-              onClick={(e) => this.onClickUploadDrawing(e)}
-            >
-              Upload Drawing
-            </Button>
-          </Col>
-        </Row>
-      </div>
-    );
+    if (!this.state.drawingSubmitted) {
+      return (
+        <div className="draw">
+          <Row>
+            <Col>
+              <LC.LiterallyCanvasReactComponent 
+                imageURLPrefix="/img"
+                id="draw-canvas" 
+                ref={(c) => this.literallycanvas = c} />
+            </Col>
+          </Row>
+          <Row className="button-row">
+            <Col smOffset={3} sm={6}>
+              <Button
+                className="upload-room-button button"
+                onClick={(e) => this.onClickUploadDrawing(e)}
+              >
+                Upload Drawing
+              </Button>
+            </Col>
+          </Row>
+        </div>
+      );
+    } else {
+      return (
+        <div>Drawing Submitted!</div>
+      );
+    }
   }
 }
 
