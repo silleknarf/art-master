@@ -23,7 +23,7 @@ Get the code:
 
 Install the dependencies:
 
-    cd services/artmaster
+    cd art-master/service/artmaster
     pip install -r requirements.txt
     
 Turn off tracking of the user_config.py file:
@@ -46,7 +46,7 @@ Run the service:
 
 To update the data model:
 
-    cd art-master/service/src/database/
+    cd art-master/service/artmaster/artmaster/database/
     ./generate_data_model.sh
 
 To run the tests
