@@ -37,50 +37,50 @@ class ConnectedCritic extends Component {
   }
 
   componentWillReceiveProps = (newProps) => {
-        // Map the props to the state
-        this.loadImages(newProps.round);
-        this.setState({ 
-          round: newProps.round, 
-          user: newProps.user 
-        });
-      }
-
-      render = () => {
-        if (!this.state.voteSubmitted) {
-          return (
-            <Row>
-              {this.state.images.map((image) => {
-                return (
-                  <div key={ image.imageId }>
-                    <Row>
-                      <img src={ "/data/" + image.location } />
-                    </Row>
-                    <Row>
-                      <Button 
-                        className="button" 
-                        onClick={e => this.onClickRateImage(image.imageId)}> 
-                        Vote
-                      </Button>
-                    </Row>
-                  </div>);
-              })}
-            </Row>
-            );
-        } else { 
-          return (
-            <Row>
-              <div>Vote Submitted!</div>
-            </Row>
-            );
-        }
-      }
-    }
-
-    const mapStateToProps = (state, ownProperties) => {
-    // Set the props using the store
-    return { round: state.round, user: state.user };
+    // Map the props to the state
+    this.loadImages(newProps.round);
+    this.setState({ 
+      round: newProps.round, 
+      user: newProps.user 
+    });
   }
 
-  const Critic = connect(mapStateToProps)(ConnectedCritic);
+  render = () => {
+    if (!this.state.voteSubmitted) {
+      return (
+        <Row>
+          {this.state.images.map((image) => {
+            return (
+              <div key={ image.imageId }>
+                <Row>
+                  <img src={ "/data/" + image.location } />
+                </Row>
+                <Row>
+                  <Button 
+                    className="button" 
+                    onClick={e => this.onClickRateImage(image.imageId)}> 
+                    Vote
+                  </Button>
+                </Row>
+              </div>);
+          })}
+        </Row>
+        );
+    } else { 
+      return (
+        <Row>
+          <div>Vote Submitted!</div>
+        </Row>
+        );
+    }
+  }
+}
 
-  export default Critic;
+  const mapStateToProps = (state, ownProperties) => {
+  // Set the props using the store
+  return { round: state.round, user: state.user };
+}
+
+const Critic = connect(mapStateToProps)(ConnectedCritic);
+
+export default Critic;

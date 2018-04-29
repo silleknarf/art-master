@@ -23,9 +23,9 @@ def create_user(username):
         session.add(new_user)
         session.commit()
         return jsonify({
-                "userId": new_user.UserId,
-                "username": new_user.Username
-            })
+            "userId": new_user.UserId,
+            "username": new_user.Username
+        })
     else:
         error_text = "User: %s already exists" % username
         raise InvalidUsage(error_text)

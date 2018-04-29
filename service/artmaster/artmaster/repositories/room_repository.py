@@ -1,5 +1,5 @@
 from database.database import session
-from database.data_model import Room
+from database.data_model import Room, RoomUser, User
 import logging
 logfile = logging.getLogger('file')
 
@@ -9,6 +9,12 @@ def create_room(room_code, owner_user_id):
     room = Room(RoomCode=room_code, OwnerUserId=owner_user_id)
     session.add(room)
     session.commit()
+    room_users = (session
+        .query(User)
+        .join(RoomUser)
+        .filter(RoomUser.RoomId==room.RoomId)
+        .all())
+    room.RoomUsers = room_users
     return room
 
 def get_room(room_id, room_code):
@@ -27,4 +33,10 @@ def get_room(room_id, room_code):
     else:
         error_text = "Room code or room id doesn't exist"
         raise InvalidUsage(error_text)
+    room_users = (session
+        .query(User)
+        .join(RoomUser)
+        .filter(RoomUser.RoomId==room.RoomId)
+        .all())
+    room.RoomUsers = room_users
     return room

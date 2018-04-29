@@ -7,7 +7,7 @@ from datetime import datetime
 from exceptions import InvalidUsage
 
 room_service = Blueprint('room_service', __name__)
-            
+
 @room_service.route("/room", methods=["GET", "POST"])
 def poll_or_create_room():
     room = None
@@ -27,7 +27,8 @@ def poll_or_create_room():
         "roomId": room.RoomId,
         "roomCode": room.RoomCode,
         "roomOwnerId": room.OwnerUserId,
-        "currentRoundId": room.CurrentRoundId
+        "currentRoundId": room.CurrentRoundId,
+        "roomUsers": [{"username": r.Username, "userId": r.UserId } for r in room.RoomUsers]
     })
 
 @room_service.route("/room/<int:room_id>/user/<int:user_id>", methods=["POST"])

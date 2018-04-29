@@ -8,6 +8,7 @@ import Critic from '../common/Critic';
 import Review from '../common/Review';
 import Words from '../common/Words';
 import DrawingWord from '../common/DrawingWord';
+import RoomUsers from '../common/RoomUsers';
 import Config from '../../constant/Config';
 import { DRAWING, CRITIQUING, REVIEWING } from '../../constant/StageStateIds';
 import './Room.css';
@@ -64,6 +65,7 @@ class ConnectedRoom extends Component {
               </Button>
             </Col>
           </Row>
+          <RoomUsers />
           { !this.state.room.currentRoundId && (<Words />)}
           { this.state.room.currentRoundId && (
             <div>
