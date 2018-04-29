@@ -1,19 +1,16 @@
 #!/usr/bin/python
 
 import sys
+import logging
 from flask import Flask, jsonify
 from flask_cors import CORS
-import database.database
-from flask_sqlalchemy_session import flask_scoped_session
-
-import logging
+from database.database import session
 
 data_dir = "/Users/silleknarf/Code/art-master/data"
 logfile = logging.getLogger("file")
 
 app = Flask(__name__)
 CORS(app)
-database.database.session = flask_scoped_session(database.database.session_maker, app)
 
 from services.user_service import user_service
 from services.room_service import room_service
@@ -42,7 +39,7 @@ def handle_invalid_usage(error):
 
 @app.teardown_appcontext
 def shutdown_session(response):
-    database.database.session.remove()
+    session.remove()
 
 format_str = "%(asctime)s %(levelname)s %(message)s"
 formatter = logging.Formatter(format_str)
@@ -58,7 +55,7 @@ def setup_logger(name, log_file, level=logging.INFO):
 @app.before_first_request
 def initialise():
     # Create a specific logger for the service
-    logging.basicConfig(filename="art-master.service.log",level=logging.ERROR, format=format_str)
+    logging.basicConfig(filename="art-master.service.log",level=logging.INFO, format=format_str)
 
     setup_logger("file", "art-master.log")
     setup_logger("sqlalchemy.engine", "art-master.sql.log")

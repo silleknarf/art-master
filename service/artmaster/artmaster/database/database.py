@@ -17,23 +17,21 @@ connection_string = ('mysql://%s:%s@%s/%s' %
 
 logger = logging.getLogger('sqlalchemy.engine')
 handler = logging.FileHandler("art-master.sql.log")        
-handler.setLevel(logging.INFO)
 logger.addHandler(handler)
+logger.setLevel(logging.INFO)
 
 logger = logging.getLogger('sqlalchemy.pool')
 handler = logging.FileHandler("art-master.sql.log")        
-handler.setLevel(logging.DEBUG)
 logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
 
 engine = create_engine(
     connection_string,
     encoding="utf8", 
     echo=False)
 
-print "test"
-
-session_maker = sessionmaker(
+session = scoped_session(sessionmaker(
     autocommit=False,
     autoflush=False,
-    bind=engine)
+    bind=engine))
 

@@ -1,5 +1,6 @@
 import unittest
-from artmaster import app
+import sys
+import app
 
 class TestApp(unittest.TestCase):
 

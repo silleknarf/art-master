@@ -4,10 +4,8 @@
 import unittest
 import mock
 import json
-import sys
-sys.path.append("../artmaster")
-from artmaster.services import rating_service
-from artmaster import app
+import app
+from services import rating_service
 from test_utils import *
 
 class TestRatingService(unittest.TestCase):
@@ -17,8 +15,8 @@ class TestRatingService(unittest.TestCase):
         self.app.testing = True
         self.app.debug = True
 
-    @mock.patch("artmaster.services.rating_service.user_repository")
-    @mock.patch("artmaster.services.rating_service.rating_repository")
+    @mock.patch("services.rating_service.user_repository")
+    @mock.patch("services.rating_service.rating_repository")
     def test_get_ratings(self, rating_repository, user_repository):
         rating1 = Struct(**{
             "ImageId": 1,
@@ -61,7 +59,7 @@ class TestRatingService(unittest.TestCase):
         expected_rating = Struct(**expected_rating)
         self.assertTrue(cmp(actual_rating, expected_rating))
 
-    @mock.patch("artmaster.services.rating_service.rating_repository")
+    @mock.patch("services.rating_service.rating_repository")
     def test_set_rating(self, rating_repository):
         rating_repository.has_existing_rating.return_value = False
         rating_repository.create_rating.return_value = Struct(**{
@@ -70,7 +68,7 @@ class TestRatingService(unittest.TestCase):
         self.app.post("/rating?imageId=1&rating=1&raterUserId=1")
         rating_repository.create_rating.assert_called()
 
-    @mock.patch("artmaster.services.rating_service.rating_repository")
+    @mock.patch("services.rating_service.rating_repository")
     def test_set_rating(self, rating_repository):
         rating_repository.has_existing_rating.return_value = True
         response = self.app.post("/rating?imageId=1&rating=1&raterUserId=1")

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-import repositories.rating_repository
-import repositories.user_repository
+from repositories import rating_repository
+from repositories import user_repository
 from flask import Blueprint, jsonify, request
 from exceptions import InvalidUsage
 

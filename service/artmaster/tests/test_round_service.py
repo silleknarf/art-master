@@ -3,10 +3,8 @@
 import unittest 
 import mock
 import json
-import sys
-sys.path.append("../artmaster")
-from artmaster.services import round_service
-from artmaster import app
+import app
+from services import round_service
 from test_utils import *
 
 class TestRoundService(unittest.TestCase):
@@ -22,7 +20,7 @@ class TestRoundService(unittest.TestCase):
         app.app.testing = True
         self.app = app.app.test_client()
 
-    @mock.patch("artmaster.services.round_service.round_repository")
+    @mock.patch("services.round_service.round_repository")
     def test_create_round(self, round_repository):
         round_repository.create_round.return_value = Struct(**self.round)
         self.app.post("/round?roomId=1&userId=1")

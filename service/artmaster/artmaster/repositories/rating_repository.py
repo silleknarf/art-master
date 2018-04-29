@@ -8,6 +8,7 @@ def get_ratings(round_id):
         .join(Round)
         .filter(Round.RoundId==round_id)
         .all())
+    return round_ratings
 
 def has_existing_rating(image_id, user_id):
     round_id = (session
@@ -19,6 +20,7 @@ def has_existing_rating(image_id, user_id):
         .query(Rating)
         .join(Image)
         .filter(Rating.RaterUserId==user_id)
+        .filter(Image.RoundId==round_id)
         .all()) > 0
     return any_existing_rating
 

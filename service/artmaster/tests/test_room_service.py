@@ -3,10 +3,8 @@
 import unittest
 import mock
 import json
-import sys
-sys.path.append("../artmaster")
-from services import room_service
 import app
+from services import room_service
 from test_utils import *
 
 class TestRoomService(unittest.TestCase):
@@ -21,18 +19,18 @@ class TestRoomService(unittest.TestCase):
         app.app.testing = True
         self.app = app.app.test_client()
 
-    @mock.patch('artmaster.services.room_service.room_user_repository')
+    @mock.patch('services.room_service.room_user_repository')
     def test_add_user_to_room(self, room_user_repository):
         self.app.post("/room/1/user/1")
         room_user_repository.add_user_to_room.assert_called()
 
-    @mock.patch('artmaster.services.room_service.room_user_repository')
+    @mock.patch('services.room_service.room_user_repository')
     def test_get_users_in_room(self, room_user_repository):
         self.app.get("/room/1/users")
         room_user_repository.get_users_in_room.assert_called()
 
-    @mock.patch('artmaster.services.room_service.room_user_repository')
-    @mock.patch('artmaster.services.room_service.room_repository')
+    @mock.patch('services.room_service.room_user_repository')
+    @mock.patch('services.room_service.room_repository')
     def test_create_room(self, room_repository, room_user_repository):
         room_repository.create_room.return_value = Struct(**self.room)
         room_created = self.app.post("/room?userId=1").data
@@ -41,13 +39,13 @@ class TestRoomService(unittest.TestCase):
         self.assertTrue(cmp(actual_room, expected_room))
         room_user_repository.add_user_to_room.assert_called()
 
-    @mock.patch('artmaster.services.room_service.room_repository')
+    @mock.patch('services.room_service.room_repository')
     def test_poll_room_by_room_code(self, room_repository):
         room_repository.get_room.return_value = Struct(**self.room)
         self.app.get("/room?roomCode=ABCD")
         room_repository.get_room.assert_called_with(None, "ABCD")
 
-    @mock.patch('artmaster.services.room_service.room_repository')
+    @mock.patch('services.room_service.room_repository')
     def test_poll_room_by_room_id(self, room_repository):
         room_repository.get_room.return_value = Struct(**self.room)
         self.app.get("/room?roomId=1")

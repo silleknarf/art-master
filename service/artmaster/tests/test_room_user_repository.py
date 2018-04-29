@@ -3,11 +3,9 @@
 import unittest
 import mock
 import sqlite3
-import sys
-sys.path.append("../artmaster")
-from artmaster import app
-from artmaster.repositories import room_user_repository
-from artmaster.database.data_model import *
+import app
+from repositories import room_user_repository
+from database.data_model import *
 from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
