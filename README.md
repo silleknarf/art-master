@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/silleknarf/art-master.svg?style=shield)](https://circleci.com/gh/silleknarf/art-master)
+
 README
 ======
 
