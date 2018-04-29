@@ -3,3 +3,4 @@ flask
 flask_cors
 sqlacodegen
 MySQL-python
+mock
