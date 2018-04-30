@@ -1,8 +1,7 @@
 #!/usr/bin/python
 
 from flask import Blueprint, jsonify, abort
-from database.database import session
-from database.data_model import User
+from repositories import user_repository
 from services.exceptions import InvalidUsage
 import logging 
 
@@ -13,20 +12,8 @@ user_service = Blueprint('user_service', __name__)
 @user_service.route("/user/<string:username>", methods=["POST"])
 def create_user(username):
     logfile.info("Checking for existing user: %s" % username)
-    existing_user = (session
-        .query(User)
-        .filter(User.Username==username)
-        .first())
-    if existing_user is None:
-        logfile.info("Creating new user: %s" % username)
-        new_user = User(Username=username)
-        session.add(new_user)
-        session.commit()
-        return jsonify({
-            "userId": new_user.UserId,
-            "username": new_user.Username
-        })
-    else:
-        error_text = "User: %s already exists" % username
-        raise InvalidUsage(error_text)
-    return jsonify({})
+    new_user = user_repository.create_user(username)
+    return jsonify({
+        "userId": new_user.UserId,
+        "username": new_user.Username
+    })

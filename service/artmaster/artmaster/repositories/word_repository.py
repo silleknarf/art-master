@@ -26,3 +26,36 @@ def remove_word(word_id):
         .filter(Word.WordId==word_id)
         .delete(synchronize_session=False))
     session.commit()
+
+def create_word(room_id, user_id, word):
+    existing_word = (session
+        .query(Word)
+        .filter(Word.RoomId==room_id)
+        .filter(Word.Word==word)
+        .first())
+    if existing_word is not None:
+        raise InvalidUsage("Can't re-add existing word")
+    word_entity = Word(RoomId=room_id, UserId=user_id, Word=word)
+    session.add(word_entity)
+    session.commit()
+    return word_entity
+
+def remove_word(word_id):
+    word_entity = (session
+        .query(Word)
+        .filter(Word.WordId==word_id)
+        .first())
+    session.delete(word_entity)
+    session.commit()
+
+def get_words(room_id):
+    word_entities = (session.query(Word)
+        .filter(Word.RoomId==room_id)
+        .all())
+    return word_entities
+
+def get_word(word_id):
+    word = (session.query(Word)
+        .filter(Word.WordId==word_id)
+        .first())
+    return word

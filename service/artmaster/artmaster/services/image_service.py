@@ -4,8 +4,7 @@ import base64
 import logging
 import os
 from flask import Blueprint, jsonify, request
-from database.database import session
-from database.data_model import Image
+from repositories import image_repository
 
 logfile = logging.getLogger('file')
 image_service = Blueprint('image_service', __name__)
@@ -31,27 +30,19 @@ def upload_drawing():
     with open(drawing_file_path, "wb") as fh: 
         fh.write(drawing_data)
 
-    drawing = Image(
-        UserId=user_id, 
-        Location=drawing_file_location, 
-        RoundId=round_id)
-    session.add(drawing)
-    session.commit()
+    drawing = image_repository.create_image(user_id, drawing_file_location, round_id)
+
     return jsonify({ 
         "imageId": drawing.ImageId,
         "roundId": drawing.RoundId,
         "location": drawing.Location
     })
 
-# returns two images to rate
 @image_service.route("/images", methods=["GET"])
 def get_drawings():
     round_id = int(request.args.get("roundId"))
 
-    round_images = (session
-        .query(Image)
-        .filter(Image.RoundId==round_id)
-        .all())
+    round_images = image_repository.get_round_images(round_id)
     locations = [{ "imageId": ri.ImageId, "location": ri.Location } 
                 for ri in round_images]
     return jsonify(locations)
