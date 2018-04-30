@@ -1,31 +1,23 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button } from 'react-bootstrap'; 
-import { connect } from "react-redux";
 import Config from '../../constant/Config';
 import './Draw.css';
 const LC = require('literallycanvas');
 
-class ConnectedDraw extends Component {
+class Draw extends Component {
 
   constructor(props) {
     super(props);
     const { userId, roundIdd } = props;
     this.state = {
-      user: null,
-      round: null,
       drawingSubmitted: false
     }
   }
 
-  componentWillReceiveProps = (newProps) => {
-    // Map the props to the state
-    this.setState({user: newProps.user, round: newProps.round })
-  }
-  
   async onClickUploadDrawing(e) {
     const drawingDataUrl = this.literallycanvas.lc.getImage().toDataURL();
     const drawingRes = await fetch(
-      `${Config.apiurl}/image?userId=${this.state.user.userId}&roundId=${this.state.round.roundId}`, 
+      `${Config.apiurl}/image?userId=${this.props.userId}&roundId=${this.props.roundId}`, 
       {
         method: 'POST',
         headers: {
@@ -72,12 +64,5 @@ class ConnectedDraw extends Component {
     }
   }
 }
-
-const mapStateToProps = (state, ownProperties) => {
-  // Set the props using the store
-  return { user: state.user, round: state.round };
-}
-
-const Draw = connect(mapStateToProps)(ConnectedDraw);
 
 export default Draw;

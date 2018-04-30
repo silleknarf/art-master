@@ -1,48 +1,46 @@
-import React, { Component } from 'react';
-import { Grid, Col, Row, Button } from 'react-bootstrap'; 
-import { connect } from "react-redux";
-import Config from '../../constant/Config';
+import React, { Component } from "react";
+import { Grid, Col, Row, Button } from "react-bootstrap"; 
+import Config from "../../constant/Config";
+import $ from "jquery";
 
-class ConnectedCritic extends Component {
+class Critic extends Component {
   constructor(props) {
     super(props);
     this.state = {
       images: [],
-      round: {},
       voteSubmitted: false
     };
   }
 
-  loadImages = async (round) => {
-    if (!this.state.round.roundId) {
-      return;
-    }
+  loadImages = async (roundId) => {
     var criticRes = await fetch(
-      `${Config.apiurl}/images?roundId=${this.state.round.roundId}`);
+      `${Config.apiurl}/images?roundId=${roundId}`);
     if (criticRes.status === 200) {
-      this.state.images = await criticRes.json();
+      const images = await criticRes.json();
+      this.setState({images: images});
     }
   }
 
   onClickRateImage = async (imageId) => {
+    const rating = {
+      raterUserId: this.props.userId,
+      imageId: imageId,
+      rating: 1
+    };
     var ratingRes = await fetch(
-      `${Config.apiurl}/rating?raterUserId=${this.state.user.userId}&imageId=${imageId}&rating=1`,
+      `${Config.apiurl}/rating?${$.param(rating)}`,
       {
         method: "POST" 
       })
     if (ratingRes.status === 200) {
-      console.log(`Image: ${imageId} rated by ${this.state.user.userId}`);
-      this.state.voteSubmitted = true;
+      console.log(`Image: ${imageId} rated by ${this.props.userId}`);
+      this.setState({voteSubmitted: true});
     }
   }
 
-  componentWillReceiveProps = (newProps) => {
+  componentWillMount = () => {
     // Map the props to the state
-    this.loadImages(newProps.round);
-    this.setState({ 
-      round: newProps.round, 
-      user: newProps.user 
-    });
+    this.loadImages(this.props.roundId);
   }
 
   render = () => {
@@ -65,22 +63,15 @@ class ConnectedCritic extends Component {
               </div>);
           })}
         </Row>
-        );
+      );
     } else { 
       return (
         <Row>
           <div>Vote Submitted!</div>
         </Row>
-        );
+      );
     }
   }
 }
-
-  const mapStateToProps = (state, ownProperties) => {
-  // Set the props using the store
-  return { round: state.round, user: state.user };
-}
-
-const Critic = connect(mapStateToProps)(ConnectedCritic);
 
 export default Critic;

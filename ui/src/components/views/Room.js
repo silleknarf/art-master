@@ -73,8 +73,12 @@ class ConnectedRoom extends Component {
               <DrawingWord wordId={this.state.round.drawingWordId} />
             </div>
           )}
-          { this.state.round.stageStateId === DRAWING && (<Draw />)}
-          { this.state.round.stageStateId === CRITIQUING && (<Critic />)}
+          { this.state.round.stageStateId === DRAWING && (
+            <Draw roundId={ this.state.round.roundId } userId={ this.state.user.userId } />
+          )}
+          { this.state.round.stageStateId === CRITIQUING && (
+            <Critic roundId={ this.state.round.roundId } userId={ this.state.user.userId } />
+          )}
           { this.state.round.stageStateId === REVIEWING && (<Review roundId={ this.state.round.roundId } />)}
         </Grid>
       </div>
