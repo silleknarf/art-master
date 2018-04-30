@@ -64,9 +64,8 @@ class Round(Base):
     StageStateId = Column(Integer)
     StageStateStartTime = Column(DateTime)
     StageStateEndTime = Column(DateTime)
-    DrawingWordId = Column(ForeignKey(u'Word.WordId'), index=True)
+    DrawingWordId = Column(Integer, index=True)
 
-    Word = relationship(u'Word')
     Room = relationship(u'Room')
 
 
