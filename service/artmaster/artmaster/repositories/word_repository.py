@@ -28,14 +28,17 @@ def remove_word(word_id):
     session.commit()
 
 def create_word(room_id, user_id, word):
+    trimmed_word = word.strip()
+    if trimmed_word == "":
+        return
     existing_word = (session
         .query(Word)
         .filter(Word.RoomId==room_id)
-        .filter(Word.Word==word)
+        .filter(Word.Word==trimmed_word)
         .first())
     if existing_word is not None:
-        raise InvalidUsage("Can't re-add existing word")
-    word_entity = Word(RoomId=room_id, UserId=user_id, Word=word)
+        return 
+    word_entity = Word(RoomId=room_id, UserId=user_id, Word=trimmed_word)
     session.add(word_entity)
     session.commit()
     return word_entity
