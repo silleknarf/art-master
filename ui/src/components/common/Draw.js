@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button } from 'react-bootstrap'; 
 import Config from '../../constant/Config';
-import './Draw.css';
-const LC = require('literallycanvas');
+import * as LC from "../../../node_modules/literallycanvas/lib/js/index.js"
 
 class Draw extends Component {
 
   constructor(props) {
     super(props);
-    const { userId, roundIdd } = props;
     this.state = {
       drawingSubmitted: false
     }

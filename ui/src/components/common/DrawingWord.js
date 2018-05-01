@@ -12,10 +12,12 @@ class DrawingWord extends Component {
     };
   }
 
-  componentWillReceiveProps = async (newProps) => {
-    if (!newProps.wordId || this.props.wordId === newProps.wordId)
-      return;
-    var wordRes = await fetch(`${Config.apiurl}/word?wordId=${newProps.wordId}`);
+  componentDidMount = () => {
+    this.updateWord(this.props.wordId);
+  }
+
+  updateWord = async(wordId) => {
+    var wordRes = await fetch(`${Config.apiurl}/word?wordId=${wordId}`);
     if (wordRes.status === 200) {
       const word = await wordRes.json();
       this.setState({word: word});
