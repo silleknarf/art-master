@@ -68,4 +68,8 @@ Build:
 
 Run:
 
-    npm start
+    yarn start
+
+Run Storybook:
+
+    yarn run storybook
