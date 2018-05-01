@@ -27,7 +27,7 @@ class Draw extends Component {
 
     if (drawingRes.status === 200) {
       console.log("Uploaded drawing")
-      this.state.drawingSubmitted = true;
+      this.setState({drawingSubmitted: true});
     }
   }
 
