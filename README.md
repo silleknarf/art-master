@@ -49,7 +49,7 @@ To update the data model:
     cd art-master/service/artmaster/artmaster/database/
     ./generate_data_model.sh
 
-To run the tests
+To run the tests:
 
     cd art-master/service/artmaster
     python -m unittest discover

@@ -26,6 +26,7 @@ import { updateRoomState, updateRoundState, updateWordsState } from "../redux/Ac
 
 
 FetchMock.get('glob:*images?*', [{ imageId: 1, location: '1/1.png'}, {imageId: 2, location: '1/1.png'}]);
+FetchMock.post('glob:*rating?*', "test");
 storiesOf('Critic', module)
   .add('with images', () => <Critic />);
 

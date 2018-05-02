@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Grid, Col, Row, Button } from "react-bootstrap"; 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
+import faCheck from '@fortawesome/fontawesome-free-solid/faCheck'
 import Config from "../../constant/Config";
 import $ from "jquery";
 
@@ -44,30 +47,52 @@ class Critic extends Component {
   }
 
   render = () => {
+    const centerRowContentStyle = {
+      textAlign: "center",
+      marginBottom: "5px"
+    };
+    const iconStyle = {
+      top: "2px",
+      position: "relative",
+      margin: "2px"
+    }
+    const buttonTextStyle = {
+      margin: "2px"
+    }
+
     if (!this.state.voteSubmitted) {
       return (
-        <Row>
-          {this.state.images.map((image) => {
-            return (
-              <div key={ image.imageId }>
-                <Row>
-                  <img src={ "/data/" + image.location } />
-                </Row>
-                <Row>
-                  <Button 
-                    className="button" 
-                    onClick={e => this.onClickRateImage(image.imageId)}> 
-                    Vote
-                  </Button>
-                </Row>
-              </div>);
-          })}
-        </Row>
+        <Grid>
+          <Row>
+            {this.state.images.map((image) => {
+              return (
+                <div key={ image.imageId }>
+                  <Row style={centerRowContentStyle}>
+                    <img src={ "/data/" + image.location } />
+                  </Row>
+                  <Row style={centerRowContentStyle}>
+                    <Button 
+                      className="button" 
+                      onClick={e => this.onClickRateImage(image.imageId)}> 
+                      <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
+                      <span style={buttonTextStyle}>Vote</span>
+                    </Button>
+                  </Row>
+                </div>);
+            })}
+          </Row>
+        </Grid>
       );
     } else { 
+      const voteSubmittedStyle = {
+        margin: "10px"
+      };
       return (
-        <Row>
-          <div>Vote Submitted!</div>
+        <Row style={centerRowContentStyle}>
+          <div style={voteSubmittedStyle}>
+            <FontAwesomeIcon style={iconStyle} icon={faCheck} />
+            <span style={buttonTextStyle}>Vote Submitted!</span>
+          </div>
         </Row>
       );
     }
