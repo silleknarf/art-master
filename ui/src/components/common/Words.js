@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button, FormControl, FormGroup } from 'react-bootstrap'; 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faPlus from '@fortawesome/fontawesome-free-solid/faPlus'
+import faTrash from '@fortawesome/fontawesome-free-solid/faTrash'
+import faFileWord from '@fortawesome/fontawesome-free-solid/faFileWord'
 import { connect } from "react-redux";
 import Config from '../../constant/Config';
 import $ from "jquery";
+import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
 
 class ConnectedWords extends Component {
   constructor(props) {
@@ -58,26 +63,40 @@ class ConnectedWords extends Component {
   }
 
   render = () => {
+    var ulStyle = {
+      display: "inline-block"
+    };
+    const wordStyle = {
+      margin: "10px"
+    }
+    var buttonStyle = {
+      display: "inline-block",
+      marginTop: "-1px"
+    }
     return (
-      <div>
-        <Row>
-          <ul className="list-group">
+      <Grid>
+        <Row style={centerTitleContentStyle}>
+          <FontAwesomeIcon style={iconStyle} icon={faFileWord} />
+          <span style={buttonTextStyle}>Words:</span>
+        </Row>
+        <Row style={centerRowContentStyle}>
+          <ul className="list-group" style={ulStyle}>
             { this.state.words.map((word) => {
               return (
                 <li key={word.wordId} className="list-group-item">
-                  { word.word }
+                  <span style={wordStyle}>{ word.word }</span>
                   <Button
-                    className="remove-word-button button"
+                    className="remove-word-button btn btn-xs"
                     onClick={(e) => this.onClickRemoveWord(word.wordId)}>
-                    Remove Word
+                    <FontAwesomeIcon style={iconStyle} icon={faTrash} />
                   </Button>
                 </li>
               );
             })}
           </ul>
         </Row>
-        <Row>
-          <FormGroup>
+        <Row style={centerRowContentStyle}>
+          <FormGroup style={ulStyle}>
             <FormControl
               className="word-input"
               type="input"
@@ -86,12 +105,13 @@ class ConnectedWords extends Component {
             />
           </FormGroup>
           <Button
-            className="add-word-button button"
-            onClick={(e) => this.onClickAddWord(e)}>
-            Add Word
+            className="add-word-button btn"
+            onClick={(e) => this.onClickAddWord(e)}
+            style={buttonStyle}>
+            <FontAwesomeIcon style={iconStyle} icon={faPlus} />
           </Button>
         </Row>
-      </div>
+      </Grid>
     );
   }
 }

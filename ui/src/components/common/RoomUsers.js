@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button } from 'react-bootstrap'; 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faUser from '@fortawesome/fontawesome-free-solid/faUser'
+import faUsers from '@fortawesome/fontawesome-free-solid/faUsers'
 import { connect } from "react-redux";
 import Config from '../../constant/Config';
+import { iconStyle, buttonTextStyle, centerRowContentStyle } from "../../constant/Styles"
 
 class ConnectedRoomUsers extends Component {
   constructor(props) {
@@ -27,15 +31,32 @@ class ConnectedRoomUsers extends Component {
   }
 
   render = () => {
+    var usersInRoomStyle = {
+      textAlign: "center",
+      margin: "15px"
+    }
+    var ulStyle = {
+      display: "inline-block"
+    };
     return (
-      <div>
-        <div>Users:</div>
-        <ul className="list-group">
-          {this.state.room.roomUsers.map((roomUser) => {
-            return <li key={roomUser.userId} className="list-group-item">{ roomUser.username }</li>;
-          })}
-        </ul>
-      </div>
+      <Grid>
+        <Row style={usersInRoomStyle}>
+          <FontAwesomeIcon style={iconStyle} icon={faUsers} />
+          <span style={buttonTextStyle}>Users in room:</span>
+        </Row>
+        <Row style={centerRowContentStyle}>
+          <ul className="list-group" style={ulStyle}>
+            {this.state.room.roomUsers.map((roomUser) => {
+              return (
+                <li key={roomUser.userId} className="list-group-item">
+                  <FontAwesomeIcon style={iconStyle} icon={faUser} />
+                  <span style={buttonTextStyle}>{ roomUser.username }</span>
+                </li>
+              );
+            })}
+          </ul>
+        </Row>
+      </Grid>
     );
   }
 }

@@ -80,6 +80,7 @@ class ConnectedState extends Component {
   }
 
   render = () => {
+    if (!Config.isDebugMode) return null;
     return ( 
       <div className="state">
         <Row>

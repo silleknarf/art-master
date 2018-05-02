@@ -50,20 +50,27 @@ class ConnectedRoom extends Component {
   }
 
   render() {
+    var buttonStyle = {
+      display: "inline-block",
+      margin: "15px"
+    }
+    const centerTitleContentStyle = {
+      textAlign: "center",
+    }
     return (
       <div className="room">
         <Grid>
           <State />
-          <Row className="button-row">
-            <Col smOffset={3} sm={6}>
-              <Button
-                className="start-round-button button"
-                onClick={e => this.onClickStartRound(e)}
-              >
-                Start Round
-              </Button>
-            </Col>
-          </Row>
+          <div className="container">
+            <Row style={centerTitleContentStyle}>
+                <Button
+                  className="start-round-button button"
+                  onClick={e => this.onClickStartRound(e)}
+                  style={buttonStyle}>
+                  Start Round
+                </Button>
+            </Row>
+          </div>
           <RoomUsers />
           { !this.state.room.currentRoundId && (<Words />)}
           { this.state.room.currentRoundId && (

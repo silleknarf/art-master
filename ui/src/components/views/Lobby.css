@@ -2,7 +2,8 @@
   text-align: center;
   position: absolute;
   width: 100%;
-  
+  height: 100%;
+
   background: rgba(241,231,103,1);
   background: -moz-linear-gradient(top, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(241,231,103,1)), color-stop(100%, rgba(254,182,69,1)));
@@ -13,7 +14,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=0 );
 }
 
-.lobby .container {
+.lobby.container {
   position: relative;
   height: 100%;
   width: 100%;
