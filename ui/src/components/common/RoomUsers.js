@@ -11,8 +11,17 @@ class ConnectedRoomUsers extends Component {
     };
   }
 
+
   componentWillReceiveProps = (newProps) => {
-    if (!newProps.room.roomUsers)
+    this.updateComponentState(newProps);
+  }
+
+  componentWillMount = () => {
+    this.updateComponentState(this.props);
+  }
+
+  updateComponentState(newProps) {
+    if (!newProps.room || !newProps.room.roomUsers)
       return;
     this.setState({room: newProps.room});
   }

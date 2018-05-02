@@ -10,7 +10,15 @@ class ConnectedRoundInfo extends Component {
     }
   }
 
+  componentWillMount = () => {
+    this.updateComponentState(this.props);
+  }
+
   componentWillReceiveProps = (newProps) => {
+    this.updateComponentState(newProps);
+  }
+
+  updateComponentState = (newProps) => {
     const roundStateDescriptions = [
       "Drawing", 
       "Critiquing", 

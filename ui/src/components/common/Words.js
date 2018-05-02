@@ -15,7 +15,15 @@ class ConnectedWords extends Component {
     };
   }
 
+  componentWillMount = () => {
+    this.updateComponentState(this.props);
+  }
+
   componentWillReceiveProps = (newProps) => {
+    this.updateComponentState(newProps);
+  }
+
+  updateComponentState = (newProps) => {
     this.setState({ 
       words: newProps.words, 
       user: newProps.user,
