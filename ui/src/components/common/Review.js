@@ -28,7 +28,6 @@ class Review extends Component {
   shouldComponentUpdate = (nextProps, nextState) => {
     return this.state.winningImages.length !== nextState.winningImages.length;
   }
-
   
   render = () => {
     if (this.state.winningImages.length !== 0) {

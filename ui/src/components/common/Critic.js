@@ -76,12 +76,14 @@ class Critic extends Component {
         margin: "10px"
       };
       return (
-        <Row style={centerRowContentStyle}>
-          <div style={voteSubmittedStyle}>
-            <FontAwesomeIcon style={iconStyle} icon={faCheck} />
-            <span style={buttonTextStyle}>Vote Submitted!</span>
-          </div>
-        </Row>
+        <Grid>
+          <Row style={centerRowContentStyle}>
+            <div style={voteSubmittedStyle}>
+              <FontAwesomeIcon style={iconStyle} icon={faCheck} />
+              <span style={buttonTextStyle}>Vote Submitted!</span>
+            </div>
+          </Row>
+        </Grid>
       );
     }
   }

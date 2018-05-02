@@ -24,6 +24,7 @@ class ConnectedWords extends Component {
   }
 
   updateComponentState = (newProps) => {
+    if (!newProps) return;
     this.setState({ 
       words: newProps.words, 
       user: newProps.user,

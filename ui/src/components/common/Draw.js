@@ -38,7 +38,7 @@ class Draw extends Component {
   render() {
     if (!this.state.drawingSubmitted) {
       return (
-        <div className="draw">
+        <Grid>
           <Row style={centerRowContentStyle}>
               <LC.LiterallyCanvasReactComponent 
                 imageURLPrefix="/img"
@@ -54,7 +54,7 @@ class Draw extends Component {
                 <span style={buttonTextStyle}>Upload Drawing</span>
               </Button>
           </Row>
-        </div>
+        </Grid>
       );
     } else {
       const centerRowStyle = {
