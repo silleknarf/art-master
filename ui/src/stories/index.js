@@ -25,15 +25,15 @@ import store from "../redux/Store";
 import { updateRoomState, updateRoundState, updateWordsState } from "../redux/Actions";
 
 
-FetchMock.get('glob:*images*', [{ imageId: 1, location: '1/1.png'}, {imageId: 2, location: '1/1.png'}]);
+FetchMock.get('glob:*images?*', [{ imageId: 1, location: '1/1.png'}, {imageId: 2, location: '1/1.png'}]);
 storiesOf('Critic', module)
   .add('with images', () => <Critic />);
 
-FetchMock.get('glob:*word*', { wordId: 1, word: "test"});
+FetchMock.get('glob:*word?*', { wordId: 1, word: "test"});
 storiesOf('DrawingWord', module)
   .add('with word', () => <DrawingWord wordId="1" />);
 
-FetchMock.post('glob:*image*', "test");
+FetchMock.post('glob:*image?*', "test");
 storiesOf('Draw', module)
   .add('draw', () => <Draw />);
 
@@ -41,7 +41,7 @@ const ratings = [
   { winnerId: 1, winningImageLocation: '1/1.png', winnerUsername: "User1"}, 
   { winnerId: 2, winningImageLocation: '1/1.png', winnerUsername: "User2"}
 ];
-FetchMock.get('glob:*ratings*', ratings);
+FetchMock.get('glob:*ratings?*', ratings);
 storiesOf('Review', module)
   .add('with images', () => <Review roundId="97" />);
 
@@ -50,10 +50,11 @@ const room = {
   roomUsers: [
     { userId: 1, username: "User1"}, 
     { userId: 2, username: "User2 "}
-  ]
+  ],
+  currentRoundId: 1
 };
 store.dispatch(updateRoomState(room));
-FetchMock.get('glob:*room*', room);
+FetchMock.get('glob:*room?*', room);
 
 storiesOf('RoomUsers', module)
   .addDecorator(story => <Provider story={story()} />)
@@ -64,6 +65,7 @@ const round = {
   timeRemaining: 30
 };
 store.dispatch(updateRoundState(round));
+FetchMock.get("glob:*round*", round);
 storiesOf('RoundInfo', module)
   .addDecorator(story => <Provider story={story()} />)
   .add('roundInfo', () => <RoundInfo />);
@@ -79,6 +81,7 @@ const words = [
   }
 ];
 store.dispatch(updateWordsState(words));
+FetchMock.get('glob:*words?*', words);
 
 storiesOf('Words', module)
   .addDecorator(story => <Provider story={story()} />)
