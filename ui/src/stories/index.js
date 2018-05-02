@@ -30,13 +30,14 @@ FetchMock.post('glob:*rating?*', "test");
 storiesOf('Critic', module)
   .add('with images', () => <Critic />);
 
-FetchMock.get('glob:*word?*', { wordId: 1, word: "test"});
+FetchMock.get('glob:*word?*', { wordId: 1, word: "bacon"});
 storiesOf('DrawingWord', module)
   .add('with word', () => <DrawingWord wordId="1" />);
 
 FetchMock.post('glob:*image?*', "test");
 storiesOf('Draw', module)
-  .add('draw', () => <Draw />);
+  .add('draw', () => <Draw />)
+  .add('drawing submitted', () => <Draw drawingSubmitted={ true }/>);
 
 const ratings = [
   { winnerId: 1, winningImageLocation: '1/1.png', winnerUsername: "User1"}, 

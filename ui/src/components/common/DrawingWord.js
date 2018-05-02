@@ -25,7 +25,19 @@ class DrawingWord extends Component {
   }
 
   render = () => {
-    return <div>Draw: { this.state.word.word }</div>
+    const style = {
+      margin: "10px"
+    };
+    const rowStyle = {
+      textAlign: "center"
+    };
+    return (
+      <div style={rowStyle}>
+        <div style={style}>
+          🎨 Artists, it's time to draw! You have to draw <strong>{ this.state.word.word }</strong>
+        </div>
+      </div>
+    );
   }
 }
 

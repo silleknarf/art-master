@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button } from 'react-bootstrap'; 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faUser from '@fortawesome/fontawesome-free-solid/faUser'
 import { connect } from "react-redux";
 import Config from '../../constant/Config';
+import { iconStyle, buttonTextStyle, centerRowContentStyle } from "../../constant/Styles"
 
 class Review extends Component {
   constructor(props) {
@@ -33,11 +36,12 @@ class Review extends Component {
         <div>
           {this.state.winningImages.map((winningImage) => {
             return (<div key={ winningImage.winnerId }>
-                <Row>
+                <Row style={centerRowContentStyle}>
                   <img src={ "/data/" + winningImage.winningImageLocation }></img>
                 </Row>
-                <Row>
-                  <div>{ winningImage.winnerUsername }</div>
+                <Row style={centerRowContentStyle}>
+                  <FontAwesomeIcon style={iconStyle} icon={faUser} />
+                  <span style={buttonTextStyle}>{ winningImage.winnerUsername }</span>
                 </Row>
               </div>);
           })}

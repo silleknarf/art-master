@@ -4,6 +4,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
 import faCheck from '@fortawesome/fontawesome-free-solid/faCheck'
 import Config from "../../constant/Config";
+import { iconStyle, buttonTextStyle, centerRowContentStyle } from "../../constant/Styles"
 import $ from "jquery";
 
 class Critic extends Component {
@@ -47,19 +48,6 @@ class Critic extends Component {
   }
 
   render = () => {
-    const centerRowContentStyle = {
-      textAlign: "center",
-      marginBottom: "5px"
-    };
-    const iconStyle = {
-      top: "2px",
-      position: "relative",
-      margin: "2px"
-    }
-    const buttonTextStyle = {
-      margin: "2px"
-    }
-
     if (!this.state.voteSubmitted) {
       return (
         <Grid>
