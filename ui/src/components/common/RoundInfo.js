@@ -19,6 +19,8 @@ class ConnectedRoundInfo extends Component {
   }
 
   updateComponentState = (newProps) => {
+    if (!newProps.round)
+      return;
     const roundStateDescriptions = [
       "Drawing", 
       "Critiquing", 

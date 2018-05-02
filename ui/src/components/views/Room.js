@@ -18,7 +18,6 @@ class ConnectedRoom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameState: Config.gameStates.PENDING_START,
       room: { currentRoundId: null },
       round: { stageStateId: null }
     }
