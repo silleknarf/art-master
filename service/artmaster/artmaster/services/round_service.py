@@ -47,7 +47,58 @@ def maybe_update_stage(round_entity):
     if time_remaining <= 0:
         update_stage(round_entity)
 
-# stages = ["Drawing", "Critiquing", "Reviewing", "Done"]       
+class RoundStateMachine:
+    stages = ["Drawing", "Critiquing", "Reviewing", "Done"]       
+
+    def __init__(self, round_id, drawing_word_id):
+        self.round_id = round_id
+        self.drawing_word_id = drawing_word_id
+
+    def to_drawing(self):
+        stage_state_id = 0      
+        duration = 45
+        round_repository.update_room_round(round_entity.RoomId, round_entity.RoundId)
+        self.update_round(stage_state_id, duration)
+
+    def to_critiquing(self):
+        stage_state_id = 1
+        duration = 15
+        self.update_round(stage_state_id, duration)
+
+    def to_reviewing(self):
+        stage_state_id = 2
+        duration = 10
+        self.update_round(stage_state_id, duration)
+
+    def to_done(self):
+        stage_state_id = 3
+        duration = 0
+        word_id_to_remove = drawing_word_id
+        self.drawing_word_id = None
+        round_repository.update_room_round(round_entity.RoomId, None)
+        self.update_round(stage_state_id, duration)
+        word_repository.remove_word(word_id_to_remove)
+
+    def update_round(self, stage_state_id, duration):
+        start_time = datetime.utcnow()
+        end_time = start_time + timedelta(seconds=duration)
+        round_repository.update_round(
+            self.round_id,
+            stage_state_id, 
+            start_time, 
+            end_time, 
+            self.drawing_word_id)
+
+    def next_stage(self, stage_state_id):
+        if stage_state_id is None:
+            self.to_drawing()
+        elif self.stages[stage_state_id] == "Drawing":
+            self.to_critiquing()
+        elif self.stages[stage_state_id] == "Critiquing":
+            self.to_reviewing()
+        elif self.stages[stage_state_id] == "Reviewing":
+            self.to_done()
+
 def update_stage(round_entity):
     duration = 0
     stage_state_id = round_entity.StageStateId
@@ -55,11 +106,11 @@ def update_stage(round_entity):
     word_id_to_remove = None
     if stage_state_id == None:
         stage_state_id = 0      
-        duration = 10
+        duration = 45
         round_repository.update_room_round(round_entity.RoomId, round_entity.RoundId)
     elif stage_state_id == 0:
         stage_state_id += 1
-        duration = 10
+        duration = 15
     elif stage_state_id == 1:
         stage_state_id += 1
         duration = 10

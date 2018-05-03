@@ -1,5 +1,6 @@
 from database.database import session
 from database.data_model import Room, RoomUser, User
+from services.exceptions import InvalidUsage
 import logging
 logfile = logging.getLogger('file')
 

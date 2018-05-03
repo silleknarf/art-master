@@ -1,5 +1,6 @@
 from database.database import session
 from database.data_model import Room, Round
+from services.exceptions import InvalidUsage
 import logging
 
 logfile = logging.getLogger('file')
@@ -16,13 +17,13 @@ def create_round(room_id, user_id, word_id):
         "Creating room: %s for user: %s" %
         (room_id, user_id))
     if room_id is None or user_id is None:
-        return "Please set the roomId and userId"
+        raise InvalidUsage("Please set the roomId and userId")
     room = (session
         .query(Room)
         .filter(Room.RoomId==room_id)
         .first())
     if room.OwnerUserId != user_id:
-        return "Only the room owner can start rounds"
+        raise InvalidUsage("Only the room owner can start rounds")
     round_entity = Round(RoomId=room_id, DrawingWordId=word_id)
     session.add(round_entity)
     session.commit() 
@@ -35,7 +36,7 @@ def get_round(round_id):
         .first())
 
     if round_entity is None:
-        return "No round for given roundId"
+        raise InvalidUsage("No round for given roundId")
     return round_entity
 
 def update_round(round_id, stage_state_id, start_time, end_time, drawing_word_id):
