@@ -4,24 +4,400 @@
 		"selected_items":
 		[
 			[
+				"clas",
+				"className"
+			],
+			[
+				"but",
+				"buttonStyle"
+			],
+			[
+				"cen",
+				"centerTitleContentStyle"
+			],
+			[
+				"bu",
+				"buttonStyle"
+			],
+			[
+				"user",
+				"usersInRoomStyle"
+			],
+			[
+				"ul",
+				"ulStyle"
+			],
+			[
+				"ro",
+				"roomUsersStyle"
+			],
+			[
+				"room",
+				"roomUsers"
+			],
+			[
+				"con",
+				"constant"
+			],
+			[
+				"center",
+				"centerRowStyle"
+			],
+			[
+				"vot",
+				"voteSubmittedStyle"
+			],
+			[
+				"ico",
+				"iconStyle"
+			],
+			[
+				"button",
+				"buttonContentStyle"
+			],
+			[
+				"st",
+				"style"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"winn",
+				"winnerUsername"
+			],
+			[
+				"win",
+				"winningImageLocation"
+			],
+			[
+				"w",
+				"word"
+			],
+			[
+				"iamge",
+				"imageId"
+			],
+			[
+				"up",
+				"updateRoundState"
+			],
+			[
+				"add",
+				"addDecorator"
+			],
+			[
+				"sto",
+				"store"
+			],
+			[
+				"update",
+				"updateRoundState"
+			],
+			[
+				"u",
+				"updateComponentState"
+			],
+			[
+				"co",
+				"configureStore"
+			],
+			[
+				"Room",
+				"RoomUsers"
+			],
+			[
+				"fet",
+				"fetch-mock"
+			],
+			[
+				"word",
+				"wordId"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
 				"pr",
-				"prepareComponentState"
+				"prevProps"
+			],
+			[
+				"res",
+				"resolve"
+			],
+			[
+				"ra",
+				"raterUserId"
+			],
+			[
+				"wor",
+				"word_repository"
+			],
+			[
+				"get",
+				"get_word"
+			],
+			[
+				"new",
+				"new_user"
+			],
+			[
+				"rou",
+				"round_id"
+			],
+			[
+				"round",
+				"round_id"
+			],
+			[
+				"drw",
+				"drawing_file_location"
+			],
+			[
+				"dra",
+				"drawing"
+			],
+			[
+				"User",
+				"Username"
+			],
+			[
+				"Roo",
+				"RoomUser"
+			],
+			[
+				"ne",
+				"nextProps"
+			],
+			[
+				"prop",
+				"props"
+			],
+			[
+				"dr",
+				"drawing_word_id"
+			],
+			[
+				"set",
+				"setLevel"
+			],
+			[
+				"log",
+				"logger"
+			],
+			[
+				"Dra",
+				"DrawingWordId"
+			],
+			[
+				"wrod",
+				"word_repository"
+			],
+			[
+				"da",
+				"drawing_word_id"
+			],
+			[
+				"Drwa",
+				"DrawingWordId"
+			],
+			[
+				"ran",
+				"random_word_entity"
+			],
+			[
+				"Draw",
+				"DrawingWord"
+			],
+			[
+				"U",
+				"UPDATE_WORDS_STATE"
+			],
+			[
+				"words",
+				"wordsInterval"
+			],
+			[
+				"Fo",
+				"FormGroup"
+			],
+			[
+				"C",
+				"Component"
+			],
+			[
+				"nex",
+				"nextState"
+			],
+			[
+				"p",
+				"props"
+			],
+			[
+				"mock",
+				"mock_get_user"
+			],
+			[
+				"ex",
+				"expected_result1"
+			],
+			[
+				"epx",
+				"expected_result"
+			],
+			[
+				"ima",
+				"image2"
+			],
+			[
+				"get_",
+				"get_ratings_helper"
+			],
+			[
+				"ass",
+				"assertTrue"
+			],
+			[
+				"rul",
+				"result"
+			],
+			[
+				"winning",
+				"winning_image_ids"
+			],
+			[
+				"im",
+				"image_id"
+			],
+			[
+				"erro",
+				"errorhandler"
+			],
+			[
+				"__",
+				"__init__"
+			],
+			[
+				"drwa",
+				"drawingSubmitted"
+			],
+			[
+				"d",
+				"drawingSubmitted"
+			],
+			[
+				"roun",
+				"round_ratings"
+			],
+			[
+				"D",
+				"DEBUG"
+			],
+			[
+				"uesr",
+				"user_repository"
+			],
+			[
+				"Ra",
+				"Rating"
+			],
+			[
+				"data",
+				"database"
+			],
+			[
+				"ses",
+				"session_maker"
+			],
+			[
+				"se",
+				"session_maker"
+			],
+			[
+				"r",
+				"remove"
+			],
+			[
+				"as",
+				"assertEqual"
+			],
+			[
+				"rating_",
+				"rating_service"
+			],
+			[
+				"Uesr",
+				"UserId"
+			],
+			[
+				"rra",
+				"rating_repository"
+			],
+			[
+				"rat",
+				"rating_repository"
+			],
+			[
+				"rati",
+				"rating_entity"
+			],
+			[
+				"Roun",
+				"RoundId"
+			],
+			[
+				"sta",
+				"stage_state_id"
+			],
+			[
+				"Stage",
+				"StageStateId"
 			],
 			[
 				"stat",
-				"status"
+				"stage_state_id"
+			],
+			[
+				"Sta",
+				"StageStateId"
+			],
+			[
+				"s",
+				"stage_state_id"
+			],
+			[
+				"stage",
+				"stage_state_id"
+			],
+			[
+				"roo",
+				"room_id"
+			],
+			[
+				"app",
+				"app_context"
+			],
+			[
+				"Ro",
+				"room_service"
+			],
+			[
+				"room_",
+				"room_service"
+			],
+			[
+				"ar",
+				"artmaster"
+			],
+			[
+				"l",
+				"logging"
 			],
 			[
 				"onClic",
 				"onClickRateImage"
-			],
-			[
-				"ro",
-				"round"
-			],
-			[
-				"round",
-				"roundId"
 			],
 			[
 				"Image",
@@ -36,28 +412,12 @@
 				"timeRemaining"
 			],
 			[
-				"roun",
-				"roundStateDescription"
-			],
-			[
-				"log",
-				"logfile"
-			],
-			[
-				"r",
-				"round_entity"
-			],
-			[
 				"for",
 				"format_str"
 			],
 			[
 				"fo",
 				"formatter"
-			],
-			[
-				"set",
-				"setup_logger"
 			],
 			[
 				"ser",
@@ -68,20 +428,12 @@
 				"create_log_handler"
 			],
 			[
-				"add",
-				"addHandler"
-			],
-			[
 				"fil",
 				"filename"
 			],
 			[
 				"UPDA",
 				"UPDATE_USER_STATE"
-			],
-			[
-				"update",
-				"updateRoomState"
 			],
 			[
 				"di",
@@ -96,47 +448,11 @@
 				"onClickStartRound"
 			],
 			[
-				"up",
-				"updateRoundState"
-			],
-			[
-				"room",
-				"roomState"
-			],
-			[
 				"UPDATE_RO",
 				"UPDATE_ROUND_STATE"
 			],
 			[
-				"roo",
-				"room_id"
-			],
-			[
-				"rou",
-				"roundInterval"
-			],
-			[
-				"d",
-				"div"
-			],
-			[
-				"dra",
-				"drawing_folder"
-			],
-			[
 				"daw",
-				"drawing_folder"
-			],
-			[
-				"da",
-				"drawing_data"
-			],
-			[
-				"dr",
-				"drawing_file_path"
-			],
-			[
-				"drw",
 				"drawing_folder"
 			],
 			[
@@ -156,10 +472,6 @@
 				"roomRes"
 			],
 			[
-				"con",
-				"const"
-			],
-			[
 				"Form",
 				"FormControl"
 			],
@@ -170,10 +482,6 @@
 			[
 				"er",
 				"error_text"
-			],
-			[
-				"l",
-				"logfile"
 			],
 			[
 				"sc",
@@ -192,36 +500,12 @@
 				"console"
 			],
 			[
-				"wor",
-				"word_entity"
-			],
-			[
 				"word_",
 				"word_entity"
 			],
 			[
-				"re",
-				"register_blueprint"
-			],
-			[
-				"user",
-				"user_id"
-			],
-			[
-				"win",
-				"winner_image_id"
-			],
-			[
 				"Im",
 				"ImageId"
-			],
-			[
-				"im",
-				"image"
-			],
-			[
-				"iamge",
-				"image_id"
 			],
 			[
 				"StageS",
@@ -230,295 +514,38 @@
 			[
 				"Sr",
 				"StageStateStartTime"
-			],
-			[
-				"Round",
-				"RoundId"
-			],
-			[
-				"P",
-				"PrivateProductionConfig"
-			],
-			[
-				"Da",
-				"DATABASE_NAME"
-			],
-			[
-				"D",
-				"DATABASE_NAME"
-			],
-			[
-				"DA",
-				"DATABASE_USERNAME"
-			],
-			[
-				"DATA",
-				"DATABASE_USERNAME"
-			],
-			[
-				"conne",
-				"connection_string"
-			],
-			[
-				"Dat",
-				"DATABASE"
-			],
-			[
-				"to",
-				"to_delete"
-			],
-			[
-				"per",
-				"period_length"
-			],
-			[
-				"tota",
-				"total_price_delta"
-			],
-			[
-				"pe",
-				"period_length"
-			],
-			[
-				"v",
-				"vwap"
-			],
-			[
-				"qua",
-				"quantise_trades"
-			],
-			[
-				"m",
-				"minute"
-			],
-			[
-				"period_",
-				"period_lengths"
-			],
-			[
-				"period",
-				"period_length"
-			],
-			[
-				"Peri",
-				"period_length"
-			],
-			[
-				"vwa",
-				"vwap_by_period"
-			],
-			[
-				"trad",
-				"trades"
-			],
-			[
-				"perio",
-				"period_length"
-			],
-			[
-				"_",
-				"_save_quantised_market_data"
-			],
-			[
-				"q",
-				"qmd"
-			],
-			[
-				"ne",
-				"next_valid_price"
-			],
-			[
-				"nex",
-				"next_valid_time"
-			],
-			[
-				"_get",
-				"_get_linearly_interpolated_price"
-			],
-			[
-				"pre",
-				"previous_valid_time"
-			],
-			[
-				"ti",
-				"time_iterator"
-			],
-			[
-				"vi",
-				"vwap_by_period"
-			],
-			[
-				"trades",
-				"trades_by_period"
-			],
-			[
-				"firs",
-				"first_time_quantised"
-			],
-			[
-				"bi",
-				"bitcoin_session"
-			],
-			[
-				"qn",
-				"quantised_market_data"
-			],
-			[
-				"qu",
-				"quantised_market_data"
-			],
-			[
-				"_g",
-				"_get_quantised_market_data"
-			],
-			[
-				"_ge",
-				"_get_trade_by_period"
-			],
-			[
-				"qun",
-				"quantise_period"
-			],
-			[
-				"pri",
-				"price"
-			],
-			[
-				"get",
-				"get_quantised_time"
-			],
-			[
-				"la",
-				"last_time"
-			],
-			[
-				"pag",
-				"page_size"
-			],
-			[
-				"def",
-				"defaultdict"
-			],
-			[
-				"bit",
-				"bitcoin_chart"
-			],
-			[
-				"bitcoin",
-				"bitcoin_charts"
-			],
-			[
-				"pp",
-				"pprint"
-			],
-			[
-				"Sym",
-				"SymbolId"
-			],
-			[
-				"sess",
-				"sessionmaker"
-			],
-			[
-				"se",
-				"session"
-			],
-			[
-				"dec",
-				"declarative_base"
-			],
-			[
-				"style",
-				"stylesheet"
-			],
-			[
-				"timer",
-				"timeInSecondsRemaining"
-			],
-			[
-				"timeIns",
-				"timeInSecondsRemaining"
-			],
-			[
-				"tim",
-				"timeInSecondsRemaining"
-			],
-			[
-				"TI",
-				"TIMER_EXPIRED"
-			],
-			[
-				"eve",
-				"event"
-			],
-			[
-				"tie",
-				"timeInSecondsRemaining"
-			],
-			[
-				"e",
-				"eventManager"
-			],
-			[
-				"t",
-				"tick"
-			],
-			[
-				"men",
-				"menuItems"
-			],
-			[
-				"undo",
-				"undosRemaining"
-			],
-			[
-				"und",
-				"undosRemaining"
-			],
-			[
-				"res",
-				"resetEvent"
-			],
-			[
-				"sta",
-				"states"
-			],
-			[
-				"c",
-				"cursor"
-			],
-			[
-				"remove",
-				"removeOldEntities"
-			],
-			[
-				"cel",
-				"cellsCount"
-			],
-			[
-				"ce",
-				"cellsRemoved"
-			],
-			[
-				"cell",
-				"cellsCount"
-			],
-			[
-				"cells",
-				"cellsCount"
-			],
-			[
-				"las",
-				"lastMovePeek"
-			],
-			[
-				"CLEA",
-				"CLEAR_LINE"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "ui/src/components/common/Words.js",
+			"settings":
+			{
+				"buffer_size": 3747,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ui/src/constant/Styles.js",
+			"settings":
+			{
+				"buffer_size": 342,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ui/src/components/views/Room.js",
+			"settings":
+			{
+				"buffer_size": 3166,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -607,60 +634,109 @@
 	"expanded_folders":
 	[
 		"/Users/silleknarf/Code/art-master",
-		"/Users/silleknarf/Code/art-master/service",
-		"/Users/silleknarf/Code/art-master/service/src",
-		"/Users/silleknarf/Code/art-master/service/src/services",
+		"/Users/silleknarf/Code/art-master/.circleci",
 		"/Users/silleknarf/Code/art-master/ui",
+		"/Users/silleknarf/Code/art-master/ui/.storybook",
 		"/Users/silleknarf/Code/art-master/ui/public",
+		"/Users/silleknarf/Code/art-master/ui/public/css",
 		"/Users/silleknarf/Code/art-master/ui/src",
 		"/Users/silleknarf/Code/art-master/ui/src/components",
 		"/Users/silleknarf/Code/art-master/ui/src/components/common",
-		"/Users/silleknarf/Code/art-master/ui/src/components/views"
+		"/Users/silleknarf/Code/art-master/ui/src/components/views",
+		"/Users/silleknarf/Code/art-master/ui/src/constant",
+		"/Users/silleknarf/Code/art-master/ui/src/redux",
+		"/Users/silleknarf/Code/art-master/ui/src/stories"
 	],
 	"file_history":
 	[
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/Room.css",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/Lobby.css",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/State.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoomUsers.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/index.js",
+		"/Users/silleknarf/Code/art-master/ui/src/constant/Config.js",
 		"/Users/silleknarf/Code/art-master/ui/src/components/common/Draw.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/DrawingWord.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoundInfo.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/Critic.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/Review.js",
 		"/Users/silleknarf/Code/art-master/ui/src/components/views/Room.js",
-		"/Users/silleknarf/Code/art-master/service/src/art-master.service.log",
+		"/Users/silleknarf/Code/art-master/ui/src/App.css",
+		"/Users/silleknarf/Code/art-master/ui/src/constant/Styles.js",
+		"/Users/silleknarf/Code/art-master/ui/package.json",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/Words.js",
+		"/Users/silleknarf/Code/art-master/README.md",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/Provider.js",
+		"/Users/silleknarf/Code/art-master/ui/src/App.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/Lobby.js",
+		"/Users/silleknarf/Code/art-master/ui/src/setupTests.js",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/word_repository.py",
+		"/Users/silleknarf/Code/art-master/ui/.uizoo-app/webpack.uizoo.js",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/user_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/word_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/user_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/image_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/image_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/room_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/round_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/app.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/art-master.log",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/round_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_room_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/room_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/art-master.service.log",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/art-master.sql.log",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_round_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/database/data_model.py",
+		"/Users/silleknarf/Code/art-master/ui/src/redux/RootReducer.js",
+		"/Users/silleknarf/Code/art-master/ui/src/redux/Actions.js",
+		"/Users/silleknarf/Code/art-master/ui/src/redux/ActionTypes.js",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_app.py",
+		"/Users/silleknarf/Code/art-master/.circleci/config.yml",
+		"/Users/silleknarf/Code/art-master/service/artmaster/requirements.txt",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/rating_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/exceptions.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/__init__.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_room_user_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_rating_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/rating_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/database/database.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/room_user_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_utils.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/__init__.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/setup.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/user_config.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/test_room_service.py",
+		"/Users/silleknarf/Code/art-master/service/art-master/art-master.service.log",
 		"/Users/silleknarf/Code/art-master/service/src/services/rating_service.py",
+		"/Users/silleknarf/Code/art-master/service/src/art-master.service.log",
 		"/Users/silleknarf/Code/art-master/service/src/art-master.log",
 		"/Users/silleknarf/Code/art-master/service/src/app.py",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/State.js",
+		"/Users/silleknarf/Code/art-master/service/src/database/database.py",
+		"/Users/silleknarf/Code/art-master/service/src/art-master.sql.log",
 		"/Users/silleknarf/Code/art-master/TODO.md",
 		"/Users/silleknarf/Code/art-master/ui/public/index.html",
 		"/Users/silleknarf/Code/art-master/service/src/user_config.py",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/Review.js",
-		"/Users/silleknarf/Code/art-master/ui/package.json",
 		"/Users/silleknarf/Code/art-master/ui/package-lock.json",
-		"/Users/silleknarf/Code/art-master/ui/src/App.js",
 		"/Users/silleknarf/Code/art-master/ui/node_modules/literallycanvas/literallycanvas.sublime-project",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/Critic.js",
 		"/Users/silleknarf/Code/art-master/service/src/services/room_service.py",
 		"/Users/silleknarf/Code/art-master/ui/src/components/common/Draw.css",
-		"/Users/silleknarf/Code/art-master/ui/src/components/views/Lobby.js",
 		"/Users/silleknarf/Code/art-master/service/src/services/round_service.py",
 		"/Users/silleknarf/Code/art-master/service/src/services/image_service.py",
 		"/Users/silleknarf/Code/art-master/.gitignore",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoundInfo.js",
 		"/Users/silleknarf/Code/art-master/ui/src/constant/StageStateIds.js",
 		"/Users/silleknarf/Code/art-master/ui/src/components/common/literallycanvas.min.js",
 		"/Users/silleknarf/Code/art-master/ui/node_modules/fsevents/node_modules/json-stringify-safe/test/stringify_test.js",
-		"/Users/silleknarf/Code/art-master/ui/src/redux/ActionTypes.js",
-		"/Users/silleknarf/Code/art-master/ui/src/redux/Actions.js",
-		"/Users/silleknarf/Code/art-master/ui/src/redux/RootReducer.js",
 		"/Users/silleknarf/Code/art-master/ui/src/redux/Store.js",
-		"/Users/silleknarf/Code/art-master/ui/src/constant/Config.js",
 		"/Users/silleknarf/Code/art-master/ui/src/index.js",
 		"/Users/silleknarf/Code/art-master/ui/src/store/Index.js",
 		"/Users/silleknarf/Code/art-master/ui/src/actions/Index.js",
 		"/Users/silleknarf/Code/art-master/ui/src/constant/ActionTypes.js",
 		"/Users/silleknarf/Code/art-master/ui/src/reducers/Index.js",
-		"/Users/silleknarf/Code/art-master/ui/src/components/views/Lobby.css",
 		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoomState.js",
 		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoundState.js",
 		"/Users/silleknarf/Code/art-master/ui/src/components/views/RoundState.js",
 		"/Users/silleknarf/Code/art-master/ui/src/components/views/Home.js",
-		"/Users/silleknarf/Code/art-master/service/src/database/database.py",
 		"/Users/silleknarf/Code/art-master/service/src/services/user_service.py",
 		"/Users/silleknarf/Code/art-master/service/src/services/exceptions.py",
 		"/Users/silleknarf/Code/art-master/service/src/error.log",
@@ -700,53 +776,7 @@
 		"/Users/silleknarf/Code/art-master/ui/node_modules/react-scripts/config/webpack.config.prod.js",
 		"/Users/silleknarf/Code/art-master/ui/node_modules/react-scripts/node_modules/eslint/lib/rules/object-shorthand.js",
 		"/Users/silleknarf/Code/art-master/ui/node_modules/react-scripts/node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/svgo/CHANGELOG.md",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/svgo/lib/svgo/js2svg.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/uglify-js/tools/domprops.json",
-		"/Users/silleknarf/Code/art-master/service/src/database/data_model.py",
-		"/Users/silleknarf/Code/art-master/service/src/database/generate_data_model.sh",
-		"/Users/silleknarf/Code/art-master/ui/src/constant/config.js",
-		"/Users/silleknarf/Code/art-master/README.md",
-		"/Users/silleknarf/Code/art-master/service/src/database/create_database.py",
-		"/Users/silleknarf/Code/art-master/service/src/public_config.py",
-		"/Users/silleknarf/Code/art-master/service/src/services/__init__.py",
-		"/Users/silleknarf/Code/art-master/service/src/__init__.py",
-		"/Users/silleknarf/Code/art-master/service/src/app/user_service.py",
-		"/Users/silleknarf/Dropbox/Code/Bitcoin/NewModel/data_model.py",
-		"/Users/silleknarf/Dropbox/Code/Bitcoin/NewModel/generate_data_model.sh",
-		"/Users/silleknarf/Dropbox/Code/Bitcoin/NewModel/model.py",
-		"/Users/silleknarf/Code/notebook-numbers/src/fonts/fonts.css",
-		"/Users/silleknarf/Code/notebook-numbers/build/js/bundle-552ac3c424.js",
-		"/Users/silleknarf/Code/notebook-numbers/build/js/bundle-2aafc847a3.js",
-		"/Users/silleknarf/Code/notebook-numbers/bin/run.sh",
-		"/Users/silleknarf/Code/notebook-numbers/build/js/bundle-f8c5a00ae7.js",
-		"/Users/silleknarf/Code/notebook-numbers/build/js/bundle-de2f7735b6.js",
-		"/Users/silleknarf/Code/notebook-numbers/test/tests.html",
-		"/Users/silleknarf/Code/notebook-numbers/.circleci/config.yml",
-		"/Users/silleknarf/Code/notebook-numbers/docs/TODO.txt",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/grid_util.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/render_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/timer_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/notebook_numbers.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/entities/background_entity.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/preload_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/level_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/mode_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/entities/classic_entity.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/logic_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/cursor_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/view_components/menu_view_component.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/score_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/view_components/score_view_component.js",
-		"/Users/silleknarf/Code/notebook-numbers/circleci/config.yml",
-		"/Users/silleknarf/Code/notebook-numbers/.gitlab-ci.yml",
-		"/Users/silleknarf/Code/notebook-numbers/src/systems/undo_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/view_systems/cursor_view_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/view_components/cursor_view_component.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/ecs/components.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/view_systems/grid_view_system.js",
-		"/Users/silleknarf/Code/notebook-numbers/src/css/notebook_numbers.css",
-		"/Users/silleknarf/Code/notebook-numbers/index.html"
+		"/Users/silleknarf/Code/art-master/ui/node_modules/svgo/CHANGELOG.md"
 	],
 	"find":
 	{
@@ -757,6 +787,8 @@
 		"height": 101.0,
 		"where_history":
 		[
+			"/Users/silleknarf/Code/art-master/ui/src/components",
+			""
 		]
 	},
 	"find_state":
@@ -764,6 +796,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"updateComponentState",
+			"updateRoundState",
+			"setState",
+			"database.database"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -781,8 +817,142 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "ui/src/components/common/Words.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3747,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1974,
+								1974
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 569.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "ui/src/constant/Styles.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 342,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								259,
+								259
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "ui/src/components/views/Room.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3166,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1627,
+								1627
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 18
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 694.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -834,6 +1004,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"app",
+				"service/artmaster/artmaster/app.py"
+			],
+			[
+				"rating",
+				"service/src/services/rating_service.py"
+			],
 			[
 				"revie",
 				"ui/src/components/common/Review.js"
@@ -1354,21 +1532,21 @@
 	"selected_group": 0,
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "store",
+		"_vintageous_last_buffer_search": "session",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": " ",
+		"_vintageous_last_character_search": "}",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
-			"_cmdline_cd": "/Users/silleknarf/Code/art-master/ui"
+			"_cmdline_cd": "/Users/silleknarf/Code/art-master/ui/src/stories"
 		}
 	},
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 207.0,
+	"side_bar_width": 259.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
