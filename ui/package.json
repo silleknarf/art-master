@@ -17,6 +17,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.2.0",
     "react-dom-factories": "^1.0.2",
     "react-redux": "^5.0.7",

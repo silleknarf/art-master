@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button } from 'react-bootstrap'; 
 import { connect } from "react-redux";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faClipboard from '@fortawesome/fontawesome-free-solid/faClipboard'
 import Draw from '../common/Draw';
 import State from '../common/State';
 import RoundInfo from '../common/RoundInfo';
@@ -12,6 +15,7 @@ import RoomUsers from '../common/RoomUsers';
 import Config from '../../constant/Config';
 import { DRAWING, CRITIQUING, REVIEWING } from '../../constant/StageStateIds';
 import './Room.css';
+import { iconStyle, buttonTextStyle } from "../../constant/Styles"
 
 class ConnectedRoom extends Component {
 
@@ -69,6 +73,14 @@ class ConnectedRoom extends Component {
                   style={buttonStyle}>
                   Start Round
                 </Button>
+            </Row>
+            <Row style={centerTitleContentStyle}>
+              <CopyToClipboard text={window.location.href}>
+                <Button>
+                  <FontAwesomeIcon style={iconStyle} icon={faClipboard} />
+                  <span style={buttonTextStyle}>Copy link to room to clipboard</span>
+                </Button>
+              </CopyToClipboard>
             </Row>
           </div>
           <RoomUsers />
