@@ -46,7 +46,7 @@ class ConnectedWords extends Component {
     this.state.newWord = ""
     const addWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`, 
       { method: "POST" });
-    if (addWordRes.status == 200) {
+    if (addWordRes.status === 200) {
       console.log(`Added word: ${word.word}`);
     }
   }
@@ -57,7 +57,7 @@ class ConnectedWords extends Component {
     };
     const removeWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`, 
       { method: "DELETE" });
-    if (removeWordRes.status == 200) {
+    if (removeWordRes.status === 200) {
       console.log(`Deleted word with id: ${wordId}`);
     }
   }
