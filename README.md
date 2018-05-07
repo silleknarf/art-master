@@ -8,6 +8,8 @@ Art Master is a game where players are pitted against each other to rapidly crea
 TODO
 ====
 
+Development in progress!
+
 [Trello TODO Board](https://trello.com/b/xC2SMsIk/art-master)
 
 CONTRIBUTING
