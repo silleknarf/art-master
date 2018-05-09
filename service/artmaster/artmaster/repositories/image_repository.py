@@ -1,3 +1,5 @@
+import room_user_repository
+
 from database.database import session
 from database.data_model import Image
 
@@ -16,3 +18,8 @@ def get_round_images(round_id):
         .filter(Image.RoundId==round_id)
         .all())
     return round_images
+
+def are_all_images_submitted(round_id, room_id):
+    round_images_count = len(get_round_images(round_id))
+    room_users_count = len(room_user_repository.get_users_in_room(room_id))
+    return room_users_count == room_users_count

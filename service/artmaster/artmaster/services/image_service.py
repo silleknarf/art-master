@@ -32,6 +32,10 @@ def upload_drawing():
 
     drawing = image_repository.create_image(user_id, drawing_file_location, round_id)
 
+    round_entity = round_repository.get_round(round_id)
+    round_state_machine = RoundStateMachine(round_entity)
+    round_state_machine.maybe_end_drawing_early()
+
     return jsonify({ 
         "imageId": drawing.ImageId,
         "roundId": drawing.RoundId,
