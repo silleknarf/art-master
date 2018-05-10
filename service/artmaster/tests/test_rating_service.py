@@ -89,9 +89,10 @@ class TestRatingService(unittest.TestCase):
         for i, expected_result in enumerate(expected_results):
             self.assertTrue(cmp(actual_rating[i], expected_result) == 0)
 
+    @mock.patch("services.rating_service.RoundStateMachine")
     @mock.patch("services.rating_service.image_repository")
     @mock.patch("services.rating_service.rating_repository")
-    def test_set_rating(self, rating_repository, image_repository):
+    def test_set_rating(self, rating_repository, image_repository, round_state_machine):
         rating_repository.has_existing_rating.return_value = False
         rating_repository.create_rating.return_value = Struct(**{
             "RatingId": 1
@@ -99,9 +100,10 @@ class TestRatingService(unittest.TestCase):
         self.app.post("/rating?imageId=1&rating=1&raterUserId=1")
         rating_repository.create_rating.assert_called()
 
+    @mock.patch("services.rating_service.RoundStateMachine")
     @mock.patch("services.rating_service.image_repository")
     @mock.patch("services.rating_service.rating_repository")
-    def test_set_rating_fails(self, rating_repository, image_repository):
+    def test_set_rating_fails(self, rating_repository, image_repository, round_state_machine):
         rating_repository.has_existing_rating.return_value = True
         response = self.app.post("/rating?imageId=1&rating=1&raterUserId=1")
         error = json.loads(response.data)
