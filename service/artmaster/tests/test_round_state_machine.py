@@ -42,6 +42,20 @@ class TestRoundStateMachine(unittest.TestCase):
             self.round_entity.DrawingWordId)
 
     @mock.patch("services.round_state_machine.datetime")
+    @mock.patch("services.round_state_machine.image_repository")
+    @mock.patch("services.round_state_machine.round_repository")
+    def test_end_drawing_round_early(self, round_repository, image_repository, mock_datetime):
+        round_state_machine = self.setup_round_state_machine(
+            None,
+            round_repository, 
+            mock_datetime)
+        round_state_machine.next_stage()
+        image_repository.are_all_images_submitted.return_value = True
+        round_repository.reset_mock()
+        round_state_machine.maybe_end_drawing_early()
+        round_repository.update_round.assert_called_once()
+
+    @mock.patch("services.round_state_machine.datetime")
     @mock.patch("services.round_state_machine.word_repository")
     @mock.patch("services.round_state_machine.round_repository")
     def test_start_round_state_machine(self, round_repository, word_repository, mock_datetime):

@@ -1,4 +1,4 @@
-from repositories import round_repository, word_repository
+from repositories import round_repository, word_repository, image_repository
 from datetime import datetime, timedelta
 
 class RoundState:
@@ -48,8 +48,8 @@ class RoundStateMachine:
 
     def maybe_end_drawing_early(self):
         are_all_images_submitted = image_repository.are_all_images_submitted(
-            round_entity.RoundId, 
-            round_entity.RoomId)
+            self.round_entity.RoundId, 
+            self.round_entity.RoomId)
         if are_all_images_submitted:
             self._to_critiquing()
 

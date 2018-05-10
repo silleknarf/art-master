@@ -1,5 +1,5 @@
 from database.database import session
-from database.data_model import RoomUser
+from database.data_model import RoomUser, User
 import logging
 
 logfile = logging.getLogger('file')
