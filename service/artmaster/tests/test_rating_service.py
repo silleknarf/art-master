@@ -89,8 +89,9 @@ class TestRatingService(unittest.TestCase):
         for i, expected_result in enumerate(expected_results):
             self.assertTrue(cmp(actual_rating[i], expected_result) == 0)
 
+    @mock.patch("services.rating_service.image_repository")
     @mock.patch("services.rating_service.rating_repository")
-    def test_set_rating(self, rating_repository):
+    def test_set_rating(self, rating_repository, image_repository):
         rating_repository.has_existing_rating.return_value = False
         rating_repository.create_rating.return_value = Struct(**{
             "RatingId": 1
