@@ -99,8 +99,9 @@ class TestRatingService(unittest.TestCase):
         self.app.post("/rating?imageId=1&rating=1&raterUserId=1")
         rating_repository.create_rating.assert_called()
 
+    @mock.patch("services.rating_service.image_repository")
     @mock.patch("services.rating_service.rating_repository")
-    def test_set_rating_fails(self, rating_repository):
+    def test_set_rating_fails(self, rating_repository, image_repository):
         rating_repository.has_existing_rating.return_value = True
         response = self.app.post("/rating?imageId=1&rating=1&raterUserId=1")
         error = json.loads(response.data)
