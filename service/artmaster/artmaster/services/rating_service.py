@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
-from repositories import rating_repository
-from repositories import user_repository
+from repositories import rating_repository, image_repository, user_repository
 from flask import Blueprint, jsonify, request
 from exceptions import InvalidUsage
+from round_state_machine import RoundStateMachine
 
 rating_service = Blueprint('rating_service', __name__)
 
@@ -66,6 +66,11 @@ def set_rating():
         error_text = "Cannot rate more than one image per round"
         raise InvalidUsage(error_text)
     rating_entity = rating_repository.create_rating(image_id, rating, user_id)
+
+    round_entity = image_repository.get_round(image_id)
+    round_state_machine = RoundStateMachine(round_entity)
+    round_state_machine.maybe_end_critiquing_early()
+
     return jsonify({
         "ratingId": rating_entity.RatingId
     })

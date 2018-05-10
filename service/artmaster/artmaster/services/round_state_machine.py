@@ -1,4 +1,4 @@
-from repositories import round_repository, word_repository, image_repository
+from repositories import round_repository, word_repository, image_repository, rating_repository
 from datetime import datetime, timedelta
 
 class RoundState:
@@ -52,6 +52,13 @@ class RoundStateMachine:
             self.round_entity.RoomId)
         if are_all_images_submitted:
             self._to_critiquing()
+
+    def maybe_end_critiquing_early(self):
+        are_all_votes_submitted = rating_repository.are_all_votes_submitted(
+            self.round_entity.RoundId,
+            self.round_entity.RoomId)
+        if are_all_votes_submitted:
+            self._to_reviewing()
 
     def maybe_next_stage(self):
         time_remaining = self.get_time_remaining()

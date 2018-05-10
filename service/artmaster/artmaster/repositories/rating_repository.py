@@ -1,3 +1,4 @@
+import room_user_repository
 from database.database import session
 from database.data_model import Round, Image, Rating
 
@@ -32,3 +33,12 @@ def create_rating(image_id, rating, user_id):
     session.add(rating_entity)
     session.commit()
     return rating_entity
+
+def are_all_votes_submitted(round_id, room_id):
+    round_votes_count = len(session
+        .query(Rating)
+        .join(Image)
+        .filter(Image.RoundId==round_id)
+        .all())
+    room_users_count = len(room_user_repository.get_users_in_room(room_id))
+    return round_votes_count == room_users_count
