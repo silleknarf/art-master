@@ -13,7 +13,7 @@ import * as FetchMock from "fetch-mock";
 import store from "../redux/Store";
 import { updateRoomState, updateRoundState, updateWordsState } from "../redux/Actions";
 
-const setupRoom = () => {
+const setupRoom = (currentRoundId) => {
   FetchMock.restore()
 
   const room = { 
@@ -22,14 +22,15 @@ const setupRoom = () => {
       { userId: 1, username: "User1"}, 
       { userId: 2, username: "User2 "}
     ],
-    currentRoundId: 1
+    currentRoundId: currentRoundId
   };
   store.dispatch(updateRoomState(room));
   FetchMock.get('glob:*room?*', room);
 
   const round = { 
     stageStateId: 0,
-    timeRemaining: 30
+    timeRemaining: 30,
+    drawingWordId: 1
   };
   store.dispatch(updateRoundState(round));
   FetchMock.get("glob:*round*", round);
@@ -46,11 +47,16 @@ const setupRoom = () => {
   ];
   store.dispatch(updateWordsState(words));
   FetchMock.get('glob:*words?*', words);
+  FetchMock.get('glob:*word?*', { wordId: 1, word: "bacon"});
 }
 
 storiesOf('Room', module)
   .addDecorator(story => <Provider story={story()} />)
-  .add('Room', () => { 
-    setupRoom();
+  .add('Round not started', () => { 
+    setupRoom(null);
+    return <Room />;
+  })
+  .add('Drawing', () => { 
+    setupRoom(1);
     return <Room />;
   });

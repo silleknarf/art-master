@@ -36,19 +36,25 @@ class ConnectedRoundInfo extends Component {
   }
 
   render = () => {
+    const style = {
+      margin: "10px"
+    };
+    const rowStyle = {
+      textAlign: "center"
+    };
     return (
-      <div>
-        <Row>
-          <div>
+      <Grid>
+        <Row style={rowStyle}>
+          <div style={style}>
             { this.state.roundStateDescription }
           </div>
         </Row>
-        <Row>
-          <div>
+        <Row style={rowStyle}>
+          <div style={style}>
             Time Remaining: { this.state.round.timeRemaining }
           </div>
         </Row>
-      </div>
+      </Grid>
     );
   }
 }

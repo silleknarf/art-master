@@ -96,51 +96,49 @@ class Lobby extends Component {
     return (
       <div className="lobby">
         <Grid>
-          <div className="input-block">
-            <Row className="input-row">
-              <Col smOffset={3} sm={6}>
-                <FormGroup validationState={!this.state.usernameFeedback ? null : 'error'}>
-                  <ControlLabel className="label">Username</ControlLabel>
-                  <FormControl
-                    className="username-input"
-                    type="input"
-                    onChange={e => this.setState({ username: e.target.value, usernameFeedback: '' })}
-                    value={this.state.username}
-                  />
-                  {this.state.usernameFeedback  && <HelpBlock>{this.state.usernameFeedback}</HelpBlock>}
-                </FormGroup>
-              </Col>
-            </Row>
-             <Row className="input-row">
-              <Col smOffset={3} sm={6}>
-                <FormGroup>
-                  <ControlLabel className="label">Room Code</ControlLabel>
-                  <FormControl
-                    className="room-code-input"
-                    type="input"
-                    onChange={e => this.setState({ roomCode: e.target.value })}
-                    value={this.state.roomCode}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row className="button-row">
-              <Col smOffset={3} sm={6}>
-                <Button
-                  className="create-room-button button"
-                  onClick={(e) => this.onClickCreateRoom(e)}
-                >
-                  Create Room
-                </Button>
-                <Button
-                  className="join-room-button button"
-                  onClick={e => this.onClickJoinRoom(e)}
-                >
-                  Join Room
-                </Button>
-              </Col>
-            </Row>
-          </div>
+          <Row className="input-row">
+            <Col smOffset={3} sm={6}>
+              <FormGroup validationState={!this.state.usernameFeedback ? null : 'error'}>
+                <ControlLabel className="label">Username</ControlLabel>
+                <FormControl
+                  className="username-input"
+                  type="input"
+                  onChange={e => this.setState({ username: e.target.value, usernameFeedback: '' })}
+                  value={this.state.username}
+                />
+                {this.state.usernameFeedback  && <HelpBlock>{this.state.usernameFeedback}</HelpBlock>}
+              </FormGroup>
+            </Col>
+          </Row>
+           <Row className="input-row">
+            <Col smOffset={3} sm={6}>
+              <FormGroup>
+                <ControlLabel className="label">Room Code</ControlLabel>
+                <FormControl
+                  className="room-code-input"
+                  type="input"
+                  onChange={e => this.setState({ roomCode: e.target.value })}
+                  value={this.state.roomCode}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="button-row">
+            <Col smOffset={3} sm={6}>
+              <Button
+                className="create-room-button button"
+                onClick={(e) => this.onClickCreateRoom(e)}
+              >
+                Create Room
+              </Button>
+              <Button
+                className="join-room-button button"
+                onClick={e => this.onClickJoinRoom(e)}
+              >
+                Join Room
+              </Button>
+            </Col>
+          </Row>
         </Grid>
       </div>
     );
