@@ -37,13 +37,13 @@ class ConnectedWords extends Component {
     });
   }
 
-  onClickAddWord = async (e) => {
+  onAddWord = async (e) => {
     const word = {
       word: this.state.newWord,
       roomId: this.state.room.roomId,
       userId: this.state.user.userId
     };
-    this.state.newWord = ""
+    this.setState({newWord: ""});
     const addWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`, 
       { method: "POST" });
     if (addWordRes.status === 200) {
@@ -62,6 +62,15 @@ class ConnectedWords extends Component {
     }
   }
 
+  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    // 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      this.onAddWord(event);
+    }
+  }
+
   render = () => {
     var ulStyle = {
       display: "inline-block"
@@ -71,7 +80,8 @@ class ConnectedWords extends Component {
     }
     var buttonStyle = {
       display: "inline-block",
-      marginTop: "-1px"
+      height: "34px",
+      marginTop: "-3px"
     }
     return (
       <Grid>
@@ -102,11 +112,12 @@ class ConnectedWords extends Component {
               type="input"
               onChange={e => this.setState({ newWord: e.target.value })}
               value={this.state.newWord}
+              onKeyDown={this.onKeyDown}
             />
           </FormGroup>
           <Button
             className="add-word-button btn"
-            onClick={(e) => this.onClickAddWord(e)}
+            onClick={(e) => this.onAddWord(e)}
             style={buttonStyle}>
             <FontAwesomeIcon style={iconStyle} icon={faPlus} />
           </Button>
