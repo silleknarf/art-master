@@ -48,8 +48,7 @@ class Draw extends Component {
           <Row className="button-row" style={centerRowContentStyle}>
               <Button
                 className="upload-room-button button"
-                onClick={(e) => this.onClickUploadDrawing(e)}
-              >
+                onClick={(e) => this.onClickUploadDrawing(e)}>
                 <FontAwesomeIcon style={iconStyle} icon={faUpload} />
                 <span style={buttonTextStyle}>Upload Drawing</span>
               </Button>
