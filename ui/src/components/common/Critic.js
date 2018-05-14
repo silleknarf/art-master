@@ -73,7 +73,8 @@ class Critic extends Component {
       );
     } else { 
       const voteSubmittedStyle = {
-        margin: "10px"
+        margin: "10px",
+        fontSize: "medium"
       };
       return (
         <Grid>

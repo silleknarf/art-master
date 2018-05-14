@@ -5,7 +5,7 @@ import faUser from '@fortawesome/fontawesome-free-solid/faUser'
 import faUsers from '@fortawesome/fontawesome-free-solid/faUsers'
 import { connect } from "react-redux";
 import Config from '../../constant/Config';
-import { iconStyle, buttonTextStyle, centerRowContentStyle } from "../../constant/Styles"
+import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
 
 class ConnectedRoomUsers extends Component {
   constructor(props) {
@@ -31,16 +31,12 @@ class ConnectedRoomUsers extends Component {
   }
 
   render = () => {
-    var usersInRoomStyle = {
-      textAlign: "center",
-      margin: "15px"
-    }
     var ulStyle = {
       display: "inline-block"
     };
     return (
       <Grid>
-        <Row style={usersInRoomStyle}>
+        <Row style={centerTitleContentStyle}>
           <FontAwesomeIcon style={iconStyle} icon={faUsers} />
           <span style={buttonTextStyle}>Users in room:</span>
         </Row>

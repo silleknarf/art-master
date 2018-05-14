@@ -15,5 +15,6 @@ export const centerRowContentStyle = {
 
 export const centerTitleContentStyle = {
   textAlign: "center",
-  margin: "15px"
+  margin: "15px",
+  fontSize: "medium"
 }

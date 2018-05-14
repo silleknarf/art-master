@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row, Button } from 'react-bootstrap'; 
 import { connect } from "react-redux";
+import Display from "seven-segment-display";
+import './RoundInfo.css';
 
 class ConnectedRoundInfo extends Component {
   constructor(props) {
@@ -29,30 +31,66 @@ class ConnectedRoundInfo extends Component {
     ];
     const roundStateDescription = roundStateDescriptions[newProps.round.stageStateId];
     // Map the props to the state
+    const timeRemainingDigits = newProps.round
+      .timeRemaining
+      .toFixed(0)
+      .toString()
+      .length;
     this.setState({ 
       round: newProps.round, 
+      timeRemainingDigits: timeRemainingDigits,
       roundStateDescription: roundStateDescription
     });
   }
 
   render = () => {
-    const style = {
-      margin: "10px"
+    const roundStateStyle = {
+      color: "white",
+      margin: "10px",
+      fontSize: "2em",
+      textTransform: "uppercase",
+      textShadow: "-1px 0 rgb(77, 77, 77), 0 1px rgb(77, 77, 77), 1px 0 rgb(77, 77, 77), 0 -1px rgb(77, 77, 77)"
     };
     const rowStyle = {
       textAlign: "center"
     };
+    const timeRemainingStyle = {
+      display: "inline-block",
+      verticalAlign: "top",
+      height: "30px",
+      lineHeight: "30px",
+      fontSize: "medium"
+    };
+    const displayStyle = {
+      display: "inline-block",
+      padding: "5px"
+    };
+
+    var display = null;
+
+    if (this.state.round && this.state.round.timeRemaining) {
+      display = (<div 
+        style={displayStyle} 
+        className="display">
+        <Display 
+          value={this.state.round.timeRemaining.toFixed(0)} 
+          color="black" 
+          digitCount={this.state.timeRemainingDigits} />
+      </div>);
+    }
+
     return (
       <Grid>
         <Row style={rowStyle}>
-          <div style={style}>
+          <div style={roundStateStyle}>
             { this.state.roundStateDescription }
           </div>
         </Row>
         <Row style={rowStyle}>
-          <div style={style}>
-            Time Remaining: { this.state.round.timeRemaining }
+          <div style={timeRemainingStyle}>
+            Time Remaining:
           </div>
+          { display }
         </Row>
       </Grid>
     );

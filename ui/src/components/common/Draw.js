@@ -4,7 +4,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faUpload from '@fortawesome/fontawesome-free-solid/faUpload'
 import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
 import Config from '../../constant/Config';
-import { iconStyle, buttonTextStyle, centerRowContentStyle } from "../../constant/Styles"
+import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
 import * as LC from "../../../node_modules/literallycanvas/lib/js/index.js"
 
 class Draw extends Component {
@@ -57,12 +57,8 @@ class Draw extends Component {
         </Grid>
       );
     } else {
-      const centerRowStyle = {
-        textAlign: "center",
-        margin: "15px"
-      };
       return (
-        <div style={centerRowStyle}>
+        <div style={centerTitleContentStyle}>
           <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
           <span style={buttonTextStyle}>Drawing Submitted!</span>
         </div>

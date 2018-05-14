@@ -31,7 +31,8 @@ class DrawingWord extends Component {
 
   render = () => {
     const style = {
-      margin: "10px"
+      margin: "10px",
+      fontSize: "medium"
     };
     const rowStyle = {
       textAlign: "center"
