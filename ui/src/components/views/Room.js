@@ -14,7 +14,7 @@ import RoomUsers from '../common/RoomUsers';
 import Config from '../../constant/Config';
 import { DRAWING, CRITIQUING, REVIEWING } from '../../constant/StageStateIds';
 import './Room.css';
-import { iconStyle, buttonTextStyle, centerRowContentStyle } from "../../constant/Styles"
+import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
 
 class ConnectedRoom extends Component {
 
@@ -95,9 +95,6 @@ class ConnectedRoom extends Component {
       margin: "15px",
       fontSize: "large"
     }
-    const centerTitleContentStyle = {
-      textAlign: "center",
-    }
     const ulStyle = {
       display: "inline-block"
     };
@@ -117,6 +114,9 @@ class ConnectedRoom extends Component {
       this.state.user.userId == this.state.room.roomOwnerId;
     return (
       <div className="room">
+        <div style={centerTitleContentStyle}> 
+          <img src={ "/img/art-master2.png" } width="25%"></img>
+        </div>
         <Tabs 
           id="room-tabs"
           style={ulStyle} 

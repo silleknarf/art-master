@@ -4,6 +4,7 @@ import Config from '../../constant/Config';
 import store from '../../redux/Store';
 import { updateRoomState, updateRoundState, updateUserState } from "../../redux/Actions";
 import './Lobby.css';
+import { centerTitleContentStyle, centerRowContentStyle } from "../../constant/Styles"
 
 class Lobby extends Component {
 
@@ -133,12 +134,17 @@ class Lobby extends Component {
     const ulStyle = {
       display: "inline-block"
     };
+    const gridStyle = {
+      margin: "2em"
+    };
 
     const usernameRow = (
-      <Row className="input-row">
-        <Col smOffset={3} sm={6}>
-          <FormGroup validationState={!this.state.usernameFeedback ? null : 'error'}>
-            <ControlLabel className="label">Username</ControlLabel>
+      <div>
+        <Row style={centerRowContentStyle} className="input-row">
+          <ControlLabel className="label">Username</ControlLabel>
+        </Row>
+        <Row style={centerRowContentStyle} className="input-row">
+          <FormGroup>
             <FormControl
               className="username-input"
               type="input"
@@ -148,55 +154,54 @@ class Lobby extends Component {
             />
             {this.state.usernameFeedback  && <HelpBlock>{this.state.usernameFeedback}</HelpBlock>}
           </FormGroup>
-        </Col>
-      </Row>
+        </Row>
+      </div>
     );
     return (
       <div className="lobby">
+        <div style={centerTitleContentStyle}> 
+          <img src={ "/img/art-master2.png" } width="25%"></img>
+        </div>
         <Tabs 
           id="lobby-tabs" 
           activeKey={this.state.tabIndex} 
           style={ulStyle} 
           onSelect={this.handleSelect}>
           <Tab eventKey={1} title="Create Room">
-            <Grid>
+            <Grid style={gridStyle}>
               { usernameRow }
-              <Row className="button-row">
-                <Col smOffset={3} sm={6}>
-                  <Button
-                    className="create-room-button button"
-                    onClick={(e) => this.onCreateRoom(e)}>
-                    Create Room
-                  </Button>
-                </Col>
+              <Row style={centerRowContentStyle} className="input-row">
+                <Button
+                  className="create-room-button button"
+                  onClick={(e) => this.onCreateRoom(e)}>
+                  Create Room
+                </Button>
               </Row>
             </Grid>
           </Tab>
           <Tab eventKey={2} title="Join Room">
-            <Grid>
-              <Row className="input-row">
-                <Col smOffset={3} sm={6}>
-                  <FormGroup>
-                    <ControlLabel className="label">Room Code</ControlLabel>
-                    <FormControl
-                      className="room-code-input"
-                      type="input"
-                      onChange={e => this.setState({ roomCode: e.target.value })}
-                      value={this.state.roomCode}
-                      onKeyDown={this.onKeyDown}
-                    />
-                  </FormGroup>
-                </Col>
+            <Grid style={gridStyle}>
+              <Row style={centerRowContentStyle} className="input-row">
+                <ControlLabel className="label">Room Code</ControlLabel>
+              </Row>
+              <Row style={centerRowContentStyle} className="input-row">
+                <FormGroup>
+                  <FormControl
+                    className="room-code-input"
+                    type="input"
+                    onChange={e => this.setState({ roomCode: e.target.value })}
+                    value={this.state.roomCode}
+                    onKeyDown={this.onKeyDown}
+                  />
+                </FormGroup>
               </Row>
               { usernameRow }
-              <Row className="button-row">
-                <Col smOffset={3} sm={6}>
-                  <Button
-                    className="join-room-button button"
-                    onClick={e => this.onJoinRoom(e)}>
-                    Join Room
-                  </Button>
-                </Col>
+              <Row style={centerRowContentStyle} className="button-row">
+                <Button
+                  className="join-room-button button"
+                  onClick={e => this.onJoinRoom(e)}>
+                  Join Room
+                </Button>
               </Row>
             </Grid>
           </Tab>
