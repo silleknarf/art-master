@@ -13,7 +13,7 @@ import * as FetchMock from "fetch-mock";
 import store from "../redux/Store";
 import { updateRoomState, updateRoundState, updateWordsState } from "../redux/Actions";
 
-const setupRoom = (currentRoundId) => {
+const setupRoom = (currentRoundId, currentStageId) => {
   FetchMock.restore()
 
   const room = { 
@@ -28,12 +28,12 @@ const setupRoom = (currentRoundId) => {
   FetchMock.get('glob:*room?*', room);
 
   const round = { 
-    stageStateId: 0,
+    stageStateId: currentStageId,
     timeRemaining: 30,
     drawingWordId: 1
   };
   store.dispatch(updateRoundState(round));
-  FetchMock.get("glob:*round*", round);
+  FetchMock.get("glob:*round?*", round);
 
   const words = [
     {
@@ -48,15 +48,32 @@ const setupRoom = (currentRoundId) => {
   store.dispatch(updateWordsState(words));
   FetchMock.get('glob:*words?*', words);
   FetchMock.get('glob:*word?*', { wordId: 1, word: "bacon"});
+
+  const ratings = [
+    { winnerId: 1, winningImageLocation: '1/1.png', winnerUsername: "User1"}, 
+    { winnerId: 2, winningImageLocation: '1/1.png', winnerUsername: "User2"}
+  ];
+  FetchMock.get('glob:*ratings?*', ratings);
+
+  FetchMock.get('glob:*images?*', [{ imageId: 1, location: '1/1.png'}, {imageId: 2, location: '1/1.png'}]);
+  FetchMock.post('glob:*rating?*', "test");
 }
 
 storiesOf('Room', module)
   .addDecorator(story => <Provider story={story()} />)
   .add('Round not started', () => { 
-    setupRoom(null);
+    setupRoom(null, 0);
     return <Room />;
   })
   .add('Drawing', () => { 
-    setupRoom(1);
+    setupRoom(1, 0);
+    return <Room />;
+  })
+  .add('Reviewing', () => { 
+    setupRoom(97, 1);
+    return <Room />;
+  })
+  .add('Critiquing', () => { 
+    setupRoom(97, 2);
     return <Room />;
   });

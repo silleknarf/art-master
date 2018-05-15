@@ -32,7 +32,7 @@ class Review extends Component {
   render = () => {
     if (this.state.winningImages.length !== 0) {
       return (
-        <div>
+        <Grid>
           {this.state.winningImages.map((winningImage) => {
             return (<div key={ winningImage.winnerId }>
                 <Row style={centerRowContentStyle}>
@@ -44,7 +44,7 @@ class Review extends Component {
                 </Row>
               </div>);
           })}
-        </div>
+        </Grid>
         );
     } else { 
       return <div>No images were voted for!</div>
