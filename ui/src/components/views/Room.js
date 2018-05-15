@@ -115,7 +115,7 @@ class ConnectedRoom extends Component {
     return (
       <div className="room">
         <div style={centerTitleContentStyle}> 
-          <img src={ "/img/art-master2.png" } width="25%"></img>
+          <img src={ "/img/art-master.png" } width="25%"></img>
         </div>
         <Tabs 
           id="room-tabs"

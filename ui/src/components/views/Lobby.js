@@ -160,7 +160,7 @@ class Lobby extends Component {
     return (
       <div className="lobby">
         <div style={centerTitleContentStyle}> 
-          <img src={ "/img/art-master2.png" } width="25%"></img>
+          <img src={ "/img/art-master.png" } width="25%"></img>
         </div>
         <Tabs 
           id="lobby-tabs" 
