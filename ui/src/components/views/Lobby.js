@@ -10,13 +10,14 @@ class Lobby extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      roomCode: '',
-      username: '',
-      usernameFeedback: '',
+      roomCode: "",
+      username: "",
+      usernameFeedback: "",
+      tabIndex: 1
     }
   }
 
-  async onClickCreateRoom(e) {
+  async onCreateRoom(e) {
     e.preventDefault();
     try {
       const { userId, username } = await this.createUser();
@@ -42,7 +43,7 @@ class Lobby extends Component {
     }
   }
 
-  async onClickJoinRoom(e) {
+  async onJoinRoom(e) {
     e.preventDefault();
     
     // TODO: logic to pick username and 
@@ -92,6 +93,38 @@ class Lobby extends Component {
     }
   }
 
+  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    // 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      if (this.state.tabIndex === 1)
+        this.onCreateRoom(event);
+      else
+        this.onJoinRoom(event);
+    }
+  }
+
+  handleSelect = (key) => {
+    this.setState({ tabIndex: key });
+  }
+
+  componentDidMount = () => {
+    const roomCode = this.getUrlParam("roomCode");
+    if (roomCode)
+      this.setState({ 
+        tabIndex: 2,
+        roomCode: roomCode
+      });
+  }
+
+  getUrlParam = (name) => {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results)
+      return results[1] || "";
+    return "";
+  }
+
   render() {
     const shrinkWrapStyle = {
       display: "inline-block",
@@ -111,17 +144,20 @@ class Lobby extends Component {
               type="input"
               onChange={e => this.setState({ username: e.target.value, usernameFeedback: '' })}
               value={this.state.username}
+              onKeyDown={this.onKeyDown}
             />
             {this.state.usernameFeedback  && <HelpBlock>{this.state.usernameFeedback}</HelpBlock>}
           </FormGroup>
         </Col>
       </Row>
     );
-    const eventKey = this.props.joinRoom ? 2 : 1;
-
     return (
       <div className="lobby">
-        <Tabs defaultActiveKey={1} id="lobby-tabs" style={ulStyle}>
+        <Tabs 
+          id="lobby-tabs" 
+          activeKey={this.state.tabIndex} 
+          style={ulStyle} 
+          onSelect={this.handleSelect}>
           <Tab eventKey={1} title="Create Room">
             <Grid>
               { usernameRow }
@@ -129,14 +165,14 @@ class Lobby extends Component {
                 <Col smOffset={3} sm={6}>
                   <Button
                     className="create-room-button button"
-                    onClick={(e) => this.onClickCreateRoom(e)}>
+                    onClick={(e) => this.onCreateRoom(e)}>
                     Create Room
                   </Button>
                 </Col>
               </Row>
             </Grid>
           </Tab>
-          <Tab eventKey={2} id="join-room" title="Join Room">
+          <Tab eventKey={2} title="Join Room">
             <Grid>
               <Row className="input-row">
                 <Col smOffset={3} sm={6}>
@@ -147,6 +183,7 @@ class Lobby extends Component {
                       type="input"
                       onChange={e => this.setState({ roomCode: e.target.value })}
                       value={this.state.roomCode}
+                      onKeyDown={this.onKeyDown}
                     />
                   </FormGroup>
                 </Col>
@@ -156,7 +193,7 @@ class Lobby extends Component {
                 <Col smOffset={3} sm={6}>
                   <Button
                     className="join-room-button button"
-                    onClick={e => this.onClickJoinRoom(e)}>
+                    onClick={e => this.onJoinRoom(e)}>
                     Join Room
                   </Button>
                 </Col>

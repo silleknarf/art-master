@@ -4,7 +4,7 @@ export const iconStyle = {
   margin: "2px"
 };
 export const buttonTextStyle = {
-  margin: "2px"
+  margin: "2px",
 };
 export const centerRowContentStyle = {
   marginLeft: 0,

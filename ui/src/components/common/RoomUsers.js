@@ -3,9 +3,11 @@ import { Grid, Col, Row, Button } from 'react-bootstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faUser from '@fortawesome/fontawesome-free-solid/faUser'
 import faUsers from '@fortawesome/fontawesome-free-solid/faUsers'
+import faClipboard from '@fortawesome/fontawesome-free-solid/faClipboard'
 import { connect } from "react-redux";
 import Config from '../../constant/Config';
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 class ConnectedRoomUsers extends Component {
   constructor(props) {
@@ -14,7 +16,6 @@ class ConnectedRoomUsers extends Component {
       room: { roomUsers: [] }
     };
   }
-
 
   componentWillReceiveProps = (newProps) => {
     this.updateComponentState(newProps);
@@ -34,11 +35,17 @@ class ConnectedRoomUsers extends Component {
     var ulStyle = {
       display: "inline-block"
     };
+    var gridStyle = {
+      width: "initial"
+    };
+    const joinRoomUrl = window.location.hostname + 
+      "/?roomCode=" + 
+      this.state.room.roomCode;
     return (
-      <Grid>
+      <Grid style={gridStyle}>
         <Row style={centerTitleContentStyle}>
           <FontAwesomeIcon style={iconStyle} icon={faUsers} />
-          <span style={buttonTextStyle}>Users in room:</span>
+          <span style={buttonTextStyle}>Players in room:</span>
         </Row>
         <Row style={centerRowContentStyle}>
           <ul className="list-group" style={ulStyle}>
@@ -51,6 +58,14 @@ class ConnectedRoomUsers extends Component {
               );
             })}
           </ul>
+        </Row>
+        <Row style={centerRowContentStyle}>
+          <CopyToClipboard text={joinRoomUrl}>
+            <Button>
+              <FontAwesomeIcon style={iconStyle} icon={faClipboard} />
+              <span style={buttonTextStyle}>Copy link to room to clipboard</span>
+            </Button>
+          </CopyToClipboard>
         </Row>
       </Grid>
     );

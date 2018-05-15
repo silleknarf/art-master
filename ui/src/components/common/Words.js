@@ -83,8 +83,11 @@ class ConnectedWords extends Component {
       height: "34px",
       marginTop: "-3px"
     }
+    var gridStyle = {
+      width: "initial"
+    };
     return (
-      <Grid>
+      <Grid style={gridStyle}>
         <Row style={centerTitleContentStyle}>
           <FontAwesomeIcon style={iconStyle} icon={faFileWord} />
           <span style={buttonTextStyle}>Words:</span>
