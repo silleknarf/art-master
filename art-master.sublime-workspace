@@ -4,6 +4,254 @@
 		"selected_items":
 		[
 			[
+				"Form",
+				"FormGroup"
+			],
+			[
+				"cen",
+				"centerRowContentStyle"
+			],
+			[
+				"no",
+				"notEnoughWordsText"
+			],
+			[
+				"ar",
+				"areNotEnoughWords"
+			],
+			[
+				"notEnoug",
+				"notEnoughWordsAlert"
+			],
+			[
+				"room",
+				"roomCode"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"res",
+				"results"
+			],
+			[
+				"roo",
+				"roomCode"
+			],
+			[
+				"get",
+				"getUrlParam"
+			],
+			[
+				"pr",
+				"props"
+			],
+			[
+				"curren",
+				"currentRoundId"
+			],
+			[
+				"join",
+				"join-room"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"cu",
+				"currentRoundId"
+			],
+			[
+				"ro",
+				"room"
+			],
+			[
+				"not",
+				"notEnoughWordsAlert"
+			],
+			[
+				"cent",
+				"centerRowContentStyle"
+			],
+			[
+				"c",
+				"currentTab"
+			],
+			[
+				"pre",
+				"previousRoundId"
+			],
+			[
+				"cur",
+				"currentStageId"
+			],
+			[
+				"l",
+				"location"
+			],
+			[
+				"jon",
+				"join-room"
+			],
+			[
+				"lo",
+				"Lobby"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"t",
+				"timeRemaining"
+			],
+			[
+				"rou",
+				"round"
+			],
+			[
+				"roun",
+				"roundStateStyle"
+			],
+			[
+				"tr",
+				"timeRemainingStyle"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"st",
+				"style"
+			],
+			[
+				"tim",
+				"timeRemainingDigits"
+			],
+			[
+				"Ro",
+				"round"
+			],
+			[
+				"e",
+				"event"
+			],
+			[
+				"onCl",
+				"onClickAddWord"
+			],
+			[
+				"up",
+				"updateRoomState"
+			],
+			[
+				"image",
+				"image_repository"
+			],
+			[
+				"Ima",
+				"Image"
+			],
+			[
+				"Round",
+				"RoundId"
+			],
+			[
+				"ima",
+				"image_repository"
+			],
+			[
+				"ass",
+				"assert_called_once"
+			],
+			[
+				"retur",
+				"return_value"
+			],
+			[
+				"wor",
+				"word_to_remove"
+			],
+			[
+				"Wo",
+				"DrawingWordId"
+			],
+			[
+				"en",
+				"enforce_end_time"
+			],
+			[
+				"Dr",
+				"DrawingWordId"
+			],
+			[
+				"Rou",
+				"RoundState"
+			],
+			[
+				"end",
+				"end_stage"
+			],
+			[
+				"mo",
+				"mock_datetime"
+			],
+			[
+				"moc",
+				"mock"
+			],
+			[
+				"RO",
+				"RoundState"
+			],
+			[
+				"Roun",
+				"RoundStateMachine"
+			],
+			[
+				"roud",
+				"round_state_machine"
+			],
+			[
+				"round",
+				"round_state_machine"
+			],
+			[
+				"_to",
+				"_to_critiquing"
+			],
+			[
+				"roudn",
+				"round_entity"
+			],
+			[
+				"Re",
+				"REVIEWING"
+			],
+			[
+				"R",
+				"REVIEWING"
+			],
+			[
+				"Cr",
+				"CRITIQUING"
+			],
+			[
+				"upd",
+				"update_round"
+			],
+			[
+				"Dra",
+				"Drawing"
+			],
+			[
+				"to",
+				"to_drawing"
+			],
+			[
 				"clas",
 				"className"
 			],
@@ -12,32 +260,12 @@
 				"buttonStyle"
 			],
 			[
-				"cen",
-				"centerTitleContentStyle"
-			],
-			[
 				"bu",
 				"buttonStyle"
 			],
 			[
-				"user",
-				"usersInRoomStyle"
-			],
-			[
 				"ul",
 				"ulStyle"
-			],
-			[
-				"ro",
-				"roomUsersStyle"
-			],
-			[
-				"room",
-				"roomUsers"
-			],
-			[
-				"con",
-				"constant"
 			],
 			[
 				"center",
@@ -54,10 +282,6 @@
 			[
 				"button",
 				"buttonContentStyle"
-			],
-			[
-				"st",
-				"style"
 			],
 			[
 				"margin",
@@ -78,10 +302,6 @@
 			[
 				"iamge",
 				"imageId"
-			],
-			[
-				"up",
-				"updateRoundState"
 			],
 			[
 				"add",
@@ -116,40 +336,12 @@
 				"wordId"
 			],
 			[
-				"re",
-				"return"
-			],
-			[
-				"pr",
-				"prevProps"
-			],
-			[
-				"res",
-				"resolve"
-			],
-			[
 				"ra",
 				"raterUserId"
 			],
 			[
-				"wor",
-				"word_repository"
-			],
-			[
-				"get",
-				"get_word"
-			],
-			[
 				"new",
 				"new_user"
-			],
-			[
-				"rou",
-				"round_id"
-			],
-			[
-				"round",
-				"round_id"
 			],
 			[
 				"drw",
@@ -186,10 +378,6 @@
 			[
 				"log",
 				"logger"
-			],
-			[
-				"Dra",
-				"DrawingWordId"
 			],
 			[
 				"wrod",
@@ -248,16 +436,8 @@
 				"expected_result"
 			],
 			[
-				"ima",
-				"image2"
-			],
-			[
 				"get_",
 				"get_ratings_helper"
-			],
-			[
-				"ass",
-				"assertTrue"
 			],
 			[
 				"rul",
@@ -286,10 +466,6 @@
 			[
 				"d",
 				"drawingSubmitted"
-			],
-			[
-				"roun",
-				"round_ratings"
 			],
 			[
 				"D",
@@ -338,201 +514,16 @@
 			[
 				"rat",
 				"rating_repository"
-			],
-			[
-				"rati",
-				"rating_entity"
-			],
-			[
-				"Roun",
-				"RoundId"
-			],
-			[
-				"sta",
-				"stage_state_id"
-			],
-			[
-				"Stage",
-				"StageStateId"
-			],
-			[
-				"stat",
-				"stage_state_id"
-			],
-			[
-				"Sta",
-				"StageStateId"
-			],
-			[
-				"s",
-				"stage_state_id"
-			],
-			[
-				"stage",
-				"stage_state_id"
-			],
-			[
-				"roo",
-				"room_id"
-			],
-			[
-				"app",
-				"app_context"
-			],
-			[
-				"Ro",
-				"room_service"
-			],
-			[
-				"room_",
-				"room_service"
-			],
-			[
-				"ar",
-				"artmaster"
-			],
-			[
-				"l",
-				"logging"
-			],
-			[
-				"onClic",
-				"onClickRateImage"
-			],
-			[
-				"Image",
-				"ImageId"
-			],
-			[
-				"St",
-				"StageStateIds"
-			],
-			[
-				"time",
-				"timeRemaining"
-			],
-			[
-				"for",
-				"format_str"
-			],
-			[
-				"fo",
-				"formatter"
-			],
-			[
-				"ser",
-				"service_logfile"
-			],
-			[
-				"creat",
-				"create_log_handler"
-			],
-			[
-				"fil",
-				"filename"
-			],
-			[
-				"UPDA",
-				"UPDATE_USER_STATE"
-			],
-			[
-				"di",
-				"dispatch"
-			],
-			[
-				"use",
-				"userId"
-			],
-			[
-				"onc",
-				"onClickStartRound"
-			],
-			[
-				"UPDATE_RO",
-				"UPDATE_ROUND_STATE"
-			],
-			[
-				"daw",
-				"drawing_folder"
-			],
-			[
-				"draw",
-				"drawing_file_location"
-			],
-			[
-				"dar",
-				"drawing_base64"
-			],
-			[
-				"logi",
-				"logfile"
-			],
-			[
-				"rom",
-				"roomRes"
-			],
-			[
-				"Form",
-				"FormControl"
-			],
-			[
-				"in",
-				"info_text"
-			],
-			[
-				"er",
-				"error_text"
-			],
-			[
-				"sc",
-				"scoped_session"
-			],
-			[
-				"ge",
-				"get_session"
-			],
-			[
-				"create",
-				"_create_session"
-			],
-			[
-				"cons",
-				"console"
-			],
-			[
-				"word_",
-				"word_entity"
-			],
-			[
-				"Im",
-				"ImageId"
-			],
-			[
-				"StageS",
-				"StageStateEndTime"
-			],
-			[
-				"Sr",
-				"StageStateStartTime"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "ui/src/components/common/Words.js",
+			"file": "ui/src/components/views/Lobby.js",
 			"settings":
 			{
-				"buffer_size": 3747,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "ui/src/constant/Styles.js",
-			"settings":
-			{
-				"buffer_size": 342,
+				"buffer_size": 6739,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -541,7 +532,7 @@
 			"file": "ui/src/components/views/Room.js",
 			"settings":
 			{
-				"buffer_size": 3166,
+				"buffer_size": 5962,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -636,9 +627,7 @@
 		"/Users/silleknarf/Code/art-master",
 		"/Users/silleknarf/Code/art-master/.circleci",
 		"/Users/silleknarf/Code/art-master/ui",
-		"/Users/silleknarf/Code/art-master/ui/.storybook",
 		"/Users/silleknarf/Code/art-master/ui/public",
-		"/Users/silleknarf/Code/art-master/ui/public/css",
 		"/Users/silleknarf/Code/art-master/ui/src",
 		"/Users/silleknarf/Code/art-master/ui/src/components",
 		"/Users/silleknarf/Code/art-master/ui/src/components/common",
@@ -649,44 +638,61 @@
 	],
 	"file_history":
 	[
-		"/Users/silleknarf/Code/art-master/ui/src/components/views/Room.css",
 		"/Users/silleknarf/Code/art-master/ui/src/components/views/Lobby.css",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/State.js",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoomUsers.js",
-		"/Users/silleknarf/Code/art-master/ui/src/stories/index.js",
-		"/Users/silleknarf/Code/art-master/ui/src/constant/Config.js",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/Draw.js",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/DrawingWord.js",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoundInfo.js",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/Critic.js",
-		"/Users/silleknarf/Code/art-master/ui/src/components/common/Review.js",
 		"/Users/silleknarf/Code/art-master/ui/src/components/views/Room.js",
-		"/Users/silleknarf/Code/art-master/ui/src/App.css",
-		"/Users/silleknarf/Code/art-master/ui/src/constant/Styles.js",
-		"/Users/silleknarf/Code/art-master/ui/package.json",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoomUsers.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/Lobby.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/Room.stories.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/Review.js",
 		"/Users/silleknarf/Code/art-master/ui/src/components/common/Words.js",
+		"/Users/silleknarf/Code/art-master/ui/src/constant/Styles.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/Draw.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/views/Room.css",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/Review.stories.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/Lobby.stories.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoundInfo.css",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/RoundInfo.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/DrawingWord.js",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/Critic.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/Words.stories.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/Critic.stories.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/DrawingWord.stories.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/RoundInfo.stories.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/RoomUsers.stories.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/Draw.stories.js",
+		"/Users/silleknarf/Code/art-master/ui/src/stories/index.js",
+		"/Users/silleknarf/Code/art-master/ui/.storybook/config.js",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_round_state_machine.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_rating_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/image_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/round_state_machine.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/rating_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/rating_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/art-master.sql.log",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/art-master.log",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/image_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/room_user_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_round_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/round_service.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/round_repository.py",
+		"/Users/silleknarf/Code/art-master/ui/src/App.js",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/app.py",
+		"/Users/silleknarf/Code/art-master/ui/src/constant/Config.js",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/room_repository.py",
+		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/user_repository.py",
+		"/Users/silleknarf/Code/art-master/ui/package.json",
+		"/Users/silleknarf/Code/art-master/ui/src/components/common/State.js",
+		"/Users/silleknarf/Code/art-master/ui/src/App.css",
 		"/Users/silleknarf/Code/art-master/README.md",
 		"/Users/silleknarf/Code/art-master/ui/src/stories/Provider.js",
-		"/Users/silleknarf/Code/art-master/ui/src/App.js",
-		"/Users/silleknarf/Code/art-master/ui/src/components/views/Lobby.js",
 		"/Users/silleknarf/Code/art-master/ui/src/setupTests.js",
 		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/word_repository.py",
 		"/Users/silleknarf/Code/art-master/ui/.uizoo-app/webpack.uizoo.js",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/user_repository.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/word_service.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/user_service.py",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/image_repository.py",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/image_service.py",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/room_repository.py",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/round_repository.py",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/app.py",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/art-master.log",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/round_service.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_room_service.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/room_service.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/art-master.service.log",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/art-master.sql.log",
-		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_round_service.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/database/data_model.py",
 		"/Users/silleknarf/Code/art-master/ui/src/redux/RootReducer.js",
 		"/Users/silleknarf/Code/art-master/ui/src/redux/Actions.js",
@@ -694,14 +700,10 @@
 		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_app.py",
 		"/Users/silleknarf/Code/art-master/.circleci/config.yml",
 		"/Users/silleknarf/Code/art-master/service/artmaster/requirements.txt",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/rating_repository.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/exceptions.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/tests/__init__.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_room_user_repository.py",
-		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_rating_service.py",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/services/rating_service.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/database/database.py",
-		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/room_user_repository.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/tests/test_utils.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/artmaster/repositories/__init__.py",
 		"/Users/silleknarf/Code/art-master/service/artmaster/setup.py",
@@ -763,30 +765,21 @@
 		"/Users/silleknarf/Code/art-master/ui/node_modules/html-minifier/node_modules/uglify-js/tools/domprops.json",
 		"/Users/silleknarf/Code/art-master/ui/node_modules/html-minifier/src/htmlminifier.js",
 		"/Users/silleknarf/Code/art-master/ui/node_modules/html-webpack-plugin/node_modules/.bin/html-minifier",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/jsdom/Changelog.md",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/lodash/_baseShuffle.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/lodash/lodash.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/lodash/shuffle.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/locale/uz-latn.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/min/locales.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/min/locales.min.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/min/moment-with-locales.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/min/moment-with-locales.min.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/moment/src/locale/uz-latn.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/react-scripts/config/webpack.config.prod.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/react-scripts/node_modules/eslint/lib/rules/object-shorthand.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/react-scripts/node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js",
-		"/Users/silleknarf/Code/art-master/ui/node_modules/svgo/CHANGELOG.md"
+		"/Users/silleknarf/Code/art-master/ui/node_modules/jsdom/Changelog.md"
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
 		"height": 101.0,
 		"where_history":
 		[
+			"/Users/silleknarf/Code/art-master/ui/src/",
+			"/Users/silleknarf/Code/art-master/ui/src/stories,*.stories.js",
+			"/Users/silleknarf/Code/art-master/service/artmaster/artmaster,*.py",
+			"/Users/silleknarf/Code/art-master/service/artmaster/artmaster",
 			"/Users/silleknarf/Code/art-master/ui/src/components",
 			""
 		]
@@ -796,6 +789,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Tab",
+			"Tabs",
+			"px",
+			"buttonTextStyle",
+			"jQuery",
+			"room?",
+			"};",
+			"RoomId",
+			"Image.RoomId",
+			"User",
+			"InvalidUsage",
 			"updateComponentState",
 			"updateRoundState",
 			"setState",
@@ -817,24 +821,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "ui/src/components/common/Words.js",
+					"file": "ui/src/components/views/Lobby.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3747,
+						"buffer_size": 6739,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1974,
-								1974
+								4988,
+								4988
 							]
 						],
 						"settings":
@@ -844,22 +848,20 @@
 							"translate_tabs_to_spaces": true,
 							"vintage":
 							{
-								"_vintageous_glue_until_normal_mode": false,
 								"action": null,
 								"action_count": "",
 								"mode": "mode_normal",
 								"motion": null,
 								"motion_count": "",
 								"must_capture_register_name": false,
-								"normal_insert_count": "1",
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 0
+								"xpos": 37
 							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 569.0,
+						"translation.y": 1946.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -867,62 +869,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "ui/src/constant/Styles.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 342,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								259,
-								259
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"vintage":
-							{
-								"_vintageous_glue_until_normal_mode": false,
-								"action": null,
-								"action_count": "",
-								"mode": "mode_normal",
-								"motion": null,
-								"motion_count": "",
-								"must_capture_register_name": false,
-								"normal_insert_count": "1",
-								"partial_sequence": "",
-								"register": "\"",
-								"sequence": "",
-								"xpos": 0
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "ui/src/components/views/Room.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3166,
+						"buffer_size": 5962,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1627,
-								1627
+								3876,
+								3876
 							]
 						],
 						"settings":
@@ -933,21 +892,22 @@
 							"vintage":
 							{
 								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
 								"action": null,
 								"action_count": "",
 								"mode": "mode_normal",
 								"motion": null,
 								"motion_count": "",
 								"must_capture_register_name": false,
-								"normal_insert_count": "1",
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 18
+								"xpos": 37
 							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 694.0,
+						"translation.y": 1272.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -958,11 +918,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 24.0
 	},
 	"input":
 	{
-		"height": 35.0
+		"height": 36.0
 	},
 	"layout":
 	{
@@ -995,7 +955,7 @@
 	"project": "art-master.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1005,8 +965,20 @@
 		"selected_items":
 		[
 			[
+				"test_r",
+				"service/artmaster/tests/test_round_service.py"
+			],
+			[
+				"round_ser",
+				"service/artmaster/artmaster/services/round_service.py"
+			],
+			[
 				"app",
 				"service/artmaster/artmaster/app.py"
+			],
+			[
+				"words",
+				"ui/src/components/common/Words.js"
 			],
 			[
 				"rating",
@@ -1503,10 +1475,6 @@
 			[
 				"index",
 				"index.html"
-			],
-			[
-				"noute",
-				"game/notebook_numbers.js"
 			]
 		],
 		"width": 0.0
@@ -1532,21 +1500,21 @@
 	"selected_group": 0,
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "session",
+		"_vintageous_last_buffer_search": "class",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_f",
 		"_vintageous_last_character_search": "}",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
-			"_cmdline_cd": "/Users/silleknarf/Code/art-master/ui/src/stories"
+			"_cmdline_cd": "/Users/silleknarf/Code/art-master/ui/src/components/views"
 		}
 	},
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 259.0,
+	"side_bar_width": 274.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

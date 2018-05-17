@@ -14,7 +14,7 @@ import RoomUsers from '../common/RoomUsers';
 import Config from '../../constant/Config';
 import { DRAWING, CRITIQUING, REVIEWING } from '../../constant/StageStateIds';
 import './Room.css';
-import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
+import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle, tabsStyle } from "../../constant/Styles"
 
 class ConnectedRoom extends Component {
 
@@ -95,10 +95,6 @@ class ConnectedRoom extends Component {
       margin: "15px",
       fontSize: "large"
     }
-    const ulStyle = {
-      display: "inline-block"
-    };
-
     const areNotEnoughUsers = this.state.room && 
       this.state.room.roomUsers &&
       this.state.room.roomUsers.length <= 3;
@@ -119,7 +115,7 @@ class ConnectedRoom extends Component {
         </div>
         <Tabs 
           id="room-tabs"
-          style={ulStyle} 
+          style={tabsStyle} 
           activeKey={this.state.currentTabIndex} 
           onSelect={this.handleSelect}>
           <Tab eventKey={1} title="Room">

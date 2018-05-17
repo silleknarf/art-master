@@ -4,7 +4,7 @@ import Config from '../../constant/Config';
 import store from '../../redux/Store';
 import { updateRoomState, updateRoundState, updateUserState } from "../../redux/Actions";
 import './Lobby.css';
-import { centerTitleContentStyle, centerRowContentStyle } from "../../constant/Styles"
+import { centerTitleContentStyle, centerRowContentStyle, tabsStyle } from "../../constant/Styles"
 
 class Lobby extends Component {
 
@@ -131,11 +131,8 @@ class Lobby extends Component {
       display: "inline-block",
       width: "min-content",
     };
-    const ulStyle = {
-      display: "inline-block"
-    };
     const gridStyle = {
-      margin: "2em"
+      padding: "2em"
     };
 
     const usernameRow = (
@@ -165,7 +162,7 @@ class Lobby extends Component {
         <Tabs 
           id="lobby-tabs" 
           activeKey={this.state.tabIndex} 
-          style={ulStyle} 
+          style={tabsStyle} 
           onSelect={this.handleSelect}>
           <Tab eventKey={1} title="Create Room">
             <Grid style={gridStyle}>

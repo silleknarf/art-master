@@ -36,10 +36,22 @@ class Draw extends Component {
   }
 
   render() {
+    const centerDrawingContentStyle = {
+      paddingLeft: "15px",
+      paddingRight: "15px",
+      textAlign: "center",
+      marginLeft: 0,
+      marginRight: 0,
+      marginBottom: "5px"
+    };
+    const gridStyle = {
+      paddingLeft: 0,
+      paddingRight: 0
+    };
     if (!this.state.drawingSubmitted) {
       return (
-        <Grid>
-          <Row style={centerRowContentStyle}>
+        <Grid style={gridStyle}>
+          <Row style={centerDrawingContentStyle}>
               <LC.LiterallyCanvasReactComponent 
                 imageURLPrefix="/img"
                 id="draw-canvas" 

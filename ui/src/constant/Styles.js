@@ -18,3 +18,9 @@ export const centerTitleContentStyle = {
   margin: "15px",
   fontSize: "medium"
 }
+
+export const tabsStyle = {
+  display: "inline-block",
+  margin: "2em",
+  paddingBottom: "2em"
+};

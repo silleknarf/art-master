@@ -19,3 +19,19 @@
   height: 100%;
   width: 100%;
 }
+
+.nav-tabs {
+  border: none;
+  margin-bottom: -2px;
+}
+
+.nav-tabs > li > a {
+  border: none !important;
+}
+
+.tab-content {
+  background: white;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
