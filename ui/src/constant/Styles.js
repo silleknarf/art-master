@@ -24,3 +24,8 @@ export const tabsStyle = {
   margin: "2em",
   paddingBottom: "2em"
 };
+
+export const titleStyle = {
+  fontFamily: "'Lobster', cursive",
+  fontSize: "4vw"
+};

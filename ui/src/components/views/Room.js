@@ -14,7 +14,7 @@ import RoomUsers from '../common/RoomUsers';
 import Config from '../../constant/Config';
 import { DRAWING, CRITIQUING, REVIEWING } from '../../constant/StageStateIds';
 import './Room.css';
-import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle, tabsStyle } from "../../constant/Styles"
+import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
 
 class ConnectedRoom extends Component {
 
@@ -111,7 +111,7 @@ class ConnectedRoom extends Component {
     return (
       <div className="room">
         <div style={centerTitleContentStyle}> 
-          <img src={ "/img/art-master.png" } width="25%"></img>
+          <span style={titleStyle}>Art Master</span>
         </div>
         <Tabs 
           id="room-tabs"

@@ -4,7 +4,7 @@ import Config from '../../constant/Config';
 import store from '../../redux/Store';
 import { updateRoomState, updateRoundState, updateUserState } from "../../redux/Actions";
 import './Lobby.css';
-import { centerTitleContentStyle, centerRowContentStyle, tabsStyle } from "../../constant/Styles"
+import { centerTitleContentStyle, centerRowContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
 
 class Lobby extends Component {
 
@@ -157,7 +157,7 @@ class Lobby extends Component {
     return (
       <div className="lobby">
         <div style={centerTitleContentStyle}> 
-          <img src={ "/img/art-master.png" } width="25%"></img>
+          <span style={titleStyle}>Art Master</span>
         </div>
         <Tabs 
           id="lobby-tabs" 
