@@ -23,7 +23,7 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.2.2",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17",
+    "react-scripts": "3.2.0",
     "redux": "^3.7.2",
     "seven-segment-display": "^0.2.0"
   },
@@ -35,12 +35,10 @@
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
     "cross-env": "^5.1.1",
-    "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-react": "^7.4.0",
     "fetch-mock": "^6.3.0",
-    "jest": "^22.4.3",
     "jest-fetch-mock": "^1.5.0"
   },
   "scripts": {
@@ -50,5 +48,17 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
