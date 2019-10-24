@@ -15,7 +15,7 @@ Development in progress!
 CONTRIBUTING
 ============
 
-Art Master is written in python and JS backed by a MySQL database.
+Art Master is written in python and JS backed by a MySQL database. It is built as docker images, so far just the service has been converted to a docker image.
 
 Get the code:
 
@@ -23,11 +23,6 @@ Get the code:
 
 ## Backend
 
-Install the dependencies:
-
-    cd art-master/service/artmaster
-    pip install -r requirements.txt
-    
 Turn off tracking of the user_config.py file:
 
     git update-index --assume-unchanged art-master/service/src/user_config.py
@@ -41,10 +36,14 @@ Set up the `art-master` database using the script at:
     cd art-master/service/artmaster/artmaster/database
     ./create_database.py --dev
 
-Run the service:
+Build the service docker image
+
+    cd artmaster/service
+    docker build -t artmaster-service .
+
+Run the service docker:
     
-    cd art-master/service/artmaster/artmaster
-    ./app.py
+    docker run it -p 5001:5001 artmaster-service
 
 To update the data model:
 
