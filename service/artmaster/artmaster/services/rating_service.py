@@ -2,8 +2,8 @@
 
 from repositories import rating_repository, image_repository, user_repository
 from flask import Blueprint, jsonify, request
-from exceptions import InvalidUsage
-from round_state_machine import RoundStateMachine
+from .exceptions import InvalidUsage
+from services.round_state_machine import RoundStateMachine
 
 rating_service = Blueprint('rating_service', __name__)
 

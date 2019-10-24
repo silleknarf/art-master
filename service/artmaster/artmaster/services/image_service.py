@@ -5,7 +5,7 @@ import logging
 import os
 from flask import Blueprint, jsonify, request
 from repositories import image_repository, round_repository
-from round_state_machine import RoundStateMachine
+from .round_state_machine import RoundStateMachine
 
 logfile = logging.getLogger('file')
 image_service = Blueprint('image_service', __name__)

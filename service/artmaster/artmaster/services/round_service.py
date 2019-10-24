@@ -3,8 +3,8 @@
 import logging
 from flask import Blueprint, jsonify, request
 from repositories import round_repository, word_repository
-from exceptions import InvalidUsage
-from round_state_machine import RoundStateMachine
+from .exceptions import InvalidUsage
+from .round_state_machine import RoundStateMachine
 
 round_service = Blueprint('round_service', __name__)
 logfile = logging.getLogger("file")

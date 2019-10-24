@@ -2,6 +2,6 @@ sqlalchemy
 flask
 flask_cors
 sqlacodegen
-MySQL-python
+mysqlclient
 mock
 callee

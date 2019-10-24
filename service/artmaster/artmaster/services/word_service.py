@@ -2,7 +2,7 @@
 
 from flask import Blueprint, jsonify, request
 from repositories import word_repository
-from exceptions import InvalidUsage
+from services.exceptions import InvalidUsage
 
 word_service = Blueprint('word_service', __name__)
             
