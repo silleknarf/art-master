@@ -8,15 +8,11 @@
     "@fortawesome/react-fontawesome": "^0.0.19",
     "bootstrap": "^3.4.1",
     "create-react-class": "^15.6.3",
-    "cryptiles": "^4.1.2",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "font-awesome": "^4.7.0",
-    "hoek": "^4.2.1",
     "jquery": "^3.3.1",
-    "js-yaml": "^3.13.1",
     "literallycanvas": "github:silleknarf/literallycanvas",
-    "mem": "^4.0.0",
     "moment": "^2.19.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -29,8 +25,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "3.2.0",
     "redux": "^3.7.2",
-    "seven-segment-display": "^0.2.0",
-    "webpack-dev-server": "^3.1.11"
+    "seven-segment-display": "^0.2.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.3",
