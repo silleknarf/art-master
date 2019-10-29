@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  service:
+    build: 
+      context: ./service/artmaster
+    links:
+      - db
+    ports:
+      - "5001:5001"
+  db:
+    image: mysql:5
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    #volumes:
+      #- ./db:/docker-entrypoint-initdb.d/:ro
