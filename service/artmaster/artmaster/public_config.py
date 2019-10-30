@@ -2,7 +2,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     DATABASE_NAME = "art-master"
-    DATABASE_SERVER = "0.0.0.0:3306"
+    DATABASE_SERVER = "db:3306"
 
 class ProductionConfig(Config):
     DATABASE_USERNAME = "user"
