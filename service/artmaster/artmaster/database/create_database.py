@@ -63,7 +63,7 @@ if __name__ == "__main__":
             "Usage: ./create_database.py ARGS\n"
             "--dev\tcreate dev database\n"
             "--prod\tcreate prod database")
-        print usage
+        print(usage)
     elif sys.argv[1] == "--prod":
         db_builder = DatabaseBuilder(PrivateProductionConfig)
         db_builder.build_database()
@@ -71,4 +71,4 @@ if __name__ == "__main__":
         db_builder = DatabaseBuilder(UserDevelopmentConfig)
         db_builder.rebuild_database()
     else:
-        print "Invalid arguments"
+        print("Invalid arguments")

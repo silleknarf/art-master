@@ -6,7 +6,7 @@ class UserDevelopmentConfig(DevelopmentConfig):
     # Set you details for your local
     # database configuration
     DATABASE_USERNAME = "root"
-    DATABASE_PASSWORD = "glad0sglad0s"
+    DATABASE_PASSWORD = "root"
     DATABASE_NAME = "art-master-dev"
 
 class PrivateProductionConfig(ProductionConfig):

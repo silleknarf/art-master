@@ -16,3 +16,18 @@ services:
       MYSQL_ROOT_PASSWORD: root
     #volumes:
       #- ./db:/docker-entrypoint-initdb.d/:ro
+  ui: 
+    build: 
+      context: ./ui
+    links:
+      - service
+    ports:
+      - "3000:3000"
+  seed:
+    build:
+      context:
+        ./service/artmaster
+      dockerfile:
+        seed.Dockerfile
+    depends_on:
+      - db
