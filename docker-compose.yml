@@ -48,3 +48,13 @@ services:
         seed.Dockerfile
     links:
       - db
+  generate_data_model:
+    build:
+      context:
+        ./service/artmaster
+      dockerfile:
+        generate_data_model.Dockerfile
+    volumes:
+      - ./service/artmaster:/artmaster
+    links:
+      - db

@@ -1,45 +1,36 @@
 # coding: utf-8
-from sqlalchemy import Column, DateTime, ForeignKey, Index, Integer, String
+from sqlalchemy import Column, DateTime, ForeignKey, Index, String
+from sqlalchemy.dialects.mysql import INTEGER
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 metadata = Base.metadata
 
 
-class Image(Base):
-    __tablename__ = 'Image'
+class StageState(Base):
+    __tablename__ = 'StageState'
 
-    ImageId = Column(Integer, primary_key=True)
-    UserId = Column(Integer, nullable=False)
-    RoundId = Column(ForeignKey(u'Round.RoundId'), nullable=False, index=True)
-    Location = Column(String(255), nullable=False)
-
-    Round = relationship(u'Round')
+    StageStateId = Column(INTEGER(11), primary_key=True)
+    StageStateName = Column(String(20), nullable=False)
 
 
-class Rating(Base):
-    __tablename__ = 'Rating'
+class User(Base):
+    __tablename__ = 'User'
 
-    RatingId = Column(Integer, primary_key=True)
-    RaterUserId = Column(ForeignKey(u'User.UserId'), nullable=False, index=True)
-    ImageId = Column(ForeignKey(u'Image.ImageId'), nullable=False, index=True)
-    Rating = Column(Integer, nullable=False)
-
-    Image = relationship(u'Image')
-    User = relationship(u'User')
+    UserId = Column(INTEGER(11), primary_key=True)
+    Username = Column(String(40), nullable=False)
 
 
 class Room(Base):
     __tablename__ = 'Room'
 
-    RoomId = Column(Integer, primary_key=True)
+    RoomId = Column(INTEGER(11), primary_key=True)
     RoomCode = Column(String(4))
-    OwnerUserId = Column(ForeignKey(u'User.UserId'), nullable=False, index=True)
-    CurrentRoundId = Column(Integer)
+    OwnerUserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
+    CurrentRoundId = Column(INTEGER(11))
 
-    User = relationship(u'User')
+    User = relationship('User')
 
 
 class RoomUser(Base):
@@ -48,48 +39,57 @@ class RoomUser(Base):
         Index('RoomId', 'RoomId', 'UserId', unique=True),
     )
 
-    RoomUserId = Column(Integer, primary_key=True)
-    RoomId = Column(ForeignKey(u'Room.RoomId'), nullable=False)
-    UserId = Column(ForeignKey(u'User.UserId'), nullable=False, index=True)
+    RoomUserId = Column(INTEGER(11), primary_key=True)
+    RoomId = Column(ForeignKey('Room.RoomId'), nullable=False)
+    UserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
 
-    Room = relationship(u'Room')
-    User = relationship(u'User')
+    Room = relationship('Room')
+    User = relationship('User')
 
 
 class Round(Base):
     __tablename__ = 'Round'
 
-    RoundId = Column(Integer, primary_key=True)
-    RoomId = Column(ForeignKey(u'Room.RoomId'), nullable=False, index=True)
-    StageStateId = Column(Integer)
+    RoundId = Column(INTEGER(11), primary_key=True)
+    RoomId = Column(ForeignKey('Room.RoomId'), nullable=False, index=True)
+    StageStateId = Column(INTEGER(11))
     StageStateStartTime = Column(DateTime)
     StageStateEndTime = Column(DateTime)
-    DrawingWordId = Column(Integer, index=True)
+    DrawingWordId = Column(INTEGER(11), index=True)
 
-    Room = relationship(u'Room')
-
-
-class StageState(Base):
-    __tablename__ = 'StageState'
-
-    StageStateId = Column(Integer, primary_key=True)
-    StageStateName = Column(String(20), nullable=False)
-
-
-class User(Base):
-    __tablename__ = 'User'
-
-    UserId = Column(Integer, primary_key=True)
-    Username = Column(String(40), nullable=False)
+    Room = relationship('Room')
 
 
 class Word(Base):
     __tablename__ = 'Word'
 
-    WordId = Column(Integer, primary_key=True)
-    RoomId = Column(ForeignKey(u'Room.RoomId'), nullable=False, index=True)
-    UserId = Column(ForeignKey(u'User.UserId'), nullable=False, index=True)
+    WordId = Column(INTEGER(11), primary_key=True)
+    RoomId = Column(ForeignKey('Room.RoomId'), nullable=False, index=True)
+    UserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
     Word = Column(String(50), nullable=False)
 
-    Room = relationship(u'Room')
-    User = relationship(u'User')
+    Room = relationship('Room')
+    User = relationship('User')
+
+
+class Image(Base):
+    __tablename__ = 'Image'
+
+    ImageId = Column(INTEGER(11), primary_key=True)
+    UserId = Column(INTEGER(11), nullable=False)
+    RoundId = Column(ForeignKey('Round.RoundId'), nullable=False, index=True)
+    Location = Column(String(255), nullable=False)
+
+    Round = relationship('Round')
+
+
+class Rating(Base):
+    __tablename__ = 'Rating'
+
+    RatingId = Column(INTEGER(11), primary_key=True)
+    RaterUserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
+    ImageId = Column(ForeignKey('Image.ImageId'), nullable=False, index=True)
+    Rating = Column(INTEGER(11), nullable=False)
+
+    Image = relationship('Image')
+    User = relationship('User')

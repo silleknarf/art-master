@@ -35,8 +35,7 @@ Start the db, service and UI:
 
 To update the data model:
 
-    cd art-master/service/artmaster/artmaster/database/
-    ./generate_data_model.sh
+    docker-compose up -d --build generate_data_model
 
 To run the tests:
 
