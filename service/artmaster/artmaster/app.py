@@ -43,8 +43,8 @@ def handle_error(e):
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
+    logfile.error(str(e))
     return jsonify(error=str(e)), code
-
 
 @app.teardown_appcontext
 def shutdown_session(response):
