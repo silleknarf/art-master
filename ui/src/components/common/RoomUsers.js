@@ -13,7 +13,8 @@ class ConnectedRoomUsers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      room: { roomUsers: [] }
+      room: { roomUsers: [] },
+      user: { userId: null}
     };
   }
 
@@ -26,9 +27,9 @@ class ConnectedRoomUsers extends Component {
   }
 
   updateComponentState(newProps) {
-    if (!newProps.room || !newProps.room.roomUsers)
+    if (!newProps.room || !newProps.room.roomUsers || !newProps.user)
       return;
-    this.setState({room: newProps.room});
+    this.setState({room: newProps.room, user: newProps.user });
   }
 
   render = () => {
@@ -38,6 +39,12 @@ class ConnectedRoomUsers extends Component {
     var gridStyle = {
       width: "initial"
     };
+
+    const currentUserTextStyle = {
+      fontWeight: "bold",
+      margin: "2px"
+    };
+    
     const joinRoomUrl = window.location.hostname + 
       "/?roomCode=" + 
       this.state.room.roomCode;
@@ -53,7 +60,10 @@ class ConnectedRoomUsers extends Component {
               return (
                 <li key={roomUser.userId} className="list-group-item">
                   <FontAwesomeIcon style={iconStyle} icon={faUser} />
-                  <span style={buttonTextStyle}>{ roomUser.username }</span>
+                  { roomUser.userId === this.state.user.userId 
+                    ? <span style={currentUserTextStyle}>{ roomUser.username }</span>
+                    : <span style={buttonTextStyle}>{ roomUser.username }</span>
+                  }
                 </li>
               );
             })}
@@ -73,7 +83,7 @@ class ConnectedRoomUsers extends Component {
 }
 
 const mapStateToProps = (state, properties) => {
-  return { room: state.room };
+  return { room: state.room, user: state.user };
 }
 
 const RoomUsers = connect(mapStateToProps)(ConnectedRoomUsers);
