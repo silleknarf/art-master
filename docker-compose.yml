@@ -58,3 +58,13 @@ services:
       - ./service/artmaster:/artmaster
     links:
       - db
+  service_tests:
+    build: 
+      context: ./service/artmaster
+    links:
+      - db
+    working_dir: /artmaster
+    volumes:
+      - ./service/artmaster:/artmaster
+    command:
+      python -m unittest discover

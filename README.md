@@ -39,8 +39,7 @@ To update the data model:
 
 To run the tests:
 
-    cd art-master/service/artmaster
-    python -m unittest discover
+    docker-compose up --build service_tests 
 
 Run Storybook:
 
