@@ -28,11 +28,23 @@ services:
     volumes:
       - ./ui:/artmaster
       - /artmaster/node_modules
+  storybook: 
+    build: 
+      context: ./ui
+    links:
+      - service
+    ports:
+      - "9009:9009"
+    volumes:
+      - ./ui:/artmaster
+      - /artmaster/node_modules
+    command:
+      yarn run storybook
   seed:
     build:
       context:
         ./service/artmaster
       dockerfile:
         seed.Dockerfile
-    depends_on:
+    links:
       - db

@@ -23,27 +23,14 @@ Get the code:
 
 ## Backend
 
-Turn off tracking of the user_config.py file:
+Seed the `art-master` database:
 
-    git update-index --assume-unchanged art-master/service/src/user_config.py
+    docker-compose up -d --build seed
 
-Populate the file below with your MySQL credentials:
+Start the db, service and UI:
 
-    art-master/service/artmaster/artmaster/user_config.py
-
-Set up the `art-master` database using the script at:
-
-    cd art-master/service/artmaster/artmaster/database
-    ./create_database.py --dev
-
-Build the service docker image
-
-    cd artmaster/service
-    docker build -t artmaster-service .
-
-Run the service docker:
-    
-    docker run it -p 5001:5001 artmaster-service
+    docker-compose up -d --build ui
+    Open browser with url: http://localhost:3000
 
 To update the data model:
 
@@ -55,22 +42,7 @@ To run the tests:
     cd art-master/service/artmaster
     python -m unittest discover
 
-## Frontend
-
-Install the dependencies:
-
-- npm
-- yarn
-
-Build:
-
-    cd art-master/ui/
-    yarn
-
-Run:
-
-    yarn start
-
 Run Storybook:
 
-    yarn run storybook
+    docker-compose up -d --build storybook
+    Open browser with url: http://localhost:9009

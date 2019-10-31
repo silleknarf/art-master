@@ -12,6 +12,4 @@ WORKDIR /artmaster/artmaster/database
 
 RUN chmod +x wait-for-it.sh
 
-ENTRYPOINT [ "/bin/bash", "-c" ]
-
-CMD ./wait-for-it.sh db:3306 --strict --timeout=300 -- python create-database.py --dev
+CMD ./wait-for-it.sh db:3306 --strict --timeout=300 -- python create_database.py --dev
