@@ -26,7 +26,7 @@ def poll_or_create_room():
     return jsonify({
         "roomId": room.RoomId,
         "roomCode": room.RoomCode,
-        "roomOwnerId": room.OwnerUserId,
+        "ownerUserId": room.OwnerUserId,
         "currentRoundId": room.CurrentRoundId,
         "roomUsers": [{"username": r.Username, "userId": r.UserId } for r in room.RoomUsers]
     })

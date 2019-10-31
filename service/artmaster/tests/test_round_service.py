@@ -5,7 +5,7 @@ import mock
 import json
 import app
 from services import round_service
-from test_utils import *
+from .test_utils import *
 
 class TestRoundService(unittest.TestCase):
     round = {

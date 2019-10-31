@@ -29,7 +29,7 @@ def get_ratings():
 
     winning_image_ids = []
     winning_rating = 0
-    for image_id, rating in results.iteritems():
+    for image_id, rating in results.items():
         if rating == winning_rating:
             winning_image_ids.append(image_id)
         elif rating >= winning_rating:

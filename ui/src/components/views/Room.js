@@ -107,7 +107,7 @@ class ConnectedRoom extends Component {
 
     const isRoomOwner = this.state.user &&
       this.state.room &&
-      this.state.user.userId == this.state.room.roomOwnerId;
+      this.state.user.userId == this.state.room.ownerUserId;
     return (
       <div className="room">
         <div style={centerTitleContentStyle}> 

@@ -4,7 +4,7 @@ import unittest
 import mock
 import json
 from services.round_state_machine import RoundStateMachine, RoundState
-from test_utils import *
+from .test_utils import *
 from datetime import datetime
 from callee import Matching
 
@@ -17,7 +17,7 @@ class TestRoundStateMachine(unittest.TestCase):
         "StageStateEndTime": None,
         "DrawingWordId": 1
     })
-    start_time = datetime(2018, 05, 1, 12, 0, 0)
+    start_time = datetime(2018, 5, 1, 12, 0, 0)
 
     def setup_round_state_machine(self, stage_state_id, round_repository, mock_datetime):
         self.round_entity.StageStateId = stage_state_id

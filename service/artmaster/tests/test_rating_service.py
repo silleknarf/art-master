@@ -6,7 +6,8 @@ import mock
 import json
 import app
 from services import rating_service
-from test_utils import *
+from .test_utils import *
+from operator import eq
 
 class TestRatingService(unittest.TestCase):
     rating1 = Struct(**{
@@ -87,7 +88,7 @@ class TestRatingService(unittest.TestCase):
         actual_rating = json.loads(rating_response)
         self.assertEqual(len(actual_rating), len(expected_results))
         for i, expected_result in enumerate(expected_results):
-            self.assertTrue(cmp(actual_rating[i], expected_result) == 0)
+            self.assertTrue(eq(actual_rating[i], expected_result))
 
     @mock.patch("services.rating_service.RoundStateMachine")
     @mock.patch("services.rating_service.image_repository")
