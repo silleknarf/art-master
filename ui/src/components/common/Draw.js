@@ -26,7 +26,7 @@ class Draw extends Component {
           "Accept": "application/json",
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({"drawingBase64": drawingDataUrl})
+        body: JSON.stringify({"imageBase64": drawingDataUrl})
       });
 
     if (drawingRes.status === 200) {

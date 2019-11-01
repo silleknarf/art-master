@@ -36,7 +36,7 @@ class Review extends Component {
           {this.state.winningImages.map((winningImage) => {
             return (<div key={ winningImage.winnerId }>
                 <Row style={centerRowContentStyle}>
-                  <img src={ "/data/" + winningImage.winningImageLocation }></img>
+                  <img src={ winningImage.winningImageBase64 }></img>
                 </Row>
                 <Row style={centerRowContentStyle}>
                   <FontAwesomeIcon style={iconStyle} icon={faUser} />

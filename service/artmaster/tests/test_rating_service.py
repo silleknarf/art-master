@@ -22,24 +22,24 @@ class TestRatingService(unittest.TestCase):
         "RoundId": 1,
         "ImageId": 1,
         "UserId": 1,
-        "Location": "1.png"
+        "ImageBase64": "1.png"
     })
     image2 = Struct(**{
         "RoundId": 1,
         "ImageId": 2,
         "UserId": 2,
-        "Location": "2.png"
+        "ImageBase64": "2.png"
     })
     expected_result1 =  {
         'roundId': 1, 
         'winnerUsername': '1', 
-        'winningImageLocation': '1.png',
+        'winningImageBase64': '1.png',
         'winnerId': 1
     }
     expected_result2 =  {
         'roundId': 1, 
         'winnerUsername': '2', 
-        'winningImageLocation': '2.png',
+        'winningImageBase64': '2.png',
         'winnerId': 2
     }
 

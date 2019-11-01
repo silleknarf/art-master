@@ -9,8 +9,8 @@ storiesOf('Review', module)
   .add('with images', () => {
     FetchMock.restore()
     const ratings = [
-      { winnerId: 1, winningImageLocation: '1/1.png', winnerUsername: "User1"}, 
-      { winnerId: 2, winningImageLocation: '1/1.png', winnerUsername: "User2"}
+      { winnerId: 1, winningImageBase64: '1/1.png', winnerUsername: "User1"}, 
+      { winnerId: 2, winningImageBase64: '1/1.png', winnerUsername: "User2"}
     ];
     FetchMock.get('glob:*ratings?*', ratings);
     return <Review roundId="97" />;

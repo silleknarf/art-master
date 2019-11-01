@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, DateTime, ForeignKey, Index, String
+from sqlalchemy import Column, DateTime, ForeignKey, Index, String, Text
 from sqlalchemy.dialects.mysql import INTEGER
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -78,7 +78,7 @@ class Image(Base):
     ImageId = Column(INTEGER(11), primary_key=True)
     UserId = Column(INTEGER(11), nullable=False)
     RoundId = Column(ForeignKey('Round.RoundId'), nullable=False, index=True)
-    Location = Column(String(255), nullable=False)
+    ImageBase64 = Column(Text, nullable=False)
 
     Round = relationship('Round')
 

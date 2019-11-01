@@ -48,7 +48,7 @@ def get_ratings():
             "roundId": round_id,
             "winnerId": winning_user.UserId,
             "winnerUsername": winning_user.Username,
-            "winningImageLocation": winning_image.Location,
+            "winningImageBase64": winning_image.ImageBase64,
         }
         results.append(result)
 

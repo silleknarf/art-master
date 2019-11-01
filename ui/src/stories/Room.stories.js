@@ -50,12 +50,12 @@ const setupRoom = (currentRoundId, currentStageId) => {
   FetchMock.get('glob:*word?*', { wordId: 1, word: "bacon"});
 
   const ratings = [
-    { winnerId: 1, winningImageLocation: '1/1.png', winnerUsername: "User1"}, 
-    { winnerId: 2, winningImageLocation: '1/1.png', winnerUsername: "User2"}
+    { winnerId: 1, winningImageBase64: '1/1.png', winnerUsername: "User1"}, 
+    { winnerId: 2, winningImageBase64: '1/1.png', winnerUsername: "User2"}
   ];
   FetchMock.get('glob:*ratings?*', ratings);
 
-  FetchMock.get('glob:*images?*', [{ imageId: 1, location: '1/1.png'}, {imageId: 2, location: '1/1.png'}]);
+  FetchMock.get('glob:*images?*', [{ imageId: 1, imageBase64: '1/1.png'}, {imageId: 2, imageBase64: '1/1.png'}]);
   FetchMock.post('glob:*rating?*', "test");
 }
 

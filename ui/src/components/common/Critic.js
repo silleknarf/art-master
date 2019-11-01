@@ -56,7 +56,7 @@ class Critic extends Component {
               return (
                 <div key={ image.imageId }>
                   <Row style={centerRowContentStyle}>
-                    <img src={ "/data/" + image.location } />
+                    <img src={ image.imageBase64 } />
                   </Row>
                   <Row style={centerRowContentStyle}>
                     <Button 

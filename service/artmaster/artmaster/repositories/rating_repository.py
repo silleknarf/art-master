@@ -1,4 +1,4 @@
-import repositories.room_user_repository
+from repositories import room_user_repository
 from database.database import session
 from database.data_model import Round, Image, Rating
 
