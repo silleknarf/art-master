@@ -97,7 +97,7 @@ class ConnectedRoom extends Component {
     }
     const areNotEnoughUsers = this.state.room && 
       this.state.room.roomUsers &&
-      this.state.room.roomUsers.length <= 3;
+      this.state.room.roomUsers.length < 3;
     const notEnoughUsersText = "Add at least three players before starting the round";
     const notEnoughUsersAlert = this.createAlert(areNotEnoughUsers, notEnoughUsersText);
     

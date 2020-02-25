@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Grid, Col, Row, Button } from "react-bootstrap"; 
+import { Grid, Row, Button } from "react-bootstrap"; 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
+import faPalette from '@fortawesome/fontawesome-free-solid/faPalette'
 import faCheck from '@fortawesome/fontawesome-free-solid/faCheck'
 import Config from "../../constant/Config";
-import { iconStyle, buttonTextStyle, centerRowContentStyle } from "../../constant/Styles"
+import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
 import $ from "jquery";
 
 class Critic extends Component {
@@ -53,18 +54,29 @@ class Critic extends Component {
         <Grid>
           <Row>
             {this.state.images.map((image) => {
+              const yourImageTextContentStyle = {
+                ...centerTitleContentStyle,
+                margin: 0
+              };
+              const maybeButton = image.userId !== this.props.userId 
+                ? <Button 
+                    className="button" 
+                    onClick={e => this.onClickRateImage(image.imageId)}> 
+                    <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
+                    <span style={buttonTextStyle}>Vote</span>
+                  </Button>
+                : <div style={yourImageTextContentStyle}>
+                    <FontAwesomeIcon style={iconStyle} icon={faPalette} />
+                    <span style={buttonTextStyle}>This is your image - aren't you proud.</span>
+                  </div>;
+
               return (
                 <div key={ image.imageId }>
                   <Row style={centerRowContentStyle}>
                     <img src={ image.imageBase64 } />
                   </Row>
                   <Row style={centerRowContentStyle}>
-                    <Button 
-                      className="button" 
-                      onClick={e => this.onClickRateImage(image.imageId)}> 
-                      <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
-                      <span style={buttonTextStyle}>Vote</span>
-                    </Button>
+                    { maybeButton }
                   </Row>
                 </div>);
             })}

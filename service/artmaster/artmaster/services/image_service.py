@@ -35,6 +35,6 @@ def get_drawings():
     round_id = int(request.args.get("roundId"))
 
     round_images = image_repository.get_round_images(round_id)
-    images = [{ "imageId": ri.ImageId, "imageBase64": ri.ImageBase64 } 
+    images = [{ "imageId": ri.ImageId, "imageBase64": ri.ImageBase64, "userId": ri.UserId } 
                 for ri in round_images]
     return jsonify(images)
