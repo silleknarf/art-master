@@ -28,7 +28,7 @@ def poll_or_create_room():
         "roomCode": room.RoomCode,
         "ownerUserId": room.OwnerUserId,
         "currentRoundId": room.CurrentRoundId,
-        "roomUsers": [{"username": r.Username, "userId": r.UserId } for r in room.RoomUsers]
+        "roomUsers": [{"username": r.Username, "userId": r.UserId, "score": r.Score } for r in room.RoomUsers]
     })
 
 @room_service.route("/room/<int:room_id>/user/<int:user_id>", methods=["POST"])
@@ -39,7 +39,7 @@ def add_user_to_room(room_id, user_id):
 @room_service.route("/room/<int:room_id>/users", methods=["GET"])
 def get_users_in_room(room_id):
     room_user_entities = room_user_repository.get_users_in_room(room_id)
-    room_users = [{"userId": u.UserId, "username": u.Username }
+    room_users = [{"userId": u.UserId, "username": u.Username, "score": u.Score }
                   for u in room_user_entities]
     return jsonify(room_users)
 

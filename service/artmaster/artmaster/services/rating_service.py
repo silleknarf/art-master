@@ -11,48 +11,8 @@ rating_service = Blueprint('rating_service', __name__)
 @rating_service.route("/ratings", methods=["GET"])
 def get_ratings():
     round_id = int(request.args.get("roundId"))
-    round_ratings = rating_repository.get_ratings(round_id)
-
-    if len(round_ratings) == 0:
-        return jsonify([])
-
-    ratings = [rr[0] for rr in round_ratings]
-    images = [rr[1] for rr in round_ratings]
-
-    results = {}
-    for rr in ratings:
-        if rr.Rating != 0:
-            if rr.ImageId in results:
-                results[rr.ImageId] += 1
-            else:
-                results[rr.ImageId] = 1
-
-    winning_image_ids = []
-    winning_rating = 0
-    for image_id, rating in results.items():
-        if rating == winning_rating:
-            winning_image_ids.append(image_id)
-        elif rating >= winning_rating:
-            winning_image_ids = [image_id]
-            winning_rating = rating
-
-    winning_images = []
-    for winning_image_id in winning_image_ids:
-        winning_image = [i for i in images if i.ImageId == winning_image_id][0]
-        winning_images.append(winning_image)
-
-    results = []
-    for winning_image in winning_images:
-        winning_user = user_repository.get_user(winning_image.UserId)
-        result = { 
-            "roundId": round_id,
-            "winnerId": winning_user.UserId,
-            "winnerUsername": winning_user.Username,
-            "winningImageBase64": winning_image.ImageBase64,
-        }
-        results.append(result)
-
-    return jsonify(results)
+    ratings = rating_repository.get_round_rating_results(round_id)
+    return jsonify(ratings)
 
 # provide the rating
 @rating_service.route("/rating", methods=["POST"])

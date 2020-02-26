@@ -29,6 +29,7 @@ class RoundStateMachine:
 
     def _to_done(self):
         stage_state_id = RoundState.DONE
+        rating_repository.update_score_for_highest_rating(self.round_entity.RoundId)
         duration = 0
         word_id_to_remove = self.round_entity.DrawingWordId
         self.round_entity.DrawingWordId = None

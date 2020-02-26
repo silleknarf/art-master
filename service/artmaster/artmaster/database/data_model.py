@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, DateTime, ForeignKey, Index, String, Text
+from sqlalchemy import Column, DateTime, ForeignKey, Index, String, Text, text
 from sqlalchemy.dialects.mysql import INTEGER
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -20,6 +20,7 @@ class User(Base):
 
     UserId = Column(INTEGER(11), primary_key=True)
     Username = Column(String(40), nullable=False)
+    Score = Column(INTEGER(11), server_default=text("'0'"))
 
 
 class Room(Base):

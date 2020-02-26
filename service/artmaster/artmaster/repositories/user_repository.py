@@ -27,3 +27,19 @@ def create_user(username):
     session.add(new_user)
     session.commit()
     return new_user
+
+def increase_user_score(userId, score):
+    existing_user = (session
+        .query(User)
+        .filter(User.UserId==userId)
+        .first())
+
+    if existing_user is None:
+        error_text = "User: %s doesn't exist" % userId
+        raise InvalidUsage(error_text)
+
+    existing_user.Score += score
+    session.commit()
+
+    return existing_user
+

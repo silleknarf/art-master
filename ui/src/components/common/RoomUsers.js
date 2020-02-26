@@ -61,8 +61,8 @@ class ConnectedRoomUsers extends Component {
                 <li key={roomUser.userId} className="list-group-item">
                   <FontAwesomeIcon style={iconStyle} icon={faUser} />
                   { roomUser.userId === this.state.user.userId 
-                    ? <span style={currentUserTextStyle}>{ roomUser.username }</span>
-                    : <span style={buttonTextStyle}>{ roomUser.username }</span>
+                    ? <span style={currentUserTextStyle}>{ roomUser.username } (Score: { roomUser.score })</span>
+                    : <span style={buttonTextStyle}>{ roomUser.username } (Score: { roomUser.score })</span>
                   }
                 </li>
               );
