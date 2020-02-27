@@ -35,6 +35,7 @@ class TestRoomService(unittest.TestCase):
     def test_add_user_to_room(self):
         room_user_repository.session = self.session
         room_user_repository.session.add(User(UserId=1, Username="Test"))
+        room_user_repository.session.add(Minigame(MinigameId=1))
         room_user_repository.session.add(Room(RoomId=1, OwnerUserId=1, MinigameId=1))
         room_user_repository.session.commit()
         room_id = 1
