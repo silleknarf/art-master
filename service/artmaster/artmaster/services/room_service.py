@@ -36,6 +36,11 @@ def add_user_to_room(room_id, user_id):
     room_user_repository.add_user_to_room(room_id, user_id)
     return ""
 
+@room_service.route("/room/<int:room_id>/minigame/<int:minigame_id>", methods=["POST"])
+def set_minigame(room_id, minigame_id):
+    room_repository.set_minigame(room_id, minigame_id)
+    return ""
+
 @room_service.route("/room/<int:room_id>/users", methods=["GET"])
 def get_users_in_room(room_id):
     room_user_entities = room_user_repository.get_users_in_room(room_id)

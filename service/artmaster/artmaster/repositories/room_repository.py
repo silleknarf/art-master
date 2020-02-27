@@ -41,3 +41,10 @@ def get_room(room_id, room_code):
         .all())
     room.RoomUsers = room_users
     return room
+
+def set_minigame(room_id, minigame_id):
+    room = (session.query(Room)
+        .filter(Room.RoomId==room_id)
+        .first())
+    room.MinigameId = minigame_id
+    session.commit()
