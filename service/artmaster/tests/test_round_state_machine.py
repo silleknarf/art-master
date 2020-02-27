@@ -92,7 +92,8 @@ class TestRoundStateMachine(unittest.TestCase):
     @mock.patch("services.round_state_machine.datetime")
     @mock.patch("services.round_state_machine.word_repository")
     @mock.patch("services.round_state_machine.round_repository")
-    def test_transition_to_done(self, round_repository, word_repository, mock_datetime):
+    @mock.patch("services.round_state_machine.rating_repository")
+    def test_transition_to_done(self, rating_repository, round_repository, word_repository, mock_datetime):
         word_to_remove = self.round_entity.DrawingWordId
         self.transition_helper(
             round_repository, 
