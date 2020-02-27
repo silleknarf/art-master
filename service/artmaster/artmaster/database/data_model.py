@@ -8,10 +8,10 @@ Base = declarative_base()
 metadata = Base.metadata
 
 
-class MiniGame(Base):
-    __tablename__ = 'MiniGame'
+class Minigame(Base):
+    __tablename__ = 'Minigame'
 
-    MiniGameId = Column(INTEGER(11), primary_key=True)
+    MinigameId = Column(INTEGER(11), primary_key=True)
     Name = Column(String(40), nullable=False)
 
 
@@ -37,9 +37,9 @@ class Room(Base):
     RoomCode = Column(String(4))
     OwnerUserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
     CurrentRoundId = Column(INTEGER(11))
-    MiniGameId = Column(ForeignKey('MiniGame.MiniGameId'), nullable=False, index=True, server_default=text("'1'"))
+    MinigameId = Column(ForeignKey('Minigame.MinigameId'), nullable=False, index=True, server_default=text("'1'"))
 
-    MiniGame = relationship('MiniGame')
+    Minigame = relationship('Minigame')
     User = relationship('User')
 
 
