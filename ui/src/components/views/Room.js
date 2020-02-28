@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button, Tabs, Tab, Alert } from 'react-bootstrap'; 
+import { Grid, Row, Button, Tabs, Tab, Alert, MenuItem, DropdownButton } from 'react-bootstrap'; 
 import { connect } from "react-redux";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faExclamationTriangle from '@fortawesome/fontawesome-free-solid/faExclamationTriangle'
@@ -23,6 +23,7 @@ class ConnectedRoom extends Component {
     this.state = {
       room: { currentRoundId: null },
       round: { stageStateId: null },
+      minigames: [],
       previousRoundId: null,
       currentTabIndex: 1
     }
@@ -34,6 +35,15 @@ class ConnectedRoom extends Component {
       { method: "POST" });
     if (startRoundRes.status === 200) {
       console.log(`Starting round for room: ${this.state.room.roomId} on behalf of user: ${this.state.user.userId}`);
+    }
+  }
+
+  onClickChangeMinigame = async (minigameId) => {
+    var startRoundRes = await fetch(
+      `${Config.apiurl}/room/${this.state.room.roomId}/minigame/${minigameId}`, 
+      { method: "POST" });
+    if (startRoundRes.status === 200) {
+      console.log(`Changed minigame for room: ${this.state.room.roomId} to: ${minigameId}`);
     }
   }
 
@@ -51,7 +61,8 @@ class ConnectedRoom extends Component {
       room: { ...props.room }, 
       user: { ...props.user }, 
       round: { ...props.round },
-      words: { ...props.words },
+      words: [ ...props.words ],
+      minigames: [ ...props.minigames ]
     });
 
     var previousRoundId = this.state.previousRoundId;
@@ -108,10 +119,27 @@ class ConnectedRoom extends Component {
     const isRoomOwner = this.state.user &&
       this.state.room &&
       this.state.user.userId == this.state.room.ownerUserId;
+    const dropdownItems = this.state.minigames
+      .map((minigame) => {
+        return <MenuItem as="button" 
+                         key={minigame.minigameId}
+                         onClick={e => this.onClickChangeMinigame(minigame.minigameId)}>
+                { minigame.name }
+               </MenuItem>;
+      })
+    const minigameName = this.state.minigames
+      .filter((minigame) => minigame.minigameId === this.state.room.minigameId)
+      .map((minigame) => minigame.name)[0];
+
     return (
       <div className="room">
         <div style={centerTitleContentStyle}> 
           <span style={titleStyle}>Art Master</span>
+        </div>
+        <div style={centerTitleContentStyle}> 
+          <DropdownButton id="dropdown-item-button" title={minigameName}>
+            { dropdownItems }
+          </DropdownButton>
         </div>
         <Tabs 
           id="room-tabs"
@@ -166,7 +194,7 @@ class ConnectedRoom extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { room: state.room, user: state.user, round: state.round, words: state.words };
+  return { room: state.room, user: state.user, round: state.round, words: state.words, minigames: state.minigames };
 }
 
 const Room = connect(mapStateToProps)(ConnectedRoom);

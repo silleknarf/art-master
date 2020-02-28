@@ -55,8 +55,8 @@ class DatabaseBuilder():
             autocommit=False,
             autoflush=False,
             bind=engine))
-        session.add(MiniGame(MiniGameId=1, Name="Art Master"))
-        session.add(MiniGame(MiniGameId=2, Name="Sentenced To Death"))
+        session.add(Minigame(MinigameId=1, Name="Art Master"))
+        session.add(Minigame(MinigameId=2, Name="Sentenced To Death"))
         session.commit()
 
     def _drop_database(self):

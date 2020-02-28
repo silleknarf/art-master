@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Grid, Col, Row } from 'react-bootstrap'; 
+import { Row } from 'react-bootstrap'; 
 import Config from '../../constant/Config';
 import store from "../../redux/Store";
-import { updateRoomState, updateRoundState, updateWordsState } from "../../redux/Actions";
+import { updateRoomState, updateRoundState, updateWordsState, updateMinigamesState } from "../../redux/Actions";
 
 window.store = store;
 
@@ -17,7 +17,8 @@ class ConnectedState extends Component {
         currentRoundId: null
       },
       round: null,
-      words: []
+      words: [],
+      minigames: []
     };
   }
 
@@ -54,10 +55,19 @@ class ConnectedState extends Component {
     }
   }
 
+  loadMinigames = async () => {
+    const minigamesRes = await fetch(`${Config.apiurl}/minigames`)
+    if (minigamesRes.status === 200) {
+        const minigamesState = await minigamesRes.json();
+        store.dispatch(updateMinigamesState(minigamesState));
+    }
+  }
+
   componentDidMount = () => {
     this.roomInterval = setInterval(this.roomTick, 1000);
     this.roundInterval = setInterval(this.roundTick, 1000);
     this.wordsInterval = setInterval(this.wordsTick, 1000);
+    this.loadMinigames();
   }
 
   componentWillMount = () => {
@@ -76,7 +86,7 @@ class ConnectedState extends Component {
 
   prepareComponentState = (props) => {
     // Map the props to the state
-    this.setState({room: props.room, round: props.round, words: props.words })
+    this.setState({room: props.room, round: props.round, words: props.words, minigames: props.minigames })
   }
 
   render = () => {
@@ -92,6 +102,9 @@ class ConnectedState extends Component {
         <Row>
           <div>WordsState: { JSON.stringify(this.state.words) } </div>
         </Row>
+        <Row>
+          <div>MinigamesState: { JSON.stringify(this.state.minigames) } </div>
+        </Row>
       </div>
     );
   }
@@ -99,7 +112,7 @@ class ConnectedState extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { room: state.room, round: state.round, words: state.words };
+  return { room: state.room, round: state.round, words: state.words, minigames: state.minigames };
 }
 
 const State = connect(mapStateToProps)(ConnectedState);

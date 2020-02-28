@@ -28,6 +28,7 @@ def poll_or_create_room():
         "roomCode": room.RoomCode,
         "ownerUserId": room.OwnerUserId,
         "currentRoundId": room.CurrentRoundId,
+        "minigameId": room.MinigameId,
         "roomUsers": [{"username": r.Username, "userId": r.UserId, "score": r.Score } for r in room.RoomUsers]
     })
 
