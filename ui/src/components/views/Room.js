@@ -129,7 +129,7 @@ class ConnectedRoom extends Component {
       })
     const minigameName = this.state.minigames
       .filter((minigame) => minigame.minigameId === this.state.room.minigameId)
-      .map((minigame) => minigame.name)[0];
+      .map((minigame) => minigame.name)[0] || "";
 
     return (
       <div className="room">
