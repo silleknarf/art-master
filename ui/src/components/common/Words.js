@@ -100,7 +100,7 @@ class ConnectedWords extends Component {
         </Row>
       : <Row style={centerTitleContentStyle}>
           <FontAwesomeIcon style={iconStyle} icon={faQuoteLeft} />
-          <span style={buttonTextStyle}>Phrases 2:</span>
+          <span style={buttonTextStyle}>Phrases:</span>
           <div style={subtitleTextStyle}>Add a phrase with words to fill in represented by underscores.</div>
           <div style={subtitleTextStyle}>For example: "The _ fox jumped over the _."</div>
         </Row>;
