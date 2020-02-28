@@ -11,7 +11,7 @@ import "../../public/css/literallycanvas.css";
 import * as FetchMock from "fetch-mock";
 
 import store from "../redux/Store";
-import { updateRoomState, updateRoundState, updateWordsState, updateMinigamesState } from "../redux/Actions";
+import { updateRoomState, updateRoundState, updateWordsState, updateMinigamesState, updateUserState } from "../redux/Actions";
 
 const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => {
   FetchMock.restore()
@@ -28,6 +28,11 @@ const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => 
   store.dispatch(updateRoomState(room));
   FetchMock.get('glob:*room?*', room);
 
+  const user = {
+    userId: 1
+  };
+  store.dispatch(updateUserState(user));
+
   const round = { 
     stageStateId: currentStageId,
     timeRemaining: 30,
@@ -39,10 +44,12 @@ const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => 
   const words = [
     {
       wordId: 1,
+      userId: 1,
       word: "test"
     },
     {
       wordId: 2,
+      userId: 2,
       word: "test2"
     }
   ];

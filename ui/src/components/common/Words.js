@@ -4,6 +4,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus'
 import faTrash from '@fortawesome/fontawesome-free-solid/faTrash'
 import faFileWord from '@fortawesome/fontawesome-free-solid/faFileWord'
+import faQuoteLeft from '@fortawesome/fontawesome-free-solid/faQuoteLeft'
 import { connect } from "react-redux";
 import Config from '../../constant/Config';
 import $ from "jquery";
@@ -86,15 +87,33 @@ class ConnectedWords extends Component {
     var gridStyle = {
       width: "initial"
     };
-    return (
-      <Grid style={gridStyle}>
-        <Row style={centerTitleContentStyle}>
+    const subtitleTextStyle = {
+      ...buttonTextStyle,
+      fontSize: "small",
+      fontStyle: "italic"
+    }
+
+    const titleRow = this.state.room.minigameId === 1
+      ? <Row style={centerTitleContentStyle}>
           <FontAwesomeIcon style={iconStyle} icon={faFileWord} />
           <span style={buttonTextStyle}>Words:</span>
         </Row>
+      : <Row style={centerTitleContentStyle}>
+          <FontAwesomeIcon style={iconStyle} icon={faQuoteLeft} />
+          <span style={buttonTextStyle}>Phrases 2:</span>
+          <div style={subtitleTextStyle}>Add a phrase with words to fill in represented by underscores.</div>
+          <div style={subtitleTextStyle}>For example: "The _ fox jumped over the _."</div>
+        </Row>;
+      
+    const ownWords = this.state.room.minigameId === 2;
+    const maybeOwnWords = (word) => !ownWords || word.userId === this.state.user.userId;
+
+    return (
+      <Grid style={gridStyle}>
+        { titleRow }
         <Row style={centerRowContentStyle}>
           <ul className="list-group" style={ulStyle}>
-            { this.state.words.map((word) => {
+            { this.state.words.filter(maybeOwnWords).map((word) => {
               return (
                 <li key={word.wordId} className="list-group-item">
                   <span style={wordStyle}>{ word.word }</span>
