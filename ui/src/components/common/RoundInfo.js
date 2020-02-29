@@ -25,6 +25,7 @@ class ConnectedRoundInfo extends Component {
       return;
     const roundStateDescriptions = [
       "Drawing", 
+      "Fill in the blanks",
       "Critiquing", 
       "Reviewing", 
       "Done"

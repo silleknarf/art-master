@@ -74,7 +74,6 @@ class RoundStateMachine:
 
     def maybe_next_stage(self):
         time_remaining = self.get_time_remaining()
-        logfile.info(time_remaining)
         if time_remaining <= 0:
             self.next_stage()
 
@@ -90,6 +89,7 @@ class RoundStateMachine:
         minigame_id = room_repository.get_room(self.round_entity.RoomId, None).MinigameId 
         transitions = transition_repository.get_transitions(minigame_id)
 
+        logfile.info("Minigame: %s in state: %s" % (minigame_id, stage_state_id))
         transition = [t for t in transitions if t.StateFrom == stage_state_id][0]
 
         logfile.info("Minigame: %s transitioning from %s to %s" % (minigame_id, transition.StateFrom, transition.StateTo))

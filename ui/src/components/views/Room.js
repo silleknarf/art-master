@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faExclamationTriangle from '@fortawesome/fontawesome-free-solid/faExclamationTriangle'
 import Draw from '../common/Draw';
+import FillingInBlanks from '../common/FillingInBlanks';
 import State from '../common/State';
 import RoundInfo from '../common/RoundInfo';
 import Critic from '../common/Critic';
@@ -12,7 +13,7 @@ import Words from '../common/Words';
 import DrawingWord from '../common/DrawingWord';
 import RoomUsers from '../common/RoomUsers';
 import Config from '../../constant/Config';
-import { DRAWING, CRITIQUING, REVIEWING } from '../../constant/StageStateIds';
+import { DRAWING, CRITIQUING, REVIEWING, FILLING_IN_BLANKS } from '../../constant/StageStateIds';
 import './Room.css';
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
 
@@ -173,10 +174,15 @@ class ConnectedRoom extends Component {
             <Grid>
               <div>
                 <RoundInfo />
-                <DrawingWord wordId={this.state.round.drawingWordId} />
               </div>
               { this.state.round.stageStateId === DRAWING && (
-                <Draw roundId={ this.state.round.roundId } userId={ this.state.user.userId } />
+                <div>
+                  <DrawingWord wordId={this.state.round.drawingWordId} />
+                  <Draw roundId={ this.state.round.roundId } userId={ this.state.user.userId } />
+                </div>
+              )}
+              { this.state.round.stageStateId === FILLING_IN_BLANKS && (
+                <FillingInBlanks roundId={ this.state.round.roundId } userId={ this.state.user.userId } />
               )}
               { this.state.round.stageStateId === CRITIQUING && (
                 <Critic roundId={ this.state.round.roundId } userId={ this.state.user.userId } />

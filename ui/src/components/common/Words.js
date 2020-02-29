@@ -93,7 +93,7 @@ class ConnectedWords extends Component {
       fontStyle: "italic"
     }
 
-    const titleRow = this.state.room.minigameId === 1
+    const titleRow =(this.state.room && this.state.room.minigameId === 1)
       ? <Row style={centerTitleContentStyle}>
           <FontAwesomeIcon style={iconStyle} icon={faFileWord} />
           <span style={buttonTextStyle}>Words:</span>
@@ -105,7 +105,7 @@ class ConnectedWords extends Component {
           <div style={subtitleTextStyle}>For example: "The _ fox jumped over the _."</div>
         </Row>;
       
-    const ownWords = this.state.room.minigameId === 2;
+    const ownWords = this.state.room && this.state.room.minigameId === 2;
     const maybeOwnWords = (word) => !ownWords || word.userId === this.state.user.userId;
 
     return (
