@@ -1,6 +1,9 @@
 from repositories import round_repository, word_repository, image_repository
 from repositories import rating_repository, transition_repository, room_repository
 from datetime import datetime, timedelta
+import logging
+
+logfile = logging.getLogger('file')
 
 class RoundState:
     DRAWING = 0
@@ -22,6 +25,7 @@ class RoundStateMachine:
     def _to_filling_in_blanks(self):
         stage_state_id = RoundState.FILLING_IN_BLANKS
         duration = 45
+        round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
         self._update_round(stage_state_id, duration)
 
     def _to_critiquing(self):
@@ -70,6 +74,7 @@ class RoundStateMachine:
 
     def maybe_next_stage(self):
         time_remaining = self.get_time_remaining()
+        logfile.info(time_remaining)
         if time_remaining <= 0:
             self.next_stage()
 
@@ -87,6 +92,7 @@ class RoundStateMachine:
 
         transition = [t for t in transitions if t.StateFrom == stage_state_id][0]
 
+        logfile.info("Minigame: %s transitioning from %s to %s" % (minigame_id, transition.StateFrom, transition.StateTo))
         if transition.StateTo == RoundState.DRAWING:
             self._to_drawing()
         elif transition.StateTo == RoundState.FILLING_IN_BLANKS:
