@@ -2,6 +2,7 @@
 
 import sys
 import logging
+import traceback
 from flask import Flask, jsonify
 from flask_cors import CORS
 from database.database import session
@@ -46,6 +47,7 @@ def handle_error(e):
     if isinstance(e, HTTPException):
         code = e.code
     logfile.error(str(e))
+    logfile.error(traceback.format_exc())
     return jsonify(error=str(e)), code
 
 @app.teardown_appcontext
