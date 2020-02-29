@@ -1,11 +1,13 @@
-from repositories import round_repository, word_repository, image_repository, rating_repository
+from repositories import round_repository, word_repository, image_repository
+from repositories import rating_repository, transition_repository, room_repository
 from datetime import datetime, timedelta
 
 class RoundState:
     DRAWING = 0
-    CRITIQUING = 1
-    REVIEWING = 2
-    DONE = 3 
+    FILLING_IN_BLANKS = 1
+    CRITIQUING = 2
+    REVIEWING = 3
+    DONE = 4 
 
 class RoundStateMachine:
     def __init__(self, round_entity):
@@ -15,6 +17,11 @@ class RoundStateMachine:
         stage_state_id = RoundState.DRAWING      
         duration = 45
         round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
+        self._update_round(stage_state_id, duration)
+
+    def _to_filling_in_blanks(self):
+        stage_state_id = RoundState.FILLING_IN_BLANKS
+        duration = 45
         self._update_round(stage_state_id, duration)
 
     def _to_critiquing(self):
@@ -75,12 +82,19 @@ class RoundStateMachine:
 
     def next_stage(self):
         stage_state_id = self.round_entity.StageStateId
-        if stage_state_id is None:
+        minigame_id = room_repository.get_room(self.round_entity.RoomId).MinigameId 
+        transitions = transition_repository.get_transitions(minigame_id)
+
+        transition = [t for t in transitions if t.StateFrom == stage_state_id][0]
+
+        if transition.StateTo == RoundState.DRAWING:
             self._to_drawing()
-        elif stage_state_id == RoundState.DRAWING:
+        elif transition.StateTo == RoundState.FILLING_IN_BLANKS:
+            self._to_filling_in_blanks()
+        elif transition.StateTo == RoundState.CRITIQUING:
             self._to_critiquing()
-        elif stage_state_id == RoundState.CRITIQUING:
+        elif transition.StateTo == RoundState.REVIEWING:
             self._to_reviewing()
-        elif stage_state_id == RoundState.REVIEWING:
+        elif transition.StateTo == RoundState.DONE:
             self._to_done()
     
