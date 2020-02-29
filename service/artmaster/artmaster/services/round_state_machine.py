@@ -82,7 +82,7 @@ class RoundStateMachine:
 
     def next_stage(self):
         stage_state_id = self.round_entity.StageStateId
-        minigame_id = room_repository.get_room(self.round_entity.RoomId).MinigameId 
+        minigame_id = room_repository.get_room(self.round_entity.RoomId, None).MinigameId 
         transitions = transition_repository.get_transitions(minigame_id)
 
         transition = [t for t in transitions if t.StateFrom == stage_state_id][0]
