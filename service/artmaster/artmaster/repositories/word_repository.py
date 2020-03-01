@@ -27,7 +27,7 @@ def remove_word(word_id):
         .delete(synchronize_session=False))
     session.commit()
 
-def create_word(room_id, user_id, word):
+def create_word(room_id, user_id, round_id, word):
     trimmed_word = word.strip()
     if trimmed_word == "":
         return
@@ -38,7 +38,7 @@ def create_word(room_id, user_id, word):
         .first())
     if existing_word is not None:
         return 
-    word_entity = Word(RoomId=room_id, UserId=user_id, Word=trimmed_word)
+    word_entity = Word(RoomId=room_id, UserId=user_id, RoundId=round_id, Word=trimmed_word)
     session.add(word_entity)
     session.commit()
     return word_entity

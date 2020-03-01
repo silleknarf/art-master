@@ -11,8 +11,10 @@ def add_or_remove_word():
     if request.method == "POST":
         room_id = int(request.args.get("roomId"))
         user_id = int(request.args.get("userId"))
+        round_id_raw = request.args.get("roundId")
+        round_id = int(round_id_raw) if round_id_raw is not None else None
         word = request.args.get("word")
-        word_repository.create_word(room_id, user_id, word)
+        word_repository.create_word(room_id, user_id, round_id, word)
     elif request.method == "DELETE":
         word_id = int(request.args.get("wordId"))
         word_repository.remove_word(word_id)

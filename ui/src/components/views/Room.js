@@ -182,7 +182,9 @@ class ConnectedRoom extends Component {
                 </div>
               )}
               { this.state.round.stageStateId === FILLING_IN_BLANKS && (
-                <FillingInBlanks roundId={ this.state.round.roundId } userId={ this.state.user.userId } />
+                <FillingInBlanks wordId={this.state.round.drawingWordId} 
+                                 roundId={ this.state.round.roundId } 
+                                 userId={ this.state.user.userId } />
               )}
               { this.state.round.stageStateId === CRITIQUING && (
                 <Critic roundId={ this.state.round.roundId } userId={ this.state.user.userId } />
