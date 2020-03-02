@@ -106,14 +106,16 @@ class ConnectedWords extends Component {
         </Row>;
       
     const ownWords = this.state.room && this.state.room.minigameId === 2;
-    const maybeOwnWords = (word) => !ownWords || word.userId === this.state.user.userId;
+    const wordFilter = (word) => 
+      (!ownWords || word.userId === this.state.user.userId) &&
+      !word.roundId;
 
     return (
       <Grid style={gridStyle}>
         { titleRow }
         <Row style={centerRowContentStyle}>
           <ul className="list-group" style={ulStyle}>
-            { this.state.words.filter(maybeOwnWords).map((word) => {
+            { this.state.words.filter(wordFilter).map((word) => {
               return (
                 <li key={word.wordId} className="list-group-item">
                   <span style={wordStyle}>{ word.word }</span>
