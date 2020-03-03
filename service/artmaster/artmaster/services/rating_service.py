@@ -17,7 +17,10 @@ def get_ratings():
 # provide the rating
 @rating_service.route("/rating", methods=["POST"])
 def set_rating():
-    image_id = int(request.args.get("imageId"))
+    image_id_raw = request.args.get("imageId")
+    image_id = int(image_id_raw) if image_id_raw.isdigit() else None
+    word_id_raw = request.args.get("wordId")
+    word_id = int(word_id_raw) if word_id_raw.isdigit() else None
     rating = int(request.args.get("rating"))
     user_id = int(request.args.get("raterUserId"))
     has_existing_rating = rating_repository.has_existing_rating(image_id, user_id)

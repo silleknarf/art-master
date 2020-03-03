@@ -108,8 +108,9 @@ class Rating(Base):
 
     RatingId = Column(INTEGER(11), primary_key=True)
     RaterUserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
-    ImageId = Column(ForeignKey('Image.ImageId'), nullable=False, index=True)
+    ImageId = Column(ForeignKey('Image.ImageId'), index=True)
     Rating = Column(INTEGER(11), nullable=False)
+    WordId = Column(INTEGER(11))
 
     Image = relationship('Image')
     User = relationship('User')

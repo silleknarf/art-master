@@ -187,7 +187,9 @@ class ConnectedRoom extends Component {
                                  userId={ this.state.user.userId } />
               )}
               { this.state.round.stageStateId === CRITIQUING && (
-                <Critic roundId={ this.state.round.roundId } userId={ this.state.user.userId } />
+                <Critic roundId={ this.state.round.roundId } 
+                        userId={ this.state.user.userId }
+                        roomId={ this.state.room.roomId } />
               )}
               { this.state.round.stageStateId === REVIEWING && (
                 <Review roundId={ this.state.round.roundId } />

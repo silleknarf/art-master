@@ -51,9 +51,9 @@ def remove_word(word_id):
     session.delete(word_entity)
     session.commit()
 
-def get_words(room_id):
+def get_words(room_id, round_id):
     word_entities = (session.query(Word)
-        .filter(Word.RoomId==room_id)
+        .filter(Word.RoomId==room_id and Word.RoundId == round_id)
         .all())
     return word_entities
 

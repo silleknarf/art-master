@@ -15,4 +15,14 @@ storiesOf('Critic', module)
       ]);
       FetchMock.post('glob:*rating?*', "test");
       return <Critic />;
+    })
+  .add('with words', () => {
+      FetchMock.restore()  
+      FetchMock.get('glob:*images?*', []);
+      FetchMock.get('glob:*words?*', [
+        { wordId: 1, word: "Test blanky blank word" },
+        { wordId: 2, word: "Test blanky blank word 2", userId: 2 }
+      ]);
+      FetchMock.post('glob:*rating?*', "test");
+      return <Critic roomId="1" />;
     });
