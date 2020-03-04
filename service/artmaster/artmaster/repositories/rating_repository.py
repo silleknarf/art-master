@@ -12,6 +12,8 @@ def get_ratings(round_id):
     return round_ratings
 
 def has_existing_rating(image_id, user_id):
+    if image_id is None: 
+        return False
     round_id = (session
         .query(Image)
         .filter(Image.ImageId==image_id)
@@ -25,10 +27,11 @@ def has_existing_rating(image_id, user_id):
         .all()) > 0
     return any_existing_rating
 
-def create_rating(image_id, rating, user_id):
+def create_rating(image_id, word_id, rating, user_id):
     rating_entity = Rating(
         Rating=rating, 
         RaterUserId=user_id, 
+        WordId=word_id,
         ImageId=image_id)
     session.add(rating_entity)
     session.commit()

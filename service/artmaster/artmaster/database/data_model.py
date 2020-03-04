@@ -79,19 +79,6 @@ class Round(Base):
     Room = relationship('Room')
 
 
-class Word(Base):
-    __tablename__ = 'Word'
-
-    WordId = Column(INTEGER(11), primary_key=True)
-    RoomId = Column(ForeignKey('Room.RoomId'), nullable=False, index=True)
-    UserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
-    Word = Column(String(50), nullable=False)
-    RoundId = Column(INTEGER(11))
-
-    Room = relationship('Room')
-    User = relationship('User')
-
-
 class Image(Base):
     __tablename__ = 'Image'
 
@@ -101,6 +88,20 @@ class Image(Base):
     ImageBase64 = Column(Text, nullable=False)
 
     Round = relationship('Round')
+
+
+class Word(Base):
+    __tablename__ = 'Word'
+
+    WordId = Column(INTEGER(11), primary_key=True)
+    RoomId = Column(ForeignKey('Room.RoomId'), nullable=False, index=True)
+    UserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
+    Word = Column(String(50), nullable=False)
+    RoundId = Column(ForeignKey('Round.RoundId'), index=True)
+
+    Room = relationship('Room')
+    Round = relationship('Round')
+    User = relationship('User')
 
 
 class Rating(Base):

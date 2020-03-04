@@ -1,5 +1,5 @@
 from database.database import session
-from database.data_model import Word
+from database.data_model import Word, Round
 from random import randint
 import logging
 
@@ -62,3 +62,12 @@ def get_word(word_id):
         .filter(Word.WordId==word_id)
         .first())
     return word
+
+def get_round(word_id):
+    logfile.info("WordId: %s" % (word_id))
+    round_entity = (session.query(Round)
+        .join(Word)
+        .filter(Word.WordId==word_id)
+        .first())
+    logfile.info("RoundId: %s" % (round_entity.RoundId))
+    return round_entity
