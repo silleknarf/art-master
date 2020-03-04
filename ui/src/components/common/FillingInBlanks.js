@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Config from '../../constant/Config';
-import { Grid, Row, Button } from 'react-bootstrap'; 
+import { Grid, Row, Button, Alert } from 'react-bootstrap'; 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faUpload from '@fortawesome/fontawesome-free-solid/faUpload'
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
@@ -15,7 +15,8 @@ class ConnectedFillingInBlanks extends Component {
       word: { 
         word: ""
       },
-      sentenceBlanks: []
+      sentenceBlanks: [],
+      sentenceSubmitted: false
     };
   }
 
@@ -40,7 +41,9 @@ class ConnectedFillingInBlanks extends Component {
     var wordRes = await fetch(`${Config.apiurl}/word?wordId=${wordId}`);
     if (wordRes.status === 200) {
       const word = await wordRes.json();
-      this.setState({word: word});
+      this.setState({
+        word: word
+      });
     }
   }
 
@@ -66,7 +69,7 @@ class ConnectedFillingInBlanks extends Component {
       roundId: this.state.room.currentRoundId,
       userId: this.state.user.userId
     };
-    this.setState({newWord: ""});
+    this.setState({newWord: sentence, sentenceSubmitted: true });
     const addWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`, 
       { method: "POST" });
     if (addWordRes.status === 200) {
@@ -104,29 +107,43 @@ class ConnectedFillingInBlanks extends Component {
         );
     });
 
+    const alertStyle = {
+      padding: "0.5em",
+      display: "inline-block",
+      marginBottom: 0
+    };
+
+    const sentenceBuildingComponent = (
+      <Grid style={gridStyle}>
+        <Row style={centerContentStyle}>
+          <div style={style}>
+            Fill the blanks in: 
+          </div>
+        </Row>
+        <Row style={centerContentStyle}>
+          <div style={style}>
+            { sentenceBuilderElements }
+          </div>
+        </Row>
+        <Row className="button-row" style={centerRowContentStyle}>
+            <Button
+              style={centerTitleContentStyle}
+              className="upload-room-button button"
+              onClick={(e) => this.onClickSubmitText(e)}>
+              <FontAwesomeIcon style={iconStyle} icon={faUpload} />
+              <span style={buttonTextStyle}>Submit</span>
+            </Button>
+        </Row>
+      </Grid>);
+
+    if (!this.state.sentenceSubmitted) {
+      return sentenceBuildingComponent;
+    }
+
     return (
-        <Grid style={gridStyle}>
-          <Row style={centerContentStyle}>
-            <div style={style}>
-              Fill the blanks in: 
-            </div>
-          </Row>
-          <Row style={centerContentStyle}>
-            <div style={style}>
-              { sentenceBuilderElements }
-            </div>
-          </Row>
-          <Row className="button-row" style={centerRowContentStyle}>
-              <Button
-                style={centerTitleContentStyle}
-                className="upload-room-button button"
-                onClick={(e) => this.onClickSubmitText(e)}>
-                <FontAwesomeIcon style={iconStyle} icon={faUpload} />
-                <span style={buttonTextStyle}>Submit</span>
-              </Button>
-          </Row>
-        </Grid>
-    );
+      <Alert style={alertStyle} bsStyle="info">
+        <span>{ this.state.newWord }</span>
+      </Alert>);
   }
 }
 
