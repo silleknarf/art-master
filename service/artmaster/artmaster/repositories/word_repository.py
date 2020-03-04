@@ -9,6 +9,7 @@ def get_random_word_for_room(room_id):
     word_entities = (session
         .query(Word)
         .filter(Word.RoomId==room_id)
+        .filter(Word.RoundId==None)
         .all())
     if len(word_entities) == 0:
         return None
@@ -53,7 +54,8 @@ def remove_word(word_id):
 
 def get_words(room_id, round_id):
     word_entities = (session.query(Word)
-        .filter(Word.RoomId==room_id and Word.RoundId == round_id)
+        .filter(Word.RoomId==room_id)
+        .filter(Word.RoundId==round_id)
         .all())
     return word_entities
 

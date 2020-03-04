@@ -110,7 +110,6 @@ class ConnectedFillingInBlanks extends Component {
     const alertStyle = {
       padding: "0.5em",
       display: "inline-block",
-      marginBottom: 0
     };
 
     const sentenceBuildingComponent = (
@@ -146,7 +145,6 @@ class ConnectedFillingInBlanks extends Component {
       </Alert>);
   }
 }
-
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
