@@ -14,4 +14,13 @@ storiesOf('Review', module)
     ];
     FetchMock.get('glob:*ratings?*', ratings);
     return <Review roundId="97" />;
+  })
+  .add('with words', () => {
+    FetchMock.restore()
+    const ratings = [
+      { winnerId: 1, winnerUsername: "User1", word: "test"}, 
+      { winnerId: 2, winnerUsername: "User2", word: "test 2"}
+    ];
+    FetchMock.get('glob:*ratings?*', ratings);
+    return <Review roundId="97" />;
   });

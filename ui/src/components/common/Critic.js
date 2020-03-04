@@ -44,6 +44,7 @@ class Critic extends Component {
   onClickRateImageBase = async (imageId, wordId) => {
     const rating = {
       raterUserId: this.props.userId,
+      roundId: this.props.roundId,
       imageId: imageId,
       wordId: wordId,
       rating: 1

@@ -26,12 +26,14 @@ def set_rating():
     word_id = int(word_id_raw) if word_id_raw is not None and word_id_raw.isdigit() else None
     rating = int(request.args.get("rating"))
     user_id = int(request.args.get("raterUserId"))
-    has_existing_rating = rating_repository.has_existing_rating(image_id, user_id)
+    round_id = int(request.args.get("roundId"))
+
+    has_existing_rating = rating_repository.has_existing_rating(round_id, user_id)
         
     if has_existing_rating:
-        error_text = "Cannot rate more than one image per round"
+        error_text = "Cannot rate more than one thing per round"
         raise InvalidUsage(error_text)
-    rating_entity = rating_repository.create_rating(image_id, word_id, rating, user_id)
+    rating_entity = rating_repository.create_rating(image_id, word_id, round_id, rating, user_id)
 
     round_entity = None
     if image_id is not None: 

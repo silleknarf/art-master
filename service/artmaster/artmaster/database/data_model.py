@@ -111,7 +111,10 @@ class Rating(Base):
     RaterUserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
     ImageId = Column(ForeignKey('Image.ImageId'), index=True)
     Rating = Column(INTEGER(11), nullable=False)
-    WordId = Column(INTEGER(11))
+    WordId = Column(ForeignKey('Word.WordId'), index=True)
+    RoundId = Column(ForeignKey('Round.RoundId'), index=True)
 
     Image = relationship('Image')
     User = relationship('User')
+    Round = relationship('Round')
+    Word = relationship('Word')
