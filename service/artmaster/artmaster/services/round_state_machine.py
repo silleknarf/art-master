@@ -30,7 +30,7 @@ class RoundStateMachine:
 
     def _to_critiquing(self):
         stage_state_id = RoundState.CRITIQUING
-        duration = 15
+        duration = 30
         self._update_round(stage_state_id, duration)
 
     def _to_reviewing(self):

@@ -96,7 +96,7 @@ class Word(Base):
     WordId = Column(INTEGER(11), primary_key=True)
     RoomId = Column(ForeignKey('Room.RoomId'), nullable=False, index=True)
     UserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
-    Word = Column(String(50), nullable=False)
+    Word = Column(String(500), nullable=False, server_default=text("''"))
     RoundId = Column(ForeignKey('Round.RoundId'), index=True)
 
     Room = relationship('Room')
