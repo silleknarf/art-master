@@ -17,7 +17,8 @@ def get_ratings(round_id):
 def has_existing_rating(round_id, user_id):
     any_existing_rating = len(session
         .query(Rating)
-        .filter(Rating.RaterUserId==user_id and Rating.RoundId==round_id)
+        .filter(Rating.RaterUserId==user_id)
+        .filter(Rating.RoundId==round_id)
         .all()) > 0
     return any_existing_rating
 
@@ -35,8 +36,7 @@ def create_rating(image_id, word_id, round_id, rating, user_id):
 def are_all_votes_submitted(round_id, room_id):
     round_votes_count = len(session
         .query(Rating)
-        .join(Image)
-        .filter(Image.RoundId==round_id)
+        .filter(Rating.RoundId==round_id)
         .all())
     room_users_count = len(room_user_repository.get_users_in_room(room_id))
     return round_votes_count == room_users_count

@@ -1,6 +1,8 @@
 from database.database import session
 from database.data_model import Word, Round
 from random import randint
+from repositories import round_repository, room_user_repository
+from services.round_state_machine import RoundStateMachine
 import logging
 
 logfile = logging.getLogger('file')
@@ -42,6 +44,11 @@ def create_word(room_id, user_id, round_id, word):
     word_entity = Word(RoomId=room_id, UserId=user_id, RoundId=round_id, Word=trimmed_word)
     session.add(word_entity)
     session.commit()
+
+    round_entity = round_repository.get_round(round_id)
+    round_state_machine = RoundStateMachine(round_entity)
+    round_state_machine.maybe_end_submitting_sentences_early()
+
     return word_entity
 
 def remove_word(word_id):
@@ -58,6 +65,12 @@ def get_words(room_id, round_id):
         .filter(Word.RoundId==round_id)
         .all())
     return word_entities
+
+def are_all_sentences_submitted(room_id, round_id):
+    round_sentences_count = len(get_words(room_id, round_id))
+    room_users_count = len(room_user_repository.get_users_in_room(room_id))
+    logfile.info("Sentences submitted: %s" % round_sentences_count)
+    return round_sentences_count == room_users_count
 
 def get_word(word_id):
     word = (session.query(Word)

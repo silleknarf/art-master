@@ -65,6 +65,13 @@ class RoundStateMachine:
         if are_all_images_submitted:
             self._to_critiquing()
 
+    def maybe_end_submitting_sentences_early(self):
+        are_all_sentences_submitted = word_repository.are_all_sentences_submitted(
+            self.round_entity.RoomId,
+            self.round_entity.RoundId)
+        if are_all_sentences_submitted:
+            self._to_critiquing()
+
     def maybe_end_critiquing_early(self):
         are_all_votes_submitted = rating_repository.are_all_votes_submitted(
             self.round_entity.RoundId,
