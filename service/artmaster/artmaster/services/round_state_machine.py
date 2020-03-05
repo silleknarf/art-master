@@ -30,12 +30,14 @@ class RoundStateMachine:
 
     def _to_critiquing(self):
         stage_state_id = RoundState.CRITIQUING
-        duration = 30
+        number_of_players = room_repository.get_number_of_players(self.round_entity.RoomId)
+        duration = 15 * number_of_players
         self._update_round(stage_state_id, duration)
 
     def _to_reviewing(self):
         stage_state_id = RoundState.REVIEWING
-        duration = 10
+        number_of_players = room_repository.get_number_of_players(self.round_entity.RoomId)
+        duration = 5 * number_of_players
         self._update_round(stage_state_id, duration)
 
     def _to_done(self):
