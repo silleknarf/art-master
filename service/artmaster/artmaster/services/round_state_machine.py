@@ -24,7 +24,7 @@ class RoundStateMachine:
 
     def _to_filling_in_blanks(self):
         stage_state_id = RoundState.FILLING_IN_BLANKS
-        duration = 45
+        duration = 60
         round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
         self._update_round(stage_state_id, duration)
 
