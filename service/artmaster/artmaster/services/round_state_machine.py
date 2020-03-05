@@ -18,7 +18,7 @@ class RoundStateMachine:
 
     def _to_drawing(self):
         stage_state_id = RoundState.DRAWING      
-        duration = 45
+        duration = 90
         round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
         self._update_round(stage_state_id, duration)
 
