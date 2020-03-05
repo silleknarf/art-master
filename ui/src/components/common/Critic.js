@@ -71,85 +71,83 @@ class Critic extends Component {
       margin: 0
     };
 
-    if (!this.state.voteSubmitted) {
-      return (
-        <Grid>
-          <Row>
-            {this.state.images.map((image) => {
-              const maybeButton = image.userId !== this.props.userId 
-                ? <Button 
-                    className="button" 
-                    onClick={e => this.onClickRateImage(image.imageId)}> 
-                    <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
-                    <span style={buttonTextStyle}>Vote</span>
-                  </Button>
-                : <div style={yourContentTextContentStyle}>
-                    <FontAwesomeIcon style={iconStyle} icon={faPalette} />
-                    <span style={buttonTextStyle}>This is your work - aren't you proud.</span>
-                  </div>;
+    const voteSubmittedStyle = {
+      margin: "10px",
+      fontSize: "medium"
+    };
+    const votedElement = (
+      <div style={voteSubmittedStyle}>
+        <FontAwesomeIcon style={iconStyle} icon={faCheck} />
+        <span style={buttonTextStyle}>Vote Submitted!</span>
+      </div>);
 
-              return (
-                <div key={ image.imageId }>
-                  <Row style={centerRowContentStyle}>
-                    <img src={ image.imageBase64 } />
-                  </Row>
-                  <Row style={centerRowContentStyle}>
-                    { maybeButton }
-                  </Row>
-                </div>);
-            })}
-          </Row>
-          <Row>
-            {this.state.words.map((word) => {
-              const maybeButton = word.userId !== this.props.userId 
-                ? <Button 
-                    className="button" 
-                    onClick={e => this.onClickRateWord(word.wordId)}> 
-                    <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
-                    <span style={buttonTextStyle}>Vote</span>
-                  </Button>
-                : <div style={yourContentTextContentStyle}>
-                    <FontAwesomeIcon style={iconStyle} icon={faPalette} />
-                    <span style={buttonTextStyle}>I can't believe you said this</span>
-                  </div>;
+    return (
+      <Grid>
+        <Row>
+          {this.state.images.map((image) => {
+            let maybeButton = image.userId !== this.props.userId 
+              ? <Button 
+                  className="button" 
+                  onClick={e => this.onClickRateImage(image.imageId)}> 
+                  <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
+                  <span style={buttonTextStyle}>Vote</span>
+                </Button>
+              : <div style={yourContentTextContentStyle}>
+                  <FontAwesomeIcon style={iconStyle} icon={faPalette} />
+                  <span style={buttonTextStyle}>This is your work - aren't you proud.</span>
+                </div>;
 
-              const alertStyle = {
-                padding: "0.5em",
-                display: "inline-block",
-                marginBottom: 0
-              };
+            if (this.state.voteSubmitted) maybeButton = votedElement;
 
-              return (
-                <div key={ word.wordId }>
-                  <Row style={centerRowContentStyle}>
-                    <Alert style={alertStyle} bsStyle="info">
-                      <span>{ word.word }</span>
-                    </Alert>
-                  </Row>
-                  <Row style={centerRowContentStyle}>
-                    { maybeButton }
-                  </Row>
-                </div>);
-            })}
-          </Row>
-        </Grid>
-      );
-    } else { 
-      const voteSubmittedStyle = {
-        margin: "10px",
-        fontSize: "medium"
-      };
-      return (
-        <Grid>
-          <Row style={centerRowContentStyle}>
-            <div style={voteSubmittedStyle}>
-              <FontAwesomeIcon style={iconStyle} icon={faCheck} />
-              <span style={buttonTextStyle}>Vote Submitted!</span>
-            </div>
-          </Row>
-        </Grid>
-      );
-    }
+            return (
+              <div key={ image.imageId }>
+                <Row style={centerRowContentStyle}>
+                  <img src={ image.imageBase64 } />
+                </Row>
+                <Row style={centerRowContentStyle}>
+                  { maybeButton }
+                </Row>
+              </div>);
+          })}
+        </Row>
+        <Row>
+          {this.state.words.map((word) => {
+
+            let maybeButton = word.userId !== this.props.userId 
+              ? <Button 
+                  className="button" 
+                  onClick={e => this.onClickRateWord(word.wordId)}> 
+                  <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
+                  <span style={buttonTextStyle}>Vote</span>
+                </Button>
+              : <div style={yourContentTextContentStyle}>
+                  <FontAwesomeIcon style={iconStyle} icon={faPalette} />
+                  <span style={buttonTextStyle}>I can't believe you said this</span>
+                </div>;
+
+            if (this.state.voteSubmitted) maybeButton = votedElement;
+
+            const alertStyle = {
+              padding: "0.5em",
+              display: "inline-block",
+              marginBottom: 0
+            };
+
+            return (
+              <div key={ word.wordId }>
+                <Row style={centerRowContentStyle}>
+                  <Alert style={alertStyle} bsStyle="info">
+                    <span>{ word.word }</span>
+                  </Alert>
+                </Row>
+                <Row style={centerRowContentStyle}>
+                  { maybeButton }
+                </Row>
+              </div>);
+          })}
+        </Row>
+      </Grid>
+    );
   }
 }
 
