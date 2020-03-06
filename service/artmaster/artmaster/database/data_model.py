@@ -98,7 +98,9 @@ class Word(Base):
     UserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
     Word = Column(String(500), nullable=False, server_default=text("''"))
     RoundId = Column(ForeignKey('Round.RoundId'), index=True)
+    MinigameId = Column(ForeignKey('Minigame.MinigameId'), index=True)
 
+    Minigame = relationship('Minigame')
     Room = relationship('Room')
     Round = relationship('Round')
     User = relationship('User')

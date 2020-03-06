@@ -1,5 +1,5 @@
 from database.database import session
-from database.data_model import Word, Round
+from database.data_model import Word, Round, Room
 from random import randint
 from repositories import round_repository, room_user_repository
 from services.round_state_machine import RoundStateMachine
@@ -41,7 +41,8 @@ def create_word(room_id, user_id, round_id, word):
         .first())
     if existing_word is not None:
         return 
-    word_entity = Word(RoomId=room_id, UserId=user_id, RoundId=round_id, Word=trimmed_word)
+    room_entity = session.query(Room).filter(Room.RoomId==room_id).first()
+    word_entity = Word(RoomId=room_id, UserId=user_id, RoundId=round_id, MinigameId=room_entity.MinigameId, Word=trimmed_word)
     session.add(word_entity)
     session.commit()
 
@@ -60,9 +61,13 @@ def remove_word(word_id):
     session.commit()
 
 def get_words(room_id, round_id):
+    room_entity = (session.query(Room)
+        .filter(Room.RoomId==room_id)
+        .first())
     word_entities = (session.query(Word)
         .filter(Word.RoomId==room_id)
         .filter(Word.RoundId==round_id)
+        .filter(Word.MinigameId==room_entity.MinigameId)
         .all())
     return word_entities
 
