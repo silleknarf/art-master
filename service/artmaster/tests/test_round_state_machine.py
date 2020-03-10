@@ -12,25 +12,50 @@ class TestRoundStateMachine(unittest.TestCase):
     round_entity = Struct(**{
         "RoundId": 1,
         "RoomId": 1,
-        "StageStateId": None,
+        "StageStateId": 0,
         "StageStateStartTime": None,
         "StageStateEndTime": None,
         "DrawingWordId": 1
     })
+
+    transitions = [
+        Struct(**{
+            "StateFrom": None,
+            "StateTo": 0
+        }),
+        Struct(**{
+            "StateFrom": 0,
+            "StateTo": 2
+        }),
+        Struct(**{
+            "StateFrom": 2,
+            "StateTo": 3
+        }),
+        Struct(**{
+            "StateFrom": 3,
+            "StateTo": 4
+        })
+    ]
     start_time = datetime(2018, 5, 1, 12, 0, 0)
 
-    def setup_round_state_machine(self, stage_state_id, round_repository, mock_datetime):
+    def setup_round_state_machine(self, stage_state_id, round_repository, room_repository, transition_repository, mock_datetime):
         self.round_entity.StageStateId = stage_state_id
         mock_datetime.utcnow.return_value = self.start_time
+        room_repository.get_number_of_players.return_value = 3
+        transition_repository.get_transitions.return_value = self.transitions
+
         round_state_machine = RoundStateMachine(self.round_entity)
         return round_state_machine
 
-    def transition_helper(self, round_repository, word_repository, mock_datetime, start_stage, end_stage, enforce_end_time=True):
+    def transition_helper(self, round_repository, word_repository, room_repository, transition_repository, mock_datetime, start_stage, end_stage, enforce_end_time=True):
         # Go to the next stage
         round_state_machine = self.setup_round_state_machine(
             start_stage,
-            round_reposisory, 
+            round_repository, 
+            room_repository,
+            transition_repository,
             mock_datetime)
+        
         round_state_machine.next_stage()
 
         # Check assertions
@@ -50,8 +75,9 @@ class TestRoundStateMachine(unittest.TestCase):
         round_state_machine = self.setup_round_state_machine(
             None,
             round_repository, 
+            room_repository,
+            transition_repository,
             mock_datetime)
-        round_state_machine.next_stage()
         image_repository.are_all_images_submitted.return_value = True
         round_repository.reset_mock()
         round_state_machine.maybe_end_drawing_early()
@@ -66,6 +92,8 @@ class TestRoundStateMachine(unittest.TestCase):
         self.transition_helper(
             round_repository, 
             word_repository,
+            room_repository,
+            transition_repository,
             mock_datetime, 
             None,
             RoundState.DRAWING)
@@ -80,6 +108,8 @@ class TestRoundStateMachine(unittest.TestCase):
         self.transition_helper(
             round_repository, 
             word_repository,
+            room_repository,
+            transition_repository,
             mock_datetime, 
             RoundState.DRAWING, 
             RoundState.CRITIQUING)
@@ -93,6 +123,8 @@ class TestRoundStateMachine(unittest.TestCase):
         self.transition_helper(
             round_repository, 
             word_repository,
+            room_repository,
+            transition_repository,
             mock_datetime, 
             RoundState.CRITIQUING, 
             RoundState.REVIEWING)
@@ -108,6 +140,8 @@ class TestRoundStateMachine(unittest.TestCase):
         self.transition_helper(
             round_repository, 
             word_repository,
+            room_repository,
+            transition_repository,
             mock_datetime, 
             RoundState.REVIEWING, 
             RoundState.DONE,
