@@ -29,7 +29,7 @@ class TestRoundStateMachine(unittest.TestCase):
         # Go to the next stage
         round_state_machine = self.setup_round_state_machine(
             start_stage,
-            round_repository, 
+            round_reposisory, 
             mock_datetime)
         round_state_machine.next_stage()
 
@@ -42,9 +42,11 @@ class TestRoundStateMachine(unittest.TestCase):
             self.round_entity.DrawingWordId)
 
     @mock.patch("services.round_state_machine.datetime")
+    @mock.patch("services.round_state_machine.transition_repository")
+    @mock.patch("services.round_state_machine.room_repository")
     @mock.patch("services.round_state_machine.image_repository")
     @mock.patch("services.round_state_machine.round_repository")
-    def test_end_drawing_round_early(self, round_repository, image_repository, mock_datetime):
+    def test_end_drawing_round_early(self, round_repository, image_repository, room_repository, transition_repository, mock_datetime):
         round_state_machine = self.setup_round_state_machine(
             None,
             round_repository, 
@@ -56,9 +58,11 @@ class TestRoundStateMachine(unittest.TestCase):
         round_repository.update_round.assert_called_once()
 
     @mock.patch("services.round_state_machine.datetime")
+    @mock.patch("services.round_state_machine.transition_repository")
+    @mock.patch("services.round_state_machine.room_repository")
     @mock.patch("services.round_state_machine.word_repository")
     @mock.patch("services.round_state_machine.round_repository")
-    def test_start_round_state_machine(self, round_repository, word_repository, mock_datetime):
+    def test_start_round_state_machine(self, round_repository, word_repository, room_repository, transition_repository, mock_datetime):
         self.transition_helper(
             round_repository, 
             word_repository,
@@ -68,9 +72,11 @@ class TestRoundStateMachine(unittest.TestCase):
         round_repository.update_room_round.assert_called_once()
 
     @mock.patch("services.round_state_machine.datetime")
+    @mock.patch("services.round_state_machine.transition_repository")
+    @mock.patch("services.round_state_machine.room_repository")
     @mock.patch("services.round_state_machine.word_repository")
     @mock.patch("services.round_state_machine.round_repository")
-    def test_transition_to_critiquing(self, round_repository, word_repository, mock_datetime):
+    def test_transition_to_critiquing(self, round_repository, word_repository, room_repository, transition_repository, mock_datetime):
         self.transition_helper(
             round_repository, 
             word_repository,
@@ -79,9 +85,11 @@ class TestRoundStateMachine(unittest.TestCase):
             RoundState.CRITIQUING)
 
     @mock.patch("services.round_state_machine.datetime")
+    @mock.patch("services.round_state_machine.transition_repository")
+    @mock.patch("services.round_state_machine.room_repository")
     @mock.patch("services.round_state_machine.word_repository")
     @mock.patch("services.round_state_machine.round_repository")
-    def test_transition_to_reviewing(self, round_repository, word_repository, mock_datetime):
+    def test_transition_to_reviewing(self, round_repository, word_repository, room_repository, transition_repository, mock_datetime):
         self.transition_helper(
             round_repository, 
             word_repository,
@@ -90,10 +98,12 @@ class TestRoundStateMachine(unittest.TestCase):
             RoundState.REVIEWING)
 
     @mock.patch("services.round_state_machine.datetime")
+    @mock.patch("services.round_state_machine.transition_repository")
+    @mock.patch("services.round_state_machine.room_repository")
     @mock.patch("services.round_state_machine.word_repository")
     @mock.patch("services.round_state_machine.round_repository")
     @mock.patch("services.round_state_machine.rating_repository")
-    def test_transition_to_done(self, rating_repository, round_repository, word_repository, mock_datetime):
+    def test_transition_to_done(self, rating_repository, round_repository, word_repository, room_repository, transition_repository, mock_datetime):
         word_to_remove = self.round_entity.DrawingWordId
         self.transition_helper(
             round_repository, 
