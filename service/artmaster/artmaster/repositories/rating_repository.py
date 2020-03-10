@@ -82,6 +82,7 @@ def get_round_rating_results(round_id):
             "winnerId": winning_user.UserId,
             "winnerUsername": winning_user.Username,
             "winningImageBase64": winning_image.ImageBase64,
+            "votes": image_votes[winning_image.ImageId]
         }
         results.append(result)
 
@@ -114,6 +115,7 @@ def get_round_rating_results(round_id):
             "winnerId": winning_user.UserId,
             "winnerUsername": winning_user.Username,
             "word": winning_word.Word,
+            "votes": word_votes[winning_word.WordId]
         }
         results.append(result)
 

@@ -52,7 +52,7 @@ class Review extends Component {
                 </Row>
                 <Row style={centerRowContentStyle}>
                   <FontAwesomeIcon style={iconStyle} icon={faUser} />
-                  <span style={buttonTextStyle}>{ winningResult.winnerUsername }</span>
+                  <span style={buttonTextStyle}>{ winningResult.winnerUsername + ": " + winningResult.votes }</span>
                 </Row>
               </div>);
           })}

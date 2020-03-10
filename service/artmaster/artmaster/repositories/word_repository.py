@@ -8,10 +8,12 @@ import logging
 logfile = logging.getLogger('file')
 
 def get_random_word_for_room(room_id):
+    room_entity = session.query(Room).filter(Room.RoomId==room_id).first()
     word_entities = (session
         .query(Word)
         .filter(Word.RoomId==room_id)
         .filter(Word.RoundId==None)
+        .filter(Word.MinigameId==room_entity.MinigameId)
         .all())
     if len(word_entities) == 0:
         return None

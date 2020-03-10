@@ -14,7 +14,8 @@ class TestRoomService(unittest.TestCase):
         "RoomCode": "ABCD", 
         "OwnerUserId": 1,
         "CurrentRoundId": 1,
-        "RoomUsers": []
+        "RoomUsers": [],
+        "MinigameId": 1
     }
 
     def setUp(self):
