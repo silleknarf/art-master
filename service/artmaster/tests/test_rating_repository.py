@@ -7,10 +7,12 @@ from operator import eq
 class TestRatingRepository(unittest.TestCase):
     rating1 = Struct(**{
         "ImageId": 1,
+        "WordId": None,
         "Rating": 1
     })
     rating2 = Struct(**{
         "ImageId": 2,
+        "WordId": None,
         "Rating": 1
     })
     image1 = Struct(**{
@@ -29,21 +31,30 @@ class TestRatingRepository(unittest.TestCase):
         'roundId': 1, 
         'winnerUsername': '1', 
         'winningImageBase64': '1.png',
-        'winnerId': 1
+        'winnerId': 1,
+        'votes': 2,
     }
     expected_result2 =  {
         'roundId': 1, 
+        'winnerUsername': '1', 
+        'winningImageBase64': '1.png',
+        'winnerId': 1,
+        'votes': 1,
+    }
+    expected_result3 =  {
+        'roundId': 1, 
         'winnerUsername': '2', 
         'winningImageBase64': '2.png',
-        'winnerId': 2
+        'winnerId': 2,
+        'votes': 1
     }
 
     @mock.patch("repositories.rating_repository.user_repository")
     def test_get_ratings(self, user_repository):
         ratings = [
-            (self.rating1, self.image1),
-            (self.rating1, self.image1),
-            (self.rating2, self.image2)
+            (self.rating1, self.image1, None),
+            (self.rating1, self.image1, None),
+            (self.rating2, self.image2, None)
         ]
         expected_results = [self.expected_result1]
         self.get_ratings_repo_helper(rating_repository, user_repository, ratings, expected_results)
@@ -51,10 +62,10 @@ class TestRatingRepository(unittest.TestCase):
     @mock.patch("repositories.rating_repository.user_repository")
     def test_get_ratings_draw(self, user_repository):
         ratings = [
-            (self.rating1, self.image1),
-            (self.rating2, self.image2)
+            (self.rating1, self.image1, None),
+            (self.rating2, self.image2, None)
         ]
-        expected_results = [self.expected_result1, self.expected_result2]
+        expected_results = [self.expected_result2, self.expected_result3]
         self.get_ratings_repo_helper(rating_repository, user_repository, ratings, expected_results)
 
     @mock.patch("repositories.rating_repository.user_repository")

@@ -1,11 +1,16 @@
-from repositories import round_repository, word_repository, image_repository, rating_repository
+from repositories import round_repository, word_repository, image_repository
+from repositories import rating_repository, transition_repository, room_repository
 from datetime import datetime, timedelta
+import logging
+
+logfile = logging.getLogger('file')
 
 class RoundState:
     DRAWING = 0
-    CRITIQUING = 1
-    REVIEWING = 2
-    DONE = 3 
+    FILLING_IN_BLANKS = 1
+    CRITIQUING = 2
+    REVIEWING = 3
+    DONE = 4 
 
 class RoundStateMachine:
     def __init__(self, round_entity):
@@ -13,18 +18,25 @@ class RoundStateMachine:
 
     def _to_drawing(self):
         stage_state_id = RoundState.DRAWING      
-        duration = 45
+        duration = 90
+        round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
+        self._update_round(stage_state_id, duration)
+
+    def _to_filling_in_blanks(self):
+        stage_state_id = RoundState.FILLING_IN_BLANKS
+        duration = 60
         round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
         self._update_round(stage_state_id, duration)
 
     def _to_critiquing(self):
         stage_state_id = RoundState.CRITIQUING
-        duration = 15
+        number_of_players = room_repository.get_number_of_players(self.round_entity.RoomId)
+        duration = 15 * number_of_players
         self._update_round(stage_state_id, duration)
 
     def _to_reviewing(self):
         stage_state_id = RoundState.REVIEWING
-        duration = 10
+        duration = 15
         self._update_round(stage_state_id, duration)
 
     def _to_done(self):
@@ -54,6 +66,13 @@ class RoundStateMachine:
         if are_all_images_submitted:
             self._to_critiquing()
 
+    def maybe_end_submitting_sentences_early(self):
+        are_all_sentences_submitted = word_repository.are_all_sentences_submitted(
+            self.round_entity.RoomId,
+            self.round_entity.RoundId)
+        if are_all_sentences_submitted:
+            self._to_critiquing()
+
     def maybe_end_critiquing_early(self):
         are_all_votes_submitted = rating_repository.are_all_votes_submitted(
             self.round_entity.RoundId,
@@ -75,12 +94,21 @@ class RoundStateMachine:
 
     def next_stage(self):
         stage_state_id = self.round_entity.StageStateId
-        if stage_state_id is None:
+        minigame_id = room_repository.get_room(self.round_entity.RoomId, None).MinigameId 
+        transitions = transition_repository.get_transitions(minigame_id)
+
+        logfile.info("Minigame: %s in state: %s" % (minigame_id, stage_state_id))
+        transition = [t for t in transitions if t.StateFrom == stage_state_id][0]
+
+        logfile.info("Minigame: %s transitioning from %s to %s" % (minigame_id, transition.StateFrom, transition.StateTo))
+        if transition.StateTo == RoundState.DRAWING:
             self._to_drawing()
-        elif stage_state_id == RoundState.DRAWING:
+        elif transition.StateTo == RoundState.FILLING_IN_BLANKS:
+            self._to_filling_in_blanks()
+        elif transition.StateTo == RoundState.CRITIQUING:
             self._to_critiquing()
-        elif stage_state_id == RoundState.CRITIQUING:
+        elif transition.StateTo == RoundState.REVIEWING:
             self._to_reviewing()
-        elif stage_state_id == RoundState.REVIEWING:
+        elif transition.StateTo == RoundState.DONE:
             self._to_done()
     

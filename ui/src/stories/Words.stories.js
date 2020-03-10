@@ -15,10 +15,12 @@ storiesOf('Words', module)
     const words = [
       {
         wordId: 1,
+        userId: 1,
         word: "test"
       },
       {
         wordId: 2,
+        userId: 2,
         word: "test2"
       }
     ];

@@ -1,6 +1,9 @@
 from repositories import room_user_repository 
 from database.database import session
 from database.data_model import Image, Round
+import logging
+
+logfile = logging.getLogger('file')
 
 def create_image(user_id, image_base_64, round_id):
     drawing = Image(
@@ -29,4 +32,5 @@ def get_round(image_id):
 def are_all_images_submitted(round_id, room_id):
     round_images_count = len(get_round_images(round_id))
     room_users_count = len(room_user_repository.get_users_in_room(room_id))
+    logfile.info("Images count: %s" % (round_images_count))
     return round_images_count == room_users_count

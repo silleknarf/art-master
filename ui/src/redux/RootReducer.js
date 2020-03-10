@@ -1,10 +1,11 @@
-import { UPDATE_ROOM_STATE, UPDATE_ROUND_STATE, UPDATE_USER_STATE, UPDATE_WORDS_STATE } from "./ActionTypes";
+import { UPDATE_ROOM_STATE, UPDATE_ROUND_STATE, UPDATE_USER_STATE, UPDATE_WORDS_STATE, UPDATE_MINIGAMES_STATE } from "./ActionTypes";
 
 const initialState = {
   room: null,
   round: null,
   user: null,
-  words: []
+  words: [],
+  minigames: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -17,6 +18,8 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, user: action.payload };
     case UPDATE_WORDS_STATE:
       return { ...state, words: action.payload };
+    case UPDATE_MINIGAMES_STATE:
+      return { ...state, minigames: action.payload };
     default:
       return state;
   }

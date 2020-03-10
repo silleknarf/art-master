@@ -28,12 +28,23 @@ def poll_or_create_room():
         "roomCode": room.RoomCode,
         "ownerUserId": room.OwnerUserId,
         "currentRoundId": room.CurrentRoundId,
+        "minigameId": room.MinigameId,
         "roomUsers": [{"username": r.Username, "userId": r.UserId, "score": r.Score } for r in room.RoomUsers]
     })
 
 @room_service.route("/room/<int:room_id>/user/<int:user_id>", methods=["POST"])
 def add_user_to_room(room_id, user_id):
     room_user_repository.add_user_to_room(room_id, user_id)
+    return ""
+
+@room_service.route("/room/<int:room_id>/user/<int:user_id>", methods=["DELETE"])
+def remove_user_from_room(room_id, user_id):
+    room_user_repository.remove_user_from_room(room_id, user_id)
+    return ""
+
+@room_service.route("/room/<int:room_id>/minigame/<int:minigame_id>", methods=["POST"])
+def set_minigame(room_id, minigame_id):
+    room_repository.set_minigame(room_id, minigame_id)
     return ""
 
 @room_service.route("/room/<int:room_id>/users", methods=["GET"])

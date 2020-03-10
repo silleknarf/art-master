@@ -3,6 +3,7 @@
 from flask import jsonify
 from database.database import session
 import logging 
+import traceback
 
 logfile = logging.getLogger('file')
 
@@ -16,6 +17,7 @@ class BaseExceptionHandler(Exception):
             self.status_code = status_code
         self.payload = payload
         logfile.error(message)
+        logfile.error(traceback.format_exc())
 
     def to_dict(self):
         rv = dict(self.payload or ())

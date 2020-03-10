@@ -2,6 +2,7 @@
 
 import sys
 import logging
+import traceback
 from flask import Flask, jsonify
 from flask_cors import CORS
 from database.database import session
@@ -19,6 +20,7 @@ from services.round_service import round_service
 from services.image_service import image_service
 from services.rating_service import rating_service
 from services.word_service import word_service
+from services.minigame_service import minigame_service
 from services.exceptions import InvalidUsage
 
 app.register_blueprint(user_service)
@@ -27,6 +29,7 @@ app.register_blueprint(round_service)
 app.register_blueprint(image_service)
 app.register_blueprint(rating_service)
 app.register_blueprint(word_service)
+app.register_blueprint(minigame_service)
 
 @app.route("/")
 def home():
@@ -44,6 +47,7 @@ def handle_error(e):
     if isinstance(e, HTTPException):
         code = e.code
     logfile.error(str(e))
+    logfile.error(traceback.format_exc())
     return jsonify(error=str(e)), code
 
 @app.teardown_appcontext

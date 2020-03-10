@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 from data_model import *
 import sys
 sys.path.append("..")
@@ -49,6 +50,24 @@ class DatabaseBuilder():
         Base.metadata.create_all(engine)
         conn.execute("COMMIT")
         conn.close()
+
+        session = scoped_session(sessionmaker(
+            autocommit=False,
+            autoflush=False,
+            bind=engine))
+
+        session.add(Minigame(MinigameId=1, Name="Art Master"))
+        session.add(Transition(MinigameId=1, StateTo=0))
+        session.add(Transition(MinigameId=1, StateFrom=0, StateTo=2))
+        session.add(Transition(MinigameId=1, StateFrom=2, StateTo=3))
+        session.add(Transition(MinigameId=1, StateFrom=3, StateTo=4))
+
+        session.add(Minigame(MinigameId=2, Name="Sentenced To Death"))
+        session.add(Transition(MinigameId=2, StateTo=1))
+        session.add(Transition(MinigameId=2, StateFrom=1, StateTo=2))
+        session.add(Transition(MinigameId=2, StateFrom=2, StateTo=3))
+        session.add(Transition(MinigameId=2, StateFrom=3, StateTo=4))
+        session.commit()
 
     def _drop_database(self):
         engine = self._get_engine()
