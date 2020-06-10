@@ -68,6 +68,7 @@ class DatabaseBuilder():
         session.add(Transition(MinigameId=2, StateFrom=2, StateTo=3))
         session.add(Transition(MinigameId=2, StateFrom=3, StateTo=4))
         session.commit()
+        session.close()
 
     def _drop_database(self):
         engine = self._get_engine()
