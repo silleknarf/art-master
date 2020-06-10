@@ -15,7 +15,7 @@ Development in progress!
 CONTRIBUTING
 ============
 
-Art Master is written in python and JS backed by a MySQL database. It can be running as a collection of docker containers using docker-compose.
+Art Master is written in python and JS backed by a MySQL database. It can be run as a collection of docker containers using docker-compose.
 
 Get the code:
 
