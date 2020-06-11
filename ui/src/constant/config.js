@@ -1,4 +1,4 @@
 export default {
-    apiurl: 'http://192.168.1.74:5001',
+    apiurl: 'http://localhost:30001',
     isDebugMode: false
 }
