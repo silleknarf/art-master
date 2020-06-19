@@ -3,7 +3,7 @@
 README
 ======
 
-Art Master is a game where players are pitted against each other to rapidly create art for the other players to critique! 
+Craicbox is a game where players are pitted against each other to rapidly create art for the other players to critique! 
 
 TODO
 ====
@@ -15,7 +15,7 @@ Development in progress!
 CONTRIBUTING
 ============
 
-Art Master is written in python and JS backed by a MySQL database. It can be running as a collection of docker containers using docker-compose.
+Craicbox is written in python and JS backed by a MySQL database. It can be running as a collection of docker containers using docker-compose.
 
 Get the code:
 

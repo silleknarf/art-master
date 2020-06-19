@@ -135,7 +135,7 @@ class ConnectedRoom extends Component {
     return (
       <div className="room">
         <div style={centerTitleContentStyle}> 
-          <span style={titleStyle}>Art Master</span>
+          <span style={titleStyle}>Craicbox</span>
         </div>
         <div style={centerTitleContentStyle}> 
           <DropdownButton id="dropdown-item-button" title={minigameName}>
