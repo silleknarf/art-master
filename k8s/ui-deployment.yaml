@@ -1,0 +1,25 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: ui
+  namespace: craicbox
+  labels:
+    app: ui
+spec:
+  selector:
+    matchLabels:
+      app: ui
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ui
+    spec:
+      containers:
+      - name: master
+        image: rg.nl-ams.scw.cloud/craicbox/art-master_ui:0.0.4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+        - name: regcred

@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: craicbox
+  namespace: craicbox
+  labels:
+    k8s-app: craicbox
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt"
+    certmanager.k8s.io/acme-challenge-type: http01
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Cache-Status $upstream_cache_status;
+      proxy_no_cache 1;
+      more_set_headers "cache-control: no-store,no-cache";
+      proxy_cache_bypass 1; 
+spec:
+  tls:
+  - hosts:
+    - craicbox.app
+    - api.craicbox.app
+    secretName: certificate-craicbox
+  rules:
+  - host: craicbox.app
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ui
+          servicePort: 443
+  - host: api.craicbox.app
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: service
+          servicePort: 443

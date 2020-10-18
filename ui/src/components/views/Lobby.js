@@ -157,7 +157,7 @@ class Lobby extends Component {
     return (
       <div className="lobby">
         <div style={centerTitleContentStyle}> 
-          <span style={titleStyle}>Art Master</span>
+          <span style={titleStyle}>Craicbox</span>
         </div>
         <Tabs 
           id="lobby-tabs" 

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: craicbox
+  name: service-tests
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+      - args:
+        - python
+        - -m
+        - unittest
+        - discover
+        image: service-tests
+        imagePullPolicy: ""
+        name: service-tests
+        workingDir: /artmaster
+      restartPolicy: Always

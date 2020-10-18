@@ -1,4 +1,4 @@
 export default {
-    apiurl: 'http://192.168.1.74:5001',
+    apiurl: 'https://api.craicbox.app',
     isDebugMode: false
 }

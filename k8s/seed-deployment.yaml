@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: craicbox
+  name: seed
+spec:
+  template:
+    spec:
+      containers:
+      - image: rg.nl-ams.scw.cloud/craicbox/art-master_seed:0.0.4
+        name: seed
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Never
