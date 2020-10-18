@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: craicbox
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.21.0 ()
@@ -14,7 +15,6 @@ spec:
   - name: "3306"
     port: 3306
     targetPort: 3306
-    nodePort: 30000
   selector:
     io.kompose.service: db
 status:

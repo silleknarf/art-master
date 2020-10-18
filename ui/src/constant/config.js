@@ -1,4 +1,4 @@
 export default {
-    apiurl: 'http://localhost:30001',
+    apiurl: 'https://api.craicbox.app',
     isDebugMode: false
 }

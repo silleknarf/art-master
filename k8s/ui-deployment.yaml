@@ -1,36 +1,25 @@
-apiVersion: apps/v1
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.21.0 ()
-  creationTimestamp: null
-  labels:
-    io.kompose.service: ui
   name: ui
+  namespace: craicbox
+  labels:
+    app: ui
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: ui
-  strategy:
-    type: Recreate
+      app: ui
+  replicas: 1
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.21.0 ()
-      creationTimestamp: null
       labels:
-        io.kompose.service: ui
+        app: ui
     spec:
       containers:
-      - image: art-master_ui
-        imagePullPolicy: Never
-        name: ui
+      - name: master
+        image: rg.nl-ams.scw.cloud/craicbox/art-master_ui:0.0.4
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
-        resources: {}
-      restartPolicy: Always
-      serviceAccountName: ""
-status: {}
+      imagePullSecrets:
+        - name: regcred
