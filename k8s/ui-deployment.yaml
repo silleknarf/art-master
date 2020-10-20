@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: master
-        image: rg.nl-ams.scw.cloud/craicbox/art-master_ui:0.0.4
+        image: rg.nl-ams.scw.cloud/craicbox/art-master_ui
         imagePullPolicy: Always
         ports:
         - containerPort: 3000

@@ -5,6 +5,8 @@ services:
       context: ./service/artmaster
     links:
       - db
+    environment:
+      - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
     ports:
       - "5001:5001"
     volumes:
@@ -15,7 +17,7 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      - MYSQL_ROOT_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
   ui: 
@@ -46,6 +48,8 @@ services:
         ./service/artmaster
       dockerfile:
         seed.Dockerfile
+    environment:
+      - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
     links:
       - db
   generate_data_model:
@@ -54,6 +58,8 @@ services:
         ./service/artmaster
       dockerfile:
         generate_data_model.Dockerfile
+    environment:
+      - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
     volumes:
       - ./service/artmaster:/artmaster
     links:
