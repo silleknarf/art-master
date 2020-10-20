@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/silleknarf/art-master.svg?style=shield)](https://circleci.com/gh/silleknarf/art-master)
+[![CircleCI](https://circleci.com/gh/silleknarf/craicbox.svg?style=shield)](https://circleci.com/gh/silleknarf/craicbox)
 
 README
 ======
