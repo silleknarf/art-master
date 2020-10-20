@@ -10,7 +10,7 @@ TODO
 
 Development in progress!
 
-[Trello TODO Board](https://trello.com/b/xC2SMsIk/art-master)
+[Trello TODO Board](https://trello.com/b/xC2SMsIk/craicbox)
 
 CONTRIBUTING
 ============
@@ -19,12 +19,12 @@ Craicbox is written in python and JS backed by a MySQL database. It can be runni
 
 Get the code:
 
-    git clone https://github.com/silleknarf/art-master.git
+    git clone https://github.com/silleknarf/craicbox.git
 
 Getting Started
 ===============
 
-Seed the `art-master` database:
+Seed the `craicbox` database:
 
     docker-compose up -d --build seed
 
