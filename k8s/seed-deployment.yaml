@@ -9,6 +9,12 @@ spec:
       containers:
       - image: rg.nl-ams.scw.cloud/craicbox/craicbox_seed:latest
         name: seed
+        env:
+        - name: CRAICBOX_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: mysql-root-password
       imagePullSecrets:
         - name: regcred
       restartPolicy: Never

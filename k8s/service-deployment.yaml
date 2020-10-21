@@ -19,6 +19,12 @@ spec:
       - name: master
         image: rg.nl-ams.scw.cloud/craicbox/craicbox_service:latest
         imagePullPolicy: Always
+        env:
+        - name: CRAICBOX_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: mysql-root-password
         ports:
         - containerPort: 5001
       imagePullSecrets:
