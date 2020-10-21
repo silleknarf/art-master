@@ -18,6 +18,9 @@ spec:
       containers:
       - name: master
         image: rg.nl-ams.scw.cloud/craicbox/craicbox_ui
+        env:
+          - name: REACT_APP_SERVICE_URL
+            value: "https://api.craicbox.app"
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
