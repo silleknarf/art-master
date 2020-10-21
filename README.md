@@ -24,6 +24,10 @@ Get the code:
 Getting Started
 ===============
 
+Create a `.env` file in the root directory of the project and set the variable below:
+
+    CRAICBOX_DATABASE_PASSWORD=
+
 Seed the `art-master` database:
 
     docker-compose up -d --build seed
