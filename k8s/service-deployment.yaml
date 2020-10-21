@@ -25,6 +25,8 @@ spec:
             secretKeyRef:
               name: mysql-secrets
               key: mysql-root-password
+        - name: REACT_APP_SERVICE_URL
+          value: https://api.craicbox.app
         ports:
         - containerPort: 5001
       imagePullSecrets:

@@ -1,4 +1,4 @@
 export default {
-    apiurl: 'https://api.craicbox.app',
+    apiurl: process.env.REACT_APP_SERVICE_URL,
     isDebugMode: false
 }

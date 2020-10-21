@@ -28,6 +28,10 @@ Create a `.env` file in the root directory of the project and set the variable b
 
     CRAICBOX_DATABASE_PASSWORD=
 
+Also, create a `.env` file in the UI folder and set the variable below:
+
+    REACT_APP_SERVICE_URL=http://localhost:5001
+
 Seed the `craicbox` database:
 
     docker-compose up -d --build seed
