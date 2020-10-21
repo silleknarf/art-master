@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/silleknarf/art-master.svg?style=shield)](https://circleci.com/gh/silleknarf/art-master)
+[![CircleCI](https://circleci.com/gh/silleknarf/craicbox.svg?style=shield)](https://circleci.com/gh/silleknarf/craicbox)
 
 README
 ======
@@ -10,7 +10,7 @@ TODO
 
 Development in progress!
 
-[Trello TODO Board](https://trello.com/b/xC2SMsIk/art-master)
+[Trello TODO Board](https://trello.com/b/xC2SMsIk/craicbox)
 
 CONTRIBUTING
 ============
@@ -19,7 +19,7 @@ Craicbox is written in python and JS backed by a MySQL database. It can be runni
 
 Get the code:
 
-    git clone https://github.com/silleknarf/art-master.git
+    git clone https://github.com/silleknarf/craicbox.git
 
 Getting Started
 ===============
@@ -28,7 +28,7 @@ Create a `.env` file in the root directory of the project and set the variable b
 
     CRAICBOX_DATABASE_PASSWORD=
 
-Seed the `art-master` database:
+Seed the `craicbox` database:
 
     docker-compose up -d --build seed
 
