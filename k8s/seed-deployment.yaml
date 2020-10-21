@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       containers:
-      - image: rg.nl-ams.scw.cloud/craicbox/art-master_seed:0.0.4
+      - image: rg.nl-ams.scw.cloud/craicbox/craicbox_seed:latest
         name: seed
       imagePullSecrets:
         - name: regcred
