@@ -49,6 +49,10 @@ class ConnectedRoom extends Component {
   }
 
   componentWillMount = () => {
+    if (!this.props.roomId) {
+      const roomCode = this.props.location.pathname.split('/')[2]
+      this.props.history.push(`/?roomCode=${roomCode}`);
+    }
     this.prepareComponentState(this.props);
   }
 

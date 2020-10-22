@@ -23,6 +23,7 @@ class ConnectedState extends Component {
   }
 
   roomTick = async () => {
+    if (!this.state.room) return;
     const roomStateRes = await fetch(`${Config.apiurl}/room?roomId=${this.state.room.roomId}`);
     if (roomStateRes.status === 200) {
         const roomState = await roomStateRes.json();
@@ -31,6 +32,7 @@ class ConnectedState extends Component {
   }
 
   roundTick = async () => {
+    if (!this.state.room) return;
     if (!this.state.room.currentRoundId) {
       store.dispatch(updateRoundState(null));
       return;
@@ -44,9 +46,8 @@ class ConnectedState extends Component {
   }
 
   wordsTick = async () => {
-    if (this.state.room.currentRoundId) {
-      return;
-    }
+    if (!this.state.room) return;
+    if (this.state.room.currentRoundId) return;
 
     const wordsStateRes = await fetch(`${Config.apiurl}/words?roomId=${this.state.room.roomId}`)
     if (wordsStateRes.status === 200) {
