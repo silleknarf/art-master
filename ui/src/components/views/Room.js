@@ -49,7 +49,7 @@ class ConnectedRoom extends Component {
   }
 
   componentWillMount = () => {
-    if (!this.props.roomId) {
+    if (!this.props.room || !this.props.room.roomId) {
       const roomCode = this.props.location.pathname.split('/')[2]
       this.props.history.push(`/?roomCode=${roomCode}`);
     }
@@ -142,7 +142,7 @@ class ConnectedRoom extends Component {
           <span style={titleStyle}>Craicbox</span>
         </div>
         <div style={centerTitleContentStyle}> 
-          <DropdownButton id="dropdown-item-button" title={minigameName}>
+          <DropdownButton id="dropdown-item-button" title={minigameName} disabled={this.state.room.currentRoundId}>
             { dropdownItems }
           </DropdownButton>
         </div>
