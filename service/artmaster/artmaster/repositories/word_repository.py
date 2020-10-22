@@ -1,11 +1,13 @@
 from database.database import session
 from database.data_model import Word, Round, Room
-from random import randint
+from random import SystemRandom
 from repositories import round_repository, room_user_repository
 from services.round_state_machine import RoundStateMachine
 import logging
 
 logfile = logging.getLogger('file')
+
+randint = SystemRandom().randint
 
 def get_random_word_for_room(room_id):
     room_entity = session.query(Room).filter(Room.RoomId==room_id).first()

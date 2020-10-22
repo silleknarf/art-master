@@ -2,9 +2,11 @@
 
 from flask import Blueprint, jsonify, request
 from repositories import room_user_repository, room_repository
-from random import randint
+from random import SystemRandom
 from datetime import datetime
 from .exceptions import InvalidUsage
+
+randint = SystemRandom().randint
 
 room_service = Blueprint('room_service', __name__)
 
