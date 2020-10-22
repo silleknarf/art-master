@@ -27,8 +27,6 @@ Getting Started
 Create a `.env` file in the root directory of the project and set the variable below:
 
     CRAICBOX_DATABASE_PASSWORD=<password>
-    CRAICBOX_DEBUG=1
-    CRAICBOX_HOST=0.0.0.0
 
 Seed the `craicbox` database:
 
