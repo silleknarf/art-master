@@ -7,6 +7,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from database.database import session
 from werkzeug.exceptions import HTTPException
+from config import Config
 
 data_dir = "/Users/silleknarf/Code/art-master/data"
 logfile = logging.getLogger("file")
@@ -71,4 +72,4 @@ def initialise():
     setup_logger("file", "art-master.log")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True, threaded=True)
+    app.run(host="0.0.0.0", port=5001, debug=Config.DEBUG, threaded=True)

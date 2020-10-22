@@ -3,9 +3,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from data_model import *
+from config import Config
 import sys
 sys.path.append("..")
-from user_config import UserDevelopmentConfig, PrivateProductionConfig
 
 class DatabaseBuilder():
     _config = None
@@ -85,10 +85,10 @@ if __name__ == "__main__":
             "--prod\tcreate prod database")
         print(usage)
     elif sys.argv[1] == "--prod":
-        db_builder = DatabaseBuilder(PrivateProductionConfig)
+        db_builder = DatabaseBuilder(Config)
         db_builder.build_database()
     elif sys.argv[1] == "--dev":
-        db_builder = DatabaseBuilder(UserDevelopmentConfig)
+        db_builder = DatabaseBuilder(Config)
         db_builder.rebuild_database()
     else:
         print("Invalid arguments")

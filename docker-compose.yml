@@ -7,6 +7,8 @@ services:
       - db
     environment:
       - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
+      - CRAICBOX_DEBUG=1
+      - CRAICBOX_HOST=0.0.0.0
     ports:
       - "5001:5001"
     volumes:
