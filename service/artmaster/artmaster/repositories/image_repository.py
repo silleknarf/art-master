@@ -1,17 +1,27 @@
 from repositories import room_user_repository 
 from database.database import session
+from sqlalchemy.exc import IntegrityError
 from database.data_model import Image, Round
 import logging
 
 logfile = logging.getLogger('file')
 
 def create_image(user_id, image_base_64, round_id):
+    (session
+        .query(Image)
+        .filter(Image.UserId==user_id)
+        .filter(Image.RoundId==round_id)
+        .delete())
     drawing = Image(
         UserId=user_id, 
         ImageBase64=image_base_64, 
         RoundId=round_id)
     session.add(drawing)
-    session.commit()
+    try:
+        session.commit()
+    except IntegrityError:
+        session.rollback()
+    
     return drawing
 
 def get_round_images(round_id):

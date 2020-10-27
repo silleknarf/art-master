@@ -13,18 +13,20 @@ class RoundState:
     DONE = 4 
 
 class RoundStateMachine:
+    _grace_duration_in_seconds = 2
+
     def __init__(self, round_entity):
         self.round_entity = round_entity
 
     def _to_drawing(self):
         stage_state_id = RoundState.DRAWING      
-        duration = 90
+        duration = 90 + self._grace_duration_in_seconds
         round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
         self._update_round(stage_state_id, duration)
 
     def _to_filling_in_blanks(self):
         stage_state_id = RoundState.FILLING_IN_BLANKS
-        duration = 60
+        duration = 60 + self._grace_duration_in_seconds
         round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
         self._update_round(stage_state_id, duration)
 

@@ -81,6 +81,9 @@ class Round(Base):
 
 class Image(Base):
     __tablename__ = 'Image'
+    __table_args__ = (
+        Index('UC_Image', 'UserId', 'RoundId', unique=True),
+    )
 
     ImageId = Column(INTEGER(11), primary_key=True)
     UserId = Column(INTEGER(11), nullable=False)
@@ -92,6 +95,9 @@ class Image(Base):
 
 class Word(Base):
     __tablename__ = 'Word'
+    __table_args__ = (
+        Index('UC_Word', 'RoomId', 'UserId', 'Word', 'MinigameId', unique=True),
+    )
 
     WordId = Column(INTEGER(11), primary_key=True)
     RoomId = Column(ForeignKey('Room.RoomId'), nullable=False, index=True)

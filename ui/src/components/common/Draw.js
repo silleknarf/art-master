@@ -6,8 +6,9 @@ import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
 import Config from '../../constant/Config';
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
 import * as LC from "../../../node_modules/literallycanvas/lib/js/index.js"
+import { connect } from "react-redux";
 
-class Draw extends Component {
+class ConnectedDraw extends Component {
 
   constructor(props) {
     super(props);
@@ -16,7 +17,9 @@ class Draw extends Component {
     }
   }
 
-  async onClickUploadDrawing(e) {
+  async onClickUploadDrawing() {
+    if (!this.literallycanvas) return;
+
     const drawingDataUrl = this.literallycanvas.lc.getImage().toDataURL();
     const drawingRes = await fetch(
       `${Config.apiurl}/image?userId=${this.props.userId}&roundId=${this.props.roundId}`, 
@@ -32,6 +35,13 @@ class Draw extends Component {
     if (drawingRes.status === 200) {
       console.log("Uploaded drawing")
       this.setState({drawingSubmitted: true});
+    }
+  }
+
+  componentWillReceiveProps = (newProps) => {
+    const gracePeriodDurationInSeconds = 2;
+    if (newProps.round.timeRemaining <= gracePeriodDurationInSeconds) {
+      this.onClickUploadDrawing();
     }
   }
 
@@ -61,7 +71,7 @@ class Draw extends Component {
               <Button
                 style={centerTitleContentStyle}
                 className="upload-room-button button"
-                onClick={(e) => this.onClickUploadDrawing(e)}>
+                onClick={(e) => this.onClickUploadDrawing()}>
                 <FontAwesomeIcon style={iconStyle} icon={faUpload} />
                 <span style={buttonTextStyle}>Upload Drawing</span>
               </Button>
@@ -79,4 +89,9 @@ class Draw extends Component {
   }
 }
 
+const mapStateToProps = (state, properties) => {
+  return { round: state.round };
+}
+
+const Draw = connect(mapStateToProps)(ConnectedDraw);
 export default Draw;

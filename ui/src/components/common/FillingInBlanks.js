@@ -31,6 +31,11 @@ class ConnectedFillingInBlanks extends Component {
   updateComponentState = async (newProps) => {
     if (!newProps) return;
 
+    const gracePeriodDurationInSeconds = 2;
+    if (newProps.round.timeRemaining <= gracePeriodDurationInSeconds) {
+      this.onClickSubmitText();
+    }
+
     this.setState({ 
       user: newProps.user,
       room: newProps.room
@@ -148,7 +153,7 @@ class ConnectedFillingInBlanks extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { user: state.user, room: state.room };
+  return { user: state.user, room: state.room, round: state.round };
 }
 
 const FillingInBlanks = connect(mapStateToProps)(ConnectedFillingInBlanks);

@@ -1,4 +1,5 @@
 from database.database import session
+from sqlalchemy.exc import IntegrityError
 from database.data_model import Word, Round, Room
 from random import SystemRandom
 from repositories import round_repository, room_user_repository
@@ -38,17 +39,14 @@ def create_word(room_id, user_id, round_id, word):
     trimmed_word = word.strip()
     if trimmed_word == "":
         return
-    existing_word = (session
-        .query(Word)
-        .filter(Word.RoomId==room_id)
-        .filter(Word.Word==trimmed_word)
-        .first())
-    if existing_word is not None:
-        return 
     room_entity = session.query(Room).filter(Room.RoomId==room_id).first()
     word_entity = Word(RoomId=room_id, UserId=user_id, RoundId=round_id, MinigameId=room_entity.MinigameId, Word=trimmed_word)
     session.add(word_entity)
-    session.commit()
+    try:
+        session.commit()
+    except IntegrityError:
+        session.rollback()
+        return
 
     round_entity = round_repository.get_round(round_id)
     round_state_machine = RoundStateMachine(round_entity)

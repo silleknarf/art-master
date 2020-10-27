@@ -8,7 +8,7 @@ class ConnectedRoundInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      round: { timeRemaining: null }
+      adjustedTimeRemaining: null
     }
   }
 
@@ -31,16 +31,20 @@ class ConnectedRoundInfo extends Component {
       "Done"
     ];
     const roundStateDescription = roundStateDescriptions[newProps.round.stageStateId];
-    // Map the props to the state
-    const timeRemainingDigits = newProps.round
-      .timeRemaining
+    const isGracePeriodState = newProps.round.stageStateId === 0 || newProps.round.stageStateId === 1
+    const adjustedTimeRemaining = Math.max(
+      isGracePeriodState ? newProps.round.timeRemaining - 2 : newProps.round.timeRemaining, 
+      0);
+
+    const timeRemainingDigits = adjustedTimeRemaining
       .toFixed(0)
       .toString()
       .length;
+
     this.setState({ 
-      round: newProps.round, 
       timeRemainingDigits: timeRemainingDigits,
-      roundStateDescription: roundStateDescription
+      roundStateDescription: roundStateDescription,
+      adjustedTimeRemaining: adjustedTimeRemaining
     });
   }
 
@@ -69,12 +73,12 @@ class ConnectedRoundInfo extends Component {
 
     var display = null;
 
-    if (this.state.round && this.state.round.timeRemaining) {
+    if (this.state.adjustedTimeRemaining) {
       display = (<div 
         style={displayStyle} 
         className="display">
         <Display 
-          value={this.state.round.timeRemaining.toFixed(0)} 
+          value={this.state.adjustedTimeRemaining.toFixed(0)} 
           color="black" 
           digitCount={this.state.timeRemainingDigits} />
       </div>);
