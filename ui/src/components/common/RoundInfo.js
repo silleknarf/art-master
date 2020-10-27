@@ -31,7 +31,7 @@ class ConnectedRoundInfo extends Component {
       "Done"
     ];
     const roundStateDescription = roundStateDescriptions[newProps.round.stageStateId];
-    const isGracePeriodState = newProps.round.stageStateId === 0 || newProps.round.stageStateId === 1
+    const isGracePeriodState = newProps.round.stageStateId === 0 || newProps.round.stageStateId === 1;
     const adjustedTimeRemaining = Math.max(
       isGracePeriodState ? newProps.round.timeRemaining - 2 : newProps.round.timeRemaining, 
       0);
@@ -42,9 +42,9 @@ class ConnectedRoundInfo extends Component {
       .length;
 
     this.setState({ 
-      timeRemainingDigits: timeRemainingDigits,
-      roundStateDescription: roundStateDescription,
-      adjustedTimeRemaining: adjustedTimeRemaining
+      timeRemainingDigits,
+      roundStateDescription,
+      adjustedTimeRemaining
     });
   }
 

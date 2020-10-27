@@ -18,7 +18,9 @@ class ConnectedDraw extends Component {
   }
 
   async onClickUploadDrawing() {
-    if (!this.literallycanvas) return;
+    if (!this.literallycanvas) {
+      return;
+    }
 
     const drawingDataUrl = this.literallycanvas.lc.getImage().toDataURL();
     const drawingRes = await fetch(

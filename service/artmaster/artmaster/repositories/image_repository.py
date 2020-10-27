@@ -21,7 +21,6 @@ def create_image(user_id, image_base_64, round_id):
         session.commit()
     except IntegrityError:
         session.rollback()
-    
     return drawing
 
 def get_round_images(round_id):
