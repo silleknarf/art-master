@@ -1,7 +1,8 @@
+import logging
+
 from database.database import session
 from database.data_model import Room, Round
 from services.exceptions import InvalidUsage
-import logging
 
 logfile = logging.getLogger('file')
 
@@ -14,8 +15,8 @@ def update_room_round(room_id, round_id):
 
 def create_round(room_id, user_id, word_id):
     logfile.info(
-        "Creating room: %s for user: %s" %
-        (room_id, user_id))
+        "Creating room: %s for user: %s",
+        room_id, user_id)
     if room_id is None or user_id is None:
         raise InvalidUsage("Please set the roomId and userId")
     room = (session
@@ -26,7 +27,7 @@ def create_round(room_id, user_id, word_id):
         raise InvalidUsage("Only the room owner can start rounds")
     round_entity = Round(RoomId=room_id, DrawingWordId=word_id)
     session.add(round_entity)
-    session.commit() 
+    session.commit()
     return round_entity
 
 def get_round(round_id):
@@ -40,8 +41,8 @@ def get_round(round_id):
     return round_entity
 
 def update_round(round_id, stage_state_id, start_time, end_time, drawing_word_id):
-    logfile.info("Setting round: %s to be in state: %s and setting drawing_word_id: %s" %
-        (round_id, stage_state_id, drawing_word_id))
+    logfile.info("Setting round: %s to be in state: %s and setting drawing_word_id: %s",
+        round_id, stage_state_id, drawing_word_id)
 
     round_entity = get_round(round_id)
     round_entity.StageStateId = stage_state_id

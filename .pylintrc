@@ -1,0 +1,4 @@
+[MESSAGES CONTROL]
+
+enable=C0303
+disable=missing-function-docstring,missing-module-docstring
