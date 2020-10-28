@@ -9,20 +9,20 @@ import logging
 
 config = Config
 
-connection_string = ('mysql://%s:%s@%s/%s' % 
+connection_string = ('mysql://%s:%s@%s/%s' %
     (config.DATABASE_USERNAME, 
     config.DATABASE_PASSWORD,
     config.DATABASE_SERVER,
     config.DATABASE_NAME))
 
 logger = logging.getLogger('sqlalchemy.engine')
-handler = logging.FileHandler("art-master.sql.log")        
+handler = logging.FileHandler("art-master.sql.log")
 logger.handlers = []
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
 #logger = logging.getLogger('sqlalchemy.pool')
-#handler = logging.FileHandler("art-master.sql.log")        
+#handler = logging.FileHandler("art-master.sql.log")
 #logger.handlers = []
 #logger.addHandler(handler)
 #logger.setLevel(logging.DEBUG)
