@@ -26,7 +26,8 @@ class ConnectedRoom extends Component {
       round: { stageStateId: null },
       minigames: [],
       previousRoundId: null,
-      currentTabIndex: 1
+      currentTabIndex: 1,
+      isCurrentUserInRoom: false
     }
   }
 
@@ -81,6 +82,18 @@ class ConnectedRoom extends Component {
         currentTabIndex: 2
       });
     }
+
+    // We kick the user if they were in the room
+    // but are no longer
+    const isCurrentUserInRoom = props.room &&
+      props.room.roomUsers &&
+      props.room.roomUsers
+        .filter(ru => ru.userId === props.user.userId) 
+        .length > 0;
+    if (this.state.isCurrentUserInRoom && !isCurrentUserInRoom) {
+      props.history.push("/");
+    }
+    this.setState({isCurrentUserInRoom: isCurrentUserInRoom})
   }
 
   // Required for switching the tabs manually

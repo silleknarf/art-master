@@ -87,7 +87,9 @@ class ConnectedState extends Component {
 
   prepareComponentState = (props) => {
     // Map the props to the state
-    this.setState({room: props.room, round: props.round, words: props.words, minigames: props.minigames })
+    this.setState({
+      ...props
+    });
   }
 
   render = () => {
@@ -106,6 +108,9 @@ class ConnectedState extends Component {
         <Row>
           <div>MinigamesState: { JSON.stringify(this.state.minigames) } </div>
         </Row>
+        <Row>
+          <div>UserState: { JSON.stringify(this.state.user) } </div>
+        </Row>
       </div>
     );
   }
@@ -113,7 +118,13 @@ class ConnectedState extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { room: state.room, round: state.round, words: state.words, minigames: state.minigames };
+  return { 
+    room: state.room, 
+    round: state.round, 
+    words: state.words, 
+    minigames: state.minigames, 
+    user: state.user 
+  };
 }
 
 const State = connect(mapStateToProps)(ConnectedState);
