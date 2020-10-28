@@ -1,17 +1,18 @@
 #!/usr/bin/python
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-from data_model import *
-from config import Config
 import sys
 sys.path.append("..")
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+from data_model import Base, Minigame, Transition
+from config import Config
 
 class DatabaseBuilder():
     _config = None
 
-    def __init__(self, config):
-        self._config = config
+    def __init__(self, _config):
+        self._config = _config
 
     def build_database(self):
         self._create_database()

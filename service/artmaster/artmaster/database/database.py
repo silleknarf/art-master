@@ -1,19 +1,20 @@
 #!/usr/bin/python
 
+import logging
+import sys
+sys.path.append("..")
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from .data_model import *
-from config import Config
 from contextlib import contextmanager
-import logging
-
-config = Config
+from data_model import *
+from config import Config
 
 connection_string = ('mysql://%s:%s@%s/%s' %
-    (config.DATABASE_USERNAME, 
-    config.DATABASE_PASSWORD,
-    config.DATABASE_SERVER,
-    config.DATABASE_NAME))
+    (Config.DATABASE_USERNAME,
+    Config.DATABASE_PASSWORD,
+    Config.DATABASE_SERVER,
+    Config.DATABASE_NAME))
 
 logger = logging.getLogger('sqlalchemy.engine')
 handler = logging.FileHandler("art-master.sql.log")
@@ -29,7 +30,7 @@ logger.setLevel(logging.INFO)
 
 engine = create_engine(
     connection_string,
-    encoding="utf8", 
+    encoding="utf8",
     echo=False)
 
 session = scoped_session(sessionmaker(
