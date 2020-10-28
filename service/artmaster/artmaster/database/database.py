@@ -7,7 +7,7 @@ sys.path.append("..")
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from contextlib import contextmanager
-from data_model import *
+from .data_model import *
 from config import Config
 
 connection_string = ('mysql://%s:%s@%s/%s' %
