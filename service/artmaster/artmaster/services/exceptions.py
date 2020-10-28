@@ -2,7 +2,7 @@
 
 from flask import jsonify
 from database.database import session
-import logging 
+import logging
 import traceback
 
 logfile = logging.getLogger('file')

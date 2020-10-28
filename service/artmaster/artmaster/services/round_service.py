@@ -21,16 +21,16 @@ def poll_or_create_round():
         if word is None:
             raise InvalidUsage("Cannot start around without any words")
         round_entity = round_repository.create_round(room_id, user_id, word.WordId)
-        round_state_machine = RoundStateMachine(round_entity) 
+        round_state_machine = RoundStateMachine(round_entity)
         round_state_machine.next_stage()
     else:
         round_id = request.args.get("roundId")
         round_entity = round_repository.get_round(round_id)
         round_state_machine = RoundStateMachine(round_entity)
         round_state_machine.maybe_next_stage()
-    
+
     return to_round_dto(round_entity, round_state_machine)
-    
+
 def to_round_dto(round_entity, round_state_machine):
     return jsonify({
         "roundId": round_entity.RoundId,
@@ -38,4 +38,4 @@ def to_round_dto(round_entity, round_state_machine):
         "timeRemaining": round_state_machine.get_time_remaining(),
         "drawingWordId": round_entity.DrawingWordId
     })
-    
+

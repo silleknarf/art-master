@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button } from 'react-bootstrap'; 
+import { Grid, Col, Row, Button } from 'react-bootstrap';
 import Config from '../../constant/Config';
 
 class DrawingWord extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      word: { 
+    this.state = {
+      word: {
         word: ""
       }
     };

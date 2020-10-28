@@ -3,7 +3,7 @@
 README
 ======
 
-Craicbox is a game where players are pitted against each other to rapidly create art for the other players to critique! 
+Craicbox is a game where players are pitted against each other to rapidly create art for the other players to critique!
 
 TODO
 ====
@@ -43,7 +43,7 @@ To update the data model:
 
 To run the tests:
 
-    docker-compose up --build service_tests 
+    docker-compose up --build service_tests
 
 Run Storybook:
 
@@ -55,7 +55,7 @@ Production Setup
 
 1. Set up a kubernetes cluster which has got at least one persistent volume and node
 1. Push the images for seed, service and UI up to an image registry
-1. Add a secret for the image registry used 
+1. Add a secret for the image registry used
     kubectl create secret docker-registry regcred --docker-server=rg.nl-ams.scw.cloud/craicbox --docker-username=nologin --docker-password=<your_password> --docker-email=<your_email> -n craicbox
 1. Add a secret called mysql-secrets with a value in data for the key: mysql-root-password
 1. Update the k8s templates to point the registry images

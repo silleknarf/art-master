@@ -10,7 +10,7 @@ class RoundState:
     FILLING_IN_BLANKS = 1
     CRITIQUING = 2
     REVIEWING = 3
-    DONE = 4 
+    DONE = 4
 
 class RoundStateMachine:
     _grace_duration_in_seconds = 2
@@ -19,7 +19,7 @@ class RoundStateMachine:
         self.round_entity = round_entity
 
     def _to_drawing(self):
-        stage_state_id = RoundState.DRAWING      
+        stage_state_id = RoundState.DRAWING
         duration = 90 + self._grace_duration_in_seconds
         round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
         self._update_round(stage_state_id, duration)
@@ -56,14 +56,14 @@ class RoundStateMachine:
         end_time = start_time + timedelta(seconds=duration)
         round_repository.update_round(
             self.round_entity.RoundId,
-            stage_state_id, 
-            start_time, 
-            end_time, 
+            stage_state_id,
+            start_time,
+            end_time,
             self.round_entity.DrawingWordId)
 
     def maybe_end_drawing_early(self):
         are_all_images_submitted = image_repository.are_all_images_submitted(
-            self.round_entity.RoundId, 
+            self.round_entity.RoundId,
             self.round_entity.RoomId)
         if are_all_images_submitted:
             self._to_critiquing()
@@ -96,7 +96,7 @@ class RoundStateMachine:
 
     def next_stage(self):
         stage_state_id = self.round_entity.StageStateId
-        minigame_id = room_repository.get_room(self.round_entity.RoomId, None).MinigameId 
+        minigame_id = room_repository.get_room(self.round_entity.RoomId, None).MinigameId
         transitions = transition_repository.get_transitions(minigame_id)
 
         logfile.info("Minigame: %s in state: %s" % (minigame_id, stage_state_id))
@@ -113,4 +113,3 @@ class RoundStateMachine:
             self._to_reviewing()
         elif transition.StateTo == RoundState.DONE:
             self._to_done()
-    

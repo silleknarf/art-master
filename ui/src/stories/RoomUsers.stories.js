@@ -11,10 +11,10 @@ storiesOf('RoomUsers', module)
   .addDecorator(story => <Provider story={story()} />)
   .add('with users', () => {
     FetchMock.restore()
-    const room = { 
+    const room = {
       roomId: 1,
       roomUsers: [
-        { userId: 1, username: "User1", score: 0}, 
+        { userId: 1, username: "User1", score: 0},
         { userId: 2, username: "User2 ", score: 10}
       ],
       currentRoundId: 1

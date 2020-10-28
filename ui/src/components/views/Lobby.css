@@ -30,7 +30,7 @@
 .lobby .label {
   color: white;
   font-size: 2em;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   text-shadow: -1px 0 rgb(77, 77, 77), 0 1px rgb(77, 77, 77), 1px 0 rgb(77, 77, 77), 0 -1px rgb(77, 77, 77);
   margin: 10px 0;
 }
@@ -51,9 +51,9 @@
 }
 
 .lobby .create-room-button {
-  background-color: rgb(64, 85, 202); 
+  background-color: rgb(64, 85, 202);
 }
 
 .lobby .join-room-button {
-  background-color: rgb(64, 85, 202); 
+  background-color: rgb(64, 85, 202);
 }

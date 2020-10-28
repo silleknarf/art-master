@@ -1,4 +1,4 @@
-from repositories import room_user_repository 
+from repositories import room_user_repository
 from database.database import session
 from sqlalchemy.exc import IntegrityError
 from database.data_model import Image, Round
@@ -13,8 +13,8 @@ def create_image(user_id, image_base_64, round_id):
         .filter(Image.RoundId==round_id)
         .delete())
     drawing = Image(
-        UserId=user_id, 
-        ImageBase64=image_base_64, 
+        UserId=user_id,
+        ImageBase64=image_base_64,
         RoundId=round_id)
     session.add(drawing)
     try:

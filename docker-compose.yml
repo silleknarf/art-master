@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   service:
-    build: 
+    build:
       context: ./service/artmaster
     links:
       - db
@@ -22,8 +22,8 @@ services:
       - MYSQL_ROOT_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
-  ui: 
-    build: 
+  ui:
+    build:
       context: ./ui
     links:
       - service
@@ -34,8 +34,8 @@ services:
     volumes:
       - ./ui:/artmaster
       - /artmaster/node_modules
-  storybook: 
-    build: 
+  storybook:
+    build:
       context: ./ui
     links:
       - service
@@ -69,7 +69,7 @@ services:
     links:
       - db
   service_tests:
-    build: 
+    build:
       context: ./service/artmaster
     links:
       - db

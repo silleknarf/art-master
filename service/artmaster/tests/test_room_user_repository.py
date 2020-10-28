@@ -31,7 +31,7 @@ class TestRoomService(unittest.TestCase):
 
     def tearDown(self):
         Base.metadata.drop_all(self.engine)
-    
+
     def test_add_user_to_room(self):
         room_user_repository.session = self.session
         room_user_repository.session.add(User(UserId=1, Username="Test"))
@@ -40,7 +40,7 @@ class TestRoomService(unittest.TestCase):
         room_user_repository.session.commit()
         room_id = 1
         user_id = 1
-        room_user_repository.add_user_to_room(room_id, user_id) 
+        room_user_repository.add_user_to_room(room_id, user_id)
         room_user_entity = self.session.query(RoomUser).first()
         self.assertEqual(room_user_entity.RoomId, 1)
         self.assertEqual(room_user_entity.UserId, 1)

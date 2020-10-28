@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button, FormControl, FormGroup, HelpBlock, ControlLabel, Tabs, Tab } from 'react-bootstrap'; 
+import { Grid, Col, Row, Button, FormControl, FormGroup, HelpBlock, ControlLabel, Tabs, Tab } from 'react-bootstrap';
 import Config from '../../constant/Config';
 import store from '../../redux/Store';
 import { updateRoomState, updateRoundState, updateUserState } from "../../redux/Actions";
@@ -26,7 +26,7 @@ class Lobby extends Component {
       const roomRes = await fetch(`${Config.apiurl}/room?userId=${userId}`, {
         method: 'POST',
       });
-      
+
       if (roomRes.status === 200) {
         const room = await roomRes.json();
         console.log(`Created room: ${room.roomCode}`);
@@ -39,18 +39,18 @@ class Lobby extends Component {
     } catch(err) {
       console.log(err);
       this.setState({
-        usernameFeedback: 'Unable to create room', 
+        usernameFeedback: 'Unable to create room',
       });
     }
   }
 
   async onJoinRoom(e) {
     e.preventDefault();
-    
-    // TODO: logic to pick username and 
+
+    // TODO: logic to pick username and
     const { userId, username } = await this.createUser();
     console.log(`User: ${username} is attempting to join room: ${this.state.roomCode}`);
-    
+
     try {
       const roomRes = await fetch(`${Config.apiurl}/room?roomCode=${this.state.roomCode}`, { method: 'GET' });
       const room = await roomRes.json();
@@ -113,7 +113,7 @@ class Lobby extends Component {
   componentDidMount = () => {
     const roomCode = this.getUrlParam("roomCode");
     if (roomCode)
-      this.setState({ 
+      this.setState({
         tabIndex: 2,
         roomCode: roomCode
       });
@@ -156,13 +156,13 @@ class Lobby extends Component {
     );
     return (
       <div className="lobby">
-        <div style={centerTitleContentStyle}> 
+        <div style={centerTitleContentStyle}>
           <span style={titleStyle}>Craicbox</span>
         </div>
-        <Tabs 
-          id="lobby-tabs" 
-          activeKey={this.state.tabIndex} 
-          style={tabsStyle} 
+        <Tabs
+          id="lobby-tabs"
+          activeKey={this.state.tabIndex}
+          style={tabsStyle}
           onSelect={this.handleSelect}>
           <Tab eventKey={1} title="Create Room">
             <Grid style={gridStyle}>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Config from '../../constant/Config';
-import { Grid, Row, Button, Alert } from 'react-bootstrap'; 
+import { Grid, Row, Button, Alert } from 'react-bootstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faUpload from '@fortawesome/fontawesome-free-solid/faUpload'
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
@@ -11,8 +11,8 @@ class ConnectedFillingInBlanks extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { 
-      word: { 
+    this.state = {
+      word: {
         word: ""
       },
       sentenceBlanks: [],
@@ -36,7 +36,7 @@ class ConnectedFillingInBlanks extends Component {
       this.onClickSubmitText();
     }
 
-    this.setState({ 
+    this.setState({
       user: newProps.user,
       room: newProps.room
     });
@@ -75,7 +75,7 @@ class ConnectedFillingInBlanks extends Component {
       userId: this.state.user.userId
     };
     this.setState({newWord: sentence, sentenceSubmitted: true });
-    const addWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`, 
+    const addWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`,
       { method: "POST" });
     if (addWordRes.status === 200) {
       console.log(`Added word: ${word.word}`);
@@ -121,7 +121,7 @@ class ConnectedFillingInBlanks extends Component {
       <Grid style={gridStyle}>
         <Row style={centerContentStyle}>
           <div style={style}>
-            Fill the blanks in: 
+            Fill the blanks in:
           </div>
         </Row>
         <Row style={centerContentStyle}>

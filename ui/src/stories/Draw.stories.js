@@ -11,7 +11,7 @@ const setupDraw = () => {
   FetchMock.post('glob:*image?*', "test");
 }
 storiesOf('Draw', module)
-  .add('draw', () => { 
+  .add('draw', () => {
     setupDraw()
     return <Draw />;
   })

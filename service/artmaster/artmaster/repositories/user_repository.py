@@ -1,7 +1,7 @@
 from database.database import session
 from database.data_model import User
 from services.exceptions import InvalidUsage
-import logging 
+import logging
 
 logfile = logging.getLogger('file')
 

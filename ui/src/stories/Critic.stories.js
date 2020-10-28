@@ -7,9 +7,9 @@ const testImageBase64 = "data:image/gif;base64,R0lGODlhPQBEAPeoAJosM//AwO/AwHVYZ
 
 storiesOf('Critic', module)
   .add('with images', () => {
-      FetchMock.restore()  
+      FetchMock.restore()
       FetchMock.get('glob:*images?*', [
-        { imageId: 1, imageBase64: testImageBase64, userId: 2 }, 
+        { imageId: 1, imageBase64: testImageBase64, userId: 2 },
         {imageId: 2, imageBase64: testImageBase64 },
         {imageId: 3, imageBase64: testImageBase64, userId: 2 }
       ]);
@@ -17,7 +17,7 @@ storiesOf('Critic', module)
       return <Critic />;
     })
   .add('with words', () => {
-      FetchMock.restore()  
+      FetchMock.restore()
       FetchMock.get('glob:*images?*', []);
       FetchMock.get('glob:*words?*', [
         { wordId: 1, word: "Test blanky blank word" },

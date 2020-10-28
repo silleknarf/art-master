@@ -1,9 +1,9 @@
 .App {
   text-align: center;
-  position: absolute; 
+  position: absolute;
   width: 100% !important;
   height: 100% !important;
-  
+
   background: rgba(1,231,103,1);
   background: -moz-linear-gradient(top, rgba(1,231,103,1) 0%, rgba(254,182,69,1) 100%);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(1,231,103,1)), color-stop(100%, rgba(254,182,69,1)));

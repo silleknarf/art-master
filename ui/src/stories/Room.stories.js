@@ -16,10 +16,10 @@ import { updateRoomState, updateRoundState, updateWordsState, updateMinigamesSta
 const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => {
   FetchMock.restore()
 
-  const room = { 
+  const room = {
     roomId: 1,
     roomUsers: [
-      { userId: 1, username: "User1"}, 
+      { userId: 1, username: "User1"},
       { userId: 2, username: "User2 "}
     ],
     currentRoundId: currentRoundId,
@@ -33,7 +33,7 @@ const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => 
   };
   store.dispatch(updateUserState(user));
 
-  const round = { 
+  const round = {
     stageStateId: currentStageId,
     timeRemaining: 30,
     drawingWordId: 1
@@ -58,7 +58,7 @@ const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => 
   FetchMock.get('glob:*word?*', { wordId: 1, word: "bacon"});
 
   const ratings = [
-    { winnerId: 1, winningImageBase64: '1/1.png', winnerUsername: "User1"}, 
+    { winnerId: 1, winningImageBase64: '1/1.png', winnerUsername: "User1"},
     { winnerId: 2, winningImageBase64: '1/1.png', winnerUsername: "User2"}
   ];
   FetchMock.get('glob:*ratings?*', ratings);
@@ -73,23 +73,23 @@ const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => 
 
 storiesOf('Room', module)
   .addDecorator(story => <Provider story={story()} />)
-  .add('AM - Round not started', () => { 
+  .add('AM - Round not started', () => {
     setupRoom(null, 0, 1, "Art Master");
     return <Room />;
   })
-  .add('AM - Drawing', () => { 
+  .add('AM - Drawing', () => {
     setupRoom(1, 0, 1, "Art Master");
     return <Room />;
   })
-  .add('AM - Reviewing', () => { 
+  .add('AM - Reviewing', () => {
     setupRoom(97, 1, 1, "Art Master");
     return <Room />;
   })
-  .add('AM - Critiquing', () => { 
+  .add('AM - Critiquing', () => {
     setupRoom(97, 2, 1, "Art Master");
     return <Room />;
   })
-  .add('STD - Round not started', () => { 
+  .add('STD - Round not started', () => {
     setupRoom(null, 0, 2, "Sentenced To Death");
     return <Room />;
   })

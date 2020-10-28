@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Row, Button, Alert } from "react-bootstrap"; 
+import { Grid, Row, Button, Alert } from "react-bootstrap";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
 import faPalette from '@fortawesome/fontawesome-free-solid/faPalette'
@@ -52,7 +52,7 @@ class Critic extends Component {
     var ratingRes = await fetch(
       `${Config.apiurl}/rating?${$.param(rating)}`,
       {
-        method: "POST" 
+        method: "POST"
       })
     if (ratingRes.status === 200) {
       console.log(`Image: ${imageId}/Word: ${wordId} rated by ${this.props.userId}`);
@@ -85,10 +85,10 @@ class Critic extends Component {
       <Grid>
         <Row>
           {this.state.images.map((image) => {
-            let maybeButton = image.userId !== this.props.userId 
-              ? <Button 
-                  className="button" 
-                  onClick={e => this.onClickRateImage(image.imageId)}> 
+            let maybeButton = image.userId !== this.props.userId
+              ? <Button
+                  className="button"
+                  onClick={e => this.onClickRateImage(image.imageId)}>
                   <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
                   <span style={buttonTextStyle}>Vote</span>
                 </Button>
@@ -113,10 +113,10 @@ class Critic extends Component {
         <Row>
           {this.state.words.map((word) => {
 
-            let maybeButton = word.userId !== this.props.userId 
-              ? <Button 
-                  className="button" 
-                  onClick={e => this.onClickRateWord(word.wordId)}> 
+            let maybeButton = word.userId !== this.props.userId
+              ? <Button
+                  className="button"
+                  onClick={e => this.onClickRateWord(word.wordId)}>
                   <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
                   <span style={buttonTextStyle}>Vote</span>
                 </Button>

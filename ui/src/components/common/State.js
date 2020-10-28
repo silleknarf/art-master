@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Row } from 'react-bootstrap'; 
+import { Row } from 'react-bootstrap';
 import Config from '../../constant/Config';
 import store from "../../redux/Store";
 import { updateRoomState, updateRoundState, updateWordsState, updateMinigamesState } from "../../redux/Actions";
@@ -94,7 +94,7 @@ class ConnectedState extends Component {
 
   render = () => {
     if (!Config.isDebugMode) return null;
-    return ( 
+    return (
       <div className="state">
         <Row>
           <div>RoomState: { JSON.stringify(this.state.room) } </div>
@@ -118,12 +118,12 @@ class ConnectedState extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { 
-    room: state.room, 
-    round: state.round, 
-    words: state.words, 
-    minigames: state.minigames, 
-    user: state.user 
+  return {
+    room: state.room,
+    round: state.round,
+    words: state.words,
+    minigames: state.minigames,
+    user: state.user
   };
 }
 

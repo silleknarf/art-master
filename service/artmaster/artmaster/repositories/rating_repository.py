@@ -7,7 +7,7 @@ logfile = logging.getLogger('file')
 
 def get_ratings(round_id):
     round_ratings = (session
-        .query(Rating, Image, Word) 
+        .query(Rating, Image, Word)
         .outerjoin(Image)
         .outerjoin(Word)
         .filter(Rating.RoundId==round_id)
@@ -24,8 +24,8 @@ def has_existing_rating(round_id, user_id):
 
 def create_rating(image_id, word_id, round_id, rating, user_id):
     rating_entity = Rating(
-        Rating=rating, 
-        RaterUserId=user_id, 
+        Rating=rating,
+        RaterUserId=user_id,
         RoundId=round_id,
         WordId=word_id,
         ImageId=image_id)
@@ -77,7 +77,7 @@ def get_round_rating_results(round_id):
     results = []
     for winning_image in winning_images:
         winning_user = user_repository.get_user(winning_image.UserId)
-        result = { 
+        result = {
             "roundId": round_id,
             "winnerId": winning_user.UserId,
             "winnerUsername": winning_user.Username,
@@ -110,7 +110,7 @@ def get_round_rating_results(round_id):
 
     for winning_word in winning_words:
         winning_user = user_repository.get_user(winning_word.UserId)
-        result = { 
+        result = {
             "roundId": round_id,
             "winnerId": winning_user.UserId,
             "winnerUsername": winning_user.Username,

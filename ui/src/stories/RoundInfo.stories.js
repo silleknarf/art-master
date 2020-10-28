@@ -11,7 +11,7 @@ storiesOf('RoundInfo', module)
   .addDecorator(story => <Provider story={story()} />)
   .add('roundInfo', () => {
     FetchMock.restore();
-    const round = { 
+    const round = {
       stageStateId: 0,
       timeRemaining: 30
     };

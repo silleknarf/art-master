@@ -12,7 +12,7 @@ storiesOf('Filling in blanks', module)
   .add('with sentence with blanks', () => {
     FetchMock.restore();
     FetchMock.get('glob:*word?*', { wordId: 1, word: "Fill _ the blanks __ of this sentence."});
-    const room = { 
+    const room = {
       roomId: 1,
       currentRoundId: 1
     };

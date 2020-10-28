@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import unittest 
+import unittest
 import mock
 import json
 import app

@@ -24,7 +24,7 @@ def upload_drawing():
     round_state_machine = RoundStateMachine(round_entity)
     round_state_machine.maybe_end_drawing_early()
 
-    return jsonify({ 
+    return jsonify({
         "imageId": drawing.ImageId,
         "roundId": drawing.RoundId,
         "imageBase64": drawing.ImageBase64
@@ -35,6 +35,6 @@ def get_drawings():
     round_id = int(request.args.get("roundId"))
 
     round_images = image_repository.get_round_images(round_id)
-    images = [{ "imageId": ri.ImageId, "imageBase64": ri.ImageBase64, "userId": ri.UserId } 
+    images = [{ "imageId": ri.ImageId, "imageBase64": ri.ImageBase64, "userId": ri.UserId }
                 for ri in round_images]
     return jsonify(images)

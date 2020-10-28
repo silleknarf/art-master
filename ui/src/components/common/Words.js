@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button, FormControl, FormGroup } from 'react-bootstrap'; 
+import { Grid, Col, Row, Button, FormControl, FormGroup } from 'react-bootstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus'
 import faTrash from '@fortawesome/fontawesome-free-solid/faTrash'
@@ -13,7 +13,7 @@ import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentSt
 class ConnectedWords extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       words: [],
       user: null,
       room: null,
@@ -31,8 +31,8 @@ class ConnectedWords extends Component {
 
   updateComponentState = (newProps) => {
     if (!newProps) return;
-    this.setState({ 
-      words: newProps.words, 
+    this.setState({
+      words: newProps.words,
       user: newProps.user,
       room: newProps.room
     });
@@ -45,7 +45,7 @@ class ConnectedWords extends Component {
       userId: this.state.user.userId
     };
     this.setState({newWord: ""});
-    const addWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`, 
+    const addWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`,
       { method: "POST" });
     if (addWordRes.status === 200) {
       console.log(`Added word: ${word.word}`);
@@ -56,7 +56,7 @@ class ConnectedWords extends Component {
     var word = {
       wordId: wordId
     };
-    const removeWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`, 
+    const removeWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`,
       { method: "DELETE" });
     if (removeWordRes.status === 200) {
       console.log(`Deleted word with id: ${wordId}`);
@@ -104,9 +104,9 @@ class ConnectedWords extends Component {
           <div style={subtitleTextStyle}>Add a phrase with words to fill in represented by underscores.</div>
           <div style={subtitleTextStyle}>For example: "The _ fox jumped over the _."</div>
         </Row>;
-      
+
     const ownWords = this.state.room && this.state.room.minigameId === 2;
-    const wordFilter = (word) => 
+    const wordFilter = (word) =>
       (!ownWords || word.userId === this.state.user.userId) &&
       !word.roundId;
 

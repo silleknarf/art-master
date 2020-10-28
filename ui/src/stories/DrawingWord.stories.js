@@ -10,4 +10,4 @@ storiesOf('DrawingWord', module)
     FetchMock.restore();
     FetchMock.get('glob:*word?*', { wordId: 1, word: "bacon"});
     return <DrawingWord wordId="1" />;
-  }); 
+  });

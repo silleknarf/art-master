@@ -3,7 +3,7 @@
 from flask import Blueprint, jsonify, abort
 from repositories import user_repository
 from services.exceptions import InvalidUsage
-import logging 
+import logging
 
 logfile = logging.getLogger('file')
 user_service = Blueprint('user_service', __name__)

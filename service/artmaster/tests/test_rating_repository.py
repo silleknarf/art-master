@@ -28,22 +28,22 @@ class TestRatingRepository(unittest.TestCase):
         "ImageBase64": "2.png"
     })
     expected_result1 =  {
-        'roundId': 1, 
-        'winnerUsername': '1', 
+        'roundId': 1,
+        'winnerUsername': '1',
         'winningImageBase64': '1.png',
         'winnerId': 1,
         'votes': 2,
     }
     expected_result2 =  {
-        'roundId': 1, 
-        'winnerUsername': '1', 
+        'roundId': 1,
+        'winnerUsername': '1',
         'winningImageBase64': '1.png',
         'winnerId': 1,
         'votes': 1,
     }
     expected_result3 =  {
-        'roundId': 1, 
-        'winnerUsername': '2', 
+        'roundId': 1,
+        'winnerUsername': '2',
         'winningImageBase64': '2.png',
         'winnerId': 2,
         'votes': 1

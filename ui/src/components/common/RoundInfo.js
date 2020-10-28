@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button } from 'react-bootstrap'; 
+import { Grid, Col, Row, Button } from 'react-bootstrap';
 import { connect } from "react-redux";
 import Display from "seven-segment-display";
 import './RoundInfo.css';
@@ -24,16 +24,16 @@ class ConnectedRoundInfo extends Component {
     if (!newProps.round)
       return;
     const roundStateDescriptions = [
-      "Drawing", 
+      "Drawing",
       "Fill in the blanks",
-      "Critiquing", 
-      "Reviewing", 
+      "Critiquing",
+      "Reviewing",
       "Done"
     ];
     const roundStateDescription = roundStateDescriptions[newProps.round.stageStateId];
     const isGracePeriodState = newProps.round.stageStateId === 0 || newProps.round.stageStateId === 1;
     const adjustedTimeRemaining = Math.max(
-      isGracePeriodState ? newProps.round.timeRemaining - 2 : newProps.round.timeRemaining, 
+      isGracePeriodState ? newProps.round.timeRemaining - 2 : newProps.round.timeRemaining,
       0);
 
     const timeRemainingDigits = adjustedTimeRemaining
@@ -41,7 +41,7 @@ class ConnectedRoundInfo extends Component {
       .toString()
       .length;
 
-    this.setState({ 
+    this.setState({
       timeRemainingDigits,
       roundStateDescription,
       adjustedTimeRemaining
@@ -74,12 +74,12 @@ class ConnectedRoundInfo extends Component {
     var display = null;
 
     if (this.state.adjustedTimeRemaining) {
-      display = (<div 
-        style={displayStyle} 
+      display = (<div
+        style={displayStyle}
         className="display">
-        <Display 
-          value={this.state.adjustedTimeRemaining.toFixed(0)} 
-          color="black" 
+        <Display
+          value={this.state.adjustedTimeRemaining.toFixed(0)}
+          color="black"
           digitCount={this.state.timeRemainingDigits} />
       </div>);
     }

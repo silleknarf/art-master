@@ -51,11 +51,11 @@ class TestRoundStateMachine(unittest.TestCase):
         # Go to the next stage
         round_state_machine = self.setup_round_state_machine(
             start_stage,
-            round_repository, 
+            round_repository,
             room_repository,
             transition_repository,
             mock_datetime)
-        
+
         round_state_machine.next_stage()
 
         # Check assertions
@@ -74,7 +74,7 @@ class TestRoundStateMachine(unittest.TestCase):
     def test_end_drawing_round_early(self, round_repository, image_repository, room_repository, transition_repository, mock_datetime):
         round_state_machine = self.setup_round_state_machine(
             None,
-            round_repository, 
+            round_repository,
             room_repository,
             transition_repository,
             mock_datetime)
@@ -90,11 +90,11 @@ class TestRoundStateMachine(unittest.TestCase):
     @mock.patch("services.round_state_machine.round_repository")
     def test_start_round_state_machine(self, round_repository, word_repository, room_repository, transition_repository, mock_datetime):
         self.transition_helper(
-            round_repository, 
+            round_repository,
             word_repository,
             room_repository,
             transition_repository,
-            mock_datetime, 
+            mock_datetime,
             None,
             RoundState.DRAWING)
         round_repository.update_room_round.assert_called_once()
@@ -106,12 +106,12 @@ class TestRoundStateMachine(unittest.TestCase):
     @mock.patch("services.round_state_machine.round_repository")
     def test_transition_to_critiquing(self, round_repository, word_repository, room_repository, transition_repository, mock_datetime):
         self.transition_helper(
-            round_repository, 
+            round_repository,
             word_repository,
             room_repository,
             transition_repository,
-            mock_datetime, 
-            RoundState.DRAWING, 
+            mock_datetime,
+            RoundState.DRAWING,
             RoundState.CRITIQUING)
 
     @mock.patch("services.round_state_machine.datetime")
@@ -121,12 +121,12 @@ class TestRoundStateMachine(unittest.TestCase):
     @mock.patch("services.round_state_machine.round_repository")
     def test_transition_to_reviewing(self, round_repository, word_repository, room_repository, transition_repository, mock_datetime):
         self.transition_helper(
-            round_repository, 
+            round_repository,
             word_repository,
             room_repository,
             transition_repository,
-            mock_datetime, 
-            RoundState.CRITIQUING, 
+            mock_datetime,
+            RoundState.CRITIQUING,
             RoundState.REVIEWING)
 
     @mock.patch("services.round_state_machine.datetime")
@@ -138,12 +138,12 @@ class TestRoundStateMachine(unittest.TestCase):
     def test_transition_to_done(self, rating_repository, round_repository, word_repository, room_repository, transition_repository, mock_datetime):
         word_to_remove = self.round_entity.DrawingWordId
         self.transition_helper(
-            round_repository, 
+            round_repository,
             word_repository,
             room_repository,
             transition_repository,
-            mock_datetime, 
-            RoundState.REVIEWING, 
+            mock_datetime,
+            RoundState.REVIEWING,
             RoundState.DONE,
             enforce_end_time=False)
         round_repository.update_room_round.assert_called_once()

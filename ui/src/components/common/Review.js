@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button, Alert } from 'react-bootstrap'; 
+import { Grid, Col, Row, Button, Alert } from 'react-bootstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faUser from '@fortawesome/fontawesome-free-solid/faUser'
 import { connect } from "react-redux";
@@ -14,21 +14,21 @@ class Review extends Component {
       winningResults: [],
     };
   }
-  
+
   componentWillMount = async () => {
     const winningResultsRes = await fetch(`${Config.apiurl}/ratings?roundId=${this.state.roundId}`);
     if (winningResultsRes.status === 200) {
       const winningResults = await winningResultsRes.json();
-      this.setState({ 
+      this.setState({
         winningResults: winningResults
       });
     }
   }
-  
+
   shouldComponentUpdate = (nextProps, nextState) => {
     return this.state.winningResults.length !== nextState.winningResults.length;
   }
-  
+
   render = () => {
     const alertStyle = {
       padding: "0.5em",
@@ -58,7 +58,7 @@ class Review extends Component {
           })}
         </Grid>
         );
-    } else { 
+    } else {
       return <div>No things were voted for!</div>
     }
   }

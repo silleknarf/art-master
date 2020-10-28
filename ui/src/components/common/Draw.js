@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button } from 'react-bootstrap'; 
+import { Grid, Col, Row, Button } from 'react-bootstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faUpload from '@fortawesome/fontawesome-free-solid/faUpload'
 import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
@@ -24,7 +24,7 @@ class ConnectedDraw extends Component {
 
     const drawingDataUrl = this.literallycanvas.lc.getImage().toDataURL();
     const drawingRes = await fetch(
-      `${Config.apiurl}/image?userId=${this.props.userId}&roundId=${this.props.roundId}`, 
+      `${Config.apiurl}/image?userId=${this.props.userId}&roundId=${this.props.roundId}`,
       {
         method: 'POST',
         headers: {
@@ -64,9 +64,9 @@ class ConnectedDraw extends Component {
       return (
         <Grid style={gridStyle}>
           <Row style={centerDrawingContentStyle}>
-              <LC.LiterallyCanvasReactComponent 
+              <LC.LiterallyCanvasReactComponent
                 imageURLPrefix="/img"
-                id="draw-canvas" 
+                id="draw-canvas"
                 ref={(c) => this.literallycanvas = c} />
           </Row>
           <Row className="button-row" style={centerRowContentStyle}>

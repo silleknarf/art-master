@@ -35,8 +35,8 @@ storiesOf('Words', module)
     store.dispatch(updateRoomState(room));
     FetchMock.get('glob:*words?*', words);
     FetchMock.post('glob:*word?*', (url, opts) => {
-      words.push({wordId: 3, word: "Another word!"}); 
-      return "test"; 
+      words.push({wordId: 3, word: "Another word!"});
+      return "test";
     });
     return <Words />;
   });

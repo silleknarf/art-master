@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Button, Tabs, Tab, Alert, MenuItem, DropdownButton } from 'react-bootstrap'; 
+import { Grid, Row, Button, Tabs, Tab, Alert, MenuItem, DropdownButton } from 'react-bootstrap';
 import { connect } from "react-redux";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faExclamationTriangle from '@fortawesome/fontawesome-free-solid/faExclamationTriangle'
@@ -33,7 +33,7 @@ class ConnectedRoom extends Component {
 
   onClickStartRound = async (e) => {
     var startRoundRes = await fetch(
-      `${Config.apiurl}/round?roomId=${this.state.room.roomId}&userId=${this.state.user.userId}`, 
+      `${Config.apiurl}/round?roomId=${this.state.room.roomId}&userId=${this.state.user.userId}`,
       { method: "POST" });
     if (startRoundRes.status === 200) {
       console.log(`Starting round for room: ${this.state.room.roomId} on behalf of user: ${this.state.user.userId}`);
@@ -42,7 +42,7 @@ class ConnectedRoom extends Component {
 
   onClickChangeMinigame = async (minigameId) => {
     var startRoundRes = await fetch(
-      `${Config.apiurl}/room/${this.state.room.roomId}/minigame/${minigameId}`, 
+      `${Config.apiurl}/room/${this.state.room.roomId}/minigame/${minigameId}`,
       { method: "POST" });
     if (startRoundRes.status === 200) {
       console.log(`Changed minigame for room: ${this.state.room.roomId} to: ${minigameId}`);
@@ -64,8 +64,8 @@ class ConnectedRoom extends Component {
   prepareComponentState = (props) => {
     // Map the props to the state
     this.setState({
-      room: { ...props.room }, 
-      user: { ...props.user }, 
+      room: { ...props.room },
+      user: { ...props.user },
       round: { ...props.round },
       words: [ ...props.words ],
       minigames: [ ...props.minigames ]
@@ -75,7 +75,7 @@ class ConnectedRoom extends Component {
     const currentRoundId = props.room && props.room.currentRoundId || null;
     if (!currentRoundId) {
       this.setState({ currentTabIndex: 1 });
-    } 
+    }
     else if (currentRoundId !== previousRoundId) {
       this.setState({
         previousRoundId: currentRoundId,
@@ -88,7 +88,7 @@ class ConnectedRoom extends Component {
     const isCurrentUserInRoom = props.room &&
       props.room.roomUsers &&
       props.room.roomUsers
-        .filter(ru => ru.userId === props.user.userId) 
+        .filter(ru => ru.userId === props.user.userId)
         .length > 0;
     if (this.state.isCurrentUserInRoom && !isCurrentUserInRoom) {
       props.history.push("/");
@@ -108,7 +108,7 @@ class ConnectedRoom extends Component {
       marginBottom: 0
     };
 
-    const alert = shouldDisplay && 
+    const alert = shouldDisplay &&
       (<Row style={centerRowContentStyle}>
         <Alert style={alertStyle} bsStyle="warning">
           <FontAwesomeIcon style={iconStyle} icon={faExclamationTriangle} />
@@ -124,22 +124,22 @@ class ConnectedRoom extends Component {
       margin: "15px",
       fontSize: "large"
     }
-    const areNotEnoughUsers = this.state.room && 
+    const areNotEnoughUsers = this.state.room &&
       this.state.room.roomUsers &&
       this.state.room.roomUsers.length < 3;
     const notEnoughUsersText = "Add at least three players before starting the round";
     const notEnoughUsersAlert = this.createAlert(areNotEnoughUsers, notEnoughUsersText);
-    
+
     const areNotEnoughWords = Object.values(this.state.words).length === 0;
     const notEnoughWordsText = "Add at least one word before starting the round";
-    const notEnoughWordsAlert = this.createAlert(areNotEnoughWords, notEnoughWordsText); 
+    const notEnoughWordsAlert = this.createAlert(areNotEnoughWords, notEnoughWordsText);
 
     const isRoomOwner = this.state.user &&
       this.state.room &&
       this.state.user.userId == this.state.room.ownerUserId;
     const dropdownItems = this.state.minigames
       .map((minigame) => {
-        return <MenuItem as="button" 
+        return <MenuItem as="button"
                          key={minigame.minigameId}
                          onClick={e => this.onClickChangeMinigame(minigame.minigameId)}>
                 { minigame.name }
@@ -151,18 +151,18 @@ class ConnectedRoom extends Component {
 
     return (
       <div className="room">
-        <div style={centerTitleContentStyle}> 
+        <div style={centerTitleContentStyle}>
           <span style={titleStyle}>Craicbox</span>
         </div>
-        <div style={centerTitleContentStyle}> 
+        <div style={centerTitleContentStyle}>
           <DropdownButton id="dropdown-item-button" title={minigameName} disabled={this.state.room.currentRoundId}>
             { dropdownItems }
           </DropdownButton>
         </div>
-        <Tabs 
+        <Tabs
           id="room-tabs"
-          style={tabsStyle} 
-          activeKey={this.state.currentTabIndex} 
+          style={tabsStyle}
+          activeKey={this.state.currentTabIndex}
           onSelect={this.handleSelect}>
           <Tab eventKey={1} title="Room">
               <State />
@@ -199,12 +199,12 @@ class ConnectedRoom extends Component {
                 </div>
               )}
               { this.state.round.stageStateId === FILLING_IN_BLANKS && (
-                <FillingInBlanks wordId={this.state.round.drawingWordId} 
-                                 roundId={ this.state.round.roundId } 
+                <FillingInBlanks wordId={this.state.round.drawingWordId}
+                                 roundId={ this.state.round.roundId }
                                  userId={ this.state.user.userId } />
               )}
               { this.state.round.stageStateId === CRITIQUING && (
-                <Critic roundId={ this.state.round.roundId } 
+                <Critic roundId={ this.state.round.roundId }
                         userId={ this.state.user.userId }
                         roomId={ this.state.room.roomId } />
               )}

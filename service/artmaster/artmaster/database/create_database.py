@@ -25,14 +25,14 @@ class DatabaseBuilder():
         self._populate_database_schema()
 
     def _get_engine(self, database=""):
-        connection_string = ('mysql://%s:%s@%s/%s' % 
-            (self._config.DATABASE_USERNAME, 
+        connection_string = ('mysql://%s:%s@%s/%s' %
+            (self._config.DATABASE_USERNAME,
             self._config.DATABASE_PASSWORD,
             self._config.DATABASE_SERVER,
             database))
         engine = create_engine(
             connection_string,
-            encoding="utf8", 
+            encoding="utf8",
             echo=True)
         return engine
 

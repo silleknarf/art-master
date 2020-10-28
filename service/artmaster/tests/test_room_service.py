@@ -9,9 +9,9 @@ from .test_utils import *
 from operator import eq
 
 class TestRoomService(unittest.TestCase):
-    room = { 
+    room = {
         "RoomId": 1 ,
-        "RoomCode": "ABCD", 
+        "RoomCode": "ABCD",
         "OwnerUserId": 1,
         "CurrentRoundId": 1,
         "RoomUsers": [],
