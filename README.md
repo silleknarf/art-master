@@ -3,7 +3,17 @@
 README
 ======
 
-Craicbox is a game where players are pitted against each other to rapidly create art for the other players to critique!
+Craicbox is a set of party games playable with a virtual room of your friends on a phone or computer.
+
+There are two minigames so far:
+
+**Art Master** - a drawing game where everyone has to rapidly create art for the other players to critique  
+**Sentenced To Death** - a game where you fill in the gaps in each other's sentences for hilarious results
+
+PLAY
+====
+
+[craicbox.app](https://craicbox.app)
 
 TODO
 ====
