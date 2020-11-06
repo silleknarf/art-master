@@ -5,3 +5,5 @@ sqlacodegen
 mysqlclient
 mock
 callee
+python-socketio
+flask_socketio

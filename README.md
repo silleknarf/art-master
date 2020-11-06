@@ -27,6 +27,7 @@ Getting Started
 Create a `.env` file in the root directory of the project and set the variable below:
 
     CRAICBOX_DATABASE_PASSWORD=<password>
+    SOCKETIO_PASSWORD=<password>
 
 Seed the `craicbox` database:
 

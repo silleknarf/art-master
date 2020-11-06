@@ -8,12 +8,15 @@ from flask_cors import CORS
 from database.database import session
 from werkzeug.exceptions import HTTPException
 from config import Config
+from flask_socketio import SocketIO
 
 data_dir = "/Users/silleknarf/Code/art-master/data"
 logfile = logging.getLogger("file")
 
 app = Flask(__name__)
-CORS(app)
+app.config['SECRET_KEY'] = Config.SOCKETIO_PASSWORD
+CORS(app, resources={r"/*":{"origins":"*"}})
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 from services.user_service import user_service
 from services.room_service import room_service
@@ -72,4 +75,4 @@ def initialise():
     setup_logger("file", "art-master.log")
 
 if __name__ == "__main__":
-    app.run(host=Config.HOST, port=5001, debug=Config.DEBUG, threaded=True)
+    socketio.run(app, host=Config.HOST, port=5001, debug=Config.DEBUG)
