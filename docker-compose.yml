@@ -5,6 +5,8 @@ services:
       context: ./service/artmaster
     links:
       - db
+      - redis
+      - celery
     environment:
       - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
       - CRAICBOX_DEBUG=1
@@ -23,6 +25,25 @@ services:
       - MYSQL_ROOT_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "6379:6379"
+  celery:
+    build:
+      context:
+        ./service/artmaster
+      dockerfile:
+        celery.Dockerfile
+    environment:
+      - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
+    volumes:
+      - ./service/artmaster:/artmaster
+    links:
+      - redis
+      - db
   ui:
     build:
       context: ./ui

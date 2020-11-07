@@ -10,4 +10,4 @@ COPY . .
 
 WORKDIR /artmaster/artmaster
 
-CMD python main.py
+CMD celery -A app.celery worker --loglevel=INFO

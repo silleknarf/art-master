@@ -16,17 +16,11 @@ connection_string = ('mysql://%s:%s@%s/%s' %
     Config.DATABASE_SERVER,
     Config.DATABASE_NAME))
 
-logger = logging.getLogger('sqlalchemy.engine')
-handler = logging.FileHandler("art-master.sql.log")
-logger.handlers = []
-logger.addHandler(handler)
-logger.setLevel(logging.INFO)
-
-#logger = logging.getLogger('sqlalchemy.pool')
-#handler = logging.FileHandler("art-master.sql.log")
-#logger.handlers = []
-#logger.addHandler(handler)
-#logger.setLevel(logging.DEBUG)
+sql_alchemy_logger = logging.getLogger('sqlalchemy.engine')
+sql_alchemy_handler = logging.FileHandler("craicbox.sql.log")
+sql_alchemy_logger.handlers = []
+sql_alchemy_logger.addHandler(sql_alchemy_handler)
+sql_alchemy_logger.setLevel(logging.INFO)
 
 engine = create_engine(
     connection_string,
@@ -37,4 +31,3 @@ session = scoped_session(sessionmaker(
     autocommit=False,
     autoflush=False,
     bind=engine))
-
