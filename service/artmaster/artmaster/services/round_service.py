@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
 import logging
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from repositories import round_repository, word_repository
 from .exceptions import InvalidUsage
 from .round_state_machine import RoundStateMachine, run_round
+from utils.round_utils import to_round_dto
 
 round_service = Blueprint('round_service', __name__)
 logfile = logging.getLogger("file")
@@ -12,7 +13,6 @@ logfile = logging.getLogger("file")
 # Create a new round and then returns the round info
 @round_service.route("/round", methods=["GET", "POST"])
 def create_round():
-    round_state_machine = None
     round_entity = None
     if request.method == "POST":
         room_id = int(request.args.get("roomId"))
@@ -21,20 +21,9 @@ def create_round():
         if word is None:
             raise InvalidUsage("Cannot start around without any words")
         round_entity = round_repository.create_round(room_id, user_id, word.WordId)
-        round_state_machine = RoundStateMachine(round_entity)
         run_round.apply_async(kwargs={"round_id": round_entity.RoundId})
     else:
         round_id = request.args.get("roundId")
         round_entity = round_repository.get_round(round_id)
-        round_state_machine = RoundStateMachine(round_entity)
 
-    return to_round_dto(round_entity, round_state_machine)
-
-def to_round_dto(round_entity, round_state_machine):
-    return jsonify({
-        "roundId": round_entity.RoundId,
-        "stageStateId": round_entity.StageStateId,
-        "timeRemaining": round_state_machine.get_time_remaining(),
-        "drawingWordId": round_entity.DrawingWordId
-    })
-
+    return to_round_dto(round_entity)

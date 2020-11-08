@@ -5,6 +5,7 @@ from repositories import rating_repository, transition_repository, room_reposito
 from datetime import datetime, timedelta
 from celery.utils.log import get_task_logger
 from app import celery
+from utils.round_utils import get_time_remaining
 
 logfile = logging.getLogger("file")
 celery_logfile = get_task_logger("file")
@@ -78,12 +79,8 @@ class RoundStateMachine:
             round_repository.end_stage(self.round_entity.RoundId)
 
     def get_time_remaining(self):
-        time_remaining = None
         self.round_entity = round_repository.get_round(self.round_entity.RoundId)
-        if self.round_entity.StageStateStartTime is not None and \
-           self.round_entity.StageStateEndTime is not None:
-            time_delta = self.round_entity.StageStateEndTime - datetime.utcnow()
-            time_remaining = time_delta.total_seconds()
+        time_remaining = get_time_remaining(self.round_entity)
         return time_remaining
 
     def next_stage(self):
