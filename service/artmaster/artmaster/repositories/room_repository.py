@@ -43,6 +43,13 @@ def get_room(room_id, room_code):
     room.RoomUsers = room_users
     return room
 
+def update_room_round(room_id, round_id):
+    room = (session
+        .query(Room)
+        .filter(Room.RoomId==room_id)
+        .first())
+    room.CurrentRoundId = round_id
+
 def get_number_of_players(room_id):
     number_of_players = len(get_room(room_id, None).RoomUsers)
     return number_of_players

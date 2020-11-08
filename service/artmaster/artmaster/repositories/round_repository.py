@@ -4,15 +4,9 @@ from database.database import session
 from database.data_model import Room, Round
 from services.exceptions import InvalidUsage
 from datetime import datetime
+from flask_socketio import send
 
 logfile = logging.getLogger('file')
-
-def update_room_round(room_id, round_id):
-    room = (session
-        .query(Room)
-        .filter(Room.RoomId==room_id)
-        .first())
-    room.CurrentRoundId = round_id
 
 def create_round(room_id, user_id, word_id):
     logfile.info(

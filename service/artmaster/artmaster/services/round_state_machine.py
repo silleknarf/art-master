@@ -40,7 +40,7 @@ class RoundStateMachine:
         rating_repository.update_score_for_highest_rating(self.round_entity.RoundId)
         word_id_to_remove = self.round_entity.DrawingWordId
         self.round_entity.DrawingWordId = None
-        round_repository.update_room_round(self.round_entity.RoomId, None)
+        room_repository.update_room_round(self.round_entity.RoomId, None)
         word_repository.remove_word(word_id_to_remove)
 
     def _update_round(self, stage_state_id, duration):
@@ -96,7 +96,7 @@ class RoundStateMachine:
             (minigame_id, transition.StateFrom, transition.StateTo))
 
         duration = self._get_duration(transition.StateTo)
-        round_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
+        room_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
         self._update_round(transition.StateTo, duration)
 
         while not self._should_start_next_stage():
