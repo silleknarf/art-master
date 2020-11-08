@@ -57,7 +57,6 @@ class Lobby extends Component {
       const res = await fetch(`${Config.apiurl}/room/${room.roomId}/user/${userId}`, {method: 'POST'});
       if (res.status === 200) {
         localStorage.setItem("roomId", room.roomId);
-        store.dispatch(updateRoomState(room));
         console.log(`Added user: ${username} to room: ${this.state.roomCode}`);
         this.props.history.push(`/room/${this.state.roomCode}`);
       } else {
