@@ -1,10 +1,12 @@
+import logging
 from database.database import session
 from sqlalchemy.exc import IntegrityError
 from database.data_model import Word, Round, Room
 from random import SystemRandom
 from repositories import round_repository, room_user_repository
 from services.round_state_machine import RoundStateMachine
-import logging
+from utils.word_utils import to_words_dict
+from app import socketio
 
 logfile = logging.getLogger('file')
 
@@ -32,8 +34,10 @@ def remove_word(word_id):
     word_entity = (session
         .query(Word)
         .filter(Word.WordId==word_id)
-        .delete(synchronize_session=False))
+        .first())
+    session.delete(word_entity)
     session.commit()
+    push_words_for_word_change(word_entity.RoomId)
 
 def create_word(room_id, user_id, round_id, word):
     trimmed_word = word.strip()
@@ -44,23 +48,17 @@ def create_word(room_id, user_id, round_id, word):
     session.add(word_entity)
     try:
         session.commit()
+        push_words_for_word_change(room_id)
     except IntegrityError:
         session.rollback()
         return
 
-    round_entity = round_repository.get_round(round_id)
-    round_state_machine = RoundStateMachine(round_entity)
-    round_state_machine.maybe_end_submitting_sentences_early()
+    if round_id is not None:
+        round_entity = round_repository.get_round(round_id)
+        round_state_machine = RoundStateMachine(round_entity)
+        round_state_machine.maybe_end_submitting_sentences_early()
 
     return word_entity
-
-def remove_word(word_id):
-    word_entity = (session
-        .query(Word)
-        .filter(Word.WordId==word_id)
-        .first())
-    session.delete(word_entity)
-    session.commit()
 
 def get_words(room_id, round_id):
     room_entity = (session.query(Room)
@@ -87,7 +85,12 @@ def get_word(word_id):
 
 def get_round(word_id):
     round_entity = (session.query(Round)
+        .populate_existing()
         .join(Word)
         .filter(Word.WordId==word_id)
         .first())
     return round_entity
+
+def push_words_for_word_change(room_id):
+    word_entities = get_words(room_id=room_id, round_id=None)
+    socketio.emit("words", to_words_dict(word_entities))

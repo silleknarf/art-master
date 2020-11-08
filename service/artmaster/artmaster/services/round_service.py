@@ -12,7 +12,7 @@ logfile = logging.getLogger("file")
 
 # Create a new round and then returns the round info
 @round_service.route("/round", methods=["GET", "POST"])
-def create_round():
+def get_or_create_round():
     round_entity = None
     if request.method == "POST":
         room_id = int(request.args.get("roomId"))

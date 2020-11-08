@@ -3,6 +3,7 @@
 from flask import Blueprint, jsonify, request
 from repositories import word_repository
 from services.exceptions import InvalidUsage
+from utils.word_utils import to_words_dto
 
 word_service = Blueprint('word_service', __name__)
 
@@ -27,12 +28,8 @@ def get_words():
     round_id_raw = request.args.get("roundId")
     round_id = int(round_id_raw) if round_id_raw is not None and round_id_raw.isdigit() else None
     word_entities = word_repository.get_words(room_id, round_id)
-    words = [{
-        "wordId": w.WordId,
-        "userId": w.UserId,
-        "word": w.Word
-    } for w in word_entities]
-    return jsonify(words)
+    words_dto = to_words_dto(word_entities)
+    return words_dto
 
 @word_service.route("/word", methods=["GET"])
 def get_word():

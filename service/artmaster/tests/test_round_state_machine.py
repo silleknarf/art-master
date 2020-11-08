@@ -97,7 +97,7 @@ class TestRoundStateMachine(unittest.TestCase):
             mock_datetime,
             None,
             RoundState.DRAWING)
-        round_repository.update_room_round.assert_called_once()
+        room_repository.update_room_round.assert_called_once()
 
     @mock.patch("services.round_state_machine.datetime")
     @mock.patch("services.round_state_machine.transition_repository")
@@ -146,7 +146,7 @@ class TestRoundStateMachine(unittest.TestCase):
             RoundState.REVIEWING,
             RoundState.DONE,
             enforce_end_time=False)
-        round_repository.update_room_round.assert_called_once()
+        room_repository.update_room_round.assert_called_once()
         word_repository.remove_word.assert_called_with(word_to_remove)
 
 if __name__ == '__main__':

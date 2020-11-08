@@ -4,7 +4,8 @@ from database.database import session
 from database.data_model import Room, Round
 from services.exceptions import InvalidUsage
 from datetime import datetime
-from flask_socketio import send
+from utils.round_utils import to_round_dict
+from app import socketio
 
 logfile = logging.getLogger('file')
 
@@ -23,6 +24,7 @@ def create_round(room_id, user_id, word_id):
     round_entity = Round(RoomId=room_id, DrawingWordId=word_id)
     session.add(round_entity)
     session.commit()
+    socketio.emit("round", to_round_dict(round_entity))
     return round_entity
 
 def get_round(round_id):
@@ -47,6 +49,7 @@ def update_round(round_id, stage_state_id, start_time, end_time, drawing_word_id
     round_entity.DrawingWordId = drawing_word_id
 
     session.commit()
+    socketio.emit("round", to_round_dict(round_entity))
 
 def end_stage(round_id):
     logfile.info("Ending stage for round: %s", round_id)
@@ -55,3 +58,4 @@ def end_stage(round_id):
     round_entity.StageStateEndTime = datetime.utcnow()
 
     session.commit()
+    socketio.emit("round", to_round_dict(round_entity))

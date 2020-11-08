@@ -5,6 +5,7 @@ import { Row } from 'react-bootstrap';
 import Config from '../../constant/Config';
 import store from "../../redux/Store";
 import { updateRoomState, updateRoundState, updateWordsState, updateMinigamesState } from "../../redux/Actions";
+import io from "socket.io-client";
 
 window.store = store;
 
@@ -22,40 +23,6 @@ class ConnectedState extends Component {
     };
   }
 
-  roomTick = async () => {
-    if (!this.state.room) return;
-    const roomStateRes = await fetch(`${Config.apiurl}/room?roomId=${this.state.room.roomId}`);
-    if (roomStateRes.status === 200) {
-        const roomState = await roomStateRes.json();
-        store.dispatch(updateRoomState(roomState));
-    }
-  }
-
-  roundTick = async () => {
-    if (!this.state.room) return;
-    if (!this.state.room.currentRoundId) {
-      store.dispatch(updateRoundState(null));
-      return;
-    }
-
-    const roundStateRes = await fetch(`${Config.apiurl}/round?roundId=${this.state.room.currentRoundId}`)
-    if (roundStateRes.status === 200) {
-        const roundState = await roundStateRes.json();
-        store.dispatch(updateRoundState(roundState));
-    }
-  }
-
-  wordsTick = async () => {
-    if (!this.state.room) return;
-    if (this.state.room.currentRoundId) return;
-
-    const wordsStateRes = await fetch(`${Config.apiurl}/words?roomId=${this.state.room.roomId}`)
-    if (wordsStateRes.status === 200) {
-        const wordsState = await wordsStateRes.json();
-        store.dispatch(updateWordsState(wordsState));
-    }
-  }
-
   loadMinigames = async () => {
     const minigamesRes = await fetch(`${Config.apiurl}/minigames`)
     if (minigamesRes.status === 200) {
@@ -65,9 +32,11 @@ class ConnectedState extends Component {
   }
 
   componentDidMount = () => {
-    this.roomInterval = setInterval(this.roomTick, 1000);
-    this.roundInterval = setInterval(this.roundTick, 1000);
-    this.wordsInterval = setInterval(this.wordsTick, 1000);
+    const socket = io(Config.apiurl);
+
+    socket.on('room', (roomState) => store.dispatch(updateRoomState(roomState)));
+    socket.on('round', (roundState) => store.dispatch(updateRoundState(roundState)));
+    socket.on('words', (wordsState) => store.dispatch(updateWordsState(wordsState)));
     this.loadMinigames();
   }
 
@@ -77,12 +46,6 @@ class ConnectedState extends Component {
 
   componentWillReceiveProps = (newProps) => {
     this.prepareComponentState(newProps);
-  }
-
-  componentWillUnmount = () => {
-    clearInterval(this.roomInterval);
-    clearInterval(this.roundInterval);
-    clearInterval(this.wordsInterval);
   }
 
   prepareComponentState = (props) => {

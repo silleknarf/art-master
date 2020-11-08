@@ -1,17 +1,22 @@
+import logging
 from database.database import session
 from database.data_model import RoomUser, User
-import logging
+from .room_repository import get_room
+from utils.room_utils import to_room_dict
+from app import socketio
 
 logfile = logging.getLogger('file')
 
 def add_user_to_room(room_id, user_id):
-    logfile.info("Adding user: %s to room: %s" % (user_id, room_id))
+    logfile.info("Adding user: %s to room: %s", user_id, room_id)
     room_user = RoomUser(RoomId=room_id, UserId=user_id)
     session.add(room_user)
     session.commit()
+    room = get_room(room_id=room_id, room_code=None)
+    socketio.emit("room", to_room_dict(room))
 
 def remove_user_from_room(room_id, user_id):
-    logfile.info("Removing user: %s from room: %s" % (user_id, room_id))
+    logfile.info("Removing user: %s from room: %s", user_id, room_id)
     room_user_entity = (session
         .query(RoomUser)
         .filter(RoomUser.RoomId==room_id)
@@ -19,6 +24,8 @@ def remove_user_from_room(room_id, user_id):
         .first())
     session.delete(room_user_entity)
     session.commit()
+    room = get_room(room_id=room_id, room_code=None)
+    socketio.emit("room", to_room_dict(room))
 
 def get_users_in_room(room_id):
     room_user_entities = (session
