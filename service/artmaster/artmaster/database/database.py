@@ -25,7 +25,8 @@ sql_alchemy_logger.setLevel(logging.INFO)
 engine = create_engine(
     connection_string,
     encoding="utf8",
-    echo=False)
+    echo=False,
+    isolation_level="READ_COMMITTED")
 
 session = scoped_session(sessionmaker(
     autocommit=False,

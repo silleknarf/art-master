@@ -4,14 +4,14 @@ import logging
 from flask import Blueprint, jsonify, request
 from repositories import round_repository, word_repository
 from .exceptions import InvalidUsage
-from .round_state_machine import RoundStateMachine
+from .round_state_machine import RoundStateMachine, run_round
 
 round_service = Blueprint('round_service', __name__)
 logfile = logging.getLogger("file")
 
 # Create a new round and then returns the round info
 @round_service.route("/round", methods=["GET", "POST"])
-def poll_or_create_round():
+def create_round():
     round_state_machine = None
     round_entity = None
     if request.method == "POST":
@@ -22,12 +22,11 @@ def poll_or_create_round():
             raise InvalidUsage("Cannot start around without any words")
         round_entity = round_repository.create_round(room_id, user_id, word.WordId)
         round_state_machine = RoundStateMachine(round_entity)
-        round_state_machine.next_stage()
+        run_round.apply_async(kwargs={"round_id": round_entity.RoundId})
     else:
         round_id = request.args.get("roundId")
         round_entity = round_repository.get_round(round_id)
         round_state_machine = RoundStateMachine(round_entity)
-        round_state_machine.maybe_next_stage()
 
     return to_round_dto(round_entity, round_state_machine)
 

@@ -3,6 +3,7 @@ import logging
 from database.database import session
 from database.data_model import Room, Round
 from services.exceptions import InvalidUsage
+from datetime import datetime
 
 logfile = logging.getLogger('file')
 
@@ -33,6 +34,7 @@ def create_round(room_id, user_id, word_id):
 def get_round(round_id):
     round_entity = (session
         .query(Round)
+        .populate_existing()
         .filter(Round.RoundId==round_id)
         .first())
 
@@ -49,5 +51,13 @@ def update_round(round_id, stage_state_id, start_time, end_time, drawing_word_id
     round_entity.StageStateStartTime = start_time
     round_entity.StageStateEndTime = end_time
     round_entity.DrawingWordId = drawing_word_id
+
+    session.commit()
+
+def end_stage(round_id):
+    logfile.info("Ending stage for round: %s", round_id)
+
+    round_entity = get_round(round_id)
+    round_entity.StageStateEndTime = datetime.utcnow()
 
     session.commit()
