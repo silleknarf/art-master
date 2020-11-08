@@ -11,7 +11,7 @@ logfile = logging.getLogger('file')
 
 def create_round(room_id, user_id, word_id):
     logfile.info(
-        "Creating room: %s for user: %s",
+        "Creating round for room: %s started by user id: %s",
         room_id, user_id)
     if room_id is None or user_id is None:
         raise InvalidUsage("Please set the roomId and userId")
@@ -24,7 +24,7 @@ def create_round(room_id, user_id, word_id):
     round_entity = Round(RoomId=room_id, DrawingWordId=word_id)
     session.add(round_entity)
     session.commit()
-    socketio.emit("round", to_round_dict(round_entity))
+    push_round(round_entity)
     return round_entity
 
 def get_round(round_id):
@@ -49,7 +49,7 @@ def update_round(round_id, stage_state_id, start_time, end_time, drawing_word_id
     round_entity.DrawingWordId = drawing_word_id
 
     session.commit()
-    socketio.emit("round", to_round_dict(round_entity))
+    push_round(round_entity)
 
 def end_stage(round_id):
     logfile.info("Ending stage for round: %s", round_id)
@@ -58,4 +58,8 @@ def end_stage(round_id):
     round_entity.StageStateEndTime = datetime.utcnow()
 
     session.commit()
+    push_round(round_entity)
+
+def push_round(round_entity):
+    logfile.info("Pushing round: %s to clients", round_entity.RoundId)
     socketio.emit("round", to_round_dict(round_entity))

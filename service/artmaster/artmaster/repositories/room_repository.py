@@ -47,6 +47,7 @@ def get_room(room_id, room_code):
     return room
 
 def update_room_round(room_id, round_id):
+    logfile.info("Updating room: %s to be on round: %s", room_id, round_id)
     room = get_room(room_id=room_id, room_code=None)
     room.CurrentRoundId = round_id
     session.commit()

@@ -19,7 +19,7 @@ logfile = logging.getLogger("file")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = Config.SOCKETIO_PASSWORD
 CORS(app, resources={r"/*":{"origins":"*"}})
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, message_queue="redis://redis:6379", cors_allowed_origins="*")
 
 app.config.update(
     CELERY_BROKER_URL='redis://redis:6379',

@@ -44,6 +44,7 @@ class RoundStateMachine:
         word_repository.remove_word(word_id_to_remove)
 
     def _update_round(self, stage_state_id, duration):
+        celery_logfile.info("Updating round to set the time on the stage")
         start_time = datetime.utcnow()
         end_time = start_time + timedelta(seconds=duration)
         round_repository.update_round(
