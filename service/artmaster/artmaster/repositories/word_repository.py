@@ -93,4 +93,5 @@ def get_round(word_id):
 
 def push_words_for_word_change(room_id):
     word_entities = get_words(room_id=room_id, round_id=None)
-    socketio.emit("words", to_words_dict(word_entities))
+    logfile.info("Pushing %s words for room id: %s", len(word_entities), room_id)
+    socketio.emit("words", to_words_dict(word_entities), room=str(room_id))

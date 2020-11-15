@@ -62,4 +62,4 @@ def end_stage(round_id):
 
 def push_round(round_entity):
     logfile.info("Pushing round: %s to clients", round_entity.RoundId)
-    socketio.emit("round", to_round_dict(round_entity))
+    socketio.emit("round", to_round_dict(round_entity), room=str(round_entity.RoomId))

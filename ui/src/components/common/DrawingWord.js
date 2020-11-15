@@ -17,10 +17,10 @@ class DrawingWord extends Component {
   }
 
   componentWillReceiveProps = (newProps) => {
-    this.updateWord(newProps.wordId);
+    //this.updateWord(newProps.wordId);
   }
 
-  updateWord = async(wordId) => {
+  updateWord = async (wordId) => {
     if (!wordId) return;
     var wordRes = await fetch(`${Config.apiurl}/word?wordId=${wordId}`);
     if (wordRes.status === 200) {

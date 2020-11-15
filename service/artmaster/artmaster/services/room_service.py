@@ -1,12 +1,16 @@
 #!/usr/bin/python
 
+import logging
 from app import socketio
 from flask import Blueprint, jsonify, request
 from repositories import room_user_repository, room_repository
 from random import SystemRandom
 from datetime import datetime
 from .exceptions import InvalidUsage
-from utils.room_utils import to_room_dto
+from utils.room_utils import to_room_dto, to_room_dict
+from flask_socketio import join_room
+
+logfile = logging.getLogger('file')
 
 randint = SystemRandom().randint
 
@@ -54,3 +58,10 @@ def get_users_in_room(room_id):
 def get_room_code():
     first_chr = 65
     return "".join([chr(first_chr+randint(0, 25)) for i in range(0, 4)])
+
+@socketio.on('join')
+def on_join(room_id):
+    join_room(str(room_id))
+    logfile.info("Room: %s being joined", room_id)
+    room = room_repository.get_room(room_id, None)
+    socketio.emit("room", to_room_dict(room), room=str(room_id))

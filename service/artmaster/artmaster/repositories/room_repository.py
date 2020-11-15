@@ -19,7 +19,7 @@ def create_room(room_code, owner_user_id):
         .filter(RoomUser.RoomId==room.RoomId)
         .all())
     room.RoomUsers = room_users
-    socketio.emit("room", to_room_dict(room))
+    socketio.emit("room", to_room_dict(room), room=str(room.RoomId))
     return room
 
 def get_room(room_id, room_code):
@@ -40,6 +40,7 @@ def get_room(room_id, room_code):
         raise InvalidUsage(error_text)
     room_users = (session
         .query(User)
+        .populate_existing()
         .join(RoomUser)
         .filter(RoomUser.RoomId==room.RoomId)
         .all())
@@ -51,7 +52,7 @@ def update_room_round(room_id, round_id):
     room = get_room(room_id=room_id, room_code=None)
     room.CurrentRoundId = round_id
     session.commit()
-    socketio.emit("room", to_room_dict(room))
+    socketio.emit("room", to_room_dict(room), room=str(room_id))
 
 def get_number_of_players(room_id):
     number_of_players = len(get_room(room_id, None).RoomUsers)
@@ -61,4 +62,4 @@ def set_minigame(room_id, minigame_id):
     room = get_room(room_id=room_id, room_code=None)
     room.MinigameId = minigame_id
     session.commit()
-    socketio.emit("room", to_room_dict(room))
+    socketio.emit("room", to_room_dict(room), room=str(room_id))

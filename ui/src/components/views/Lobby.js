@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Grid, Col, Row, Button, FormControl, FormGroup, HelpBlock, ControlLabel, Tabs, Tab } from 'react-bootstrap';
 import Config from '../../constant/Config';
 import store from '../../redux/Store';
-import { updateRoomState, updateRoundState, updateUserState } from "../../redux/Actions";
+import { updateRoomState, updateUserState } from "../../redux/Actions";
 import './Lobby.css';
 import { centerTitleContentStyle, centerRowContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
+import io from "socket.io-client";
 
 class Lobby extends Component {
 
@@ -30,9 +31,11 @@ class Lobby extends Component {
       if (roomRes.status === 200) {
         const room = await roomRes.json();
         console.log(`Created room: ${room.roomCode}`);
-        this.props.history.push(`/room/${room.roomCode}`);
         localStorage.setItem("roomId", room.roomId);
-        store.dispatch(updateRoomState(room));
+        store.dispatch(updateRoomState({ roomId: room.roomId }));
+        const socket = io(Config.apiurl);
+        socket.emit('join', room.roomId);
+        this.props.history.push(`/room/${room.roomCode}`);
       } else {
         throw new Error("room creation failed")
       }
@@ -57,6 +60,7 @@ class Lobby extends Component {
       const res = await fetch(`${Config.apiurl}/room/${room.roomId}/user/${userId}`, {method: 'POST'});
       if (res.status === 200) {
         localStorage.setItem("roomId", room.roomId);
+        store.dispatch(updateRoomState({ roomId: room.roomId }));
         console.log(`Added user: ${username} to room: ${this.state.roomCode}`);
         this.props.history.push(`/room/${this.state.roomCode}`);
       } else {

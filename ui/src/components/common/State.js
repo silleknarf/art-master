@@ -8,6 +8,7 @@ import { updateRoomState, updateRoundState, updateWordsState, updateMinigamesSta
 import io from "socket.io-client";
 
 window.store = store;
+window.io = io;
 
 class ConnectedState extends Component {
   constructor(props) {
@@ -23,6 +24,47 @@ class ConnectedState extends Component {
     };
   }
 
+  loadRoom = async (socket) => {
+    if (this.state.room) {
+      const roomStateRes = await fetch(`${Config.apiurl}/room?roomId=${this.state.room.roomId}`);
+      if (roomStateRes.status === 200) {
+          const roomState = await roomStateRes.json();
+          store.dispatch(updateRoomState(roomState));
+      }
+    }
+    socket.on('room', (roomState) => {
+      store.dispatch(updateRoomState(roomState));
+    });
+  }
+
+  loadRound = async (socket) => {
+    if (this.state.room && this.state.room.currentRoundId) {
+      const roundStateRes = await fetch(`${Config.apiurl}/round?roundId=${this.state.room.currentRoundId}`)
+      if (roundStateRes.status === 200) {
+          const roundState = await roundStateRes.json();
+          store.dispatch(updateRoundState(roundState));
+      }
+    } else {
+      store.dispatch(updateRoundState(null));
+    }
+    socket.on('round', (roundState) => {
+      store.dispatch(updateRoundState(roundState));
+    });
+  }
+
+  loadWords = async (socket) => {
+    if (this.state.room && !this.state.room.currentRoundId) {
+      const wordsStateRes = await fetch(`${Config.apiurl}/words?roomId=${this.state.room.roomId}`)
+      if (wordsStateRes.status === 200) {
+          const wordsState = await wordsStateRes.json();
+          store.dispatch(updateWordsState(wordsState));
+      }
+    }
+    socket.on('words', (wordsState) => {
+      store.dispatch(updateWordsState(wordsState));
+    });
+  }
+
   loadMinigames = async () => {
     const minigamesRes = await fetch(`${Config.apiurl}/minigames`)
     if (minigamesRes.status === 200) {
@@ -33,10 +75,12 @@ class ConnectedState extends Component {
 
   componentDidMount = () => {
     const socket = io(Config.apiurl);
-
-    socket.on('room', (roomState) => store.dispatch(updateRoomState(roomState)));
-    socket.on('round', (roundState) => store.dispatch(updateRoundState(roundState)));
-    socket.on('words', (wordsState) => store.dispatch(updateWordsState(wordsState)));
+    if (this.state.room && this.state.room.roomId) {
+      socket.emit("join", this.state.room.roomId);
+    }
+    this.loadRoom(socket);
+    this.loadRound(socket);
+    this.loadWords(socket);
     this.loadMinigames();
   }
 
