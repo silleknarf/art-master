@@ -3,7 +3,7 @@
 README
 ======
 
-Craicbox is a set of party games playable with a virtual room of your friends on a phone or computer.
+Craicbox is a collection of party games playable with a virtual room of your friends on a phone or computer.
 
 There are two minigames so far:
 
