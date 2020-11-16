@@ -26,12 +26,14 @@ services:
       - MYSQL_ROOT_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
+  # Redis - in-memory data store: https://redis.io/
   redis:
     image: 'bitnami/redis:latest'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
       - "6379:6379"
+  # Celery - distributed background task runner: https://docs.celeryproject.org/en/stable/
   celery:
     build:
       context:
@@ -56,6 +58,7 @@ services:
       - REACT_APP_SERVICE_URL=http://localhost:5001
     volumes:
       - ./ui:/artmaster
+  # Storybook - development environment for UI components: https://storybook.js.org/
   storybook:
     build:
       context: ./ui
