@@ -13,13 +13,16 @@ from celery import Celery, signals
 from celery.utils.log import get_task_logger
 
 celery_logfile = get_task_logger("file")
-data_dir = "/Users/silleknarf/Code/art-master/data"
 logfile = logging.getLogger("file")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = Config.SOCKETIO_PASSWORD
-CORS(app, resources={r"/*":{"origins":"*"}})
-socketio = SocketIO(app, message_queue="redis://redis:6379", cors_allowed_origins="*")
+CORS(app, resources={r"/*":{ "origins": Config.CRAICBOX_URL }})
+socketio = SocketIO(
+    app,
+    message_queue="redis://redis:6379",
+    cors_allowed_origins=Config.CRAICBOX_URL
+)
 
 app.config.update(
     CELERY_BROKER_URL='redis://redis:6379',

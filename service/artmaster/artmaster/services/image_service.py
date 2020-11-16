@@ -9,7 +9,6 @@ from .round_state_machine import RoundStateMachine
 
 logfile = logging.getLogger('file')
 image_service = Blueprint('image_service', __name__)
-data_dir = "../../../ui/public/data"
 
 @image_service.route("/image", methods=["POST"])
 def upload_drawing():
