@@ -4,7 +4,7 @@ class Config(object):
     DEBUG = os.getenv("CRAICBOX_DEBUG")=="1"
     TESTING = False
     HOST = os.getenv("CRAICBOX_HOST")
-    URL = os.getenv("CRAICBOX_URL")
+    CORS_URL = os.getenv("CRAICBOX_CORS_URL", "*")
     DATABASE_SERVER = "db:3306"
     DATABASE_USERNAME = "root"
     DATABASE_NAME = "craicbox"

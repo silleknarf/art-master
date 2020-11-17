@@ -11,7 +11,7 @@ services:
       - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
       - CRAICBOX_DEBUG=1
       - CRAICBOX_HOST=0.0.0.0
-      - CRAICBOX_URL=http://localhost:3000
+      - CRAICBOX_CORS_URL=http://localhost:3000
       - SOCKETIO_PASSWORD=${SOCKETIO_PASSWORD}
     ports:
       - "5001:5001"

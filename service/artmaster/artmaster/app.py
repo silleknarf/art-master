@@ -17,11 +17,11 @@ logfile = logging.getLogger("file")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = Config.SOCKETIO_PASSWORD
-CORS(app, resources={r"/*":{ "origins": Config.URL }})
+CORS(app, resources={r"/*":{ "origins": Config.CORS_URL }})
 socketio = SocketIO(
     app,
     message_queue="redis://redis:6379",
-    cors_allowed_origins=Config.URL
+    cors_allowed_origins=Config.CORS_URL
 )
 
 app.config.update(
