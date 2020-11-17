@@ -81,7 +81,7 @@ class TestRoundStateMachine(unittest.TestCase):
         image_repository.are_all_images_submitted.return_value = True
         round_repository.reset_mock()
         round_state_machine.maybe_end_drawing_early()
-        round_repository.update_round.assert_called_once()
+        round_repository.end_stage.assert_called_once()
 
     @mock.patch("services.round_state_machine.datetime")
     @mock.patch("services.round_state_machine.transition_repository")
