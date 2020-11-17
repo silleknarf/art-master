@@ -41,6 +41,7 @@ class RoundStateMachine:
         word_id_to_remove = self.round_entity.DrawingWordId
         self.round_entity.DrawingWordId = None
         room_repository.update_room_round(self.round_entity.RoomId, None)
+        self._update_round(RoundState.DONE, 0)
         word_repository.remove_word(word_id_to_remove)
 
     def _update_round(self, stage_state_id, duration):
