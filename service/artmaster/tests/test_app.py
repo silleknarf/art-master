@@ -9,5 +9,5 @@ class TestApp(unittest.TestCase):
         self.app = app.app.test_client()
 
     def test_home(self):
-        expected_string = b"Welcome to the art-master api"
+        expected_string = b"Welcome to the Craicbox api"
         self.assertEqual(self.app.get("/").data, expected_string)
