@@ -102,3 +102,5 @@ services:
       - ./service/artmaster:/artmaster
     command:
       python -m unittest discover
+    ports:
+      - "5678:5678"
