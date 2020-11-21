@@ -12,6 +12,6 @@ COPY . .
 
 RUN yarn build
 
-FROM nginx
+RUN yarn global add serve
 
-COPY --from=0 /artmaster/build /usr/share/nginx/html
+CMD serve -s build
