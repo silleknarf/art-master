@@ -23,6 +23,6 @@ spec:
             value: "https://api.craicbox.app"
         imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - containerPort: 80
       imagePullSecrets:
         - name: regcred
