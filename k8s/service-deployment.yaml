@@ -33,7 +33,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: socketio-secrets
-              key: socket-password
+              key: socketio-password
         ports:
         - containerPort: 5001
       imagePullSecrets:
