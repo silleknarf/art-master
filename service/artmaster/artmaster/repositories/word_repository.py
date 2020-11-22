@@ -1,12 +1,12 @@
 import logging
-from database.database import session
-from sqlalchemy.exc import IntegrityError
-from database.data_model import Word, Round, Room
 from random import SystemRandom
+from sqlalchemy.exc import IntegrityError
+from app import socketio
+from database.database import session
+from database.data_model import Word, Round, Room
 from repositories import round_repository, room_user_repository
 from services.round_state_machine import RoundStateMachine
 from utils.word_utils import to_words_dict
-from app import socketio
 
 logfile = logging.getLogger('file')
 
@@ -28,7 +28,7 @@ def get_random_word_for_room(room_id):
     return random_word_entity
 
 def remove_word(word_id):
-    logfile.info("Removing word with id: %s" % (word_id))
+    logfile.info("Removing word with id: %s", word_id)
     if word_id is None:
         return
     word_entity = (session
@@ -44,7 +44,12 @@ def create_word(room_id, user_id, round_id, word):
     if trimmed_word == "":
         return
     room_entity = session.query(Room).filter(Room.RoomId==room_id).first()
-    word_entity = Word(RoomId=room_id, UserId=user_id, RoundId=round_id, MinigameId=room_entity.MinigameId, Word=trimmed_word)
+    word_entity = Word(
+        RoomId=room_id,
+        UserId=user_id,
+        RoundId=round_id,
+        MinigameId=room_entity.MinigameId,
+        Word=trimmed_word)
     session.add(word_entity)
     try:
         session.commit()
@@ -74,7 +79,7 @@ def get_words(room_id, round_id):
 def are_all_sentences_submitted(room_id, round_id):
     round_sentences_count = len(get_words(room_id, round_id))
     room_users_count = len(room_user_repository.get_users_in_room(room_id))
-    logfile.info("Sentences submitted: %s" % round_sentences_count)
+    logfile.info("Sentences submitted: %s", round_sentences_count)
     return round_sentences_count == room_users_count
 
 def get_word(word_id):

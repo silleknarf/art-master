@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:10 as build
 
 WORKDIR /artmaster
 
@@ -14,7 +14,7 @@ RUN yarn build
 
 FROM node:10
 
-COPY --from=0 /artmaster/build /build
+COPY --from=build /artmaster/build /build
 
 RUN yarn global add serve
 

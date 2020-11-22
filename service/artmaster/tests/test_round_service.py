@@ -2,10 +2,8 @@
 
 import unittest
 import mock
-import json
 import app
-from services import round_service
-from .test_utils import *
+from .test_utils import Struct
 from flask import Response
 
 class TestRoundService(unittest.TestCase):
@@ -43,5 +41,5 @@ class TestRoundService(unittest.TestCase):
         run_round.apply_async.assert_called_once()
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestRoomService)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestRoundService)
     suite.debug()

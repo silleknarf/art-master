@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux'
-import Lobby from './components/views/Lobby';
-import Room from './components/views/Room';
+import React, { Component } from "react";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux"
+import Lobby from "./components/views/Lobby";
+import Room from "./components/views/Room";
 import store from "./redux/Store";
-import './App.css';
+import "./App.css";
 
 window.store = store;
 

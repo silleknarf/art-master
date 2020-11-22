@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-import sys
 import logging
 import traceback
 from flask import Flask, jsonify
@@ -32,7 +31,7 @@ app.config.update(
 # Celery integration with Flask - adapted from:
 # https://flask.palletsprojects.com/en/0.12.x/patterns/celery/
 def make_celery(flask_app):
-    new_celery = Celery(flask_app.import_name, 
+    new_celery = Celery(flask_app.import_name,
         backend=flask_app.config['CELERY_RESULT_BACKEND'],
         broker=flask_app.config['CELERY_BROKER_URL'])
     new_celery.conf.update(flask_app.config)
@@ -75,20 +74,20 @@ def handle_invalid_usage(error):
     return response
 
 @app.errorhandler(Exception)
-def handle_error(e):
+def handle_error(error):
     code = 500
-    if isinstance(e, HTTPException):
-        code = e.code
-    logfile.error(str(e))
+    if isinstance(error, HTTPException):
+        code = error.code
+    logfile.error(str(error))
     logfile.error(traceback.format_exc())
-    return jsonify(error=str(e)), code
+    return jsonify(error=str(error)), code
 
 @app.teardown_appcontext
 def shutdown_session(response):
     session.remove()
 
-format_str = "%(asctime)s %(levelname)s %(message)s"
-formatter = logging.Formatter(format_str)
+FORMAT_STR = "%(asctime)s %(levelname)s %(message)s"
+formatter = logging.Formatter(FORMAT_STR)
 
 def setup_logger(name, log_file, level=logging.INFO):
     handler = logging.FileHandler(log_file)
@@ -105,11 +104,11 @@ def initialise():
 
 @signals.after_setup_logger.connect
 def setup_loggers(*args, **kwargs):
-    sh = logging.StreamHandler()
-    sh.setFormatter(formatter)
-    celery_logfile.addHandler(sh)
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    celery_logfile.addHandler(stream_handler)
 
-    fh = logging.FileHandler("craicbox.log")
-    fh.setFormatter(formatter)
-    celery_logfile.addHandler(fh)
+    file_handler = logging.FileHandler("craicbox.log")
+    file_handler.setFormatter(formatter)
+    celery_logfile.addHandler(file_handler)
     celery_logfile.setLevel(logging.INFO)

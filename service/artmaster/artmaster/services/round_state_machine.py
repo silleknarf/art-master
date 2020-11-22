@@ -1,10 +1,10 @@
 import logging
 import time
+from celery.utils.log import get_task_logger
+from datetime import datetime, timedelta
+from app import celery
 from repositories import round_repository, word_repository, image_repository
 from repositories import rating_repository, transition_repository, room_repository
-from datetime import datetime, timedelta
-from celery.utils.log import get_task_logger
-from app import celery
 from utils.round_utils import get_time_remaining
 
 logfile = logging.getLogger("file")

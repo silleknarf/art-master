@@ -4,11 +4,10 @@ import logging
 import sys
 sys.path.append("..")
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-from contextlib import contextmanager
 from .data_model import *
 from config import Config
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 
 connection_string = ('mysql://%s:%s@%s/%s' %
     (Config.DATABASE_USERNAME,

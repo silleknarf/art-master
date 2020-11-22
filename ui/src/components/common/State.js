@@ -32,7 +32,7 @@ class ConnectedState extends Component {
           store.dispatch(updateRoomState(roomState));
       }
     }
-    socket.on('room', (roomState) => {
+    socket.on("room", (roomState) => {
       store.dispatch(updateRoomState(roomState));
     });
   }
@@ -47,7 +47,7 @@ class ConnectedState extends Component {
     } else {
       store.dispatch(updateRoundState(null));
     }
-    socket.on('round', (roundState) => {
+    socket.on("round", (roundState) => {
       store.dispatch(updateRoundState(roundState));
     });
   }
@@ -60,7 +60,7 @@ class ConnectedState extends Component {
           store.dispatch(updateWordsState(wordsState));
       }
     }
-    socket.on('words', (wordsState) => {
+    socket.on("words", (wordsState) => {
       store.dispatch(updateWordsState(wordsState));
     });
   }

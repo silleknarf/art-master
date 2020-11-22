@@ -34,7 +34,7 @@ class Lobby extends Component {
         localStorage.setItem("roomId", room.roomId);
         store.dispatch(updateRoomState({ roomId: room.roomId }));
         const socket = io(Config.apiurl);
-        socket.emit('join', room.roomId);
+        socket.emit("join", room.roomId);
         this.props.history.push(`/room/${room.roomCode}`);
       } else {
         throw new Error("room creation failed")
@@ -64,12 +64,12 @@ class Lobby extends Component {
         console.log(`Added user: ${username} to room: ${this.state.roomCode}`);
         this.props.history.push(`/room/${this.state.roomCode}`);
       } else {
-        throw new Error('Joining the room failed');
+        throw new Error("Joining the room failed");
       }
     } catch(err) {
       console.log(err.message);
       this.setState({
-        usernameFeedback: 'Joining the room failed',
+        usernameFeedback: "Joining the room failed",
       })
     }
   }
@@ -78,7 +78,7 @@ class Lobby extends Component {
     try {
       console.log(`Creating user: ${this.state.username}`);
       const res = await fetch(`${Config.apiurl}/user/${this.state.username}`, {
-        method: 'POST',
+        method: "POST",
       });
       if (res.status === 200) {
         var user = await res.json();
@@ -87,19 +87,19 @@ class Lobby extends Component {
         store.dispatch(updateUserState(user));
         return user;
       } else {
-        throw new Error('username creation failed');
+        throw new Error("username creation failed");
       }
     } catch(err) {
       console.log(err.message);
       this.setState({
-        usernameFeedback: 'Unable to create user',
+        usernameFeedback: "Unable to create user",
       })
     }
   }
 
   onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       event.preventDefault();
       event.stopPropagation();
       if (this.state.tabIndex === 1)

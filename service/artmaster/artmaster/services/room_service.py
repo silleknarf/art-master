@@ -1,14 +1,13 @@
 #!/usr/bin/python
 
 import logging
-from app import socketio
-from flask import Blueprint, jsonify, request
-from repositories import room_user_repository, room_repository
-from random import SystemRandom
 from datetime import datetime
-from .exceptions import InvalidUsage
-from utils.room_utils import to_room_dto, to_room_dict
+from flask import Blueprint, jsonify, request
 from flask_socketio import join_room
+from random import SystemRandom
+from app import socketio
+from repositories import room_user_repository, room_repository
+from utils.room_utils import to_room_dto, to_room_dict
 
 logfile = logging.getLogger('file')
 

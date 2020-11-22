@@ -1,6 +1,6 @@
 import os
 
-class Config(object):
+class Config:
     DEBUG = os.getenv("CRAICBOX_DEBUG")=="1"
     TESTING = False
     HOST = os.getenv("CRAICBOX_HOST")

@@ -1,6 +1,5 @@
-import unittest
-import sys
 import app
+import unittest
 
 class TestApp(unittest.TestCase):
 

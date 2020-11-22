@@ -3,10 +3,10 @@
 import unittest
 import mock
 import json
-from services.round_state_machine import RoundStateMachine, RoundState
-from .test_utils import *
-from datetime import datetime
 from callee import Matching
+from datetime import datetime
+from services.round_state_machine import RoundStateMachine, RoundState
+from .test_utils import Struct
 
 class TestRoundStateMachine(unittest.TestCase):
     round_entity = Struct(**{

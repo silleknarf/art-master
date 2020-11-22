@@ -29,11 +29,12 @@ class ConnectedRoundInfo extends Component {
     const initalTimeRemaining = isGracePeriodState 
       ? newProps.round.timeRemaining - 2 
       : newProps.round.timeRemaining;
-    const initialState = this.getStateUpdate(newProps, initalTimeRemaining)
+    const initialState = this.getStateUpdate(newProps, initalTimeRemaining);
     this.setState(initialState);
     
-    if (this.timerId)
+    if (this.timerId) {
       clearInterval(this.timerId);
+    }
     this.timerId = setInterval(() => {
       this.setState((prevState) => {
         return this.getStateUpdate(newProps, prevState.adjustedTimeRemaining - 1);

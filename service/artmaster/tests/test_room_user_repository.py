@@ -1,15 +1,14 @@
 #!/usr/bin/python
 
-import unittest
-import mock
-import sqlite3
 import app
-from repositories import room_user_repository, room_repository
-from database.data_model import *
+import sqlite3
+import unittest
 from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 from sqlalchemy.engine import Engine
+from repositories import room_user_repository, room_repository
+from database.data_model import Base, User, Minigame, Room, RoomUser
 
 # Turn on foreign key constraints
 @event.listens_for(Engine, "connect")
@@ -49,4 +48,3 @@ class TestRoomUserRepository(unittest.TestCase):
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestRoomUserRepository)
     suite.debug()
-
