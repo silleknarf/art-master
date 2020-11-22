@@ -10,6 +10,7 @@ class ConnectedRoundInfo extends Component {
     this.state = {
       adjustedTimeRemaining: null
     }
+    this.timerId = null;
   }
 
   componentWillMount = () => {
@@ -23,6 +24,30 @@ class ConnectedRoundInfo extends Component {
   updateComponentState = (newProps) => {
     if (!newProps.round)
       return;
+
+    const isGracePeriodState = newProps.round.stageStateId === 0 || newProps.round.stageStateId === 1;
+    const initalTimeRemaining = isGracePeriodState 
+      ? newProps.round.timeRemaining - 2 
+      : newProps.round.timeRemaining;
+    const initialState = this.getStateUpdate(newProps, initalTimeRemaining);
+    this.setState(initialState);
+    
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
+    this.timerId = setInterval(() => {
+      this.setState((prevState) => {
+        return this.getStateUpdate(newProps, prevState.adjustedTimeRemaining - 1);
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount = () => {
+    if (this.timerId)
+      clearInterval(this.timerId);
+  }
+
+  getStateUpdate = (newProps, timeRemaining) => {
     const roundStateDescriptions = [
       "Drawing",
       "Fill in the blanks",
@@ -31,21 +56,17 @@ class ConnectedRoundInfo extends Component {
       "Done"
     ];
     const roundStateDescription = roundStateDescriptions[newProps.round.stageStateId];
-    const isGracePeriodState = newProps.round.stageStateId === 0 || newProps.round.stageStateId === 1;
-    const adjustedTimeRemaining = Math.max(
-      isGracePeriodState ? newProps.round.timeRemaining - 2 : newProps.round.timeRemaining,
-      0);
+    const adjustedTimeRemaining = Math.max(timeRemaining, 0);
 
     const timeRemainingDigits = adjustedTimeRemaining
       .toFixed(0)
       .toString()
       .length;
-
-    this.setState({
+    return {
       timeRemainingDigits,
       roundStateDescription,
       adjustedTimeRemaining
-    });
+    };
   }
 
   render = () => {

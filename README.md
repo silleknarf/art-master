@@ -37,6 +37,7 @@ Getting Started
 Create a `.env` file in the root directory of the project and set the variable below:
 
     CRAICBOX_DATABASE_PASSWORD=<password>
+    SOCKETIO_PASSWORD=<password>
 
 Seed the `craicbox` database:
 
@@ -64,9 +65,14 @@ Production Setup
 ================
 
 1. Set up a kubernetes cluster which has got at least one persistent volume and node
+
 1. Push the images for seed, service and UI up to an image registry
-1. Add a secret for the image registry used
-    kubectl create secret docker-registry regcred --docker-server=rg.nl-ams.scw.cloud/craicbox --docker-username=nologin --docker-password=<your_password> --docker-email=<your_email> -n craicbox
-1. Add a secret called mysql-secrets with a value in data for the key: mysql-root-password
+
+1. Add a secret for the image registry used  
+`kubectl create secret docker-registry regcred --docker-server=rg.nl-ams.scw.cloud/craicbox --docker-username=nologin --docker-password=<your_password> --docker-email=<your_email> -n craicbox`
+
+1. Add a secret called mysql-secrets with a value in data for the key: `mysql-root-password`
+
 1. Update the k8s templates to point the registry images
+
 1. Run in all the k8s templates

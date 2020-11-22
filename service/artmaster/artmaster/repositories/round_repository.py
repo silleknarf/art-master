@@ -3,19 +3,15 @@ import logging
 from database.database import session
 from database.data_model import Room, Round
 from services.exceptions import InvalidUsage
+from datetime import datetime
+from utils.round_utils import to_round_dict
+from app import socketio
 
 logfile = logging.getLogger('file')
 
-def update_room_round(room_id, round_id):
-    room = (session
-        .query(Room)
-        .filter(Room.RoomId==room_id)
-        .first())
-    room.CurrentRoundId = round_id
-
 def create_round(room_id, user_id, word_id):
     logfile.info(
-        "Creating room: %s for user: %s",
+        "Creating round for room: %s started by user id: %s",
         room_id, user_id)
     if room_id is None or user_id is None:
         raise InvalidUsage("Please set the roomId and userId")
@@ -28,11 +24,13 @@ def create_round(room_id, user_id, word_id):
     round_entity = Round(RoomId=room_id, DrawingWordId=word_id)
     session.add(round_entity)
     session.commit()
+    push_round(round_entity)
     return round_entity
 
 def get_round(round_id):
     round_entity = (session
         .query(Round)
+        .populate_existing()
         .filter(Round.RoundId==round_id)
         .first())
 
@@ -51,3 +49,17 @@ def update_round(round_id, stage_state_id, start_time, end_time, drawing_word_id
     round_entity.DrawingWordId = drawing_word_id
 
     session.commit()
+    push_round(round_entity)
+
+def end_stage(round_id):
+    logfile.info("Ending stage for round: %s", round_id)
+
+    round_entity = get_round(round_id)
+    round_entity.StageStateEndTime = datetime.utcnow()
+
+    session.commit()
+    push_round(round_entity)
+
+def push_round(round_entity):
+    logfile.info("Pushing round: %s to clients", round_entity.RoundId)
+    socketio.emit("round", to_round_dict(round_entity), room=str(round_entity.RoomId))

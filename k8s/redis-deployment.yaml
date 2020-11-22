@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: craicbox
+  labels:
+    io.kompose.service: redis
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: redis
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: redis
+    spec:
+      containers:
+      - image: bitnami/redis:latest
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        imagePullPolicy: "Always"
+        name: redis
+        ports:
+        - containerPort: 6379
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+status: {}

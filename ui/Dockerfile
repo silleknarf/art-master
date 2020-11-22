@@ -6,7 +6,7 @@ COPY package.json ./
 
 COPY yarn.lock ./
 
-RUN yarn
+RUN yarn --check-files
 
 COPY . .
 

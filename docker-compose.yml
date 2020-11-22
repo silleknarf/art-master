@@ -5,10 +5,14 @@ services:
       context: ./service/artmaster
     links:
       - db
+      - redis
+      - celery
     environment:
       - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
       - CRAICBOX_DEBUG=1
       - CRAICBOX_HOST=0.0.0.0
+      - CRAICBOX_CORS_URL=http://localhost:3000
+      - SOCKETIO_PASSWORD=${SOCKETIO_PASSWORD}
     ports:
       - "5001:5001"
     volumes:
@@ -22,6 +26,27 @@ services:
       - MYSQL_ROOT_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
+  # Redis - in-memory data store: https://redis.io/
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "6379:6379"
+  # Celery - distributed background task runner: https://docs.celeryproject.org/en/stable/
+  celery:
+    build:
+      context:
+        ./service/artmaster
+      dockerfile:
+        celery.Dockerfile
+    environment:
+      - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
+    volumes:
+      - ./service/artmaster:/artmaster
+    links:
+      - redis
+      - db
   ui:
     build:
       context: ./ui
@@ -29,11 +54,9 @@ services:
       - service
     ports:
       - "3000:3000"
-    environment:
-      - REACT_APP_SERVICE_URL=http://localhost:5001
     volumes:
       - ./ui:/artmaster
-      - /artmaster/node_modules
+  # Storybook - development environment for UI components: https://storybook.js.org/
   storybook:
     build:
       context: ./ui
@@ -43,7 +66,6 @@ services:
       - "9009:9009"
     volumes:
       - ./ui:/artmaster
-      - /artmaster/node_modules
     command:
       yarn run storybook
   seed:
@@ -78,3 +100,5 @@ services:
       - ./service/artmaster:/artmaster
     command:
       python -m unittest discover
+    ports:
+      - "5678:5678"

@@ -1,0 +1,29 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: celery
+  namespace: craicbox
+  labels:
+    app: celery
+spec:
+  selector:
+    matchLabels:
+      app: celery
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: celery
+    spec:
+      containers:
+      - name: master
+        image: rg.nl-ams.scw.cloud/craicbox/craicbox_celery
+        env:
+          - name: CRAICBOX_DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secrets
+                key: mysql-root-password
+        imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred

@@ -1,21 +1,23 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
+import React from "react";
+import { storiesOf } from "@storybook/react";
 import * as FetchMock from "fetch-mock";
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
-import Draw from '../components/common/Draw';
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap-theme.css";
+import Draw from "../components/common/Draw";
 import "../../public/css/literallycanvas.css";
+import Provider from "./Provider";
 
 const setupDraw = () => {
   FetchMock.restore();
-  FetchMock.post('glob:*image?*', "test");
+  FetchMock.post("glob:*image?*", "test");
 }
-storiesOf('Draw', module)
-  .add('draw', () => {
+storiesOf("Draw", module)
+  .addDecorator(story => <Provider story={story()} />)
+  .add("draw", () => {
     setupDraw()
     return <Draw />;
   })
-  .add('drawing submitted', () => {
+  .add("drawing submitted", () => {
     setupDraw()
     return <Draw drawingSubmitted={ true }/>
   });

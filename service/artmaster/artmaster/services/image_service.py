@@ -1,21 +1,18 @@
 #/usr/bin/python
 
-import base64
 import logging
-import os
 from flask import Blueprint, jsonify, request
 from repositories import image_repository, round_repository
 from .round_state_machine import RoundStateMachine
 
 logfile = logging.getLogger('file')
 image_service = Blueprint('image_service', __name__)
-data_dir = "../../../ui/public/data"
 
 @image_service.route("/image", methods=["POST"])
 def upload_drawing():
     user_id = int(request.args.get("userId"))
     round_id = int(request.args.get("roundId"))
-    logfile.info("Adding drawing for user: %s for round: %s" % (user_id, round_id))
+    logfile.info("Adding drawing for user: %s for round: %s", user_id, round_id)
     image_base_64 = request.get_json()["imageBase64"]
 
     drawing = image_repository.create_image(user_id, image_base_64, round_id)

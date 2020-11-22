@@ -49,11 +49,14 @@ class ConnectedRoom extends Component {
     }
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     if (!this.props.room || !this.props.room.roomId) {
       const roomCode = this.props.location.pathname.split('/')[2]
       this.props.history.push(`/?roomCode=${roomCode}`);
     }
+  }
+
+  componentWillMount = () => {
     this.prepareComponentState(this.props);
   }
 
@@ -149,13 +152,15 @@ class ConnectedRoom extends Component {
       .filter((minigame) => minigame.minigameId === this.state.room.minigameId)
       .map((minigame) => minigame.name)[0] || "";
 
+    const isRoundActive = this.state.room.currentRoundId !== null;
+
     return (
       <div className="room">
         <div style={centerTitleContentStyle}>
           <span style={titleStyle}>Craicbox</span>
         </div>
         <div style={centerTitleContentStyle}>
-          <DropdownButton id="dropdown-item-button" title={minigameName} disabled={this.state.room.currentRoundId}>
+          <DropdownButton id="dropdown-item-button" title={minigameName} disabled={isRoundActive}>
             { dropdownItems }
           </DropdownButton>
         </div>

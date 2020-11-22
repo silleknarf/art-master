@@ -10,4 +10,4 @@ COPY . .
 
 WORKDIR /artmaster/artmaster
 
-CMD python app.py
+CMD python main.py
