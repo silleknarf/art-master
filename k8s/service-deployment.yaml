@@ -29,8 +29,6 @@ spec:
           value: 0.0.0.0
         - name: CRAICBOX_CORS_URL
           value: https://craicbox.app
-        - name: REACT_APP_SERVICE_URL
-          value: https://api.craicbox.app
         - name: SOCKETIO_PASSWORD
           valueFrom:
             secretKeyRef:
