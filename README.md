@@ -55,9 +55,14 @@ Production Setup
 ================
 
 1. Set up a kubernetes cluster which has got at least one persistent volume and node
+
 1. Push the images for seed, service and UI up to an image registry
+
 1. Add a secret for the image registry used  
-    `kubectl create secret docker-registry regcred --docker-server=rg.nl-ams.scw.cloud/craicbox --docker-username=nologin --docker-password=<your_password> --docker-email=<your_email> -n craicbox`
+`kubectl create secret docker-registry regcred --docker-server=rg.nl-ams.scw.cloud/craicbox --docker-username=nologin --docker-password=<your_password> --docker-email=<your_email> -n craicbox`
+
 1. Add a secret called mysql-secrets with a value in data for the key: `mysql-root-password`
+
 1. Update the k8s templates to point the registry images
+
 1. Run in all the k8s templates
