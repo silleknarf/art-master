@@ -35,9 +35,9 @@ spec:
           valueFrom:
             secretKeyRef:
               name: newrelic-secrets
-              value: newrelic-password
+              key: newrelic-password
         - name: NEW_RELIC_MONITOR_MODE
-          value: true
+          value: "true"
         - name: SOCKETIO_PASSWORD
           valueFrom:
             secretKeyRef:
