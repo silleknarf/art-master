@@ -10,3 +10,4 @@ flask_socketio
 celery
 redis
 debugpy
+newrelic

@@ -12,6 +12,9 @@ services:
       - CRAICBOX_DEBUG=1
       - CRAICBOX_HOST=0.0.0.0
       - CRAICBOX_CORS_URL=http://localhost:3000
+      - NEW_RELIC_APP_NAME=craicbox_service
+      - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
+      - NEW_RELIC_MONITOR_MODE=${NEW_RELIC_MONITOR_MODE}
       - SOCKETIO_PASSWORD=${SOCKETIO_PASSWORD}
     ports:
       - "5001:5001"
@@ -42,6 +45,9 @@ services:
         celery.Dockerfile
     environment:
       - CRAICBOX_DATABASE_PASSWORD=${CRAICBOX_DATABASE_PASSWORD}
+      - NEW_RELIC_APP_NAME=craicbox_celery
+      - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
+      - NEW_RELIC_MONITOR_MODE=${NEW_RELIC_MONITOR_MODE}
     volumes:
       - ./service/artmaster:/artmaster
     links:

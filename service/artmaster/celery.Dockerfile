@@ -10,4 +10,4 @@ COPY . .
 
 WORKDIR /artmaster/artmaster
 
-CMD celery -A app.celery worker --loglevel=INFO
+CMD NEW_RELIC_CONFIG_FILE=newrelic.ini newrelic-admin run-program celery -A app.celery worker --loglevel=INFO
