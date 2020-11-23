@@ -30,7 +30,7 @@ spec:
         - name: CRAICBOX_CORS_URL
           value: https://craicbox.app
         - name: NEW_RELIC_APP_NAME
-          value: craicbox_service
+          value: craicbox_service;craicbox
         - name: NEW_RELIC_LICENSE_KEY
           valueFrom:
             secretKeyRef:

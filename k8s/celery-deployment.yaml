@@ -25,7 +25,7 @@ spec:
                 name: mysql-secrets
                 key: mysql-root-password
           - name: NEW_RELIC_APP_NAME
-            value: craicbox_celery
+            value: craicbox_celery;craicbox
           - name: NEW_RELIC_LICENSE_KEY
             valueFrom:
               secretKeyRef:
