@@ -29,6 +29,15 @@ spec:
           value: 0.0.0.0
         - name: CRAICBOX_CORS_URL
           value: https://craicbox.app
+        - name: NEW_RELIC_APP_NAME
+          value: craicbox_service
+        - name: NEW_RELIC_LICENSE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: newrelic-secrets
+              value: newrelic-password
+        - name: NEW_RELIC_MONITOR_MODE
+          value: true
         - name: SOCKETIO_PASSWORD
           valueFrom:
             secretKeyRef:

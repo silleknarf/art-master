@@ -24,6 +24,15 @@ spec:
               secretKeyRef:
                 name: mysql-secrets
                 key: mysql-root-password
+          - name: NEW_RELIC_APP_NAME
+            value: craicbox_celery
+          - name: NEW_RELIC_LICENSE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: newrelic-secrets
+                value: newrelic-password
+          - name: NEW_RELIC_MONITOR_MODE
+            value: true
         imagePullPolicy: Always
       imagePullSecrets:
         - name: regcred

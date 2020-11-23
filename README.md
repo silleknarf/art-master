@@ -34,10 +34,11 @@ Get the code:
 Getting Started
 ===============
 
-Create a `.env` file in the root directory of the project and set the variable below:
+Create a `.env` file in the root directory of the project and set the variables below:
 
-    CRAICBOX_DATABASE_PASSWORD=<password>
-    SOCKETIO_PASSWORD=<password>
+    CRAICBOX_DATABASE_PASSWORD=<password_of_your_choosing>
+    SOCKETIO_PASSWORD=<password_of_your_choosing>
+    NEW_RELIC_MONITOR_MODE=false
 
 Seed the `craicbox` database:
 
@@ -61,6 +62,11 @@ Run Storybook:
     docker-compose up -d --build storybook
     Open browser with url: http://localhost:9009
 
+To set up new relic (application performance monitoring), set the variables below in the `.env` file:
+
+    NEW_RELIC_LICENSE_KEY=<your_new_relic_license_key>
+    NEW_RELIC_MONITOR_MODE=true
+
 Production Setup
 ================
 
@@ -72,6 +78,10 @@ Production Setup
 `kubectl create secret docker-registry regcred --docker-server=rg.nl-ams.scw.cloud/craicbox --docker-username=nologin --docker-password=<your_password> --docker-email=<your_email> -n craicbox`
 
 1. Add a secret called mysql-secrets with a value in data for the key: `mysql-root-password`
+
+1. Add a secret called socketio-secrets with a value in data for the key: `socketio-password`
+
+1. Add a secret called newrelic-secrets with a value in data for the key: `newrelic-password`
 
 1. Update the k8s templates to point the registry images
 
