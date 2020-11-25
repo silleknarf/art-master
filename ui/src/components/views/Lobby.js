@@ -53,15 +53,15 @@ class Lobby extends Component {
       }
       return resBody;
 
-    } catch(err) {
+    } catch (err) {
       const error = new Error(`${failureMessage}. ${err.message}`);
       throw error;
     }
   }
 
-  createUser = async (username) => {
+  createUser = async (username, roomId) => {
     const url = `${Config.apiurl}/user/${username}`;
-    const user =  await this.handleRequest("POST", url, "Unable to create username");
+    const user = await this.handleRequest("POST", url, "Unable to create username");
     localStorage.setItem("userId", user.userId);
     store.dispatch(updateUserState(user));
     return user;
@@ -79,9 +79,13 @@ class Lobby extends Component {
   }
 
   onJoinRoom = async (roomCode, username) => {
-    const { userId } = await this.createUser(username);
     const getRoomUrl = `${Config.apiurl}/room?roomCode=${roomCode}`;
     const room = await this.handleRequest("GET", getRoomUrl, "Unable to get room to join");
+    const isUsernameAlreadyInRoom = room.roomUsers.map(ru => ru.username).includes(username);
+    if (isUsernameAlreadyInRoom) {
+      throw new Error(`The username ${username} has already been taken`);
+    }
+    const { userId } = await this.createUser(username);
     const joinRoomUrl = `${Config.apiurl}/room/${room.roomId}/user/${userId}`;
     await this.handleRequest("POST", joinRoomUrl, "Unable to join room");
     localStorage.setItem("roomId", room.roomId);
@@ -145,7 +149,7 @@ class Lobby extends Component {
   getCreateRoomForm = () => (
     <Formik
       validationSchema={this.createRoomSchema}
-      onSubmit={(values, actions) => { 
+      onSubmit={(values, actions) => {
         this.onCreateRoom(values.username)
           .catch(error => {
             actions.setFieldError("general", error.message);
@@ -163,26 +167,26 @@ class Lobby extends Component {
         isValid,
         errors
       }) =>
-      (<Form noValidate onSubmit={handleSubmit}>
-        <Grid style={this.gridStyle}>
-          { this.getUsernameRow(values, handleChange, touched, errors) }
-          <Row style={centerRowContentStyle} className="input-row">
-            <Button
-              className="create-room-button button"
-              type="submit">
-              Create Room
+        (<Form noValidate onSubmit={handleSubmit}>
+          <Grid style={this.gridStyle}>
+            {this.getUsernameRow(values, handleChange, touched, errors)}
+            <Row style={centerRowContentStyle} className="input-row">
+              <Button
+                className="create-room-button button"
+                type="submit">
+                Create Room
             </Button>
-            {errors.general && <HelpBlock>{errors.general}</HelpBlock>}
-          </Row>
-        </Grid>
-      </Form>)}
+              {errors.general && <HelpBlock>{errors.general}</HelpBlock>}
+            </Row>
+          </Grid>
+        </Form>)}
     </Formik>
   );
 
   getJoinRoomForm = () => (
     <Formik
       validationSchema={this.joinRoomSchema}
-      onSubmit={(values, actions) => { 
+      onSubmit={(values, actions) => {
         this.onJoinRoom(values.roomCode, values.username)
           .catch(error => {
             actions.setFieldError("general", error.message);
@@ -202,35 +206,35 @@ class Lobby extends Component {
         isValid,
         errors
       }) =>
-      (<Form noValidate onSubmit={handleSubmit}>
-        <Grid style={this.gridStyle}>
-          <Row style={centerRowContentStyle} className="input-row">
-            <ControlLabel className="label">Room Code</ControlLabel>
-          </Row>
-          <Row style={centerRowContentStyle} className="input-row">
-            <FormGroup>
-              <FormControl
-                className="room-code-input"
-                type="text"
-                name="roomCode"
-                onChange={handleChange}
-                value={values.roomCode}
-                onKeyDown={this.onKeyDown}
-              />
-            </FormGroup>
-            {touched.roomCode && errors.roomCode && <HelpBlock>{errors.roomCode}</HelpBlock>}
-          </Row>
-          { this.getUsernameRow(values, handleChange, touched, errors) }
-          <Row style={centerRowContentStyle} className="button-row">
-            <Button
-              className="join-room-button button"
-              type="submit">
-              Join Room
+        (<Form noValidate onSubmit={handleSubmit}>
+          <Grid style={this.gridStyle}>
+            <Row style={centerRowContentStyle} className="input-row">
+              <ControlLabel className="label">Room Code</ControlLabel>
+            </Row>
+            <Row style={centerRowContentStyle} className="input-row">
+              <FormGroup>
+                <FormControl
+                  className="room-code-input"
+                  type="text"
+                  name="roomCode"
+                  onChange={handleChange}
+                  value={values.roomCode}
+                  onKeyDown={this.onKeyDown}
+                />
+              </FormGroup>
+              {touched.roomCode && errors.roomCode && <HelpBlock>{errors.roomCode}</HelpBlock>}
+            </Row>
+            {this.getUsernameRow(values, handleChange, touched, errors)}
+            <Row style={centerRowContentStyle} className="button-row">
+              <Button
+                className="join-room-button button"
+                type="submit">
+                Join Room
             </Button>
-            {errors.general && <HelpBlock>{errors.general}</HelpBlock>}
-          </Row>
-        </Grid>
-      </Form>)}
+              {errors.general && <HelpBlock>{errors.general}</HelpBlock>}
+            </Row>
+          </Grid>
+        </Form>)}
     </Formik>
   );
 
@@ -246,10 +250,10 @@ class Lobby extends Component {
           style={tabsStyle}
           onSelect={this.handleSelect}>
           <Tab eventKey={1} title="Create Room">
-            { this.getCreateRoomForm() }
+            {this.getCreateRoomForm()}
           </Tab>
           <Tab eventKey={2} title="Join Room">
-            { this.getJoinRoomForm() }
+            {this.getJoinRoomForm()}
           </Tab>
         </Tabs>
       </div>
