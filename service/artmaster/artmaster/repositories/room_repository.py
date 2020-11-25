@@ -36,15 +36,17 @@ def get_room(room_id, room_code):
         error_text = "Please provide a room id or code"
         raise InvalidUsage(error_text)
     else:
-        error_text = "Room code or room id doesn't exist"
+        error_text = "Room code or room not specified"
         raise InvalidUsage(error_text)
-    room_users = (session
-        .query(User)
-        .populate_existing()
-        .join(RoomUser)
-        .filter(RoomUser.RoomId==room.RoomId)
-        .all())
-    room.RoomUsers = room_users
+
+    if room is not None:
+        room_users = (session
+            .query(User)
+            .populate_existing()
+            .join(RoomUser)
+            .filter(RoomUser.RoomId==room.RoomId)
+            .all())
+        room.RoomUsers = room_users
     return room
 
 def update_room_round(room_id, round_id):

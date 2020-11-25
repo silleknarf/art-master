@@ -1,100 +1,92 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button, FormControl, FormGroup, HelpBlock, ControlLabel, Tabs, Tab } from 'react-bootstrap';
+import { Grid, Row, Button, Form, FormControl, FormGroup, HelpBlock, ControlLabel, Tabs, Tab } from 'react-bootstrap';
+import io from "socket.io-client";
+import { Formik } from 'formik';
+import * as yup from 'yup';
 import Config from '../../constant/Config';
 import store from '../../redux/Store';
 import { updateRoomState, updateUserState } from "../../redux/Actions";
 import './Lobby.css';
 import { centerTitleContentStyle, centerRowContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
-import io from "socket.io-client";
 
 class Lobby extends Component {
+
+  createRoomSchema = yup.object({
+    username: yup.string().required()
+  });
+
+  joinRoomSchema = yup.object({
+    roomCode: yup.string().length(4, "Must be exactly 4 letters").required(),
+    username: yup.string().required()
+  });
+
+  gridStyle = {
+    padding: "2em"
+  };
 
   constructor(props) {
     super(props);
     this.state = {
       roomCode: "",
-      username: "",
-      usernameFeedback: "",
       tabIndex: 1
     }
   }
 
-  async onCreateRoom(e) {
-    e.preventDefault();
+  /**
+   * Calls an API endpoint, handling errors
+   * - Converts non-200 statuses into errors
+   * - Adds context to errors
+   */
+  handleRequest = async (method, url, failureMessage) => {
     try {
-      const { userId, username } = await this.createUser();
-      console.log(`Creating room for user: ${userId}`);
-      const roomRes = await fetch(`${Config.apiurl}/room?userId=${userId}`, {
-        method: 'POST',
+      console.log(`${method} ${url}`);
+      const res = await fetch(url, {
+        method: method,
       });
 
-      if (roomRes.status === 200) {
-        const room = await roomRes.json();
-        console.log(`Created room: ${room.roomCode}`);
-        localStorage.setItem("roomId", room.roomId);
-        store.dispatch(updateRoomState({ roomId: room.roomId }));
-        const socket = io(Config.apiurl);
-        socket.emit("join", room.roomId);
-        this.props.history.push(`/room/${room.roomCode}`);
-      } else {
-        throw new Error("room creation failed")
+      var resBody = await res.json();
+
+      if (res.status !== 200) {
+        const errorText = resBody.message || resBody.error || "Error Unknown";
+        const error = new Error(`${errorText} (Error: ${res.status})`);
+        throw error;
       }
+      return resBody;
+
     } catch(err) {
-      console.log(err);
-      this.setState({
-        usernameFeedback: 'Unable to create room',
-      });
+      const error = new Error(`${failureMessage}. ${err.message}`);
+      throw error;
     }
   }
 
-  async onJoinRoom(e) {
-    e.preventDefault();
-
-    // TODO: logic to pick username and
-    const { userId, username } = await this.createUser();
-    console.log(`User: ${username} is attempting to join room: ${this.state.roomCode}`);
-
-    try {
-      const roomRes = await fetch(`${Config.apiurl}/room?roomCode=${this.state.roomCode}`, { method: 'GET' });
-      const room = await roomRes.json();
-      const res = await fetch(`${Config.apiurl}/room/${room.roomId}/user/${userId}`, {method: 'POST'});
-      if (res.status === 200) {
-        localStorage.setItem("roomId", room.roomId);
-        store.dispatch(updateRoomState({ roomId: room.roomId }));
-        console.log(`Added user: ${username} to room: ${this.state.roomCode}`);
-        this.props.history.push(`/room/${this.state.roomCode}`);
-      } else {
-        throw new Error("Joining the room failed");
-      }
-    } catch(err) {
-      console.log(err.message);
-      this.setState({
-        usernameFeedback: "Joining the room failed",
-      })
-    }
+  createUser = async (username) => {
+    const url = `${Config.apiurl}/user/${username}`;
+    const user =  await this.handleRequest("POST", url, "Unable to create username");
+    localStorage.setItem("userId", user.userId);
+    store.dispatch(updateUserState(user));
+    return user;
   }
 
-  async createUser() {
-    try {
-      console.log(`Creating user: ${this.state.username}`);
-      const res = await fetch(`${Config.apiurl}/user/${this.state.username}`, {
-        method: "POST",
-      });
-      if (res.status === 200) {
-        var user = await res.json();
-        console.log(`Created user: ${user.username}`);
-        localStorage.setItem("userId", user.userId);
-        store.dispatch(updateUserState(user));
-        return user;
-      } else {
-        throw new Error("username creation failed");
-      }
-    } catch(err) {
-      console.log(err.message);
-      this.setState({
-        usernameFeedback: "Unable to create user",
-      })
-    }
+  onCreateRoom = async (username) => {
+    const { userId } = await this.createUser(username);
+    const url = `${Config.apiurl}/room?userId=${userId}`;
+    const room = await this.handleRequest("POST", url, "Unable to create room");
+    localStorage.setItem("roomId", room.roomId);
+    store.dispatch(updateRoomState({ roomId: room.roomId }));
+    const socket = io(Config.apiurl);
+    socket.emit("join", room.roomId);
+    this.props.history.push(`/room/${room.roomCode}`);
+  }
+
+  onJoinRoom = async (roomCode, username) => {
+    const { userId } = await this.createUser(username);
+    const getRoomUrl = `${Config.apiurl}/room?roomCode=${roomCode}`;
+    const room = await this.handleRequest("GET", getRoomUrl, "Unable to get room to join");
+    const joinRoomUrl = `${Config.apiurl}/room/${room.roomId}/user/${userId}`;
+    await this.handleRequest("POST", joinRoomUrl, "Unable to join room");
+    localStorage.setItem("roomId", room.roomId);
+    store.dispatch(updateRoomState({ roomId: room.roomId }));
+    this.props.history.push(`/room/${roomCode}`);
   }
 
   onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -129,34 +121,120 @@ class Lobby extends Component {
     return "";
   }
 
-  render() {
-    const shrinkWrapStyle = {
-      display: "inline-block",
-      width: "min-content",
-    };
-    const gridStyle = {
-      padding: "2em"
-    };
+  getUsernameRow = (values, handleChange, touched, errors) => (
+    <div>
+      <Row style={centerRowContentStyle} className="input-row">
+        <ControlLabel className="label">Username</ControlLabel>
+      </Row>
+      <Row style={centerRowContentStyle} className="input-row">
+        <FormGroup>
+          <FormControl
+            className="username-input"
+            name="username"
+            type="text"
+            value={values.username}
+            onChange={handleChange}
+            onKeyDown={this.onKeyDown}
+          />
+        </FormGroup>
+        {errors.username && <HelpBlock>{errors.username}</HelpBlock>}
+      </Row>
+    </div>
+  );
 
-    const usernameRow = (
-      <div>
-        <Row style={centerRowContentStyle} className="input-row">
-          <ControlLabel className="label">Username</ControlLabel>
-        </Row>
-        <Row style={centerRowContentStyle} className="input-row">
-          <FormGroup>
-            <FormControl
-              className="username-input"
-              type="input"
-              onChange={e => this.setState({ username: e.target.value, usernameFeedback: '' })}
-              value={this.state.username}
-              onKeyDown={this.onKeyDown}
-            />
-            {this.state.usernameFeedback  && <HelpBlock>{this.state.usernameFeedback}</HelpBlock>}
-          </FormGroup>
-        </Row>
-      </div>
-    );
+  getCreateRoomForm = () => (
+    <Formik
+      validationSchema={this.createRoomSchema}
+      onSubmit={(values, actions) => { 
+        this.onCreateRoom(values.username)
+          .catch(error => {
+            actions.setFieldError("general", error.message);
+          });
+      }}
+      initialValues={{
+        username: ""
+      }}>
+      {({
+        handleSubmit,
+        handleChange,
+        handleBlur,
+        values,
+        touched,
+        isValid,
+        errors
+      }) =>
+      (<Form noValidate onSubmit={handleSubmit}>
+        <Grid style={this.gridStyle}>
+          { this.getUsernameRow(values, handleChange, touched, errors) }
+          <Row style={centerRowContentStyle} className="input-row">
+            <Button
+              className="create-room-button button"
+              type="submit">
+              Create Room
+            </Button>
+            {errors.general && <HelpBlock>{errors.general}</HelpBlock>}
+          </Row>
+        </Grid>
+      </Form>)}
+    </Formik>
+  );
+
+  getJoinRoomForm = () => (
+    <Formik
+      validationSchema={this.joinRoomSchema}
+      onSubmit={(values, actions) => { 
+        this.onJoinRoom(values.roomCode, values.username)
+          .catch(error => {
+            actions.setFieldError("general", error.message);
+          });
+      }}
+      enableReinitialize
+      initialValues={{
+        username: "",
+        roomCode: this.state.roomCode
+      }}>
+      {({
+        handleSubmit,
+        handleChange,
+        handleBlur,
+        values,
+        touched,
+        isValid,
+        errors
+      }) =>
+      (<Form noValidate onSubmit={handleSubmit}>
+        <Grid style={this.gridStyle}>
+          <Row style={centerRowContentStyle} className="input-row">
+            <ControlLabel className="label">Room Code</ControlLabel>
+          </Row>
+          <Row style={centerRowContentStyle} className="input-row">
+            <FormGroup>
+              <FormControl
+                className="room-code-input"
+                type="text"
+                name="roomCode"
+                onChange={handleChange}
+                value={values.roomCode}
+                onKeyDown={this.onKeyDown}
+              />
+            </FormGroup>
+            {touched.roomCode && errors.roomCode && <HelpBlock>{errors.roomCode}</HelpBlock>}
+          </Row>
+          { this.getUsernameRow(values, handleChange, touched, errors) }
+          <Row style={centerRowContentStyle} className="button-row">
+            <Button
+              className="join-room-button button"
+              type="submit">
+              Join Room
+            </Button>
+            {errors.general && <HelpBlock>{errors.general}</HelpBlock>}
+          </Row>
+        </Grid>
+      </Form>)}
+    </Formik>
+  );
+
+  render() {
     return (
       <div className="lobby">
         <div style={centerTitleContentStyle}>
@@ -168,42 +246,10 @@ class Lobby extends Component {
           style={tabsStyle}
           onSelect={this.handleSelect}>
           <Tab eventKey={1} title="Create Room">
-            <Grid style={gridStyle}>
-              { usernameRow }
-              <Row style={centerRowContentStyle} className="input-row">
-                <Button
-                  className="create-room-button button"
-                  onClick={(e) => this.onCreateRoom(e)}>
-                  Create Room
-                </Button>
-              </Row>
-            </Grid>
+            { this.getCreateRoomForm() }
           </Tab>
           <Tab eventKey={2} title="Join Room">
-            <Grid style={gridStyle}>
-              <Row style={centerRowContentStyle} className="input-row">
-                <ControlLabel className="label">Room Code</ControlLabel>
-              </Row>
-              <Row style={centerRowContentStyle} className="input-row">
-                <FormGroup>
-                  <FormControl
-                    className="room-code-input"
-                    type="input"
-                    onChange={e => this.setState({ roomCode: e.target.value })}
-                    value={this.state.roomCode}
-                    onKeyDown={this.onKeyDown}
-                  />
-                </FormGroup>
-              </Row>
-              { usernameRow }
-              <Row style={centerRowContentStyle} className="button-row">
-                <Button
-                  className="join-room-button button"
-                  onClick={e => this.onJoinRoom(e)}>
-                  Join Room
-                </Button>
-              </Row>
-            </Grid>
+            { this.getJoinRoomForm() }
           </Tab>
         </Tabs>
       </div>

@@ -21,7 +21,7 @@ def add_or_remove_word():
         word_id = int(request.args.get("wordId"))
         word_repository.remove_word(word_id)
 
-    return ""
+    return "{}"
 
 @word_service.route("/words", methods=["GET"])
 def get_words():
