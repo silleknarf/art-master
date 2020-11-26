@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Grid, Row, Button, Form, FormControl, FormGroup, HelpBlock, ControlLabel, Tabs, Tab } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Grid, Row, Button, Form, FormControl, FormGroup, HelpBlock, ControlLabel, Tabs, Tab } from "react-bootstrap";
 import io from "socket.io-client";
-import { Formik } from 'formik';
-import * as yup from 'yup';
-import Config from '../../constant/Config';
-import store from '../../redux/Store';
+import { Formik } from "formik";
+import * as yup from "yup";
+import Config from "../../constant/Config";
+import store from "../../redux/Store";
 import { updateRoomState, updateUserState } from "../../redux/Actions";
-import './Lobby.css';
+import "./Lobby.css";
 import { centerTitleContentStyle, centerRowContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
 import { handleRequest } from "../../utils";
 
@@ -34,7 +34,7 @@ class Lobby extends Component {
   }
 
   updateUserIdByRoomId = (userId, roomId) => {
-    const originalUserIdByRoomIdJson = localStorage.getItem("userIdByRoomId")
+    const originalUserIdByRoomIdJson = localStorage.getItem("userIdByRoomId");
     const userIdByRoomId = originalUserIdByRoomIdJson ? JSON.parse(originalUserIdByRoomIdJson) : {};
     userIdByRoomId[roomId] = userId;
     const userIdByRoomIdJson = JSON.stringify(userIdByRoomId);
@@ -44,7 +44,7 @@ class Lobby extends Component {
   createUser = async (username, roomId) => {
     const url = `${Config.apiurl}/user/${username}`;
     const user = await handleRequest("POST", url, "Unable to create username");
-    this.updateUserIdByRoomId(user.userId, roomId)
+    this.updateUserIdByRoomId(user.userId, roomId);
     store.dispatch(updateUserState(user));
     return user;
   }
@@ -56,7 +56,7 @@ class Lobby extends Component {
     const joinRoomUrl = `${Config.apiurl}/room/${roomId}/user/${userId}`;
     await handleRequest("POST", joinRoomUrl, "Unable to join room");
     localStorage.setItem("roomId", roomId);
-    store.dispatch(updateRoomState({ roomId: roomId }));
+    store.dispatch(updateRoomState({ roomId }));
     const socket = io(Config.apiurl);
     socket.emit("join", roomId);
     this.props.history.push(`/room/${roomCode}`);
@@ -64,8 +64,8 @@ class Lobby extends Component {
 
   onJoinRoom = async (roomCode, username) => {
     const getRoomUrl = `${Config.apiurl}/room?roomCode=${roomCode}`;
-    const { roomId } = await handleRequest("GET", getRoomUrl, "Unable to get room to join");
-    const isUsernameAlreadyInRoom = room.roomUsers.map(ru => ru.username).includes(username);
+    const { roomId, roomUsers } = await handleRequest("GET", getRoomUrl, "Unable to get room to join");
+    const isUsernameAlreadyInRoom = roomUsers.map((ru) => ru.username).includes(username);
     if (isUsernameAlreadyInRoom) {
       throw new Error(`The username ${username} has already been taken`);
     }
@@ -73,7 +73,7 @@ class Lobby extends Component {
     const joinRoomUrl = `${Config.apiurl}/room/${roomId}/user/${userId}`;
     await handleRequest("POST", joinRoomUrl, "Unable to join room");
     localStorage.setItem("roomId", roomId);
-    store.dispatch(updateRoomState({ roomId: roomId }));
+    store.dispatch(updateRoomState({ roomId }));
     this.props.history.push(`/room/${roomCode}`);
   }
 
@@ -123,7 +123,7 @@ class Lobby extends Component {
       validationSchema={this.createRoomSchema}
       onSubmit={(values, actions) => {
         this.onCreateRoom(values.username)
-          .catch(error => {
+          .catch((error) => {
             actions.setFieldError("general", error.message);
           });
       }}

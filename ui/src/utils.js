@@ -6,9 +6,7 @@
 export const handleRequest = async (method, url, failureMessage) => {
   try {
     console.log(`${method} ${url}`);
-    const res = await fetch(url, {
-      method: method,
-    });
+    const res = await fetch(url, { method });
     
     var resBody = await res.json();
     
@@ -22,4 +20,4 @@ export const handleRequest = async (method, url, failureMessage) => {
     const error = new Error(`${failureMessage}. ${err.message}`);
     throw error;
   }
-}
+};

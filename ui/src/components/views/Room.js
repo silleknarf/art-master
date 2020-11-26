@@ -18,6 +18,7 @@ import './Room.css';
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
 import { handleRequest } from "../../utils";
 import { updateUserState, updateRoomState } from "../../redux/Actions";
+import store from "../../redux/Store";
 
 class ConnectedRoom extends Component {
 
@@ -83,11 +84,11 @@ class ConnectedRoom extends Component {
 
     // If the room id differs from the one we got from the path
     // then trigger a state update
-    const roomCode = this.props.location.pathname.split('/')[2];
+    const roomCode = this.props.location.pathname.split("/")[2];
     const getRoomUrl = `${Config.apiurl}/room?roomCode=${roomCode}`;
     const room = await handleRequest("GET", getRoomUrl, "Unable to retrieve room");
     if (!props.room || room.roomId !== props.room.roomId) {
-        store.dispatch(updateRoomState(room))
+        store.dispatch(updateRoomState(room));
     }
 
     // Get the user id from the props or from localStorage if we're
@@ -99,7 +100,7 @@ class ConnectedRoom extends Component {
         const userIdByRoomId = JSON.parse(userIdByRoomIdJson);
         const newUserId = userIdByRoomId[room.roomId];
         if (newUserId && newUserId !== userId) {
-          store.dispatch(updateUserState({ "userId": parseInt(userId, 10) }))
+          store.dispatch(updateUserState({ "userId": parseInt(userId, 10) }));
         } else if (!userId) {
           this.props.history.push(`/?roomCode=${roomCode}`);
         }
@@ -110,7 +111,7 @@ class ConnectedRoom extends Component {
     const isCurrentUserInRoom = props.room &&
       props.room.roomUsers &&
       props.room.roomUsers
-        .filter(ru => ru.userId === userId)
+        .filter((ru) => ru.userId === userId)
         .length > 0;
     if (this.state.isCurrentUserInRoom && !isCurrentUserInRoom) {
       props.history.push("/");
