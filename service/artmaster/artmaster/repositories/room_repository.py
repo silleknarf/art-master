@@ -7,18 +7,12 @@ from app import socketio
 
 logfile = logging.getLogger("file")
 
-def create_room(room_code, owner_user_id):
-    info_text = "Creating room: %s for %s" % (room_code, owner_user_id)
-    logfile.info(info_text)
-    room = Room(RoomCode=room_code, OwnerUserId=owner_user_id)
+def create_room(room_code):
+    logfile.info("Creating room: %s", room_code)
+    room = Room(RoomCode=room_code)
     session.add(room)
     session.commit()
-    room_users = (session
-        .query(User)
-        .join(RoomUser)
-        .filter(RoomUser.RoomId==room.RoomId)
-        .all())
-    room.RoomUsers = room_users
+    room.RoomUsers = []
     socketio.emit("room", to_room_dict(room), room=str(room.RoomId))
     return room
 

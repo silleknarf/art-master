@@ -28,10 +28,8 @@ def get_or_create_room():
         if room is None:
             raise InvalidUsage("No room found")
     else:
-        owner_user_id = int(request.args.get("userId"))
         room_code = get_room_code()
-        room = room_repository.create_room(room_code, owner_user_id)
-        room_user_repository.add_user_to_room(room.RoomId, owner_user_id)
+        room = room_repository.create_room(room_code)
 
     return to_room_dto(room)
 

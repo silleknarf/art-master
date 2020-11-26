@@ -8,6 +8,7 @@ import store from '../../redux/Store';
 import { updateRoomState, updateUserState } from "../../redux/Actions";
 import './Lobby.css';
 import { centerTitleContentStyle, centerRowContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
+import { handleRequest } from "../../utils";
 
 class Lobby extends Component {
 
@@ -32,77 +33,48 @@ class Lobby extends Component {
     }
   }
 
-  /**
-   * Calls an API endpoint, handling errors
-   * - Converts non-200 statuses into errors
-   * - Adds context to errors
-   */
-  handleRequest = async (method, url, failureMessage) => {
-    try {
-      console.log(`${method} ${url}`);
-      const res = await fetch(url, {
-        method: method,
-      });
-
-      var resBody = await res.json();
-
-      if (res.status !== 200) {
-        const errorText = resBody.message || resBody.error || "Error Unknown";
-        const error = new Error(`${errorText} (Error: ${res.status})`);
-        throw error;
-      }
-      return resBody;
-
-    } catch (err) {
-      const error = new Error(`${failureMessage}. ${err.message}`);
-      throw error;
-    }
-  }
+  updateUserIdByRoomId = (userId, roomId) => {
+    const originalUserIdByRoomIdJson = localStorage.getItem("userIdByRoomId")
+    const userIdByRoomId = originalUserIdByRoomIdJson ? JSON.parse(originalUserIdByRoomIdJson) : {};
+    userIdByRoomId[roomId] = userId;
+    const userIdByRoomIdJson = JSON.stringify(userIdByRoomId);
+    localStorage.setItem("userIdByRoomId", userIdByRoomIdJson);
+  };
 
   createUser = async (username, roomId) => {
     const url = `${Config.apiurl}/user/${username}`;
-    const user = await this.handleRequest("POST", url, "Unable to create username");
-    localStorage.setItem("userId", user.userId);
+    const user = await handleRequest("POST", url, "Unable to create username");
+    this.updateUserIdByRoomId(user.userId, roomId)
     store.dispatch(updateUserState(user));
     return user;
   }
 
   onCreateRoom = async (username) => {
-    const { userId } = await this.createUser(username);
-    const url = `${Config.apiurl}/room?userId=${userId}`;
-    const room = await this.handleRequest("POST", url, "Unable to create room");
-    localStorage.setItem("roomId", room.roomId);
-    store.dispatch(updateRoomState({ roomId: room.roomId }));
+    const url = `${Config.apiurl}/room`;
+    const { roomId, roomCode } = await handleRequest("POST", url, "Unable to create room");
+    const { userId } = await this.createUser(username, roomId);
+    const joinRoomUrl = `${Config.apiurl}/room/${roomId}/user/${userId}`;
+    await handleRequest("POST", joinRoomUrl, "Unable to join room");
+    localStorage.setItem("roomId", roomId);
+    store.dispatch(updateRoomState({ roomId: roomId }));
     const socket = io(Config.apiurl);
-    socket.emit("join", room.roomId);
-    this.props.history.push(`/room/${room.roomCode}`);
+    socket.emit("join", roomId);
+    this.props.history.push(`/room/${roomCode}`);
   }
 
   onJoinRoom = async (roomCode, username) => {
     const getRoomUrl = `${Config.apiurl}/room?roomCode=${roomCode}`;
-    const room = await this.handleRequest("GET", getRoomUrl, "Unable to get room to join");
+    const { roomId } = await handleRequest("GET", getRoomUrl, "Unable to get room to join");
     const isUsernameAlreadyInRoom = room.roomUsers.map(ru => ru.username).includes(username);
     if (isUsernameAlreadyInRoom) {
       throw new Error(`The username ${username} has already been taken`);
     }
-    const { userId } = await this.createUser(username);
-    const joinRoomUrl = `${Config.apiurl}/room/${room.roomId}/user/${userId}`;
-    await this.handleRequest("POST", joinRoomUrl, "Unable to join room");
-    localStorage.setItem("roomId", room.roomId);
-    store.dispatch(updateRoomState({ roomId: room.roomId }));
+    const { userId } = await this.createUser(username, roomId);
+    const joinRoomUrl = `${Config.apiurl}/room/${roomId}/user/${userId}`;
+    await handleRequest("POST", joinRoomUrl, "Unable to join room");
+    localStorage.setItem("roomId", roomId);
+    store.dispatch(updateRoomState({ roomId: roomId }));
     this.props.history.push(`/room/${roomCode}`);
-  }
-
-  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    // 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
-    if (event.key === "Enter") {
-      event.preventDefault();
-      event.stopPropagation();
-      if (this.state.tabIndex === 1)
-        this.onCreateRoom(event);
-      else
-        this.onJoinRoom(event);
-    }
   }
 
   handleSelect = (key) => {
@@ -173,6 +145,7 @@ class Lobby extends Component {
             <Row style={centerRowContentStyle} className="input-row">
               <Button
                 className="create-room-button button"
+                onClick={handleSubmit} 
                 type="submit">
                 Create Room
             </Button>
@@ -228,6 +201,7 @@ class Lobby extends Component {
             <Row style={centerRowContentStyle} className="button-row">
               <Button
                 className="join-room-button button"
+                onClick={handleSubmit} 
                 type="submit">
                 Join Room
             </Button>

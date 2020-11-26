@@ -16,6 +16,8 @@ import Config from '../../constant/Config';
 import { DRAWING, CRITIQUING, REVIEWING, FILLING_IN_BLANKS } from '../../constant/StageStateIds';
 import './Room.css';
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
+import { handleRequest } from "../../utils";
+import { updateUserState, updateRoomState } from "../../redux/Actions";
 
 class ConnectedRoom extends Component {
 
@@ -49,22 +51,15 @@ class ConnectedRoom extends Component {
     }
   }
 
-  componentDidMount = () => {
-    if (!this.props.room || !this.props.room.roomId) {
-      const roomCode = this.props.location.pathname.split('/')[2]
-      this.props.history.push(`/?roomCode=${roomCode}`);
-    }
+  componentWillMount = async () => {
+    await this.prepareComponentState(this.props);
   }
 
-  componentWillMount = () => {
-    this.prepareComponentState(this.props);
+  componentWillReceiveProps = async (newProps) => {
+    await this.prepareComponentState(newProps);
   }
 
-  componentWillReceiveProps = (newProps) => {
-    this.prepareComponentState(newProps);
-  }
-
-  prepareComponentState = (props) => {
+  prepareComponentState = async (props) => {
     // Map the props to the state
     this.setState({
       room: { ...props.room },
@@ -86,12 +81,36 @@ class ConnectedRoom extends Component {
       });
     }
 
+    // If the room id differs from the one we got from the path
+    // then trigger a state update
+    const roomCode = this.props.location.pathname.split('/')[2];
+    const getRoomUrl = `${Config.apiurl}/room?roomCode=${roomCode}`;
+    const room = await handleRequest("GET", getRoomUrl, "Unable to retrieve room");
+    if (!props.room || room.roomId !== props.room.roomId) {
+        store.dispatch(updateRoomState(room))
+    }
+
+    // Get the user id from the props or from localStorage if we're
+    // going into a previously visited room.
+    // If we can't get one then we get knocked back to the lobby
+    let userId = props.user ? props.user.userId : null;
+    const userIdByRoomIdJson = localStorage.getItem("userIdByRoomId");
+    if (userIdByRoomIdJson !== null) {
+        const userIdByRoomId = JSON.parse(userIdByRoomIdJson);
+        const newUserId = userIdByRoomId[room.roomId];
+        if (newUserId && newUserId !== userId) {
+          store.dispatch(updateUserState({ "userId": parseInt(userId, 10) }))
+        } else if (!userId) {
+          this.props.history.push(`/?roomCode=${roomCode}`);
+        }
+    }
+
     // We kick the user if they were in the room
     // but are no longer
     const isCurrentUserInRoom = props.room &&
       props.room.roomUsers &&
       props.room.roomUsers
-        .filter(ru => ru.userId === props.user.userId)
+        .filter(ru => ru.userId === userId)
         .length > 0;
     if (this.state.isCurrentUserInRoom && !isCurrentUserInRoom) {
       props.history.push("/");
