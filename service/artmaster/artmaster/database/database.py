@@ -25,7 +25,8 @@ engine = create_engine(
     connection_string,
     encoding="utf8",
     echo=False,
-    isolation_level="READ_COMMITTED")
+    isolation_level="READ_COMMITTED",
+    pool_pre_ping=True)
 
 session = scoped_session(sessionmaker(
     autocommit=False,
