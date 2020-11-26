@@ -12,7 +12,7 @@ class TestRoomService(unittest.TestCase):
     room = {
         "RoomId": 1 ,
         "RoomCode": "ABCD",
-        "OwnerUserId": 1,
+        "OwnerUserId": None,
         "CurrentRoundId": 1,
         "RoomUsers": [],
         "MinigameId": 1
@@ -36,11 +36,10 @@ class TestRoomService(unittest.TestCase):
     @mock.patch('services.room_service.room_repository')
     def test_create_room(self, room_repository, room_user_repository):
         room_repository.create_room.return_value = Struct(**self.room)
-        room_created = self.app.post("/room?userId=1").data
+        room_created = self.app.post("/room").data
         expected_room = dict_to_lower(self.room)
         actual_room = json.loads(room_created)
         self.assertEqual(actual_room, expected_room)
-        room_user_repository.add_user_to_room.assert_called()
 
     @mock.patch('services.room_service.room_repository')
     def test_poll_room_by_room_code(self, room_repository):
