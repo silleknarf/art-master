@@ -161,7 +161,7 @@ class Lobby extends Component {
       validationSchema={this.joinRoomSchema}
       onSubmit={(values, actions) => {
         this.onJoinRoom(values.roomCode, values.username)
-          .catch(error => {
+          .catch((error) => {
             actions.setFieldError("general", error.message);
           });
       }}

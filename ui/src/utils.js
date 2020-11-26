@@ -5,7 +5,6 @@
 */
 export const handleRequest = async (method, url, failureMessage) => {
   try {
-    console.log(`${method} ${url}`);
     const res = await fetch(url, { method });
     
     var resBody = await res.json();
