@@ -17,8 +17,7 @@ import { DRAWING, CRITIQUING, REVIEWING, FILLING_IN_BLANKS } from '../../constan
 import './Room.css';
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
 import { handleRequest } from "../../utils";
-import { updateUserState, updateRoomState } from "../../redux/Actions";
-import store from "../../redux/Store";
+import { connectToRoom } from "../../socketio";
 
 class ConnectedRoom extends Component {
 
@@ -30,7 +29,8 @@ class ConnectedRoom extends Component {
       minigames: [],
       previousRoundId: null,
       currentTabIndex: 1,
-      isCurrentUserInRoom: false
+      isCurrentUserInRoom: false,
+      words: []
     }
   }
 
@@ -53,6 +53,8 @@ class ConnectedRoom extends Component {
   }
 
   componentWillMount = async () => {
+    const roomId = await this.getRoomIdFromUrl();
+    await connectToRoom(roomId);
     await this.prepareComponentState(this.props);
   }
 
@@ -70,6 +72,11 @@ class ConnectedRoom extends Component {
       minigames: [ ...props.minigames ]
     });
 
+    this.setCurrentTab(props);
+    this.maybeKickUserFromRoom(props);
+  }
+
+  setCurrentTab = (props) => {
     var previousRoundId = this.state.previousRoundId;
     const currentRoundId = props.room && props.room.currentRoundId || null;
     if (!currentRoundId) {
@@ -81,37 +88,29 @@ class ConnectedRoom extends Component {
         currentTabIndex: 2
       });
     }
+  }
 
-    // If the room id differs from the one we got from the path
-    // then trigger a state update
+  getRoomIdFromUrl = async () => {
     const roomCode = this.props.location.pathname.split("/")[2];
     const getRoomUrl = `${Config.apiurl}/room?roomCode=${roomCode}`;
     const room = await handleRequest("GET", getRoomUrl, "Unable to retrieve room");
-    if (!props.room || room.roomId !== props.room.roomId) {
-        store.dispatch(updateRoomState(room));
+    return room.roomId;
+  }
+
+  maybeKickUserFromRoom = (props) => {
+    if (!props.room.roomId) return;
+
+    // We kick the user if we can't get an id for them
+    if (props.user && !props.user.userId) {
+      this.props.history.push(`/?roomCode=${props.room.roomCode}`);
     }
 
-    // Get the user id from the props or from localStorage if we're
-    // going into a previously visited room.
-    // If we can't get one then we get knocked back to the lobby
-    let userId = props.user ? props.user.userId : null;
-    const userIdByRoomIdJson = localStorage.getItem("userIdByRoomId");
-    if (userIdByRoomIdJson !== null) {
-        const userIdByRoomId = JSON.parse(userIdByRoomIdJson);
-        const newUserId = userIdByRoomId[room.roomId];
-        if (newUserId && newUserId !== userId) {
-          store.dispatch(updateUserState({ "userId": parseInt(userId, 10) }));
-        } else if (!userId) {
-          this.props.history.push(`/?roomCode=${roomCode}`);
-        }
-    }
-
-    // We kick the user if they were in the room
-    // but are no longer
+    // We kick the user if they were in the room but are no longer
     const isCurrentUserInRoom = props.room &&
+      props.user &&
       props.room.roomUsers &&
       props.room.roomUsers
-        .filter((ru) => ru.userId === userId)
+        .filter((ru) => ru.userId === props.user.userId)
         .length > 0;
     if (this.state.isCurrentUserInRoom && !isCurrentUserInRoom) {
       props.history.push("/");
@@ -119,7 +118,9 @@ class ConnectedRoom extends Component {
     this.setState({isCurrentUserInRoom: isCurrentUserInRoom})
   }
 
-  // Required for switching the tabs manually
+  /**
+   * Required for switching the tabs manually
+   */
   handleSelect = (key) => {
     this.setState({ currentTabIndex: key });
   }
