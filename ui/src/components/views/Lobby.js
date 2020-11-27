@@ -59,6 +59,7 @@ class Lobby extends Component {
     store.dispatch(updateRoomState({ roomId }));
     const socket = io(Config.apiurl);
     socket.emit("join", roomId);
+    socket.on("connect", () => socket.emit("join", roomId));
     this.props.history.push(`/room/${roomCode}`);
   }
 
