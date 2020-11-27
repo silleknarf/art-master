@@ -98,7 +98,9 @@ class ConnectedRoom extends Component {
   }
 
   maybeKickUserFromRoom = (props) => {
-    if (!props.room.roomId) return;
+    if (!props.room.roomId) {
+      return;
+    }
 
     // We kick the user if we can't get an id for them
     if (props.user && !props.user.userId) {

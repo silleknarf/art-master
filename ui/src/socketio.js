@@ -18,7 +18,7 @@ const initRoom = async (roomId) => {
     store.dispatch(updateRoomState(roomState));
     return roomState;
   }
-}
+};
 
 const initRound = async (currentRoundId) => {
   let inRound = false;
@@ -34,7 +34,7 @@ const initRound = async (currentRoundId) => {
   if (!inRound) {
     store.dispatch(updateRoundState(null));
   }
-}
+};
 
 const initWords = async (roomId) => {
   const wordsStateRes = await fetch(`${Config.apiurl}/words?roomId=${roomId}`)
@@ -42,7 +42,7 @@ const initWords = async (roomId) => {
     const wordsState = await wordsStateRes.json();
     store.dispatch(updateWordsState(wordsState));
   }
-}
+};
 
 const initMinigames = async () => {
   const minigamesRes = await fetch(`${Config.apiurl}/minigames`)
@@ -50,7 +50,7 @@ const initMinigames = async () => {
     const minigamesState = await minigamesRes.json();
     store.dispatch(updateMinigamesState(minigamesState));
   }
-}
+};
 
 const initUser = (roomId) => {
   const userIdByRoomIdJson = localStorage.getItem("userIdByRoomId");
@@ -67,7 +67,7 @@ const initUser = (roomId) => {
   if (!loggedIn) {
     store.dispatch(updateUserState( { "userId": null }));
   }
-}
+};
 
 export const connectToRoom = async (roomId) => {
   // init
