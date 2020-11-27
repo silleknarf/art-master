@@ -23,7 +23,7 @@ const initRoom = async (roomId) => {
 const initRound = async (currentRoundId) => {
   let inRound = false;
   if (currentRoundId) {
-    const roundStateRes = await fetch(`${Config.apiurl}/round?roundId=${currentRoundId}`)
+    const roundStateRes = await fetch(`${Config.apiurl}/round?roundId=${currentRoundId}`);
     if (roundStateRes.status === 200) {
       const roundState = await roundStateRes.json();
       inRound = true;
@@ -37,7 +37,7 @@ const initRound = async (currentRoundId) => {
 };
 
 const initWords = async (roomId) => {
-  const wordsStateRes = await fetch(`${Config.apiurl}/words?roomId=${roomId}`)
+  const wordsStateRes = await fetch(`${Config.apiurl}/words?roomId=${roomId}`);
   if (wordsStateRes.status === 200) {
     const wordsState = await wordsStateRes.json();
     store.dispatch(updateWordsState(wordsState));
@@ -45,7 +45,7 @@ const initWords = async (roomId) => {
 };
 
 const initMinigames = async () => {
-  const minigamesRes = await fetch(`${Config.apiurl}/minigames`)
+  const minigamesRes = await fetch(`${Config.apiurl}/minigames`);
   if (minigamesRes.status === 200) {
     const minigamesState = await minigamesRes.json();
     store.dispatch(updateMinigamesState(minigamesState));
@@ -90,4 +90,4 @@ export const connectToRoom = async (roomId) => {
   socket.on("words", (wordsState) => {
     store.dispatch(updateWordsState(wordsState));
   });
-}
+};
