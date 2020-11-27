@@ -8,6 +8,7 @@ from random import SystemRandom
 from app import socketio
 from repositories import room_user_repository, room_repository
 from utils.room_utils import to_room_dto, to_room_dict
+from .exceptions import InvalidUsage
 
 logfile = logging.getLogger('file')
 
@@ -24,28 +25,28 @@ def get_or_create_room():
         room_id = int(room_id) if room_id is not None else None
         room_code = request.args.get("roomCode")
         room = room_repository.get_room(room_id, room_code)
+        if room is None:
+            raise InvalidUsage("No room found")
     else:
-        owner_user_id = int(request.args.get("userId"))
         room_code = get_room_code()
-        room = room_repository.create_room(room_code, owner_user_id)
-        room_user_repository.add_user_to_room(room.RoomId, owner_user_id)
+        room = room_repository.create_room(room_code)
 
     return to_room_dto(room)
 
 @room_service.route("/room/<int:room_id>/user/<int:user_id>", methods=["POST"])
 def add_user_to_room(room_id, user_id):
     room_user_repository.add_user_to_room(room_id, user_id)
-    return ""
+    return "{}"
 
 @room_service.route("/room/<int:room_id>/user/<int:user_id>", methods=["DELETE"])
 def remove_user_from_room(room_id, user_id):
     room_user_repository.remove_user_from_room(room_id, user_id)
-    return ""
+    return "{}"
 
 @room_service.route("/room/<int:room_id>/minigame/<int:minigame_id>", methods=["POST"])
 def set_minigame(room_id, minigame_id):
     room_repository.set_minigame(room_id, minigame_id)
-    return ""
+    return "{}"
 
 @room_service.route("/room/<int:room_id>/users", methods=["GET"])
 def get_users_in_room(room_id):

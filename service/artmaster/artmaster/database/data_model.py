@@ -44,7 +44,7 @@ class Room(Base):
 
     RoomId = Column(INTEGER(11), primary_key=True)
     RoomCode = Column(String(4))
-    OwnerUserId = Column(ForeignKey('User.UserId'), nullable=False, index=True)
+    OwnerUserId = Column(ForeignKey('User.UserId'), index=True)
     CurrentRoundId = Column(INTEGER(11))
     MinigameId = Column(ForeignKey('Minigame.MinigameId'), nullable=False, index=True, server_default=text("'1'"))
 

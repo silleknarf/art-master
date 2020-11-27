@@ -65,18 +65,19 @@ class ConnectedRoomUsers extends Component {
     const isAdminUser = this.state.room.ownerUserId === this.state.user.userId;
 
     const roomUserListItems = this.state.room.roomUsers.map((roomUser) => {
+      const isCurrentUser = roomUser.userId === this.state.user.userId;
       return (
         <li key={roomUser.userId} className="list-group-item">
           <FontAwesomeIcon style={iconStyle} icon={faUser} />
-          { roomUser.userId === this.state.user.userId
+          { isCurrentUser
             ? <span style={currentUserTextStyle}>{ roomUser.username } (Score: { roomUser.score })</span>
             : <span style={buttonTextStyle}>{ roomUser.username } (Score: { roomUser.score })</span>
           }
-          { !isAdminUser ||
+          { (!isAdminUser && !isCurrentUser) ||
           <Button style={buttonStyle}
                   onClick={(e) => this.onClickRemoveUser(roomUser.userId)}>
             <FontAwesomeIcon style={iconStyle} icon={faUserSlash} />
-            <span style={buttonTextStyle}>Remove</span>
+            <span style={buttonTextStyle}>{ roomUser.userId === this.state.user.userId ? "Leave" : "Remove" }</span>
           </Button> }
         </li>
       );

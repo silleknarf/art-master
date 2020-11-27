@@ -11,6 +11,7 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "font-awesome": "^4.7.0",
+    "formik": "^2.2.5",
     "jquery": "^3.5.0",
     "literallycanvas": "github:silleknarf/literallycanvas",
     "moment": "^2.19.2",
@@ -23,10 +24,11 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.2.2",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "3.2.0",
+    "react-scripts": "4.0.1",
     "redux": "^3.7.2",
     "seven-segment-display": "^0.2.0",
-    "socket.io-client": "2.3.1"
+    "socket.io-client": "2.3.1",
+    "yup": "^0.31.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.3",
