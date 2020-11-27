@@ -20,6 +20,7 @@ def get_room(room_id, room_code):
     room = None
     if room_id is not None:
         room = (session.query(Room)
+            .populate_existing()
             .filter(Room.RoomId==room_id)
             .first())
     elif room_code is not None:

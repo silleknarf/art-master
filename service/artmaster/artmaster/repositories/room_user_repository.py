@@ -11,7 +11,8 @@ def add_user_to_room(room_id, user_id):
     logfile.info("Adding user: %s to room: %s", user_id, room_id)
     room = get_room(room_id, None)
     if len(room.RoomUsers) == 0:
-        room.RoomOwnerId = user_id
+        logfile.info("Setting room owner for room: %s to be %s", room_id, user_id)
+        room.OwnerUserId = user_id
 
     room_user = RoomUser(RoomId=room_id, UserId=user_id)
     session.add(room_user)
