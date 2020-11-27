@@ -1,6 +1,7 @@
 import logging
 from database.database import session
 from database.data_model import Room, RoomUser, User
+from repositories import word_repository
 from services.exceptions import InvalidUsage
 from utils.room_utils import to_room_dict
 from app import socketio
@@ -60,3 +61,4 @@ def set_minigame(room_id, minigame_id):
     room.MinigameId = minigame_id
     session.commit()
     socketio.emit("room", to_room_dict(room), room=str(room_id))
+    word_repository.push_words_for_word_change(room_id)
