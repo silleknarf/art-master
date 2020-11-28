@@ -27,26 +27,33 @@ class TestRatingRepository(unittest.TestCase):
         "UserId": 2,
         "ImageBase64": "2.png"
     })
-    expected_result1 =  {
-        'roundId': 1,
-        'winnerUsername': '1',
-        'winningImageBase64': '1.png',
-        'winnerId': 1,
-        'votes': 2,
+    expected_result1_1 = {
+        "roundId": 1,
+        "username": "1",
+        "imageBase64": "1.png",
+        "userId": 1,
+        "votes": 2,
     }
-    expected_result2 =  {
-        'roundId': 1,
-        'winnerUsername': '1',
-        'winningImageBase64': '1.png',
-        'winnerId': 1,
-        'votes': 1,
+    expected_result1_2 = {
+        "roundId": 1,
+        "username": "2",
+        "imageBase64": "2.png",
+        "userId": 2,
+        "votes": 1,
     }
-    expected_result3 =  {
-        'roundId': 1,
-        'winnerUsername': '2',
-        'winningImageBase64': '2.png',
-        'winnerId': 2,
-        'votes': 1
+    expected_result2 = {
+        "roundId": 1,
+        "username": "1",
+        "imageBase64": "1.png",
+        "userId": 1,
+        "votes": 1,
+    }
+    expected_result3 = {
+        "roundId": 1,
+        "username": "2",
+        "imageBase64": "2.png",
+        "userId": 2,
+        "votes": 1
     }
 
     @mock.patch("repositories.rating_repository.user_repository")
@@ -56,7 +63,7 @@ class TestRatingRepository(unittest.TestCase):
             (self.rating1, self.image1, None),
             (self.rating2, self.image2, None)
         ]
-        expected_results = [self.expected_result1]
+        expected_results = [self.expected_result1_1, self.expected_result1_2]
         self.get_ratings_repo_helper(rating_repository, user_repository, ratings, expected_results)
 
     @mock.patch("repositories.rating_repository.user_repository")

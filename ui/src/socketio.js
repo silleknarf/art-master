@@ -80,6 +80,7 @@ export const connectToRoom = async (roomId) => {
   // subscribe
   const socket = io(Config.apiurl);
   socket.emit("join", roomId);
+  socket.on("connect", () => socket.emit("join", roomId));
 
   socket.on("room", (roomState) => {
     store.dispatch(updateRoomState(roomState));

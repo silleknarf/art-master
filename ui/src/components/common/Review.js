@@ -1,32 +1,29 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button, Alert } from 'react-bootstrap';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faUser from '@fortawesome/fontawesome-free-solid/faUser'
-import { connect } from "react-redux";
+import { Grid, Row, Alert } from 'react-bootstrap';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faUser from '@fortawesome/fontawesome-free-solid/faUser';
 import Config from '../../constant/Config';
-import { iconStyle, buttonTextStyle, centerRowContentStyle } from "../../constant/Styles"
+import { iconStyle, buttonTextStyle, centerRowContentStyle } from "../../constant/Styles";
 
 class Review extends Component {
   constructor(props) {
     super(props);
     this.state = {
       roundId: props.roundId,
-      winningResults: [],
+      ratings: []
     };
   }
 
   componentWillMount = async () => {
-    const winningResultsRes = await fetch(`${Config.apiurl}/ratings?roundId=${this.state.roundId}`);
-    if (winningResultsRes.status === 200) {
-      const winningResults = await winningResultsRes.json();
-      this.setState({
-        winningResults: winningResults
-      });
+    const ratingsRes = await fetch(`${Config.apiurl}/ratings?roundId=${this.state.roundId}`);
+    if (ratingsRes.status === 200) {
+      const ratings = await ratingsRes.json();
+      this.setState({ ratings });
     }
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    return this.state.winningResults.length !== nextState.winningResults.length;
+    return this.state.ratings.length !== nextState.ratings.length;
   }
 
   render = () => {
@@ -36,23 +33,23 @@ class Review extends Component {
       marginBottom: 0
     };
 
-    if (this.state.winningResults.length !== 0) {
+    if (this.state.ratings.length !== 0) {
       return (
         <Grid>
-          {this.state.winningResults.map((winningResult) => {
+          {this.state.ratings.map((rating) => {
 
-            const winningResultContent = winningResult.winningImageBase64
-              ? <img src={ winningResult.winningImageBase64 }></img>
+            const ratingContent = rating.imageBase64
+              ? <img src={ rating.imageBase64 }></img>
               : <Alert style={alertStyle} bsStyle="info">
-                  <span>{ winningResult.word }</span>
+                  <span>{ rating.word }</span>
                 </Alert>
-            return (<div key={ winningResult.winnerId }>
+            return (<div key={ rating.userId }>
                 <Row style={centerRowContentStyle}>
-                  { winningResultContent }
+                  { ratingContent }
                 </Row>
                 <Row style={centerRowContentStyle}>
                   <FontAwesomeIcon style={iconStyle} icon={faUser} />
-                  <span style={buttonTextStyle}>{ winningResult.winnerUsername + ": " + winningResult.votes }</span>
+                  <span style={buttonTextStyle}>{ rating.username + ": " + rating.votes + " votes" }</span>
                 </Row>
               </div>);
           })}

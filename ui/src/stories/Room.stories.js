@@ -1,17 +1,18 @@
-import React from 'react';
-
-import { storiesOf } from '@storybook/react';
-import Provider from './Provider'
-
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
-
-import Room from '../components/views/Room';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import Provider from "./Provider";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap-theme.css";
+import Room from "../components/views/Room";
 import "../../public/css/literallycanvas.css";
 import * as FetchMock from "fetch-mock";
-
 import store from "../redux/Store";
-import { updateRoomState, updateRoundState, updateWordsState, updateMinigamesState, updateUserState } from "../redux/Actions";
+import { 
+  updateRoomState,
+  updateRoundState,
+  updateWordsState,
+  updateMinigamesState,
+  updateUserState } from "../redux/Actions";
 
 const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => {
   FetchMock.restore()
@@ -26,7 +27,7 @@ const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => 
     minigameId: minigameId
   };
   store.dispatch(updateRoomState(room));
-  FetchMock.get('glob:*room?*', room);
+  FetchMock.get("glob:*room?*", room);
 
   const user = {
     userId: 1
@@ -54,42 +55,42 @@ const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => 
     }
   ];
   store.dispatch(updateWordsState(words));
-  FetchMock.get('glob:*words?*', words);
-  FetchMock.get('glob:*word?*', { wordId: 1, word: "bacon"});
+  FetchMock.get("glob:*words?*", words);
+  FetchMock.get("glob:*word?*", { wordId: 1, word: "bacon"});
 
   const ratings = [
-    { winnerId: 1, winningImageBase64: '1/1.png', winnerUsername: "User1"},
-    { winnerId: 2, winningImageBase64: '1/1.png', winnerUsername: "User2"}
+    { userId: 1, imageBase64: "1/1.png", username: "User1"},
+    { userId: 2, imageBase64: "1/1.png", username: "User2"}
   ];
-  FetchMock.get('glob:*ratings?*', ratings);
+  FetchMock.get("glob:*ratings?*", ratings);
 
-  FetchMock.get('glob:*images?*', [{ imageId: 1, imageBase64: '1/1.png'}, {imageId: 2, imageBase64: '1/1.png'}]);
-  FetchMock.post('glob:*rating?*', "test");
+  FetchMock.get("glob:*images?*", [{ imageId: 1, imageBase64: "1/1.png"}, {imageId: 2, imageBase64: "1/1.png"}]);
+  FetchMock.post("glob:*rating?*", "test");
 
   const minigames = [{ minigameId: minigameId, name: minigameName }];
   store.dispatch(updateMinigamesState(minigames));
-  FetchMock.get('glob:*minigames', minigames);
+  FetchMock.get("glob:*minigames", minigames);
 }
 
-storiesOf('Room', module)
+storiesOf("Room", module)
   .addDecorator(story => <Provider story={story()} />)
-  .add('AM - Round not started', () => {
+  .add("AM - Round not started", () => {
     setupRoom(null, 0, 1, "Art Master");
     return <Room />;
   })
-  .add('AM - Drawing', () => {
+  .add("AM - Drawing", () => {
     setupRoom(1, 0, 1, "Art Master");
     return <Room />;
   })
-  .add('AM - Reviewing', () => {
+  .add("AM - Reviewing", () => {
     setupRoom(97, 1, 1, "Art Master");
     return <Room />;
   })
-  .add('AM - Critiquing', () => {
+  .add("AM - Critiquing", () => {
     setupRoom(97, 2, 1, "Art Master");
     return <Room />;
   })
-  .add('STD - Round not started', () => {
+  .add("STD - Round not started", () => {
     setupRoom(null, 0, 2, "Sentenced To Death");
     return <Room />;
   })
