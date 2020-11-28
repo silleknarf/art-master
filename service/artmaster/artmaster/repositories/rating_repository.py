@@ -58,29 +58,16 @@ def get_rating_results(
             else:
                 votes[entity_id] = 1
 
-    winning_entity_ids = []
-    winning_rating = 0
-    for entity_id, rating in votes.items():
-        if rating == winning_rating:
-            winning_entity_ids.append(entity_id)
-        elif rating >= winning_rating:
-            winning_entity_ids = [entity_id]
-            winning_rating = rating
-
-    winning_entities = []
-    for winning_entity_id in winning_entity_ids:
-        winning_entity = [e for e in entities if entity_id_selector(e) == winning_entity_id][0]
-        winning_entities.append(winning_entity)
-
     results = []
-    for winning_entity in winning_entities:
-        winning_user = user_repository.get_user(winning_entity.UserId)
+    distinct_entities = {entity_id_selector(e): e for e in entities}.values()
+    for entity in distinct_entities:
+        user = user_repository.get_user(entity.UserId)
         result = {
             "roundId": round_id,
-            "winnerId": winning_user.UserId,
-            "winnerUsername": winning_user.Username,
-            entity_content_key: entity_content_value_selector(winning_entity),
-            "votes": votes[entity_id_selector(winning_entity)]
+            "userId": user.UserId,
+            "username": user.Username,
+            entity_content_key: entity_content_value_selector(entity),
+            "votes": votes[entity_id_selector(entity)]
         }
         results.append(result)
     return results
@@ -102,7 +89,7 @@ def get_round_rating_results(round_id):
         images,
         round_id,
         lambda image : image.ImageId,
-        "winningImageBase64",
+        "imageBase64",
         lambda image : image.ImageBase64
     )
     word_results = get_rating_results(
@@ -114,9 +101,21 @@ def get_round_rating_results(round_id):
         lambda word : word.Word,
     )
     results = image_results + word_results
+    results.sort(key=lambda x : x["votes"], reverse=True)
     return results
 
 def update_score_for_highest_rating(round_id):
-    ratings = get_round_rating_results(round_id)
-    for rating in ratings:
-        user_repository.increase_user_score(rating["winnerId"], 10)
+    results = get_round_rating_results(round_id)
+    winning_rating = 0
+    winning_user_ids = []
+    for result in results:
+        rating = result["votes"]
+        user_id = result["userId"]
+        if rating == winning_rating:
+            winning_user_ids.append(user_id)
+        elif rating >= winning_rating:
+            winning_user_ids = [user_id]
+            winning_rating = rating
+
+    for winning_user_id in winning_user_ids:
+        user_repository.increase_user_score(winning_user_id, 10)
