@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope'
-import { iconStyle } from "../../constant/Styles"
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import faEnvelope from "@fortawesome/fontawesome-free-solid/faEnvelope";
+import { iconStyle } from "../../constant/Styles";
 
 class Feedback extends Component 
 {
@@ -13,7 +13,7 @@ class Feedback extends Component
       margin: "10px",
       display: "inline-block",
       width: "initial"
-    }
+    };
     const buttonHolderStyle = {
       width: "100%"
     };

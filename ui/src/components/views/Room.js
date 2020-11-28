@@ -18,7 +18,7 @@ import './Room.css';
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
 import { handleRequest } from "../../utils";
 import { connectToRoom } from "../../socketio";
-import Feedback from '../common/Feedback';
+import Feedback from "../common/Feedback";
 
 class ConnectedRoom extends Component {
 
