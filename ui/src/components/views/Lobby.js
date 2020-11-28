@@ -9,6 +9,7 @@ import { updateRoomState, updateUserState } from "../../redux/Actions";
 import "./Lobby.css";
 import { centerTitleContentStyle, centerRowContentStyle, tabsStyle, titleStyle } from "../../constant/Styles"
 import { handleRequest } from "../../utils";
+import Feedback from "../common/Feedback";
 
 class Lobby extends Component {
 
@@ -231,6 +232,7 @@ class Lobby extends Component {
             {this.getJoinRoomForm()}
           </Tab>
         </Tabs>
+        <Feedback />
       </div>
     );
   }
