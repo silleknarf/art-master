@@ -5,6 +5,7 @@ metadata:
   namespace: craicbox
 spec:
   secretName: certificate-craicbox
+  renewBefore: 720h
   dnsNames:
   - craicbox.app
   - api.craicbox.app
