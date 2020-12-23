@@ -16,5 +16,8 @@ def get_minigame(minigame_id):
 def to_json(minigame):
     return {
         "minigameId": minigame.MinigameId,
-        "name": minigame.Name
+        "name": minigame.Name,
+        "description": minigame.Description,
+        "canSeeOwnWordsOnly": minigame.CanSeeOwnWordsOnly,
+        "entryComponents": minigame.EntryComponents
     }

@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from app import celery
 from repositories import round_repository, word_repository, image_repository
 from repositories import rating_repository, transition_repository, room_repository
+from repositories import minigame_logic_repository
 from utils.round_utils import get_time_remaining
 
 logfile = logging.getLogger("file")
@@ -22,19 +23,6 @@ class RoundStateMachine:
 
     def __init__(self, round_entity):
         self.round_entity = round_entity
-
-    def _get_duration(self, state):
-        if state == RoundState.DRAWING:
-            return 90 + self._grace_duration_in_seconds
-        elif state == RoundState.FILLING_IN_BLANKS:
-            return 60 + self._grace_duration_in_seconds
-        elif state == RoundState.CRITIQUING:
-            number_of_players = room_repository.get_number_of_players(self.round_entity.RoomId)
-            return 15 * number_of_players
-        elif state == RoundState.REVIEWING:
-            return 15
-
-        return 0
 
     def _cleanup_round(self):
         rating_repository.update_score_for_highest_rating(self.round_entity.RoundId)
@@ -86,27 +74,52 @@ class RoundStateMachine:
         return time_remaining
 
     def next_stage(self):
-        stage_state_id = self.round_entity.StageStateId
         minigame_id = room_repository.get_room(self.round_entity.RoomId, None).MinigameId
-        transitions = transition_repository.get_transitions(minigame_id)
+        get_next_stage_result =  minigame_logic_repository.get_next_stage(
+            minigame_id,
+            self.round_entity.StageStateId)
 
-        celery_logfile.info("Minigame: %s in state: %s" % (minigame_id, stage_state_id))
-        transition = [t for t in transitions if t.StateFrom == stage_state_id][0]
+        next_stage_id = get_next_stage_result["nextStageId"]
+        user_ids = room_repository.get_user_ids(self.round_entity.RoomId)
+        duration = 0
 
-        celery_logfile.info(
-            "Minigame: %s transitioning from %s to %s" %
-            (minigame_id, transition.StateFrom, transition.StateTo))
+        if next_stage_id == RoundState.DRAWING:
+            drawing_result = minigame_logic_repository.init_drawing(
+                minigame_id,
+                self.round_entity.RoundId,
+                self.round_entity.WordId,
+                user_ids)
+            duration = (drawing_result["durationInSeconds"] +
+                self._grace_duration_in_seconds)
+        elif next_stage_id == RoundState.FILLING_IN_BLANKS:
+            filling_in_blanks_result = minigame_logic_repository.init_filling_in_blanks(
+                minigame_id,
+                user_ids)
+            duration = (filling_in_blanks_result["durationInSeconds"] +
+                self._grace_duration_in_seconds)
+        elif next_stage_id == RoundState.CRITIQUING:
+            critiquing_result = minigame_logic_repository.init_critiquing(
+                minigame_id,
+                self.round_entity.RoundId,
+                user_ids)
+            duration = critiquing_result["durationInSeconds"]
+        elif next_stage_id == RoundState.REVIEWING:
+            reviewing_result = minigame_logic_repository.init_reviewing(
+                minigame_id,
+                self.round_entity.RoundId)
+            duration = reviewing_result["durationInSeconds"]
+        elif next_stage_id == RoundState.DONE:
+            done_result = minigame_logic_repository.init_done(
+                minigame_id,
+                self.round_entity.RoundId)
+            duration = done_result["durationInSeconds"]
 
-        duration = self._get_duration(transition.StateTo)
-        room_repository.update_room_round(self.round_entity.RoomId, self.round_entity.RoundId)
-        self._update_round(transition.StateTo, duration)
+        self._update_round(next_stage_id, duration)
 
         while not self._should_start_next_stage():
             time.sleep(1)
 
-        celery_logfile.info("Ending state: %s", transition.StateTo)
-
-        if transition.StateTo != RoundState.DONE:
+        if next_stage_id != RoundState.DONE:
             self.next_stage()
         else:
             self._cleanup_round()
@@ -115,4 +128,6 @@ class RoundStateMachine:
 def run_round(round_id):
     round_entity = round_repository.get_round(round_id)
     round_state_machine = RoundStateMachine(round_entity)
+    room_repository.update_room_round(round_entity.RoomId, round_entity.RoundId)
     round_state_machine.next_stage()
+    minigame_logic_repository.init_round(round_entity.RoundId)

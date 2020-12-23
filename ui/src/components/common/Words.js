@@ -17,7 +17,12 @@ class ConnectedWords extends Component {
       words: [],
       user: null,
       room: null,
-      newWord: ""
+      newWord: "",
+      minigame: {
+        description: [],
+        canSeeOwnWordsOnly: false,
+        entryComponents: [""]
+      }
     };
   }
 
@@ -31,10 +36,15 @@ class ConnectedWords extends Component {
 
   updateComponentState = (newProps) => {
     if (!newProps) return;
+
+    const minigame = newProps.minigames && 
+      newProps.minigames.length > 0 &&
+      newProps.minigames.filter(m => m.minigameId === newProps.room.minigameId)[0];
+    if (minigame) this.setState({ minigame });
     this.setState({
       words: newProps.words,
       user: newProps.user,
-      room: newProps.room
+      room: newProps.room,
     });
   }
 
@@ -93,19 +103,17 @@ class ConnectedWords extends Component {
       fontStyle: "italic"
     }
 
-    const titleRow =(this.state.room && this.state.room.minigameId === 1)
-      ? <Row style={centerTitleContentStyle}>
-          <FontAwesomeIcon style={iconStyle} icon={faFileWord} />
-          <span style={buttonTextStyle}>Words:</span>
-        </Row>
-      : <Row style={centerTitleContentStyle}>
-          <FontAwesomeIcon style={iconStyle} icon={faQuoteLeft} />
-          <span style={buttonTextStyle}>Phrases:</span>
-          <div style={subtitleTextStyle}>Add a phrase with words to fill in represented by underscores.</div>
-          <div style={subtitleTextStyle}>For example: "The _ fox jumped over the _."</div>
-        </Row>;
+    const titleRow = (<Row style={centerTitleContentStyle}>
+        <FontAwesomeIcon style={iconStyle} icon={faQuoteLeft} />
+        <span style={buttonTextStyle}>Entries:</span>
+          { this.state.minigame.description &&  
+            this.state.minigame.description.map(descriptionLine => 
+              <div style={subtitleTextStyle}>{ descriptionLine }</div>
+            )
+          }
+      </Row>);
 
-    const ownWords = this.state.room && this.state.room.minigameId === 2;
+    const ownWords = this.state.room && this.state.minigame.canSeeOwnWordsOnly;
     const wordFilter = (word) =>
       (!ownWords || word.userId === this.state.user.userId) &&
       !word.roundId;
@@ -134,6 +142,7 @@ class ConnectedWords extends Component {
             <FormControl
               className="word-input"
               type="input"
+              placeholder={this.state.minigame.entryComponents[0]}
               onChange={e => this.setState({ newWord: e.target.value })}
               value={this.state.newWord}
               onKeyDown={this.onKeyDown}
@@ -153,7 +162,7 @@ class ConnectedWords extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { words: state.words, user: state.user, room: state.room };
+  return { words: state.words, user: state.user, room: state.room, minigames: state.minigames };
 }
 
 const Words = connect(mapStateToProps)(ConnectedWords);

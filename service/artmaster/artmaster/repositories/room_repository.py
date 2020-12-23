@@ -52,9 +52,9 @@ def update_room_round(room_id, round_id):
     session.commit()
     socketio.emit("room", to_room_dict(room), room=str(room_id))
 
-def get_number_of_players(room_id):
-    number_of_players = len(get_room(room_id, None).RoomUsers)
-    return number_of_players
+def get_user_ids(room_id):
+    user_ids = [ru.UserId for ru in get_room(room_id, None).RoomUsers]
+    return user_ids
 
 def set_minigame(room_id, minigame_id):
     room = get_room(room_id=room_id, room_code=None)

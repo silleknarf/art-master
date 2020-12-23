@@ -105,11 +105,11 @@ class ConnectedFillingInBlanks extends Component {
     sentenceContent.forEach((s, index) => {
       sentenceBuilderElements.push(<span key={index*2}>{s}</span>);
       if (index !== sentenceContent.length-1)
-      sentenceBuilderElements.push(
-        <input type="text"
-               key={index*2+1}
-               onChange={(e) => {this.onChangeSentenceBlank(index, e)}}></input>
-        );
+        sentenceBuilderElements.push(
+          <input type="text"
+                key={index*2+1}
+                onChange={(e) => {this.onChangeSentenceBlank(index, e)}}></input>
+          );
     });
 
     const alertStyle = {

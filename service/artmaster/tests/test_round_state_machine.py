@@ -48,7 +48,7 @@ class TestRoundStateMachine(unittest.TestCase):
         mock_get_time_remaining):
         self.round_entity.StageStateId = stage_state_id
         mock_datetime.utcnow.return_value = self.start_time
-        room_repository.get_number_of_players.return_value = 3
+        room_repository.get_users_ids.return_value = [1,2,3]
         transition_repository.get_transitions.return_value = self.transitions
         mock_get_time_remaining.return_value = 0
         round_repository.get_round.return_value = self.round_entity

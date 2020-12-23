@@ -27,7 +27,7 @@
     "react-scripts": "4.0.1",
     "redux": "^3.7.2",
     "seven-segment-display": "^0.2.0",
-    "socket.io-client": "2.3.1",
+    "socket.io-client": "^3.0.4",
     "yup": "^0.31.0"
   },
   "devDependencies": {
