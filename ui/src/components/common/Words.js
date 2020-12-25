@@ -108,7 +108,7 @@ class ConnectedWords extends Component {
         <span style={buttonTextStyle}>Entries:</span>
           { this.state.minigame.description &&  
             this.state.minigame.description.map(descriptionLine => 
-              <div style={subtitleTextStyle}>{ descriptionLine }</div>
+              <div key={descriptionLine} style={subtitleTextStyle}>{ descriptionLine }</div>
             )
           }
       </Row>);

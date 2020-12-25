@@ -87,7 +87,6 @@ class RoundStateMachine:
             drawing_result = minigame_logic_repository.init_drawing(
                 minigame_id,
                 self.round_entity.RoundId,
-                self.round_entity.WordId,
                 user_ids)
             duration = (drawing_result["durationInSeconds"] +
                 self._grace_duration_in_seconds)
@@ -129,5 +128,6 @@ def run_round(round_id):
     round_entity = round_repository.get_round(round_id)
     round_state_machine = RoundStateMachine(round_entity)
     room_repository.update_room_round(round_entity.RoomId, round_entity.RoundId)
+    minigame_id = room_repository.get_room(round_entity.RoomId, None).MinigameId
+    minigame_logic_repository.init_round(minigame_id, round_entity.RoundId)
     round_state_machine.next_stage()
-    minigame_logic_repository.init_round(round_entity.RoundId)
