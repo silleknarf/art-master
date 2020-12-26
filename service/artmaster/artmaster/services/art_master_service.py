@@ -41,10 +41,10 @@ def init_critiquing(round_id, player_ids):
         "durationInSeconds": 15 * num_players,
     }
 
-def init_reviewing(round_id, round_ratings):
+def init_reviewing(round_id):
     return {
         "durationInSeconds": 15
-   }
+    }
 
 def init_done(round_id):
     return {}

@@ -28,10 +28,10 @@ def init_critiquing(minigame_id, round_id, user_ids):
     service = get_service(minigame_id)
     return service.init_critiquing(round_id, user_ids)
 
-def init_reviewing(minigame_id, round_id, round_ratings):
+def init_reviewing(minigame_id, round_id):
     service = get_service(minigame_id)
-    return service.init_reviewing(round_id, round_ratings)
+    return service.init_reviewing(round_id)
 
 def init_done(minigame_id, round_id):
     service = get_service(minigame_id)
-    return service.done(round_id)
+    return service.init_done(round_id)
