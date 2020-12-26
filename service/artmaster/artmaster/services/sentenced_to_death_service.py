@@ -31,11 +31,9 @@ def init_round(room_id, round_id):
 #def init_drawing(round_id, entry):
 
 # Not required for art master
-def init_filling_in_blanks(round_id, entry):
-    phrase = entry["Phrase with gaps"]
+def init_filling_in_blanks(round_id):
     return {
-        "durationInSeconds": 60,
-        "word": phrase
+        "durationInSeconds": 60
     }
 
 def init_critiquing(round_id, num_players):
