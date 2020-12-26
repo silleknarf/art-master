@@ -22,15 +22,6 @@ class StageState(Base):
     StageStateName = Column(String(20), nullable=False)
 
 
-class Transition(Base):
-    __tablename__ = 'Transition'
-
-    TransitionId = Column(INTEGER(11), primary_key=True)
-    MinigameId = Column(INTEGER(11), nullable=False)
-    StateFrom = Column(INTEGER(11))
-    StateTo = Column(INTEGER(11), nullable=False)
-
-
 class User(Base):
     __tablename__ = 'User'
 

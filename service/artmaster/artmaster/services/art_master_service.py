@@ -1,15 +1,17 @@
 import logging
-from repositories import transition_repository, user_repository
 
 logfile = logging.getLogger('file')
 
 def get_next_stage(stage_state_id):
-    art_master_minigame_id = 1
-    transitions = transition_repository.get_transitions(art_master_minigame_id)
-    transition = [t for t in transitions if t.StateFrom == stage_state_id][0]
-    logfile.info("Next Stage Id: %s", transition.StateTo)
+    transitions = [
+        { "state_from": None, "state_to": 0 },
+        { "state_from": 0, "state_to": 2 },
+        { "state_from": 2, "state_to": 3 },
+        { "state_from": 3, "state_to": 4 }
+    ]
+    next_stage_id = [t["state_to"] for t in transitions if t["state_from"] == stage_state_id][0]
     return {
-        "nextStageId": transition.StateTo
+        "nextStageId": next_stage_id
     }
 
 def get_minigame_config():
