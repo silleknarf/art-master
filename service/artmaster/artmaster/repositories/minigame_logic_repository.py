@@ -1,5 +1,5 @@
-from services import art_master_service
-from services import sentenced_to_death_service
+from game_services import art_master_service
+from game_services import sentenced_to_death_service
 
 def get_service(minigame_id):
     return art_master_service if minigame_id == 1 else sentenced_to_death_service

@@ -57,6 +57,9 @@ class DatabaseBuilder():
             autoflush=False,
             bind=engine))
 
+        session.add(Minigame(MinigameId=1, Name="Art Master"))
+        session.add(Minigame(MinigameId=2, Name="Sentenced To Death"))
+
         session.commit()
         session.close()
 
