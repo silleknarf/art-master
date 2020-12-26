@@ -2,7 +2,7 @@ sqlalchemy
 flask
 flask_cors
 sqlacodegen
-mysqlclient
+mysqlclient != 2.0.2
 mock
 callee
 python-socketio
