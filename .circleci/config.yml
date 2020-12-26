@@ -19,6 +19,7 @@ jobs:
             cd service/artmaster
             python -m virtualenv env
             source ./env/bin/activate
+            export CFLAGS="-std=c99" 
             pip install -r requirements.txt
 
       # run tests!
