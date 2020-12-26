@@ -111,7 +111,6 @@ class RoundStateMachine:
             done_result = minigame_logic_repository.init_done(
                 minigame_id,
                 self.round_entity.RoundId)
-            duration = done_result["durationInSeconds"]
 
         self._update_round(next_stage_id, duration)
 
