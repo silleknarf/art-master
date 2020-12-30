@@ -16,13 +16,13 @@ def init_round(minigame_id, round_id):
     service = get_service(minigame_id)
     return service.init_round(round_id)
 
-def init_drawing(minigame_id, round_id, user_ids):
+def init_drawing(minigame_id, round_id, user_ids, entry):
     service = get_service(minigame_id)
-    return service.init_drawing(round_id, user_ids)
+    return service.init_drawing(round_id, user_ids, entry)
 
-def init_filling_in_blanks(minigame_id, user_ids):
+def init_filling_in_blanks(minigame_id, user_ids, entry):
     service = get_service(minigame_id)
-    return service.init_filling_in_blanks(user_ids)
+    return service.init_filling_in_blanks(user_ids, entry)
 
 def init_critiquing(minigame_id, round_id, user_ids):
     service = get_service(minigame_id)

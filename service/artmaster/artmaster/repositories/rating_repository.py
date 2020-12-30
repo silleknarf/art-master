@@ -1,15 +1,16 @@
-from repositories import room_user_repository, user_repository
+from repositories import room_user_repository, user_repository, entry_repository
 from database.database import session
-from database.data_model import Round, Image, Rating, Word
+from database.data_model import Round, Image, Rating, Entry
+from utils.entry_util import to_entry_components_dto
 import logging
 
 logfile = logging.getLogger('file')
 
 def get_ratings(round_id):
     round_ratings = (session
-        .query(Rating, Image, Word)
+        .query(Rating, Image, Entry)
         .outerjoin(Image)
-        .outerjoin(Word)
+        .outerjoin(Entry)
         .filter(Rating.RoundId==round_id)
         .all())
     return round_ratings
@@ -22,12 +23,12 @@ def has_existing_rating(round_id, user_id):
         .all()) > 0
     return any_existing_rating
 
-def create_rating(image_id, word_id, round_id, rating, user_id):
+def create_rating(image_id, entry_id, round_id, rating, user_id):
     rating_entity = Rating(
         Rating=rating,
         RaterUserId=user_id,
         RoundId=round_id,
-        WordId=word_id,
+        EntryId=entry_id,
         ImageId=image_id)
     session.add(rating_entity)
     session.commit()
@@ -72,6 +73,11 @@ def get_rating_results(
         results.append(result)
     return results
 
+def get_entry_component_dtos(entry):
+    entry_component_entities = entry_repository.get_entry_components([entry])
+    entry_component_dtos = to_entry_components_dto([entry], entry_component_entities)
+    return entry_component_dtos
+
 def get_round_rating_results(round_id):
     logfile.info("Getting round rating results")
     round_ratings = get_ratings(round_id)
@@ -82,7 +88,7 @@ def get_round_rating_results(round_id):
 
     ratings = [rr[0] for rr in round_ratings]
     images = [rr[1] for rr in round_ratings if rr[1] is not None]
-    words = [rr[2] for rr in round_ratings if rr[2] is not None]
+    entries = [rr[2] for rr in round_ratings if rr[2] is not None]
 
     image_results = get_rating_results(
         ratings,
@@ -92,15 +98,15 @@ def get_round_rating_results(round_id):
         "imageBase64",
         lambda image : image.ImageBase64
     )
-    word_results = get_rating_results(
+    entry_results = get_rating_results(
         ratings,
-        words,
+        entries,
         round_id,
-        lambda word : word.WordId,
-        "word",
-        lambda word : word.Word,
+        lambda entry : entry.EntryId,
+        "entryComponents",
+        get_entry_component_dtos
     )
-    results = image_results + word_results
+    results = image_results + entry_results
     results.sort(key=lambda x : x["votes"], reverse=True)
     return results
 

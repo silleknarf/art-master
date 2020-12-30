@@ -9,7 +9,7 @@ from app import socketio
 
 logfile = logging.getLogger('file')
 
-def create_round(room_id, user_id, word_id):
+def create_round(room_id, user_id):
     logfile.info(
         "Creating round for room: %s started by user id: %s",
         room_id, user_id)
@@ -21,7 +21,7 @@ def create_round(room_id, user_id, word_id):
         .first())
     if room.OwnerUserId != user_id:
         raise InvalidUsage("Only the room owner can start rounds")
-    round_entity = Round(RoomId=room_id, DrawingWordId=word_id)
+    round_entity = Round(RoomId=room_id)
     session.add(round_entity)
     session.commit()
     push_round(round_entity)
@@ -38,15 +38,15 @@ def get_round(round_id):
         raise InvalidUsage("No round for given roundId")
     return round_entity
 
-def update_round(round_id, stage_state_id, start_time, end_time, drawing_word_id):
-    logfile.info("Setting round: %s to be in state: %s and setting drawing_word_id: %s",
-        round_id, stage_state_id, drawing_word_id)
+def update_round(round_id, stage_state_id, start_time, end_time, entry_id):
+    logfile.info("Setting round: %s to be in state: %s and setting entry_id: %s",
+        round_id, stage_state_id, entry_id)
 
     round_entity = get_round(round_id)
     round_entity.StageStateId = stage_state_id
     round_entity.StageStateStartTime = start_time
     round_entity.StageStateEndTime = end_time
-    round_entity.DrawingWordId = drawing_word_id
+    round_entity.EntryId = entry_id
 
     session.commit()
     push_round(round_entity)

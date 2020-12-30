@@ -13,7 +13,7 @@ class TestRoundService(unittest.TestCase):
         "StageStateId": None,
         "StageStateStartTime": None,
         "StageStateEndTime": None,
-        "DrawingWordId": 1
+        "EntryId": 1
     }
 
     def setUp(self):
@@ -23,12 +23,12 @@ class TestRoundService(unittest.TestCase):
     @mock.patch("services.round_service.to_round_dto")
     @mock.patch("services.round_service.run_round")
     @mock.patch("services.round_service.RoundStateMachine")
-    @mock.patch("services.round_service.word_repository")
+    @mock.patch("services.round_service.entry_repository")
     @mock.patch("services.round_service.round_repository")
     def test_get_or_create_round(
         self,
         round_repository,
-        word_repository,
+        entry_repository,
         round_state_machine,
         run_round,
         to_round_dto):

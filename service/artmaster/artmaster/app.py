@@ -51,7 +51,7 @@ from services.room_service import room_service
 from services.round_service import round_service
 from services.image_service import image_service
 from services.rating_service import rating_service
-from services.word_service import word_service
+from services.entry_service import entry_service
 from services.minigame_service import minigame_service
 from services.exceptions import InvalidUsage
 
@@ -60,7 +60,7 @@ app.register_blueprint(room_service)
 app.register_blueprint(round_service)
 app.register_blueprint(image_service)
 app.register_blueprint(rating_service)
-app.register_blueprint(word_service)
+app.register_blueprint(entry_service)
 app.register_blueprint(minigame_service)
 
 @app.route("/")

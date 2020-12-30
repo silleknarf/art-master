@@ -5,4 +5,4 @@ WORKDIR /artmaster
 RUN pip install mysqlclient
 RUN pip install sqlacodegen
 
-CMD sqlacodegen mysql://root:$CRAICBOX_DATABASE_PASSWORD@db/art-master-dev > artmaster/database/data_model.py
+CMD sqlacodegen mysql://root:$CRAICBOX_DATABASE_PASSWORD@db/craicbox > artmaster/database/data_model.py

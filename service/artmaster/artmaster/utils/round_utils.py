@@ -9,7 +9,7 @@ def to_round_dict(round_entity):
         "roundId": round_entity.RoundId,
         "stageStateId": round_entity.StageStateId,
         "timeRemaining": get_time_remaining(round_entity),
-        "drawingWordId": round_entity.DrawingWordId
+        "entryId": round_entity.EntryId
     }
 
 def get_time_remaining(round_entity):

@@ -3,7 +3,7 @@ import time
 from celery.utils.log import get_task_logger
 from datetime import datetime, timedelta
 from app import celery
-from repositories import round_repository, word_repository, image_repository
+from repositories import round_repository, entry_repository, image_repository
 from repositories import rating_repository, room_repository
 from repositories import minigame_logic_repository
 from utils.round_utils import get_time_remaining
@@ -26,11 +26,11 @@ class RoundStateMachine:
 
     def _cleanup_round(self):
         rating_repository.update_score_for_highest_rating(self.round_entity.RoundId)
-        word_id_to_remove = self.round_entity.DrawingWordId
-        self.round_entity.DrawingWordId = None
+        entry_id_to_remove = self.round_entity.EntryId
+        self.round_entity.EntryId = None
         room_repository.update_room_round(self.round_entity.RoomId, None)
         self._update_round(RoundState.DONE, 0)
-        word_repository.remove_word(word_id_to_remove)
+        entry_repository.remove_entry(entry_id_to_remove)
 
     def _update_round(self, stage_state_id, duration):
         celery_logfile.info("Updating round to set the time on the stage")
@@ -41,7 +41,7 @@ class RoundStateMachine:
             stage_state_id,
             start_time,
             end_time,
-            self.round_entity.DrawingWordId)
+            self.round_entity.EntryId)
 
     def _should_start_next_stage(self):
         time_remaining = self.get_time_remaining()
@@ -54,11 +54,11 @@ class RoundStateMachine:
         if are_all_images_submitted:
             round_repository.end_stage(self.round_entity.RoundId)
 
-    def maybe_end_submitting_sentences_early(self):
-        are_all_sentences_submitted = word_repository.are_all_sentences_submitted(
+    def maybe_end_submitting_entries_early(self):
+        are_all_entries_submitted = entry_repository.are_all_entries_submitted(
             self.round_entity.RoomId,
             self.round_entity.RoundId)
-        if are_all_sentences_submitted:
+        if are_all_entries_submitted:
             round_repository.end_stage(self.round_entity.RoundId)
 
     def maybe_end_critiquing_early(self):
@@ -72,7 +72,7 @@ class RoundStateMachine:
         self.round_entity = round_repository.get_round(self.round_entity.RoundId)
         time_remaining = get_time_remaining(self.round_entity)
         return time_remaining
-
+    
     def next_stage(self):
         minigame_id = room_repository.get_room(self.round_entity.RoomId, None).MinigameId
         get_next_stage_result =  minigame_logic_repository.get_next_stage(
@@ -81,6 +81,7 @@ class RoundStateMachine:
 
         next_stage_id = get_next_stage_result["nextStageId"]
         user_ids = room_repository.get_user_ids(self.round_entity.RoomId)
+
         duration = 0
 
         if next_stage_id == RoundState.DRAWING:
@@ -91,17 +92,31 @@ class RoundStateMachine:
             duration = (drawing_result["durationInSeconds"] +
                 self._grace_duration_in_seconds)
         elif next_stage_id == RoundState.FILLING_IN_BLANKS:
+            entry = entry_repository.get_random_entry_for_room(self.round_entity.RoomId)
             filling_in_blanks_result = minigame_logic_repository.init_filling_in_blanks(
                 minigame_id,
-                user_ids)
+                user_ids,
+                entry)
             duration = (filling_in_blanks_result["durationInSeconds"] +
                 self._grace_duration_in_seconds)
+            user_entries = filling_in_blanks_result["userEntries"]
+            round_repository.set_user_entries(
+                self.round_entity.RoomId,
+                self.round_entity.RoundId,
+                user_entries)
         elif next_stage_id == RoundState.CRITIQUING:
+            entry = entry_repository.get_random_entry_for_room(self.round_entity.RoomId)
             critiquing_result = minigame_logic_repository.init_critiquing(
                 minigame_id,
                 self.round_entity.RoundId,
-                user_ids)
+                user_ids,
+                entry)
             duration = critiquing_result["durationInSeconds"]
+            user_entries = critiquing_result["userEntries"]
+            round_repository.set_user_entries(
+                self.round_entity.RoomId,
+                self.round_entity.RoundId,
+                user_entries)
         elif next_stage_id == RoundState.REVIEWING:
             reviewing_result = minigame_logic_repository.init_reviewing(
                 minigame_id,

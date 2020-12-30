@@ -7,12 +7,12 @@ from operator import eq
 class TestRatingRepository(unittest.TestCase):
     rating1 = Struct(**{
         "ImageId": 1,
-        "WordId": None,
+        "EntryId": None,
         "Rating": 1
     })
     rating2 = Struct(**{
         "ImageId": 2,
-        "WordId": None,
+        "EntryId": None,
         "Rating": 1
     })
     image1 = Struct(**{

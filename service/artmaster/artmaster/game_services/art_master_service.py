@@ -2,6 +2,8 @@ import logging
 
 logfile = logging.getLogger('file')
 
+ENTRY_COMPONENT_KEY = "Word"
+
 def get_next_stage(stage_state_id):
     transitions = [
         { "state_from": None, "state_to": 0 },
@@ -23,15 +25,24 @@ def get_minigame_config():
             "Every player will have to draw it.",
             "Players will then vote on which drawing is the best."
         ],
-        "entryComponents": ["Word"]
+        "entryComponents": [ENTRY_COMPONENT_KEY]
     }
 
 def init_round(round_id):
     return {}
 
-def init_drawing(round_id, user_ids):
+def init_drawing(round_id, user_ids, entry):
+    drawing_entry = [
+        {
+            "key": ENTRY_COMPONENT_KEY,
+            "value": entry[ENTRY_COMPONENT_KEY]
+        }
+    ]
+
     return {
-        "durationInSeconds": 90
+        "durationInSeconds": 90,
+        "userEntries": [{ "userId": u, "entry": drawing_entry }
+            for u in user_ids]
     }
 
 # Not required for art master

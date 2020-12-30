@@ -2,6 +2,8 @@ import logging
 
 logfile = logging.getLogger('file')
 
+ENTRY_COMPONENT_KEY = "Phrase with gaps"
+
 def get_next_stage(stage_state_id):
     transitions = [
         { "state_from": None, "state_to": 1 },
@@ -25,7 +27,7 @@ def get_minigame_config():
             "Every player will have to fill in the gaps with words.",
             "Players will then vote on which complete sentence is the funniest."
         ],
-        "entryComponents": ["Phrase with gaps"]
+        "entryComponents": [ENTRY_COMPONENT_KEY]
     }
 
 def init_round(round_id):
@@ -34,10 +36,17 @@ def init_round(round_id):
 # Not required for sentenced to death
 #def init_drawing(round_id, entry):
 
-# Not required for art master
-def init_filling_in_blanks(round_id):
+def init_filling_in_blanks(user_ids, entry):
+    filling_in_blanks_entry = [
+        {
+            "key": ENTRY_COMPONENT_KEY,
+            "value": entry[ENTRY_COMPONENT_KEY]
+        }
+    ]
     return {
-        "durationInSeconds": 60
+        "durationInSeconds": 60,
+        "userEntries": [{ "userId": u, "entry": filling_in_blanks_entry }
+            for u in user_ids]
     }
 
 def init_critiquing(round_id, player_ids):
