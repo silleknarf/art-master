@@ -6,7 +6,7 @@ from database.database import session
 from database.data_model import Entry, EntryComponent, Round, Room
 from repositories import round_repository, room_user_repository
 from services.round_state_machine import RoundStateMachine
-from utils.entry_utils import to_entry_components_dto
+from utils.entry_utils import to_entries_dto
 
 logfile = logging.getLogger('file')
 
@@ -126,5 +126,5 @@ def push_entries_for_entry_change(room_id, round_id=None):
     logfile.info("Pushing %s entries for room id: %s", len(entry_entities), room_id)
     socketio.emit(
         "entries",
-        to_entry_components_dto(entry_entities, entry_component_entities),
+        to_entries_dto(entry_entities, entry_component_entities),
         room=str(room_id))

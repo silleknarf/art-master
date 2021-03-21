@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import { Grid, Col, Row, Button, FormControl, FormGroup } from 'react-bootstrap';
+import { Grid, Row, Button, FormControl, FormGroup } from 'react-bootstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus'
 import faTrash from '@fortawesome/fontawesome-free-solid/faTrash'
-import faFileWord from '@fortawesome/fontawesome-free-solid/faFileWord'
 import faQuoteLeft from '@fortawesome/fontawesome-free-solid/faQuoteLeft'
 import { connect } from "react-redux";
 import Config from '../../constant/Config';
 import $ from "jquery";
 import { iconStyle, buttonTextStyle, centerRowContentStyle, centerTitleContentStyle } from "../../constant/Styles"
 
-class ConnectedWords extends Component {
+class ConnectedEntries extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      words: [],
+      entries: [],
       user: null,
       room: null,
-      newWord: "",
+      newEntry: "",
       minigame: {
         description: [],
-        canSeeOwnWordsOnly: false,
+        canSeeOwnEntriesOnly: false,
         entryComponents: [""]
       }
     };
@@ -42,34 +41,41 @@ class ConnectedWords extends Component {
       newProps.minigames.filter(m => m.minigameId === newProps.room.minigameId)[0];
     if (minigame) this.setState({ minigame });
     this.setState({
-      words: newProps.words,
+      entries: newProps.entries,
       user: newProps.user,
       room: newProps.room,
     });
   }
 
-  onAddWord = async (e) => {
-    const word = {
-      word: this.state.newWord,
+  onAddEntry = async (e) => {
+    const entry = {
       roomId: this.state.room.roomId,
       userId: this.state.user.userId
     };
-    this.setState({newWord: ""});
-    const addWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`,
-      { method: "POST" });
-    if (addWordRes.status === 200) {
-      console.log(`Added word: ${word.word}`);
+    const entryComponents = [{ 
+      key: this.state.minigame.entryComponents[0],
+      value: this.state.newEntry
+    }];
+    this.setState({newEntry: ""});
+    const addEntryRes = await fetch(
+      `${Config.apiurl}/entry?${$.param(entry)}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(entryComponents)
+
+      });
+    if (addEntryRes.status === 200) {
+      console.log(`Added entry: ${JSON.stringify(entry)} with entry components: ${JSON.stringify(entryComponents)}`);
     }
   }
 
-  onClickRemoveWord = async (wordId) => {
-    var word = {
-      wordId: wordId
-    };
-    const removeWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`,
+  onClickRemoveEntry = async (entryId) => {
+    var entry = { entryId };
+    const removeEntryRes = await fetch(`${Config.apiurl}/entry?${$.param(entry)}`,
       { method: "DELETE" });
-    if (removeWordRes.status === 200) {
-      console.log(`Deleted word with id: ${wordId}`);
+    if (removeEntryRes.status === 200) {
+      console.log(`Deleted entry with id: ${entryId}`);
     }
   }
 
@@ -78,7 +84,7 @@ class ConnectedWords extends Component {
     if (event.key === 'Enter') {
       event.preventDefault();
       event.stopPropagation();
-      this.onAddWord(event);
+      this.onAddEntry(event);
     }
   }
 
@@ -86,7 +92,7 @@ class ConnectedWords extends Component {
     var ulStyle = {
       display: "inline-block"
     };
-    const wordStyle = {
+    const entryStyle = {
       margin: "10px"
     }
     var buttonStyle = {
@@ -113,23 +119,23 @@ class ConnectedWords extends Component {
           }
       </Row>);
 
-    const ownWords = this.state.room && this.state.minigame.canSeeOwnWordsOnly;
-    const wordFilter = (word) =>
-      (!ownWords || word.userId === this.state.user.userId) &&
-      !word.roundId;
+    const ownEntries = this.state.room && this.state.minigame.canSeeOwnEntriesOnly;
+    const entryFilter = (entry) =>
+      (!ownEntries || entry.userId === this.state.user.userId) &&
+      !entry.roundId;
 
     return (
       <Grid style={gridStyle}>
         { titleRow }
         <Row style={centerRowContentStyle}>
           <ul className="list-group" style={ulStyle}>
-            { this.state.words.filter(wordFilter).map((word) => {
+            { this.state.entries.filter(entryFilter).map((entry) => {
               return (
-                <li key={word.wordId} className="list-group-item">
-                  <span style={wordStyle}>{ word.word }</span>
+                <li key={entry.entryId} className="list-group-item">
+                  <span style={entryStyle}>{ entry.entryComponents[0].value }</span>
                   <Button
-                    className="remove-word-button btn btn-xs"
-                    onClick={(e) => this.onClickRemoveWord(word.wordId)}>
+                    className="btn btn-xs"
+                    onClick={(e) => this.onClickRemoveEntry(entry.entryId)}>
                     <FontAwesomeIcon style={iconStyle} icon={faTrash} />
                   </Button>
                 </li>
@@ -140,17 +146,16 @@ class ConnectedWords extends Component {
         <Row style={centerRowContentStyle}>
           <FormGroup style={ulStyle}>
             <FormControl
-              className="word-input"
               type="input"
               placeholder={this.state.minigame.entryComponents[0]}
-              onChange={e => this.setState({ newWord: e.target.value })}
-              value={this.state.newWord}
+              onChange={e => this.setState({ newEntry: e.target.value })}
+              value={this.state.newEntry}
               onKeyDown={this.onKeyDown}
             />
           </FormGroup>
           <Button
-            className="add-word-button btn"
-            onClick={(e) => this.onAddWord(e)}
+            className="btn"
+            onClick={(e) => this.onAddEntry(e)}
             style={buttonStyle}>
             <FontAwesomeIcon style={iconStyle} icon={faPlus} />
           </Button>
@@ -162,9 +167,9 @@ class ConnectedWords extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { words: state.words, user: state.user, room: state.room, minigames: state.minigames };
+  return { entries: state.entries, user: state.user, room: state.room, minigames: state.minigames };
 }
 
-const Words = connect(mapStateToProps)(ConnectedWords);
+const Entries = connect(mapStateToProps)(ConnectedEntries);
 
-export default Words;
+export default Entries;

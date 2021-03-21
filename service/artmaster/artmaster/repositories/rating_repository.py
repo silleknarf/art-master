@@ -75,7 +75,7 @@ def get_rating_results(
 
 def get_entry_component_dtos(entry):
     entry_component_entities = entry_repository.get_entry_components([entry])
-    entry_component_dtos = to_entry_components_dto([entry], entry_component_entities)
+    entry_component_dtos = to_entry_components_dto(entry_component_entities)
     return entry_component_dtos
 
 def get_round_rating_results(round_id):

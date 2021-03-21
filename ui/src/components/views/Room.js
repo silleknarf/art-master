@@ -9,8 +9,8 @@ import State from '../common/State';
 import RoundInfo from '../common/RoundInfo';
 import Critic from '../common/Critic';
 import Review from '../common/Review';
-import Words from '../common/Words';
-import DrawingWord from '../common/DrawingWord';
+import Entries from '../common/Entries';
+import DrawingEntry from '../common/DrawingEntry';
 import RoomUsers from '../common/RoomUsers';
 import Config from '../../constant/Config';
 import { DRAWING, CRITIQUING, REVIEWING, FILLING_IN_BLANKS } from '../../constant/StageStateIds';
@@ -31,7 +31,7 @@ class ConnectedRoom extends Component {
       previousRoundId: null,
       currentTabIndex: 1,
       isCurrentUserInRoom: false,
-      words: []
+      entries: []
     }
   }
 
@@ -69,7 +69,7 @@ class ConnectedRoom extends Component {
       room: { ...props.room },
       user: { ...props.user },
       round: { ...props.round },
-      words: [ ...props.words ],
+      entries: [ ...props.entries ],
       minigames: [ ...props.minigames ]
     });
 
@@ -157,9 +157,9 @@ class ConnectedRoom extends Component {
     const notEnoughUsersText = "Add at least three players before starting the round";
     const notEnoughUsersAlert = this.createAlert(areNotEnoughUsers, notEnoughUsersText);
 
-    const areNotEnoughWords = Object.values(this.state.words).length === 0;
-    const notEnoughWordsText = "Add at least one word before starting the round";
-    const notEnoughWordsAlert = this.createAlert(areNotEnoughWords, notEnoughWordsText);
+    const areNotEnoughEntries = Object.values(this.state.entries).length === 0;
+    const notEnoughEntriesText = "Add at least one entry before starting the round";
+    const notEnoughEntriesAlert = this.createAlert(areNotEnoughEntries, notEnoughEntriesText);
 
     const isRoomOwner = this.state.user &&
       this.state.room &&
@@ -205,14 +205,14 @@ class ConnectedRoom extends Component {
                   </Button>
                 </Row>
                 { notEnoughUsersAlert }
-                { notEnoughWordsAlert }
+                { notEnoughEntriesAlert }
               </div>)}
               <Row>
                 <div className="col-md-6">
                   <RoomUsers />
                 </div>
                 <div className="col-md-6">
-                  <Words />
+                  <Entries />
                 </div>
               </Row>
           </Tab>
@@ -223,12 +223,12 @@ class ConnectedRoom extends Component {
               </div>
               { this.state.round.stageStateId === DRAWING && (
                 <div>
-                  <DrawingWord wordId={this.state.round.drawingWordId} />
+                  <DrawingEntry entryId={this.state.round.entryId} />
                   <Draw roundId={ this.state.round.roundId } userId={ this.state.user.userId } />
                 </div>
               )}
               { this.state.round.stageStateId === FILLING_IN_BLANKS && (
-                <FillingInBlanks wordId={this.state.round.drawingWordId}
+                <FillingInBlanks entryId={this.state.round.entryId}
                                  roundId={ this.state.round.roundId }
                                  userId={ this.state.user.userId } />
               )}
@@ -251,7 +251,7 @@ class ConnectedRoom extends Component {
 
 const mapStateToProps = (state, ownProperties) => {
   // Set the props using the store
-  return { room: state.room, user: state.user, round: state.round, words: state.words, minigames: state.minigames };
+  return { room: state.room, user: state.user, round: state.round, entries: state.entries, minigames: state.minigames };
 }
 
 const Room = connect(mapStateToProps)(ConnectedRoom);

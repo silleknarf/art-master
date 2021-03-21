@@ -12,8 +12,11 @@ class ConnectedFillingInBlanks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      word: {
-        word: ""
+      entry: {
+        entryComponents: [{
+          key: "Sentence",
+          value: ""
+        }]
       },
       sentenceBlanks: [],
       sentenceSubmitted: false
@@ -41,13 +44,13 @@ class ConnectedFillingInBlanks extends Component {
       room: newProps.room
     });
 
-    const wordId = newProps.wordId;
-    if (!wordId) return;
-    var wordRes = await fetch(`${Config.apiurl}/word?wordId=${wordId}`);
-    if (wordRes.status === 200) {
-      const word = await wordRes.json();
+    const entryId = newProps.entryId;
+    if (!entryId) return;
+    var entryRes = await fetch(`${Config.apiurl}/entry?entryId=${entryId}`);
+    if (entryRes.status === 200) {
+      const entry = await entryRes.json();
       this.setState({
-        word: word
+        entry
       });
     }
   }
@@ -60,7 +63,7 @@ class ConnectedFillingInBlanks extends Component {
 
   onClickSubmitText = async (e) => {
     const state = this.state;
-    const sentence = this.state.word.word
+    const sentence = this.state.entry.entryComponents[0].value
       .split(/_+/)
       .map((s, index) => {
         const blank = state.sentenceBlanks[index];
@@ -68,17 +71,20 @@ class ConnectedFillingInBlanks extends Component {
       })
       .join("");
 
-    const word = {
-      word: sentence,
+    const entry = {
+      entryComponents: [{
+        key: "Sentence",
+        value: sentence
+      }],
       roomId: this.state.room.roomId,
       roundId: this.state.room.currentRoundId,
       userId: this.state.user.userId
     };
-    this.setState({newWord: sentence, sentenceSubmitted: true });
-    const addWordRes = await fetch(`${Config.apiurl}/word?${$.param(word)}`,
+    this.setState({ submittedSentence: sentence });
+    const addEntryRes = await fetch(`${Config.apiurl}/entry?${$.param(entry)}`,
       { method: "POST" });
-    if (addWordRes.status === 200) {
-      console.log(`Added word: ${word.word}`);
+    if (addEntryRes.status === 200) {
+      console.log(`Added entry: ${submittedSentence}`);
     }
   }
 
@@ -101,7 +107,7 @@ class ConnectedFillingInBlanks extends Component {
     };
 
     const sentenceBuilderElements = []
-    const sentenceContent = this.state.word.word.split(/_+/);
+    const sentenceContent = this.state.entry.entryComponents[0].value.split(/_+/);
     sentenceContent.forEach((s, index) => {
       sentenceBuilderElements.push(<span key={index*2}>{s}</span>);
       if (index !== sentenceContent.length-1)
@@ -140,13 +146,13 @@ class ConnectedFillingInBlanks extends Component {
         </Row>
       </Grid>);
 
-    if (!this.state.sentenceSubmitted) {
+    if (!this.state.submittedSentence) {
       return sentenceBuildingComponent;
     }
 
     return (
       <Alert style={alertStyle} bsStyle="info">
-        <span>{ this.state.newWord }</span>
+        <span>{ this.state.submittedSentence }</span>
       </Alert>);
   }
 }

@@ -18,7 +18,7 @@ def get_next_stage(stage_state_id):
 
 def get_minigame_config():
     return {
-        "canSeeOwnWordsOnly": False,
+        "canSeeOwnEntriesOnly": False,
         "description": [
             "Add a word to the list below.",
             "Each round, one entry will be selected at random.",

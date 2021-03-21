@@ -13,7 +13,7 @@ class Critic extends Component {
     super(props);
     this.state = {
       images: [],
-      words: [],
+      entries: [],
       voteSubmitted: false
     };
   }
@@ -25,11 +25,11 @@ class Critic extends Component {
       const images = await criticRes.json();
       this.setState({images: images});
     }
-    var wordsRes = await fetch(
-      `${Config.apiurl}/words?roomId=${this.props.roomId}&roundId=${roundId}`);
-    if (wordsRes.status === 200) {
-      const words = await wordsRes.json();
-      this.setState({words: words});
+    var entriesRes = await fetch(
+      `${Config.apiurl}/entries?roomId=${this.props.roomId}&roundId=${roundId}`);
+    if (entriesRes.status === 200) {
+      const entries = await entriesRes.json();
+      this.setState({entries: entries});
     }
   }
 
@@ -37,16 +37,16 @@ class Critic extends Component {
     this.onClickRateImageBase(imageId, null);
   }
 
-  onClickRateWord = async (wordId) => {
-    this.onClickRateImageBase(null, wordId);
+  onClickRateEntry = async (entryId) => {
+    this.onClickRateImageBase(null, entryId);
   }
 
-  onClickRateImageBase = async (imageId, wordId) => {
+  onClickRateImageBase = async (imageId, entryId) => {
     const rating = {
       raterUserId: this.props.userId,
       roundId: this.props.roundId,
       imageId: imageId,
-      wordId: wordId,
+      entryId: entryId,
       rating: 1
     };
     var ratingRes = await fetch(
@@ -55,7 +55,7 @@ class Critic extends Component {
         method: "POST"
       })
     if (ratingRes.status === 200) {
-      console.log(`Image: ${imageId}/Word: ${wordId} rated by ${this.props.userId}`);
+      console.log(`Image: ${imageId}/Entry: ${entryId} rated by ${this.props.userId}`);
       this.setState({voteSubmitted: true});
     }
   }
@@ -111,12 +111,12 @@ class Critic extends Component {
           })}
         </Row>
         <Row>
-          {this.state.words.map((word) => {
+          {this.state.entries.map((entry) => {
 
-            let maybeButton = word.userId !== this.props.userId
+            let maybeButton = entry.userId !== this.props.userId
               ? <Button
                   className="button"
-                  onClick={e => this.onClickRateWord(word.wordId)}>
+                  onClick={e => this.onClickRateEntry(entry.entryId)}>
                   <FontAwesomeIcon style={iconStyle} icon={faCheckSquare} />
                   <span style={buttonTextStyle}>Vote</span>
                 </Button>
@@ -134,10 +134,10 @@ class Critic extends Component {
             };
 
             return (
-              <div key={ word.wordId }>
+              <div key={ entry.entryId }>
                 <Row style={centerRowContentStyle}>
                   <Alert style={alertStyle} bsStyle="info">
-                    <span>{ word.word }</span>
+                    <span>{ JSON.stringify(entry) }</span>
                   </Alert>
                 </Row>
                 <Row style={centerRowContentStyle}>

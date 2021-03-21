@@ -13,7 +13,7 @@ class ConnectedState extends Component {
         currentRoundId: null
       },
       round: null,
-      words: [],
+      entries: [],
       minigames: []
     };
   }
@@ -44,7 +44,7 @@ class ConnectedState extends Component {
           <div>RoundState: { JSON.stringify(this.state.round) } </div>
         </Row>
         <Row>
-          <div>WordsState: { JSON.stringify(this.state.words) } </div>
+          <div>EntriesState: { JSON.stringify(this.state.entries) } </div>
         </Row>
         <Row>
           <div>MinigamesState: { JSON.stringify(this.state.minigames) } </div>
@@ -62,7 +62,7 @@ const mapStateToProps = (state, ownProperties) => {
   return {
     room: state.room,
     round: state.round,
-    words: state.words,
+    entries: state.entries,
     minigames: state.minigames,
     user: state.user
   };

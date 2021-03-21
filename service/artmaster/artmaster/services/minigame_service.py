@@ -18,6 +18,6 @@ def to_json(minigame):
         "minigameId": minigame.MinigameId,
         "name": minigame.Name,
         "description": minigame.Description,
-        "canSeeOwnWordsOnly": minigame.CanSeeOwnWordsOnly,
+        "canSeeOwnEntriesOnly": minigame.CanSeeOwnEntriesOnly,
         "entryComponents": minigame.EntryComponents
     }

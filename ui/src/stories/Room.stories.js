@@ -10,7 +10,7 @@ import store from "../redux/Store";
 import { 
   updateRoomState,
   updateRoundState,
-  updateWordsState,
+  updateEntriesState,
   updateMinigamesState,
   updateUserState } from "../redux/Actions";
 
@@ -37,26 +37,41 @@ const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => 
   const round = {
     stageStateId: currentStageId,
     timeRemaining: 30,
-    drawingWordId: 1
+    entryId: 1
   };
   store.dispatch(updateRoundState(round));
   FetchMock.get("glob:*round?*", round);
 
-  const words = [
-    {
-      wordId: 1,
-      userId: 1,
-      word: "test"
+  const entries = [
+    { 
+      entryId: 1,
+      entryComponents: [{
+        entryComponentId: 1,
+        key: "Word",
+        value: "test1"
+      }]
     },
-    {
-      wordId: 2,
-      userId: 2,
-      word: "test2"
+    { 
+      entryId: 1,
+      entryComponents: [{
+        entryComponentId: 1,
+        key: "Word",
+        value: "test2"
+      }]
     }
   ];
-  store.dispatch(updateWordsState(words));
-  FetchMock.get("glob:*words?*", words);
-  FetchMock.get("glob:*word?*", { wordId: 1, word: "bacon"});
+  store.dispatch(updateEntriesState(entries));
+  FetchMock.get("glob:*entries?*", entries);
+
+  const baconEntry = { 
+    entryId: 1,
+    entryComponents: [{
+      entryComponentId: 1,
+      key: "Word",
+      value: "bacon"
+    }]
+  };
+  FetchMock.get("glob:*entry?*", baconEntry);
 
   const ratings = [
     { userId: 1, imageBase64: "1/1.png", username: "User1"},

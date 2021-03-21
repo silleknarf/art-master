@@ -2,7 +2,7 @@
 
 from flask import Blueprint, jsonify, request
 from repositories import entry_repository
-from utils.entry_utils import to_entry_components_json
+from utils.entry_utils import to_entries_json, to_entry_json
 
 entry_service = Blueprint('entry_service', __name__)
 
@@ -30,13 +30,14 @@ def get_entries():
     round_id = int(round_id_raw) if round_id_raw is not None and round_id_raw.isdigit() else None
     entry_entities = entry_repository.get_entries(room_id, round_id)
     entry_component_entitites = entry_repository.get_entry_components(entry_entities)
-    entry_components_json = to_entry_components_json(entry_entities, entry_component_entitites)
-    return entry_components_json
+    entries_json = to_entries_json(entry_entities, entry_component_entitites)
+
+    return entries_json
 
 @entry_service.route("/entry", methods=["GET"])
 def get_entry():
     entry_id = int(request.args.get("entryId"))
     entry_entity = entry_repository.get_entry(entry_id)
     entry_component_entities = entry_repository.get_entry_components([entry_entity])
-    entry_components_json = to_entry_components_json([entry_entity], entry_component_entities)
-    return entry_components_json
+    entry_json = to_entry_json(entry_entity, entry_component_entities)
+    return entry_json

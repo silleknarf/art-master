@@ -34,9 +34,9 @@ class ConnectedRoomUsers extends Component {
   }
 
   onClickRemoveUser = async (userId) => {
-    const removeWordRes = await fetch(`${Config.apiurl}/room/${this.state.room.roomId}/user/${userId}`,
+    const removeUserRes = await fetch(`${Config.apiurl}/room/${this.state.room.roomId}/user/${userId}`,
       { method: "DELETE" });
-    if (removeWordRes.status === 200) {
+    if (removeUserRes.status === 200) {
       console.log(`Deleted user with id: ${userId}`);
     }
   }

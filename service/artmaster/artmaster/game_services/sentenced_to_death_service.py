@@ -19,7 +19,7 @@ def get_next_stage(stage_state_id):
 
 def get_minigame_config():
     return {
-        "canSeeOwnWordsOnly": True,
+        "canSeeOwnEntriesOnly": True,
         "description": [
             "Add a phrase with words to fill in represented by underscores.",
             "For example: 'The _ fox jumped over the _.'",

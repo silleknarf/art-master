@@ -2,7 +2,7 @@ import io from "socket.io-client";
 import {
   updateRoomState,
   updateRoundState,
-  updateWordsState,
+  updateEntriesState,
   updateMinigamesState,
   updateUserState } from "./redux/Actions";
 import store from "./redux/Store";
@@ -36,11 +36,11 @@ const initRound = async (currentRoundId) => {
   }
 };
 
-const initWords = async (roomId) => {
-  const wordsStateRes = await fetch(`${Config.apiurl}/words?roomId=${roomId}`);
-  if (wordsStateRes.status === 200) {
-    const wordsState = await wordsStateRes.json();
-    store.dispatch(updateWordsState(wordsState));
+const initEntries = async (roomId) => {
+  const entriesStateRes = await fetch(`${Config.apiurl}/entries?roomId=${roomId}`);
+  if (entriesStateRes.status === 200) {
+    const entriesState = await entriesStateRes.json();
+    store.dispatch(updateEntriesState(entriesState));
   }
 };
 
@@ -73,7 +73,7 @@ export const connectToRoom = async (roomId) => {
   // init
   const room = await initRoom(roomId);
   initRound(room.currentRoundId);
-  initWords(roomId);
+  initEntries(roomId);
   initMinigames();
   initUser(roomId);
 
@@ -88,7 +88,7 @@ export const connectToRoom = async (roomId) => {
   socket.on("round", (roundState) => {
     store.dispatch(updateRoundState(roundState));
   });
-  socket.on("words", (wordsState) => {
-    store.dispatch(updateWordsState(wordsState));
+  socket.on("entries", (entriesState) => {
+    store.dispatch(updateEntriesState(entriesState));
   });
 };

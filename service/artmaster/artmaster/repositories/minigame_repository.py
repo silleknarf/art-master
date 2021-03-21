@@ -22,5 +22,5 @@ def get_minigames():
 def enrich_minigame(minigame):
     minigame_config = minigame_logic_repository.get_minigame_config(minigame.MinigameId)
     minigame.Description = minigame_config["description"]
-    minigame.CanSeeOwnWordsOnly = minigame_config["canSeeOwnWordsOnly"]
+    minigame.CanSeeOwnEntriesOnly = minigame_config["canSeeOwnEntriesOnly"]
     minigame.EntryComponents = minigame_config["entryComponents"]

@@ -5,6 +5,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap-theme.css";
 import Review from "../components/common/Review";
 
+const createEntry = (entryId, entryKey, entryValue) => { 
+  return { entryId, entryComponents: [ { key: entryKey, value: entryValue } ]};
+};
+
 storiesOf("Review", module)
   .add("with images", () => {
     FetchMock.restore()
@@ -18,8 +22,17 @@ storiesOf("Review", module)
   .add("with words", () => {
     FetchMock.restore()
     const ratings = [
-      { userId: 1, username: "User1", word: "test", votes: 1},
-      { userId: 2, username: "User2", word: "test 2", votes: 2}
+      { userId: 1, username: "User1", entry: createEntry(1, "Word", "test word"), votes: 1},
+      { userId: 2, username: "User2", entry: createEntry(2, "Word", "test word 2"), votes: 2}
+    ];
+    FetchMock.get("glob:*ratings?*", ratings);
+    return <Review roundId="97" />;
+  })
+  .add("with sentence", () => {
+    FetchMock.restore()
+    const ratings = [
+      { userId: 1, username: "User1", entry: createEntry(1, "Sentence", "test sentence"), votes: 1},
+      { userId: 2, username: "User2", entry: createEntry(2, "Sentence", "test sentence 2"), votes: 2}
     ];
     FetchMock.get("glob:*ratings?*", ratings);
     return <Review roundId="97" />;
