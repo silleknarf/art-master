@@ -1,7 +1,7 @@
 from repositories import room_user_repository, user_repository, entry_repository
 from database.database import session
 from database.data_model import Round, Image, Rating, Entry
-from utils.entry_util import to_entry_components_dto
+from utils.entry_utils import to_entry_components_dto
 import logging
 
 logfile = logging.getLogger('file')
