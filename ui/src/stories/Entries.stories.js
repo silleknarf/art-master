@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import Provider from './Provider'
 import Entries from '../components/common/Entries';
 
-import { updateEntriesState, updateUserState, updateRoomState, updateMinigamesState, updateEntriesState } from "../redux/Actions";
+import { updateEntriesState, updateUserState, updateRoomState, updateMinigamesState } from "../redux/Actions";
 
 const setupEntries = (entryComponents, entries) => {
   FetchMock.restore()
