@@ -82,7 +82,7 @@ const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => 
   FetchMock.get("glob:*images?*", [{ imageId: 1, imageBase64: "1/1.png"}, {imageId: 2, imageBase64: "1/1.png"}]);
   FetchMock.post("glob:*rating?*", "test");
 
-  const minigames = [{ minigameId: minigameId, name: minigameName }];
+  const minigames = [{ minigameId: minigameId, name: minigameName, entryComponents: ["Word"] }];
   store.dispatch(updateMinigamesState(minigames));
   FetchMock.get("glob:*minigames", minigames);
 }
