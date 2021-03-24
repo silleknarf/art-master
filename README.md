@@ -11,10 +11,14 @@ There are two minigames so far:
 ## Play it now
 [📦 craicbox.app](https://craicbox.app)
 
-## Contributing
+## Contributing and Licensing
+
 Development in progress!
 [Trello TODO Board](https://trello.com/b/xC2SMsIk/craicbox)
-Contributions are welcome, please feel free to submit a PR.
+
+This repository is provided without an explicit licence and as such, all copyright is reserved. Pull requests are encouraged but will only be considered if the contributor agrees to the terms of our Contributor Licensing Agreement (CLA).
+
+Contributions are welcome and encouraged - please agree to the CLA and then submit a PR!
 
 ## Architecture
 
@@ -94,3 +98,4 @@ To set up new relic (application performance monitoring), set the variables belo
 1. Update the k8s templates to point the registry images
 
 1. Run in all the k8s templates
+
