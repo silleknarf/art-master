@@ -14,6 +14,8 @@ import {
   updateMinigamesState,
   updateUserState } from "../redux/Actions";
 
+const testLocation = {pathname: "/room/TEST"};
+
 const setupRoom = (currentRoundId, currentStageId, minigameId, minigameName) => {
   FetchMock.restore()
 
@@ -91,21 +93,21 @@ storiesOf("Room", module)
   .addDecorator(story => <Provider story={story()} />)
   .add("AM - Round not started", () => {
     setupRoom(null, 0, 1, "Art Master");
-    return <Room />;
+    return <Room location={testLocation}/>;
   })
   .add("AM - Drawing", () => {
     setupRoom(1, 0, 1, "Art Master");
-    return <Room />;
+    return <Room location={testLocation}/>;
   })
   .add("AM - Reviewing", () => {
     setupRoom(97, 1, 1, "Art Master");
-    return <Room />;
+    return <Room location={testLocation}/>;
   })
   .add("AM - Critiquing", () => {
     setupRoom(97, 2, 1, "Art Master");
-    return <Room />;
+    return <Room location={testLocation}/>;
   })
   .add("STD - Round not started", () => {
     setupRoom(null, 0, 2, "Sentenced To Death");
-    return <Room />;
+    return <Room location={testLocation}/>;
   })
