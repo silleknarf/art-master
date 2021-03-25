@@ -6,7 +6,10 @@ class DrawingEntry extends Component {
     super(props);
     this.state = {
       entry: {
-        key: "Word"
+        entryComponents: [{
+          key: "Word",
+          value: ""
+        }]
       }
     };
   }
@@ -32,10 +35,13 @@ class DrawingEntry extends Component {
     const rowStyle = {
       textAlign: "center"
     };
+    const entryKey = this.state.entry.entryComponents[0].key;
+    const entryValue = this.state.entry.entryComponents[0].value;
     return (
       <div style={rowStyle}>
         <div style={style}>
-          🎨 Artists, it's time to draw! You have to draw <strong>{ JSON.stringify(this.state.entry) }</strong>
+          🎨 Artists, it's time to draw! 
+          You have to draw the { entryKey.toLowerCase() }: <strong>{ entryValue }</strong>
         </div>
       </div>
     );
