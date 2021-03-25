@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import Provider from './Provider'
 import FillingInBlanks from '../components/common/FillingInBlanks';
-import { updateRoomState, updateUserState } from "../redux/Actions";
+import { updateRoomState, updateRoundState, updateUserState } from "../redux/Actions";
 
 storiesOf('Filling in blanks', module)
   .addDecorator(story => <Provider story={story()} />)
@@ -30,6 +30,10 @@ storiesOf('Filling in blanks', module)
       userId: 1
     };
     store.dispatch(updateUserState(user));
+    const round = {
+      timeRemaining: 1000
+    };
+    store.dispatch(updateRoundState(round));
     FetchMock.post('glob:*entry?*', "test");
     return <FillingInBlanks entryId="1" />;
   });
