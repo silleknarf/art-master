@@ -41,7 +41,7 @@ class Review extends Component {
             const ratingContent = rating.imageBase64
               ? <img src={ rating.imageBase64 }></img>
               : <Alert style={alertStyle} bsStyle="info">
-                  <span>{ JSON.stringify(rating) }</span>
+                  <span>{ rating.entry.entryComponents[0].value }</span>
                 </Alert>
             return (<div key={ rating.userId }>
                 <Row style={centerRowContentStyle}>
