@@ -137,7 +137,7 @@ class Critic extends Component {
               <div key={ entry.entryId }>
                 <Row style={centerRowContentStyle}>
                   <Alert style={alertStyle} bsStyle="info">
-                    <span>{ JSON.stringify(entry) }</span>
+                    <span>{ entry.entryComponents[0].value }</span>
                   </Alert>
                 </Row>
                 <Row style={centerRowContentStyle}>
